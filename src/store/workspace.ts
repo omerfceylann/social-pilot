@@ -1,5 +1,7 @@
+import { translate } from "@/i18n/translate";
 import { connectAccount } from "@/services/accountService";
 import {
+  buildFirstReactions,
   buildPlatformSeed,
   resolveDataset,
   resolvePlatformHistory,
@@ -8,7 +10,9 @@ import type { BrandProfile, PlatformId, SocialAccount } from "@/types";
 import { useBrand } from "./useBrand";
 import { useContent } from "./useContent";
 import { useInbox } from "./useInbox";
+import { usePreferences } from "./usePreferences";
 import { useSocialAccounts } from "./useSocialAccounts";
+import { toast } from "./useToasts";
 import type { WorkspaceSnapshot } from "./useUserDirectory";
 
 /**
@@ -67,9 +71,77 @@ export const disconnectPlatform = (platform: PlatformId) => {
   useSocialAccounts.getState().disconnect(platform);
 };
 
+// ---------- Paylaşım ve ilk yorumlar ----------
+
+/** Paylaşımdan ilk yorumlara kadar geçen süre; demo için kısa tutuldu. */
+const FIRST_REACTION_DELAY_MS = 20_000;
+/** Sayfa yeniden açıldığında eksik kalan ilk yorumlar için kısa bekleme. */
+const CATCH_UP_DELAY_MS = 3_000;
+
+/** Aynı post için birden fazla zamanlayıcı kurulmasın (sayfa ömrü boyunca). */
+const scheduledReactions = new Set<string>();
+
+/**
+ * Zamanı gelince ilk yorumları ekler. Bu arada kullanıcı çıkış yapmış, post
+ * silinmiş ya da yorumlar zaten gelmişse hiçbir şey yapmaz.
+ */
+const deliverFirstReactions = (postId: string) => {
+  const profile = useBrand.getState().profile;
+  const post = useContent.getState().posts.find((item) => item.id === postId);
+  const alreadyReacted = useInbox.getState().reactedPostIds.includes(postId);
+  if (!profile || !post || post.status !== "published" || alreadyReacted) return;
+
+  const comments = buildFirstReactions({ dataset: resolveDataset(profile.sector), profile, post });
+  useInbox.getState().addFirstReactions(postId, comments);
+
+  const language = usePreferences.getState().language;
+  toast.info(
+    translate(language, "toasts.firstComments"),
+    translate(language, "toasts.firstCommentsDetail", {
+      title: post.title,
+      count: comments.length,
+    }),
+  );
+};
+
+const scheduleFirstReactions = (postId: string, delayMs: number) => {
+  if (scheduledReactions.has(postId)) return;
+  scheduledReactions.add(postId);
+  setTimeout(() => {
+    scheduledReactions.delete(postId);
+    deliverFirstReactions(postId);
+  }, delayMs);
+};
+
+/**
+ * Postu yayınlar ve ilk yorumları zamanlar. Arayüzdeki "Paylaş" bunu çağırır;
+ * yayınlanan post İçerikler, Takvim ve Analitik'te aynı kaynaktan görünür.
+ */
+export const publishPost = (postId: string) => {
+  useContent.getState().publishPost(postId);
+  scheduleFirstReactions(postId, FIRST_REACTION_DELAY_MS);
+};
+
+/**
+ * Zamanlayıcı sayfa kapanınca kaybolur. Sayfa açılışında ve girişte, yayınlanmış
+ * ama ilk yorumunu almamış kullanıcı postları için eksik yorumları tamamlar.
+ */
+export const catchUpFirstReactions = () => {
+  const { reactedPostIds } = useInbox.getState();
+  useContent
+    .getState()
+    .posts.filter(
+      (post) =>
+        post.origin === "user" && post.status === "published" && !reactedPostIds.includes(post.id),
+    )
+    .forEach((post) => scheduleFirstReactions(post.id, CATCH_UP_DELAY_MS));
+};
+
+// ---------- Anlık görüntü ----------
+
 export const captureWorkspace = (): WorkspaceSnapshot => {
   const { posts, suggestions, usedSuggestionIds, seededPlatforms } = useContent.getState();
-  const { comments, conversations } = useInbox.getState();
+  const { comments, conversations, reactedPostIds } = useInbox.getState();
   return {
     profile: useBrand.getState().profile,
     socialAccounts: useSocialAccounts.getState().accounts,
@@ -79,6 +151,7 @@ export const captureWorkspace = (): WorkspaceSnapshot => {
     seededPlatforms,
     comments,
     conversations,
+    reactedPostIds,
   };
 };
 
@@ -91,7 +164,11 @@ export const restoreWorkspace = (snapshot: WorkspaceSnapshot) => {
     usedSuggestionIds: snapshot.usedSuggestionIds,
     seededPlatforms: snapshot.seededPlatforms,
   });
-  useInbox.setState({ comments: snapshot.comments, conversations: snapshot.conversations });
+  useInbox.setState({
+    comments: snapshot.comments,
+    conversations: snapshot.conversations,
+    reactedPostIds: snapshot.reactedPostIds,
+  });
 };
 
 export const clearWorkspace = () => {

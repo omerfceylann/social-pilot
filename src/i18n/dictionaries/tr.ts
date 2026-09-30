@@ -153,6 +153,8 @@ export const tr = {
     emptyAnalytics: "İlk paylaşımından sonra sonuçların burada görünecek.",
   },
   toasts: {
+    firstComments: "İlk yorumlar geldi.",
+    firstCommentsDetail: "{title} paylaşımına {count} yeni yorum.",
     contentSaved: "İçerik kaydedildi.",
     contentPublished: "İçerik paylaşıldı.",
     publishedOn: "{where} başarıyla yayınlandı.",

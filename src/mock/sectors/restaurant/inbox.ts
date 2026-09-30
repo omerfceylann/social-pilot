@@ -66,7 +66,7 @@ export const restaurantComments: SeedComment[] = [
   {
     id: "rc-tt-delay",
     platform: "tiktok",
-    postTitle: "Latte art provası",
+    postTitle: "Kruvasan hamuru 3 günde nasıl hazırlanıyor?",
     author: { name: "Ozan T.", handle: "ozant", avatarUrl: avatar(PEOPLE.ozan) },
     text: "Geçen gün siparişim 25 dakika gecikti, açıkçası üzüldüm.",
     likes: 5,

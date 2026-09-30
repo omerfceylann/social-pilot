@@ -146,6 +146,8 @@ export const en: Dictionary = {
     emptyAnalytics: "Your results will show up here after your first post.",
   },
   toasts: {
+    firstComments: "Your first comments are in.",
+    firstCommentsDetail: "{count} new comments on {title}.",
     contentSaved: "Content saved.",
     contentPublished: "Content published.",
     publishedOn: "Published successfully {where}.",

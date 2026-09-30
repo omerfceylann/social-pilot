@@ -67,7 +67,7 @@ export const technologyComments: SeedComment[] = [
   {
     id: "tc-tt-bug",
     platform: "tiktok",
-    postTitle: "Ekibimizle bir sprint günü",
+    postTitle: "Klavye kısayoluyla 3 saniyede görev",
     author: { name: "Ozan T.", handle: "ozant", avatarUrl: avatar(PEOPLE.ozan) },
     text: "Dün akşam bildirimler hiç gelmedi, sorun mu vardı?",
     likes: 7,

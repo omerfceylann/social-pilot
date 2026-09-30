@@ -40,6 +40,12 @@ export type SeedConversation = Omit<Conversation, "messages"> & {
   messages: SeedMessage[];
 };
 
+/**
+ * Yeni paylaşılan bir posta gelen ilk yorumların şablonu. Platform ve post başlığı
+ * şablonda yoktur; paylaşılan posttan gelir. Her posta uyacak kadar genel yazılır.
+ */
+export type FirstReaction = Pick<Comment, "author" | "text" | "intent" | "aiReply" | "likes">;
+
 /** Sektöre özel AI medya analizi içeriği (spec §20). */
 export type MediaTips = {
   videoSummary: string;
@@ -76,6 +82,8 @@ export type SectorDataset = {
   trends: Trend[];
   comments: SeedComment[];
   conversations: SeedConversation[];
+  /** Kullanıcı bir post paylaştığında kısa süre sonra gelen ilk yorumlar. */
+  firstReactions: FirstReaction[];
   analytics: AnalyticsBaseline;
   /** AI Agent kartındaki "X trend analiz edildi"; pazara ait, hesaba değil. */
   trendsAnalyzed: number;

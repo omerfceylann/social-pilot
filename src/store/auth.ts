@@ -6,14 +6,19 @@ import {
 } from "@/services/authService";
 import { useSession, type User } from "./useSession";
 import { useUserDirectory } from "./useUserDirectory";
-import { captureWorkspace, clearWorkspace, restoreWorkspace } from "./workspace";
+import {
+  captureWorkspace,
+  catchUpFirstReactions,
+  clearWorkspace,
+  restoreWorkspace,
+} from "./workspace";
 
 /**
- * Kayıt, giriş ve çıkış akışları (mock). Üç kullanıcı varyasyonu:
- * 1. Yeni marka / sosyal medyaya yeni başlayan → kayıt + onboarding → başlangıç paketi
- * 2. Sosyal medyayı kullanan, uygulamaya yeni kayıt olan → kayıt + onboarding → hazır veri
- * 3. Uygulamayı bir süredir kullanan → kullanıcı adıyla giriş → kaydedilmiş çalışma alanı
- * 1 ve 2'yi onboarding cevapları ayırır (bkz. brandService.resolveSocialPresence).
+ * Kayıt, giriş ve çıkış akışları (mock).
+ * - Yeni kullanıcı: kayıt → onboarding → hesap bağlama. Her platformun verisi,
+ *   "Kullandığın platformlar"da seçilip seçilmediğine göre geçmişli ya da başlangıç
+ *   verisidir (bkz. workspaceService.resolvePlatformHistory).
+ * - Uygulamayı bir süredir kullanan: kullanıcı adıyla giriş → kaydedilmiş çalışma alanı.
  */
 
 /** Aktif kullanıcının güncel hâlini dizine yazar. Hesap değişmeden önce çağrılır. */
@@ -59,6 +64,7 @@ export const signIn = async (rawUsername: string) => {
   clearWorkspace();
   if (entry.snapshot) restoreWorkspace(entry.snapshot);
   useSession.getState().start({ user: entry.user, onboarded: entry.onboarded });
+  catchUpFirstReactions();
   return entry.user;
 };
 

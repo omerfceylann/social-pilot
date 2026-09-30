@@ -22,6 +22,7 @@ export type WorkspaceSnapshot = {
   seededPlatforms: PlatformId[];
   comments: Comment[];
   conversations: Conversation[];
+  reactedPostIds: string[];
 };
 
 export type DirectoryEntry = {

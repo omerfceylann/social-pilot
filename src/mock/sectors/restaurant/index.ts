@@ -2,6 +2,7 @@ import type { SectorDataset } from "@/types";
 import { restaurantBrandDefaults } from "./brand";
 import { restaurantPosts, restaurantSuggestions, restaurantTrends } from "./content";
 import { restaurantComments, restaurantConversations } from "./inbox";
+import { restaurantReactions } from "./reactions";
 import { restaurantStarter } from "./starter";
 
 export const restaurantDataset: SectorDataset = {
@@ -13,6 +14,7 @@ export const restaurantDataset: SectorDataset = {
   trends: restaurantTrends,
   comments: restaurantComments,
   conversations: restaurantConversations,
+  firstReactions: restaurantReactions,
   analytics: {
     followers: { instagram: 18400, tiktok: 9600, youtube: 2100, x: 1350, linkedin: 820 },
     avgViews: { instagram: 6200, tiktok: 14500, youtube: 3800, x: 1200, linkedin: 900 },

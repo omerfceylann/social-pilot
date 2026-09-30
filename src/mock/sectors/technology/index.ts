@@ -2,6 +2,7 @@ import type { SectorDataset } from "@/types";
 import { technologyBrandDefaults } from "./brand";
 import { technologyPosts, technologySuggestions, technologyTrends } from "./content";
 import { technologyComments, technologyConversations } from "./inbox";
+import { technologyReactions } from "./reactions";
 import { technologyStarter } from "./starter";
 
 export const technologyDataset: SectorDataset = {
@@ -13,6 +14,7 @@ export const technologyDataset: SectorDataset = {
   trends: technologyTrends,
   comments: technologyComments,
   conversations: technologyConversations,
+  firstReactions: technologyReactions,
   analytics: {
     followers: { instagram: 6400, tiktok: 3100, youtube: 4800, x: 11200, linkedin: 15600 },
     avgViews: { instagram: 2800, tiktok: 7400, youtube: 3100, x: 5200, linkedin: 4300 },

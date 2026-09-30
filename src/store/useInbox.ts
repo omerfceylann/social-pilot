@@ -6,8 +6,11 @@ import { persistOptions } from "./persist";
 type InboxState = {
   comments: Comment[];
   conversations: Conversation[];
+  /** İlk yorumları gelmiş kullanıcı postları; aynı posta iki kez yorum gelmez. */
+  reactedPostIds: string[];
 
   addPlatformData: (data: { comments: Comment[]; conversations: Conversation[] }) => void;
+  addFirstReactions: (postId: string, comments: Comment[]) => void;
   replyToComment: (id: string, text: string, edited: boolean) => void;
   sendMessage: (conversationId: string, text: string) => void;
   markConversationRead: (conversationId: string) => void;
@@ -19,11 +22,18 @@ export const useInbox = create<InboxState>()(
     (set) => ({
       comments: [],
       conversations: [],
+      reactedPostIds: [],
 
       addPlatformData: (data) =>
         set((state) => ({
           comments: [...state.comments, ...data.comments],
           conversations: [...state.conversations, ...data.conversations],
+        })),
+
+      addFirstReactions: (postId, comments) =>
+        set((state) => ({
+          comments: [...comments, ...state.comments],
+          reactedPostIds: [...state.reactedPostIds, postId],
         })),
 
       replyToComment: (id, text, edited) =>
@@ -64,7 +74,7 @@ export const useInbox = create<InboxState>()(
           ),
         })),
 
-      reset: () => set({ comments: [], conversations: [] }),
+      reset: () => set({ comments: [], conversations: [], reactedPostIds: [] }),
     }),
     persistOptions("inbox"),
   ),

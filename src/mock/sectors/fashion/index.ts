@@ -2,6 +2,7 @@ import type { SectorDataset } from "@/types";
 import { fashionBrandDefaults } from "./brand";
 import { fashionPosts, fashionSuggestions, fashionTrends } from "./content";
 import { fashionComments, fashionConversations } from "./inbox";
+import { fashionReactions } from "./reactions";
 import { fashionStarter } from "./starter";
 
 export const fashionDataset: SectorDataset = {
@@ -13,6 +14,7 @@ export const fashionDataset: SectorDataset = {
   trends: fashionTrends,
   comments: fashionComments,
   conversations: fashionConversations,
+  firstReactions: fashionReactions,
   analytics: {
     followers: { instagram: 42800, tiktok: 18300, youtube: 1900, x: 2400, linkedin: 3100 },
     avgViews: { instagram: 11200, tiktok: 19500, youtube: 2600, x: 1500, linkedin: 1800 },

@@ -1,4 +1,5 @@
 import { FALLBACK_SECTOR_ID, SECTOR_DATASETS } from "@/mock/sectors";
+import { createRandom } from "@/lib/random";
 import { addDays, minutesAgo, resolveRelativeTime } from "@/lib/time";
 import type {
   AnalyticsBaseline,
@@ -262,4 +263,43 @@ export const buildPlatformSeed = ({
       })),
     })),
   };
+};
+
+/**
+ * Kullanıcının paylaştığı bir posta gelen ilk yorumlar (gerçekte ilk yorumlar
+ * paylaşımdan sonra gelir). Sektörün şablonlarından, post id'siyle tohumlanmış
+ * rastgelelikle 2–3 tanesi yerine koymadan seçilir; aynı post hep aynı yorumları alır.
+ */
+export const buildFirstReactions = ({
+  dataset,
+  profile,
+  post,
+  now = new Date(),
+}: {
+  dataset: SectorDataset;
+  profile: BrandProfile;
+  post: Post;
+  now?: Date;
+}): Comment[] => {
+  const random = createRandom(`reactions:${post.id}`);
+  const personalize = createPersonalizer(profile);
+  const pool = [...dataset.firstReactions];
+  const count = Math.min(pool.length, random.int(2, 3));
+
+  return Array.from({ length: count }).flatMap((_, index): Comment[] => {
+    const [reaction] = pool.splice(random.int(0, pool.length - 1), 1);
+    if (!reaction) return [];
+    return [
+      {
+        ...reaction,
+        id: `reaction-${post.id}-${index}`,
+        platform: post.platform,
+        postTitle: post.title,
+        text: personalize(reaction.text),
+        aiReply: personalize(reaction.aiReply),
+        // Yorumlar birkaç dakika arayla gelmiş gibi.
+        createdAt: minutesAgo(index * 2, now),
+      },
+    ];
+  });
 };

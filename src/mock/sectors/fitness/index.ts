@@ -2,6 +2,7 @@ import type { SectorDataset } from "@/types";
 import { fitnessBrandDefaults } from "./brand";
 import { fitnessPosts, fitnessSuggestions, fitnessTrends } from "./content";
 import { fitnessComments, fitnessConversations } from "./inbox";
+import { fitnessReactions } from "./reactions";
 import { fitnessStarter } from "./starter";
 
 export const fitnessDataset: SectorDataset = {
@@ -13,6 +14,7 @@ export const fitnessDataset: SectorDataset = {
   trends: fitnessTrends,
   comments: fitnessComments,
   conversations: fitnessConversations,
+  firstReactions: fitnessReactions,
   analytics: {
     followers: { instagram: 24800, tiktok: 15200, youtube: 3600, x: 900, linkedin: 1400 },
     avgViews: { instagram: 8400, tiktok: 21000, youtube: 4200, x: 700, linkedin: 1100 },
