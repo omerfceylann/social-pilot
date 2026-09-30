@@ -23,9 +23,13 @@ export type SeedPost = Omit<
   at: RelativeTime;
 };
 
-export type SeedSuggestion = Omit<PostSuggestion, "suggestedAt"> & {
+/** stage veride yazılmaz; önerinin hangi listeden geldiğine göre seed sırasında atanır. */
+export type SeedSuggestion = Omit<PostSuggestion, "suggestedAt" | "stage"> & {
   suggestedAt: RelativeTime;
 };
+
+/** Başlangıç paketinde sadece taslak olabilir; yeni markanın yayınlanmış içeriği yoktur. */
+export type SeedDraft = SeedPost & { status: "draft" };
 
 export type SeedComment = Omit<Comment, "createdAt" | "reply"> & {
   minutesAgo: number;
@@ -47,10 +51,29 @@ export type MediaTips = {
   image: string[];
 };
 
-/** Bir sektörün tüm mock verisi. Yeni sektör = bu tipte yeni bir nesne. */
+/**
+ * "Yeni bir marka oluşturuyorum" diyen kullanıcının boş olmayan ilk ekranı.
+ * Metinlerde {brand} yer tutucusu kullanılır; kullanıcının marka adıyla doldurulur.
+ * Yorum, DM ve yayınlanmış post yoktur: yeni bir hesabın geçmişi olmaz.
+ */
+export type StarterKit = {
+  /** İlk haftaya yayılmış "bu şekilde başlayalım" önerileri. */
+  suggestions: SeedSuggestion[];
+  /** Düzenlenmeye hazır "bu postla başlayalım" taslakları. */
+  drafts: SeedDraft[];
+  /** Yeni hesap: 0 takipçi, küçük ama gerçekçi erişim. */
+  analytics: AnalyticsBaseline;
+  agentActivity: AgentActivity;
+};
+
+/**
+ * Bir sektörün tüm mock verisi. Yeni sektör = bu tipte yeni bir nesne.
+ * Kök alanlar mevcut (geçmişi olan) marka içindir; yeni marka starter'ı kullanır.
+ */
 export type SectorDataset = {
   sectorId: SectorId;
   brand: BrandProfile;
+  starter: StarterKit;
   suggestions: SeedSuggestion[];
   posts: SeedPost[];
   trends: Trend[];

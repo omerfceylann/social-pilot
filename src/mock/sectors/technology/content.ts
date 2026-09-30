@@ -1,7 +1,7 @@
 import { photo, video } from "@/mock/images";
 import type { SeedPost, SeedSuggestion, Trend } from "@/types";
 
-const IMG = {
+export const IMG = {
   laptopCode: "1517694712202-14dd9538aa97",
   deskSetup: "1498050108023-c5249f4df085",
   codeScreen: "1461749280684-dccba630e2f6",

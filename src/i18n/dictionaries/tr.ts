@@ -144,6 +144,14 @@ export const tr = {
     recommendation:
       "Önümüzdeki {days} gün içinde {platform} için yeni bir {theme} {format} içeriği paylaşmayı dene.",
   },
+  /** Yeni markanın ilk haftası (başlangıç paketi). */
+  starter: {
+    title: "Bu şekilde başlayalım",
+    subtitle: "{brand} için ilk haftanı planladık. Sırayla ilerle, gerisini birlikte büyütelim.",
+    firstPost: "Bu postla başlayalım",
+    badge: "Başlangıç",
+    emptyAnalytics: "İlk paylaşımından sonra sonuçların burada görünecek.",
+  },
   toasts: {
     contentSaved: "İçerik kaydedildi.",
     contentPublished: "İçerik paylaşıldı.",

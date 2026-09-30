@@ -64,9 +64,13 @@ export type SuggestionAlternatives = {
   music: MusicTrack[];
 };
 
+/** "starter": yeni markanın ilk haftası. "growth": geçmiş veriye dayanan öneri. */
+export type SuggestionStage = "starter" | "growth";
+
 /** AI'ın önerdiği, henüz oluşturulmamış içerik (spec §18). */
 export type PostSuggestion = {
   id: string;
+  stage: SuggestionStage;
   platform: PlatformId;
   format: ContentFormat;
   title: string;

@@ -40,6 +40,8 @@ const TIER_ENGAGEMENT: Record<PerformanceTier, [number, number]> = {
 };
 
 const HOUR_MS = 3_600_000;
+/** Bir postun erişiminin takipçiye dönüşme oranı. */
+const FOLLOW_RATE = 0.01;
 /** Bir post ilk 72 saatte nihai izlenmesine ulaşır. */
 const GROWTH_WINDOW_HOURS = 72;
 
@@ -127,32 +129,29 @@ export const getAccountOverview = (
     const postViews = dayPosts.reduce((sum, item) => sum + item.views, 0);
     const postReach = dayPosts.reduce((sum, item) => sum + item.reach, 0);
 
-    reach.push(
-      Math.round(baseline.dailyReach * random.between(0.8, 1.15) * weekend + postReach * 0.6),
-    );
-    views.push(
-      Math.round(baseline.dailyReach * 1.35 * random.between(0.8, 1.15) + postViews * 0.7),
-    );
+    reach.push(Math.round(baseline.dailyReach * random.between(0.8, 1.15) * weekend + postReach));
+    views.push(Math.round(baseline.dailyReach * 1.35 * random.between(0.8, 1.15) + postViews));
     engagement.push(
       Number(
         (dayPosts.length > 0
           ? dayPosts.reduce((sum, item) => sum + item.engagementRate, 0) / dayPosts.length
-          : baseline.engagementRate * random.between(0.75, 1.05)
+          : // Yeni hesapta (günlük taban erişim 0) paylaşımsız gün etkileşimsizdir.
+            baseline.dailyReach > 0
+            ? baseline.engagementRate * random.between(0.75, 1.05)
+            : 0
         ).toFixed(1),
       ),
     );
     followerGain.push(
-      Math.round(baseline.dailyFollowerGrowth * random.between(0.4, 1.6) + postReach * 0.004),
+      Math.round(baseline.dailyFollowerGrowth * random.between(0.4, 1.6) + postReach * FOLLOW_RATE),
     );
   }
 
-  // Takipçi serisi: bugünkü toplamdan geriye doğru kazanımları çıkararak.
-  const followers: number[] = new Array(totalDays);
-  let running = totalFollowers;
-  for (let index = totalDays - 1; index >= 0; index--) {
-    followers[index] = running;
-    running -= followerGain[index] ?? 0;
-  }
+  // Takipçi serisi ileriye doğru birikir. Başlangıç, bugünkü toplamdan dönem kazanımları
+  // çıkarılarak bulunur; 0'ın altına inemez (yeni hesap 0'dan başlar, paylaştıkça büyür).
+  const totalGain = followerGain.reduce((sum, gain) => sum + gain, 0);
+  let running = Math.max(0, totalFollowers - totalGain);
+  const followers = followerGain.map((gain) => (running += gain));
 
   const dates = Array.from({ length: totalDays }, (_, index) =>
     toDayKey(addDays(now, index - totalDays + 1)),
@@ -168,7 +167,10 @@ export const getAccountOverview = (
     const reduce = (list: number[]) => {
       if (aggregate === "last") return list.at(-1) ?? 0;
       const sum = list.reduce((total, value) => total + value, 0);
-      return aggregate === "sum" ? sum : sum / Math.max(1, list.length);
+      if (aggregate === "sum") return sum;
+      // Ortalama sadece aktivite olan günlerden: tek postlu yeni hesap 7'ye bölünmez.
+      const active = list.filter((value) => value > 0);
+      return active.reduce((total, value) => total + value, 0) / Math.max(1, active.length);
     };
     const value = reduce(current);
     const before = reduce(previous);

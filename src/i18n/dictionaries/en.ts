@@ -138,6 +138,13 @@ export const en: Dictionary = {
     recommendation:
       "Try publishing another {theme} {format} on {platform} within the next {days} days.",
   },
+  starter: {
+    title: "Let's start here",
+    subtitle: "We've planned your first week for {brand}. Take it one step at a time.",
+    firstPost: "Start with this post",
+    badge: "Starter",
+    emptyAnalytics: "Your results will show up here after your first post.",
+  },
   toasts: {
     contentSaved: "Content saved.",
     contentPublished: "Content published.",

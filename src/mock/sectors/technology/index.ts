@@ -2,10 +2,12 @@ import type { SectorDataset } from "@/types";
 import { technologyBrand } from "./brand";
 import { technologyPosts, technologySuggestions, technologyTrends } from "./content";
 import { technologyComments, technologyConversations } from "./inbox";
+import { technologyStarter } from "./starter";
 
 export const technologyDataset: SectorDataset = {
   sectorId: "technology",
   brand: technologyBrand,
+  starter: technologyStarter,
   suggestions: technologySuggestions,
   posts: technologyPosts,
   trends: technologyTrends,

@@ -22,7 +22,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { Switch } from "@/components/ui/Switch";
 import { Tabs } from "@/components/ui/Tabs";
 import { cn } from "@/lib/cn";
-import { ACCENT_SWATCHES, ACCENT_THEMES, type ColorMode } from "@/lib/theme";
+import { ACCENT_SWATCHES, ACCENT_THEMES, isColorMode } from "@/lib/theme";
 import { usePreferences } from "@/store/usePreferences";
 import { toast } from "@/store/useToasts";
 
@@ -55,7 +55,7 @@ export default function DesignSystemPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-6">
-          <Tabs value={mode} onValueChange={(value) => setMode(value as ColorMode)}>
+          <Tabs value={mode} onValueChange={(value) => isColorMode(value) && setMode(value)}>
             <Tabs.List aria-label="Renk modu">
               <Tabs.Trigger value="light">Açık</Tabs.Trigger>
               <Tabs.Trigger value="dark">Koyu</Tabs.Trigger>

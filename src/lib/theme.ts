@@ -5,6 +5,10 @@ export const COLOR_MODES = ["light", "dark", "system"] as const;
 export type ColorMode = (typeof COLOR_MODES)[number];
 export type ResolvedColorMode = Exclude<ColorMode, "system">;
 
+/** Dışarıdan gelen string'i (ör. Tabs değeri) gerçekten doğrulayarak daraltır. */
+export const isColorMode = (value: string): value is ColorMode =>
+  COLOR_MODES.some((mode) => mode === value);
+
 export const DEFAULT_ACCENT: AccentTheme = "violet";
 export const DEFAULT_COLOR_MODE: ColorMode = "system";
 

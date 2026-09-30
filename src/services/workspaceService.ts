@@ -1,14 +1,24 @@
 import { FALLBACK_SECTOR_ID, SECTOR_DATASETS } from "@/mock/sectors";
-import { minutesAgo, resolveRelativeTime } from "@/lib/time";
+import { addDays, minutesAgo, resolveRelativeTime } from "@/lib/time";
 import type {
+  AgentActivity,
+  AnalyticsBaseline,
+  BrandProfile,
   Comment,
   Conversation,
+  MediaAsset,
+  MediaTips,
   Post,
   PostSuggestion,
+  RelativeTime,
   SectorDataset,
   SectorId,
   SectorSelection,
   SeedPost,
+  SeedSuggestion,
+  SuggestionAlternatives,
+  SuggestionStage,
+  Trend,
 } from "@/types";
 
 /** Seçilen sektör için yüklenecek veri. Özel sektörlerde yedek veri döner (spec §13). */
@@ -22,6 +32,120 @@ export const resolveDataset = (sector: SectorSelection): SectorDataset => {
 export const hasDedicatedDataset = (sector: SectorSelection) =>
   sector.kind === "preset" && sector.id in SECTOR_DATASETS;
 
+/**
+ * Markanın kökenine göre değişen, store'da tutulmayan okuma verisi.
+ * Yeni markanın takipçisi ve geçmişi yoktur; trendler ise pazara aittir, herkese aynıdır.
+ */
+export type WorkspaceContext = {
+  analytics: AnalyticsBaseline;
+  agentActivity: AgentActivity;
+  trends: Trend[];
+  mediaTips: MediaTips;
+};
+
+export const resolveWorkspaceContext = (profile: BrandProfile): WorkspaceContext => {
+  const dataset = resolveDataset(profile.sector);
+  const source = profile.origin === "new" ? dataset.starter : dataset;
+  return {
+    analytics: source.analytics,
+    agentActivity: source.agentActivity,
+    trends: dataset.trends,
+    mediaTips: dataset.mediaTips,
+  };
+};
+
+// ---------- Kişiselleştirme ----------
+
+type Personalize = (text: string) => string;
+
+/** "Sokak Kahvesi" → "sokakkahvesi": hashtag ve URL'lerde geçen biçim. */
+const compactName = (name: string) => name.toLocaleLowerCase("tr").replace(/\s+/g, "");
+
+/**
+ * Mock metinleri kullanıcının markasına uyarlar: {brand} yer tutucusunu doldurur,
+ * örnek markanın adını (ve #etiket biçimini) kullanıcının marka adıyla değiştirir.
+ */
+const createPersonalizer = (preset: BrandProfile, profile: BrandProfile): Personalize => {
+  const replacements: [string, string][] = [
+    ["{brand}", profile.name],
+    [preset.name, profile.name],
+    [compactName(preset.name), compactName(profile.name)],
+  ];
+  return (text) =>
+    replacements.reduce(
+      (result, [from, to]) => (from && from !== to ? result.replaceAll(from, to) : result),
+      text,
+    );
+};
+
+const personalizeAlternatives = (
+  alternatives: SuggestionAlternatives,
+  personalize: Personalize,
+): SuggestionAlternatives => ({
+  ...alternatives,
+  title: alternatives.title.map(personalize),
+  caption: alternatives.caption.map(personalize),
+  hashtags: alternatives.hashtags.map((set) => set.map(personalize)),
+  cta: alternatives.cta.map(personalize),
+});
+
+/** Görsel açıklamaları ekran okuyucuda seslendirilir; onlar da markaya uymalı. */
+const personalizeMedia = (media: MediaAsset[], personalize: Personalize) =>
+  media.map((asset) => ({ ...asset, alt: personalize(asset.alt) }));
+
+// ---------- Zaman ----------
+
+/** Öneri ve taslak zamanı geçmişe düşerse bir gün ileri alınır (ör. onboarding akşam bittiyse). */
+const resolveUpcoming = (at: RelativeTime, now: Date) => {
+  const resolved = resolveRelativeTime(at, now);
+  return new Date(resolved).getTime() < now.getTime()
+    ? addDays(new Date(resolved), 1).toISOString()
+    : resolved;
+};
+
+// ---------- Dönüştürücüler ----------
+
+type SeedContext = { now: Date; personalize: Personalize };
+
+const toPost = (seed: SeedPost, { now, personalize }: SeedContext): Post => {
+  const { at, ...rest } = seed;
+  const isPublished = seed.status === "published";
+  const when = isPublished ? resolveRelativeTime(at, now) : resolveUpcoming(at, now);
+  // Oluşturulma zamanı: yayından birkaç gün önce, gelecekteki içerik için bugünden önce.
+  const createdAt = resolveRelativeTime({ day: Math.min(at.day, 0) - 2, time: "10:00" }, now);
+  return {
+    ...rest,
+    title: personalize(rest.title),
+    caption: personalize(rest.caption),
+    hashtags: rest.hashtags.map(personalize),
+    cta: rest.cta && personalize(rest.cta),
+    media: personalizeMedia(rest.media, personalize),
+    origin: "seed",
+    createdAt,
+    updatedAt: createdAt,
+    scheduledAt: isPublished ? undefined : when,
+    publishedAt: isPublished ? when : undefined,
+  };
+};
+
+const toSuggestion = (
+  { suggestedAt, ...rest }: SeedSuggestion,
+  stage: SuggestionStage,
+  { now, personalize }: SeedContext,
+): PostSuggestion => ({
+  ...rest,
+  stage,
+  title: personalize(rest.title),
+  description: personalize(rest.description),
+  caption: personalize(rest.caption),
+  hashtags: rest.hashtags.map(personalize),
+  cta: personalize(rest.cta),
+  reasoning: personalize(rest.reasoning),
+  media: personalizeMedia(rest.media, personalize),
+  alternatives: personalizeAlternatives(rest.alternatives, personalize),
+  suggestedAt: resolveUpcoming(suggestedAt, now),
+});
+
 export type WorkspaceSeed = {
   posts: Post[];
   suggestions: PostSuggestion[];
@@ -29,40 +153,54 @@ export type WorkspaceSeed = {
   conversations: Conversation[];
 };
 
-const toPost = (seed: SeedPost, now: Date): Post => {
-  const { at, ...rest } = seed;
-  const when = resolveRelativeTime(at, now);
-  // Oluşturulma zamanı: yayından birkaç gün önce, gelecekteki içerik için bugünden önce.
-  const createdAt = resolveRelativeTime({ day: Math.min(at.day, 0) - 2, time: "10:00" }, now);
-  return {
-    ...rest,
-    origin: "seed",
-    createdAt,
-    updatedAt: createdAt,
-    scheduledAt: seed.status === "published" ? undefined : when,
-    publishedAt: seed.status === "published" ? when : undefined,
-  };
-};
-
 /**
  * Göreli zamanlı mock veriyi, "şimdi"ye göre gerçek tarihli workspace verisine çevirir.
  * Onboarding bittiğinde bir kez çalışır; sonrasında tek kaynak store'lardır.
+ *
+ * - Mevcut marka: sektörün tüm geçmişi (yayınlanmış postlar, yorumlar, DM'ler).
+ * - Yeni marka: sadece başlangıç paketi (ilk hafta önerileri + bir taslak). Yorum ve DM yok.
  */
-export const buildWorkspaceSeed = (dataset: SectorDataset, now = new Date()): WorkspaceSeed => ({
-  posts: dataset.posts.map((seed) => toPost(seed, now)),
-  suggestions: dataset.suggestions.map(({ suggestedAt, ...rest }) => ({
-    ...rest,
-    suggestedAt: resolveRelativeTime(suggestedAt, now),
-  })),
-  comments: dataset.comments.map(({ minutesAgo: ago, ...rest }) => ({
-    ...rest,
-    createdAt: minutesAgo(ago, now),
-  })),
-  conversations: dataset.conversations.map(({ messages, ...rest }) => ({
-    ...rest,
-    messages: messages.map(({ minutesAgo: ago, ...message }) => ({
-      ...message,
-      sentAt: minutesAgo(ago, now),
+export const buildWorkspaceSeed = ({
+  dataset,
+  profile,
+  now = new Date(),
+}: {
+  dataset: SectorDataset;
+  profile: BrandProfile;
+  now?: Date;
+}): WorkspaceSeed => {
+  const context: SeedContext = { now, personalize: createPersonalizer(dataset.brand, profile) };
+
+  if (profile.origin === "new") {
+    return {
+      posts: dataset.starter.drafts.map((seed) => toPost(seed, context)),
+      suggestions: dataset.starter.suggestions.map((seed) =>
+        toSuggestion(seed, "starter", context),
+      ),
+      comments: [],
+      conversations: [],
+    };
+  }
+
+  const { personalize } = context;
+  return {
+    posts: dataset.posts.map((seed) => toPost(seed, context)),
+    suggestions: dataset.suggestions.map((seed) => toSuggestion(seed, "growth", context)),
+    comments: dataset.comments.map(({ minutesAgo: ago, ...rest }) => ({
+      ...rest,
+      postTitle: personalize(rest.postTitle),
+      text: personalize(rest.text),
+      aiReply: personalize(rest.aiReply),
+      createdAt: minutesAgo(ago, now),
     })),
-  })),
-});
+    conversations: dataset.conversations.map(({ messages, ...rest }) => ({
+      ...rest,
+      aiSuggestions: rest.aiSuggestions.map(personalize),
+      messages: messages.map(({ minutesAgo: ago, ...message }) => ({
+        ...message,
+        text: personalize(message.text),
+        sentAt: minutesAgo(ago, now),
+      })),
+    })),
+  };
+};

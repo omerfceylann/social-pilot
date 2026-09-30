@@ -1,7 +1,7 @@
 import { photo, video } from "@/mock/images";
 import type { SeedPost, SeedSuggestion, Trend } from "@/types";
 
-const IMG = {
+export const IMG = {
   boutique: "1445205170230-053b83016050",
   shopping: "1483985988355-763728e1935b",
   rack: "1490481651871-ab68de25d43d",

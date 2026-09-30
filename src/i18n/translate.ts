@@ -20,8 +20,10 @@ export type TranslationParams = Record<string, string | number>;
 const lookup = (dictionary: Dictionary, key: string) => {
   let node: unknown = dictionary;
   for (const part of key.split(".")) {
-    if (typeof node !== "object" || node === null) return undefined;
-    node = (node as Record<string, unknown>)[part];
+    if (typeof node !== "object" || node === null || !Object.hasOwn(node, part)) return undefined;
+    // Reflect.get sonucu unknown'a atanır ve bir sonraki turda yeniden daraltılır; cast gerekmez.
+    const child: unknown = Reflect.get(node, part);
+    node = child;
   }
   return typeof node === "string" ? node : undefined;
 };

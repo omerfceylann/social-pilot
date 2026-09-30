@@ -2,10 +2,12 @@ import type { SectorDataset } from "@/types";
 import { fitnessBrand } from "./brand";
 import { fitnessPosts, fitnessSuggestions, fitnessTrends } from "./content";
 import { fitnessComments, fitnessConversations } from "./inbox";
+import { fitnessStarter } from "./starter";
 
 export const fitnessDataset: SectorDataset = {
   sectorId: "fitness",
   brand: fitnessBrand,
+  starter: fitnessStarter,
   suggestions: fitnessSuggestions,
   posts: fitnessPosts,
   trends: fitnessTrends,

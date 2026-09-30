@@ -11,9 +11,12 @@ import { useSession } from "./useSession";
  * birden fazla store'u birlikte değiştiren işlemler burada.
  */
 
-/** Onboarding sonunda (ya da sektör değişince) çalışma alanını sektör verisiyle doldurur. */
+/**
+ * Onboarding sonunda (ya da sektör değişince) çalışma alanını doldurur.
+ * Yeni marka başlangıç paketini, mevcut marka sektörün tüm geçmişini alır.
+ */
 export const initializeWorkspace = (profile: BrandProfile) => {
-  const seed = buildWorkspaceSeed(resolveDataset(profile.sector));
+  const seed = buildWorkspaceSeed({ dataset: resolveDataset(profile.sector), profile });
   useBrand.getState().setProfile(profile);
   useContent.getState().seed(seed);
   useInbox.getState().seed(seed);
