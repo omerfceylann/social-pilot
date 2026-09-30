@@ -6,7 +6,6 @@ import type {
   ContentStyle,
   PlatformId,
   SectorSelection,
-  SocialPresence,
 } from "@/types";
 import { simulateAiLatency } from "./latency";
 import { resolveDataset } from "./workspaceService";
@@ -33,8 +32,8 @@ export type ExistingBrandAnswers = {
   name: string;
   sector: SectorSelection;
   website?: string;
+  /** "Kullandığın platformlar" adımı: bağlandıklarında geçmişli veri alırlar. Boş olabilir. */
   platformsUsed: PlatformId[];
-  activePlatforms: PlatformId[];
   currentStyle: string;
   improvementFocus: string;
   goals: BrandGoal[];
@@ -78,15 +77,6 @@ export const toHandle = (name: string) =>
 const unique = <T>(items: T[]) => [...new Set(items)];
 
 /**
- * Hangi verinin yükleneceğine karar veren kural:
- * - Yeni marka → başlangıç paketi.
- * - Mevcut marka ama hiçbir platformda aktif değil (sosyal medyaya yeni başlıyor) → başlangıç paketi.
- * - Mevcut marka ve en az bir platformda aktif → sektörün hazır verisi.
- */
-export const resolveSocialPresence = (answers: BrandAnswers): SocialPresence =>
-  answers.origin === "existing" && answers.activePlatforms.length > 0 ? "established" : "starter";
-
-/**
  * Onboarding cevaplarından marka profili üretir (spec'teki generateBrandDNA).
  * Kimlik (ad, sektör, website) kullanıcıdan; söylenmeyen her şey sektör varsayılanlarından gelir.
  */
@@ -99,7 +89,6 @@ export const generateBrandProfile = async (answers: BrandAnswers): Promise<Brand
     sector: answers.sector,
     website: answers.website?.trim() || undefined,
     origin: answers.origin,
-    socialPresence: resolveSocialPresence(answers),
   };
 
   if (answers.origin === "new") {
@@ -119,22 +108,17 @@ export const generateBrandProfile = async (answers: BrandAnswers): Promise<Brand
       contentStyles:
         answers.contentStyles.length > 0 ? answers.contentStyles : defaults.contentStyles,
       rules: { ...defaults.rules, ...answers.rules },
+      // Yeni markanın kullandığı platform yoktur; bağlanan her hesap yeni açılmış sayılır.
+      usedPlatforms: [],
     };
   }
 
   const contentStyles = unique(answers.goals.flatMap((goal) => STYLES_BY_GOAL[goal])).slice(0, 4);
-  // Henüz aktif olmadığı platformlar yerine, hesabı olan (ya da sektörün önerdiği) platformlar hedeflenir.
-  const targetPlatforms =
-    answers.activePlatforms.length > 0
-      ? answers.activePlatforms
-      : answers.platformsUsed.length > 0
-        ? answers.platformsUsed
-        : defaults.activePlatforms;
   return {
     ...defaults,
     ...identity,
     goals: answers.goals.length > 0 ? answers.goals : defaults.goals,
     contentStyles: contentStyles.length > 0 ? contentStyles : defaults.contentStyles,
-    activePlatforms: targetPlatforms,
+    usedPlatforms: answers.platformsUsed,
   };
 };

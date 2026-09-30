@@ -211,6 +211,73 @@ export const restaurantSuggestions: SeedSuggestion[] = [
     },
     suggestedAt: { day: 6, time: "10:00" },
   },
+  {
+    id: "rs-yt-latte",
+    platform: "youtube",
+    format: "short",
+    title: "Latte art: Kalp nasıl yapılır?",
+    description: "Baristanın adım adım kalp desenini gösterdiği eğitici Shorts.",
+    caption: "Latte art'a başlamak isteyenler için ilk desen: kalp. 3 adımda, yavaş çekimde.",
+    hashtags: ["#shorts", "#latteart", "#barista"],
+    cta: "Abone ol, sırada kuğu var.",
+    media: [video("rs-yt-latte-m", IMG.latteArt, "9:16", "Latte art yapılıyor", 42)],
+    theme: "educational",
+    reasoning:
+      "'Açılıştan önceki 60 saniye' Shorts'un kanal ortalamasının üzerinde izlendi. Eğitici kısa videolar kanalda en çok abone getiren içerik.",
+    estimate: {
+      reach: [3000, 6000],
+      engagementRate: 6.2,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["İlk latte art deseni", "Kalp deseni rehberi"],
+      caption: [
+        "Latte art'ın ilk dersi: kalp. Süt köpüğünden fincana 3 adım.",
+        "Evde latte art denemek isteyenlere: kalp deseni.",
+      ],
+      hashtags: [["#latteart", "#kahve", "#shorts"]],
+      cta: ["Denemeni yorumlarda paylaş.", "Abone ol."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "17:30",
+    },
+  },
+  {
+    id: "rs-x-break",
+    platform: "x",
+    format: "post",
+    title: "#kahvemolası: Bugünkü molan nerede?",
+    description: "Öğleden sonra kahve molası etiketine katılan sohbet paylaşımı.",
+    caption: "Saat 15:00 oldu. Bugünkü kahve molan nerede, yanında ne var?",
+    hashtags: ["#kahvemolası"],
+    cta: "Molanı paylaş.",
+    media: [],
+    theme: "communityFocused",
+    reasoning:
+      "#kahvemolası etiketi %21 yükselişte. X'teki anket ve soru paylaşımların en çok yanıt alan içerik türü.",
+    relatedTrendId: "rt-coffee-break",
+    estimate: {
+      reach: [1200, 2400],
+      engagementRate: 3.8,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Molanı paylaş", "15:00 kahvesi"],
+      caption: [
+        "Öğleden sonra kahvesi: yanında tatlı olmazsa olmaz mı?",
+        "Günün en güzel saati: 15:00 kahve molası.",
+      ],
+      hashtags: [["#kahvemolası", "#öğledensonra"]],
+      cta: ["Yanıtla.", "Fotoğrafını at."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "15:00",
+    },
+  },
 ];
 
 export const restaurantPosts: SeedPost[] = [

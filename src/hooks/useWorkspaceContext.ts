@@ -3,12 +3,17 @@
 import { useMemo } from "react";
 import { resolveWorkspaceContext, type WorkspaceContext } from "@/services/workspaceService";
 import { useBrand } from "@/store/useBrand";
+import { useSocialAccounts } from "@/store/useSocialAccounts";
 
 /**
- * Markanın analitik tabanı, AI Agent sayıları, trendler ve medya ipuçları.
- * Yeni marka ile mevcut marka farklı taban kullanır. Marka yoksa (onboarding öncesi) null.
+ * Bağlı hesaplardan hesaplanan analitik tabanı, trendler ve medya ipuçları.
+ * Hesap bağlandıkça ya da kesildikçe yeniden hesaplanır. Marka yoksa null.
  */
 export const useWorkspaceContext = (): WorkspaceContext | null => {
   const profile = useBrand((state) => state.profile);
-  return useMemo(() => (profile ? resolveWorkspaceContext(profile) : null), [profile]);
+  const accounts = useSocialAccounts((state) => state.accounts);
+  return useMemo(
+    () => (profile ? resolveWorkspaceContext(profile, accounts) : null),
+    [profile, accounts],
+  );
 };

@@ -20,7 +20,7 @@ export const fitnessDataset: SectorDataset = {
     dailyReach: 9800,
     dailyFollowerGrowth: 52,
   },
-  agentActivity: { trendsAnalyzed: 15, opportunitiesFound: 3, commentsReviewed: 9 },
+  trendsAnalyzed: 15,
   mediaTips: {
     videoSummary: "Video enerjik bir başlangıç yapıyor ve hareketler net görünüyor.",
     video: [

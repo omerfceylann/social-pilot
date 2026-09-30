@@ -1,5 +1,5 @@
 import { PLATFORMS } from "@/mock/platforms";
-import type { AnalyticsBaseline, PlatformId, SocialAccount } from "@/types";
+import type { PlatformHistory, PlatformId, SocialAccount } from "@/types";
 import { simulateLatency } from "./latency";
 
 export type ConnectErrorCode = "invalidHandle" | "notFound";
@@ -16,19 +16,22 @@ export const normalizeHandle = (handle: string) => handle.trim().replace(/^@/, "
 
 /**
  * Mock hesap bağlama (spec §16). Gerçek OAuth yok: kullanıcı adı platform
- * kuralına uyuyorsa, sektörün takipçi sayısıyla "bağlı" bir hesap döner.
+ * kuralına uyuyorsa "bağlı" bir hesap döner. Takipçi sayısı geçmişe göre
+ * çağıran tarafından verilir (yeni açılan hesap 0 takipçiyle başlar).
  * Hata akışını gösterebilmek için "test" / "hata" ile başlayan adlar bulunamaz.
  */
 export const connectAccount = async ({
   platform,
   handle,
   displayName,
-  baseline,
+  history,
+  followers,
 }: {
   platform: PlatformId;
   handle: string;
   displayName: string;
-  baseline: AnalyticsBaseline;
+  history: PlatformHistory;
+  followers: number;
 }): Promise<SocialAccount> => {
   const normalized = normalizeHandle(handle);
   if (!PLATFORMS[platform].handlePattern.test(normalized)) {
@@ -41,7 +44,8 @@ export const connectAccount = async ({
     platform,
     handle: normalized,
     displayName,
-    followers: baseline.followers[platform],
+    history,
+    followers,
     connectedAt: new Date().toISOString(),
   };
 };

@@ -30,5 +30,4 @@ export const restaurantBrandDefaults: BrandDefaults = {
       "Emojiyi az kullan",
     ],
   },
-  activePlatforms: ["instagram", "tiktok", "youtube", "x", "linkedin"],
 };

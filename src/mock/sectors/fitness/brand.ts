@@ -29,5 +29,4 @@ export const fitnessBrandDefaults: BrandDefaults = {
       "Teknik terimleri basitçe açıkla",
     ],
   },
-  activePlatforms: ["instagram", "tiktok", "youtube", "linkedin", "x"],
 };

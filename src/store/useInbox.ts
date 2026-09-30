@@ -7,7 +7,7 @@ type InboxState = {
   comments: Comment[];
   conversations: Conversation[];
 
-  seed: (data: { comments: Comment[]; conversations: Conversation[] }) => void;
+  addPlatformData: (data: { comments: Comment[]; conversations: Conversation[] }) => void;
   replyToComment: (id: string, text: string, edited: boolean) => void;
   sendMessage: (conversationId: string, text: string) => void;
   markConversationRead: (conversationId: string) => void;
@@ -20,7 +20,11 @@ export const useInbox = create<InboxState>()(
       comments: [],
       conversations: [],
 
-      seed: ({ comments, conversations }) => set({ comments, conversations }),
+      addPlatformData: (data) =>
+        set((state) => ({
+          comments: [...state.comments, ...data.comments],
+          conversations: [...state.conversations, ...data.conversations],
+        })),
 
       replyToComment: (id, text, edited) =>
         set(({ comments }) => ({

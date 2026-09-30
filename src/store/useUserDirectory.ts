@@ -19,6 +19,7 @@ export type WorkspaceSnapshot = {
   posts: Post[];
   suggestions: PostSuggestion[];
   usedSuggestionIds: string[];
+  seededPlatforms: PlatformId[];
   comments: Comment[];
   conversations: Conversation[];
 };

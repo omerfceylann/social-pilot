@@ -129,20 +129,248 @@ export const restaurantStarter: StarterKit = {
       },
       suggestedAt: { day: 5, time: "19:00" },
     },
-  ],
-  drafts: [
     {
-      id: "rsd-doors-open",
-      platform: "instagram",
-      format: "post",
-      status: "draft",
-      title: "Kapılarımız açık",
-      caption: "{brand} bugün kapılarını açtı. İlk kahveni içmeye, bizimle tanışmaya bekliyoruz.",
-      hashtags: ["#yenimekan", "#açılış", "#kahve"],
-      cta: "Konumumuz profilde.",
-      media: [photo("rsd-doors-open-m", IMG.cafeCorner, "4:5", "Kafenin girişi")],
+      id: "rst-tt-kitchen",
+      platform: "tiktok",
+      format: "video",
+      title: "Bir siparişin 60 saniyesi",
+      description: "Siparişin kasadan masaya yolculuğunu gösteren hızlı kurgulu mutfak videosu.",
+      caption: "Kasadan masaya bir siparişin 60 saniyesi. {brand} mutfağından ilk video.",
+      hashtags: ["#mutfak", "#perdearkası", "#kafe", "#yenimekan"],
+      music: {
+        title: "Coffee Break",
+        artist: "Lukrembo",
+      },
+      cta: "Takip et, yarın tatlı bölümü geliyor.",
+      media: [video("rst-tt-kitchen-m", IMG.chef, "9:16", "Mutfakta çalışan şef", 45)],
+      theme: "behindTheScenes",
+      reasoning:
+        "TikTok'ta yeni hesaplar takipçi sayısından bağımsız olarak keşfete düşebilir. Mutfak videoları restoranlar için en hızlı keşfedilen format.",
+      relatedTrendId: "rt-day-in-life",
+      estimate: {
+        reach: [900, 4000],
+        engagementRate: 7.5,
+        potential: "high",
+      },
+      alternatives: {
+        title: ["Mutfaktan 60 saniye", "Bir kahvaltı tabağı nasıl hazırlanır?"],
+        caption: [
+          "Bir siparişin mutfaktaki yolculuğu, baştan sona.",
+          "Kahvaltı tabağın hazırlanırken mutfakta neler oluyor?",
+        ],
+        hashtags: [["#mutfak", "#kafe", "#yemek"]],
+        cta: ["Hangi ürünü çekelim? Yaz.", "Takipte kal."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
+    {
+      id: "rst-yt-opening",
+      platform: "youtube",
+      format: "short",
+      title: "Açılış sabahı: 60 saniye",
+      description: "Kapıların ilk açıldığı sabahı gösteren kısa Shorts videosu.",
+      caption: "Kapılarımızı açtığımız ilk sabah. {brand} için her şey bu 60 saniyede başladı.",
+      hashtags: ["#shorts", "#yenimekan", "#kafe"],
+      cta: "Abone ol, hikâyemizi takip et.",
+      media: [video("rst-yt-opening-m", IMG.cafeInterior, "9:16", "Açılış sabahı kafe", 58)],
       theme: "storytelling",
-      at: { day: 0, time: "19:30" },
+      reasoning:
+        "YouTube Shorts yeni kanallarda bile Shorts akışında gösterilir. Açılış anı merak uyandırır ve kanalın ilk abonelerini getirir.",
+      estimate: {
+        reach: [200, 1200],
+        engagementRate: 5.8,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk sabahımız", "Kapılar açılıyor"],
+        caption: [
+          "İlk müşterimizi beklediğimiz o sabah, 60 saniyede.",
+          "Bir kafenin ilk günü nasıl geçer? Kısaca böyle.",
+        ],
+        hashtags: [["#shorts", "#kafe"]],
+        cta: ["Abone ol.", "Yorumlarda görüşelim."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "17:00",
+      },
+    },
+    {
+      id: "rst-yt-guide",
+      platform: "youtube",
+      format: "video",
+      title: "Evde filtre kahve: 5 dakikalık rehber",
+      description: "Baristanın kameraya anlattığı, ekipman ve oranları gösteren eğitici video.",
+      caption:
+        "Evde iyi bir filtre kahve için ihtiyacın olan her şey: öğütüm, oran, sıcaklık ve süre. Baristamız anlatıyor.",
+      hashtags: ["#filtrekahve", "#kahverehberi", "#evdekahve"],
+      cta: "Kaydet ve bu hafta sonu dene.",
+      media: [video("rst-yt-guide-m", IMG.pourOver, "16:9", "V60 ile kahve demleme", 310)],
+      theme: "educational",
+      reasoning:
+        "Uzun eğitici videolar yeni bir kanalın arama üzerinden bulunmasını sağlar. 'Evde filtre kahve' sürekli aranan bir konu.",
+      estimate: {
+        reach: [150, 900],
+        engagementRate: 6.1,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Filtre kahve rehberi", "V60 ile ilk demleme"],
+        caption: [
+          "Filtre kahveyi evde kafe kalitesinde demlemenin 5 adımı.",
+          "V60 ile ilk demlemen için adım adım rehber.",
+        ],
+        hashtags: [["#kahve", "#pourover", "#rehber"]],
+        cta: ["Soruların için yorum bırak.", "Abone ol, seri devam ediyor."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 5,
+        time: "20:00",
+      },
+    },
+    {
+      id: "rst-x-hello",
+      platform: "x",
+      format: "post",
+      title: "Merhaba, mahallenin yeni kahvecisi",
+      description: "Yerel hesaplarla sohbet başlatan, kısa ve samimi ilk paylaşım.",
+      caption:
+        "Merhaba! Biz {brand}, mahallenin yeni kahve durağıyız. Bir önerin, isteğin ya da sorun varsa buradayız.",
+      hashtags: ["#kahve"],
+      cta: "Bize yaz, cevaplıyoruz.",
+      media: [],
+      theme: "communityFocused",
+      reasoning:
+        "X'te ilk paylaşımın kısa ve sohbet başlatan bir tonda olması, yerel hesaplarla etkileşimi hızlandırır.",
+      estimate: {
+        reach: [100, 600],
+        engagementRate: 4.9,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk merhaba", "Yeni komşunuz"],
+        caption: [
+          "Yeni komşunuz geldi: {brand}. İlk kahve sohbetine hazırız.",
+          "Mahallede yeni bir kahve durağı var. Merhaba!",
+        ],
+        hashtags: [["#kahve", "#mahalle"]],
+        cta: ["Yanıtla.", "Etiketle."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 0,
+        time: "13:00",
+      },
+    },
+    {
+      id: "rst-x-poll",
+      platform: "x",
+      format: "post",
+      title: "Anket: Sabah kahven nasıl?",
+      description:
+        "Takipçilerin kahve alışkanlığını soran, menü kararına da girdi sağlayan kısa anket.",
+      caption:
+        "Sabah kahveni nasıl içersin? Filtre, latte, Türk kahvesi ya da soğuk. Cevaplar menümüze yön verecek.",
+      hashtags: ["#kahvemolası"],
+      cta: "Oyunu ver.",
+      media: [],
+      theme: "communityFocused",
+      reasoning:
+        "#kahvemolası etiketi yükselişte. Anketler X'te yeni hesapların en çok yanıt alan paylaşım türü.",
+      relatedTrendId: "rt-coffee-break",
+      estimate: {
+        reach: [150, 700],
+        engagementRate: 5.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kahve anketi", "Sabah ritüelin ne?"],
+        caption: [
+          "Güne hangi kahveyle başlıyorsun? Menümüzü birlikte şekillendirelim.",
+          "Filtre mi, latte mi? Kararı sen ver.",
+        ],
+        hashtags: [["#kahvemolası", "#anket"]],
+        cta: ["Oy ver.", "Arkadaşına sor."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 3,
+        time: "09:00",
+      },
+    },
+    {
+      id: "rst-li-story",
+      platform: "linkedin",
+      format: "post",
+      title: "Bir kahve dükkânı açmak: ilk ders",
+      description: "Açılış yolculuğunu ve ekibi anlatan girişim hikâyesi.",
+      caption:
+        "{brand} olarak kapılarımızı açtık. Bu yolculukta öğrendiğimiz ilk şey: iyi bir mekân, iyi bir ekip demek. Ekibimizle tanışın.",
+      hashtags: ["#girişimcilik", "#küçükişletme", "#yenibaşlangıç"],
+      cta: "Yolculuğumuzu takip edin.",
+      media: [photo("rst-li-story-m", IMG.restaurant, "1:1", "Kafe ekibi")],
+      theme: "storytelling",
+      reasoning:
+        "LinkedIn'de girişim hikâyeleri, yeni işletmelerin çevresinde güven ve kurumsal bağlantı oluşturur.",
+      estimate: {
+        reach: [200, 900],
+        engagementRate: 5.2,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Açılış hikâyemiz", "Ekibimizle tanışın"],
+        caption: [
+          "Bir kafe açmak, bir ekip kurmakla başlıyor. Hikâyemizin ilk bölümü.",
+          "Aylarca süren hazırlığın ardından kapılarımızı açtık.",
+        ],
+        hashtags: [["#girişim", "#ekip"]],
+        cta: ["Takip edin.", "Deneyimlerinizi paylaşın."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "10:00",
+      },
+    },
+    {
+      id: "rst-li-office",
+      platform: "linkedin",
+      format: "post",
+      title: "Yakındaki ofislere: ilk kahve bizden",
+      description: "Çevredeki ofis ekiplerine yönelik ilk toplu sipariş teklifi.",
+      caption:
+        "Çevremizdeki ofis ekiplerine özel: ilk toplu siparişinizde kahveler bizden. Ekip toplantılarınızı birlikte daha lezzetli yapalım.",
+      hashtags: ["#ofiskültürü", "#çalışandeneyimi"],
+      cta: "Toplu sipariş için mesaj gönderin.",
+      media: [photo("rst-li-office-m", IMG.espresso, "1:1", "Ofis için espresso")],
+      theme: "promotional",
+      reasoning:
+        "Yakındaki ofisler bir kafe için en düzenli müşteri kaynağı. LinkedIn bu kitleye doğrudan ulaşmanın yolu.",
+      estimate: {
+        reach: [150, 700],
+        engagementRate: 4.4,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Ofisler için kahve", "Toplantılara kahve"],
+        caption: [
+          "Ofis toplantılarınız için taze kahve servisi başladı.",
+          "Ekibinizin kahvesini biz getirelim.",
+        ],
+        hashtags: [["#ofis", "#kahve"]],
+        cta: ["Bize yazın.", "Teklif isteyin."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 6,
+        time: "10:30",
+      },
     },
   ],
   analytics: {
@@ -152,5 +380,4 @@ export const restaurantStarter: StarterKit = {
     dailyReach: 0,
     dailyFollowerGrowth: 0,
   },
-  agentActivity: { trendsAnalyzed: 12, opportunitiesFound: 4, commentsReviewed: 0 },
 };

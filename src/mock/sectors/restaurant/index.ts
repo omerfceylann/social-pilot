@@ -20,7 +20,7 @@ export const restaurantDataset: SectorDataset = {
     dailyReach: 7400,
     dailyFollowerGrowth: 38,
   },
-  agentActivity: { trendsAnalyzed: 12, opportunitiesFound: 3, commentsReviewed: 5 },
+  trendsAnalyzed: 12,
   mediaTips: {
     videoSummary: "Video güçlü bir başlangıç sunuyor ve ışık sıcak tonlarda.",
     video: [

@@ -208,6 +208,40 @@ export const technologySuggestions: SeedSuggestion[] = [
     },
     suggestedAt: { day: 5, time: "09:00" },
   },
+  {
+    id: "ts-yt-sprint",
+    platform: "youtube",
+    format: "video",
+    title: "Sprint planlaması 15 dakikada",
+    description: "Kanban rehberinin devamı: sprint planlama toplantısını adım adım anlatan video.",
+    caption:
+      "Kanban rehberinden sonra en çok gelen soru: sprint planlaması. 15 dakikada şablonlarla birlikte anlatıyoruz.",
+    hashtags: ["#scrum", "#sprint", "#agile"],
+    cta: "Scrum serisinin ilk bölümü için abone ol.",
+    media: [video("ts-yt-sprint-m", IMG.teamMeeting, "16:9", "Planlama toplantısı", 900)],
+    theme: "educational",
+    reasoning:
+      "Kanban rehberin kanalın en çok izlenen videosu ve yorumlarda Scrum rehberi istendi. Seri devamı izleyicileri kanala geri getirir.",
+    estimate: {
+      reach: [2500, 5200],
+      engagementRate: 4.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Scrum'a giriş: sprint planlaması", "Sprint planlama rehberi"],
+      caption: [
+        "İyi bir sprint, iyi bir planlamayla başlar. 15 dakikalık rehber.",
+        "Sprint planlama toplantısını yarı sürede bitirmenin yolu.",
+      ],
+      hashtags: [["#scrum", "#agile", "#rehber"]],
+      cta: ["Abone ol.", "Soru sor."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 4,
+      time: "20:00",
+    },
+  },
 ];
 
 export const technologyPosts: SeedPost[] = [

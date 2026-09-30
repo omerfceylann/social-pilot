@@ -135,20 +135,244 @@ export const fashionStarter: StarterKit = {
       },
       suggestedAt: { day: 5, time: "20:00" },
     },
-  ],
-  drafts: [
     {
-      id: "nsd-launch",
-      platform: "instagram",
-      format: "post",
-      status: "draft",
-      title: "İlk koleksiyon yayında",
-      caption: "{brand} ilk koleksiyonuyla yayında. Sade, zamansız ve özenle üretilmiş parçalar.",
-      hashtags: ["#yenimarka", "#ilkkoleksiyon", "#moda"],
-      cta: "Koleksiyon sitede.",
-      media: [photo("nsd-launch-m", IMG.lookbook, "4:5", "Koleksiyon görseli")],
+      id: "nst-tt-packing",
+      platform: "tiktok",
+      format: "video",
+      title: "İlk siparişimizi paketliyoruz",
+      description: "İlk siparişin özenle paketlenişini gösteren sakin, ASMR tadında video.",
+      caption:
+        "İlk siparişimiz yola çıkıyor. Kâğıt, kurdele ve el yazısı bir not. Paketleme anı, kurgusuz.",
+      hashtags: ["#paketleme", "#küçükişletme", "#yenimarka"],
+      music: {
+        title: "Slow Morning",
+        artist: "Chillhop Music",
+      },
+      cta: "İlk siparişi kim verdi dersin?",
+      media: [video("nst-tt-packing-m", IMG.boutique, "9:16", "Sipariş paketleniyor", 26)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Paketleme videoları TikTok'ta küçük markaların en çok izlenen içeriklerinden. İlk sipariş anı samimi bir hikâye sunar.",
+      estimate: {
+        reach: [900, 4500],
+        engagementRate: 7.6,
+        potential: "high",
+      },
+      alternatives: {
+        title: ["İlk sipariş yolda", "Paketleme anı"],
+        caption: [
+          "Bir siparişin yola çıkmadan önceki son hâli.",
+          "İlk siparişimizi büyük bir özenle paketledik.",
+        ],
+        hashtags: [["#paketleme", "#yavaşmoda"]],
+        cta: ["Takip et.", "Yorumlarda görüşelim."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 3,
+        time: "19:00",
+      },
+    },
+    {
+      id: "nst-yt-lookbook",
+      platform: "youtube",
+      format: "short",
+      title: "İlk koleksiyon, 30 saniyede",
+      description: "Koleksiyonun tüm parçalarını ritmik geçişlerle gösteren Shorts.",
+      caption: "İlk koleksiyonumuzun tüm parçaları, 30 saniyede. Hangisi favorin?",
+      hashtags: ["#shorts", "#lookbook", "#yenikoleksiyon"],
+      cta: "Favorini yorumlara yaz.",
+      media: [video("nst-yt-lookbook-m", IMG.lookbook, "9:16", "Koleksiyon çekimi", 30)],
       theme: "productFocused",
-      at: { day: 0, time: "11:00" },
+      reasoning:
+        "Lookbook Shorts'ları yeni moda kanallarının en hızlı izlenme alan içeriği. Kısa, ritmik ve kaydırılabilir.",
+      estimate: {
+        reach: [250, 1400],
+        engagementRate: 5.7,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Koleksiyon turu", "30 saniyelik lookbook"],
+        caption: [
+          "Koleksiyonun tamamı, tek bir kısa videoda.",
+          "İlk koleksiyonumuzdan tüm parçalar.",
+        ],
+        hashtags: [["#shorts", "#moda"]],
+        cta: ["Abone ol.", "Favorini seç."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "18:00",
+      },
+    },
+    {
+      id: "nst-yt-fabric",
+      platform: "youtube",
+      format: "video",
+      title: "Kumaş nasıl seçilir? 8 dakikalık rehber",
+      description: "Yün, keten ve pamuğu karşılaştıran eğitici video.",
+      caption:
+        "Bir kıyafetin ömrünü kumaşı belirler. Yün, keten ve pamuk arasındaki farkları, etiket okumayı ve bakım ipuçlarını 8 dakikada anlattık.",
+      hashtags: ["#kumaş", "#rehber", "#sürdürülebilirmoda"],
+      cta: "Sorularını yorumlarda yanıtlıyoruz.",
+      media: [video("nst-yt-fabric-m", IMG.folded, "16:9", "Kumaş örnekleri", 480)],
+      theme: "educational",
+      reasoning:
+        "Eğitici uzun videolar yeni bir kanala arama trafiği getirir. Kumaş bilgisi markanın kalite vurgusuyla birebir örtüşüyor.",
+      estimate: {
+        reach: [150, 900],
+        engagementRate: 5.9,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kumaş rehberi", "Etiket nasıl okunur?"],
+        caption: [
+          "Kaliteli kıyafet, doğru kumaşla başlar. 8 dakikalık rehber.",
+          "Yün mü, keten mi, pamuk mu? Hangisi ne zaman?",
+        ],
+        hashtags: [["#kumaş", "#moda"]],
+        cta: ["Abone ol.", "Soru sor."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 6,
+        time: "20:00",
+      },
+    },
+    {
+      id: "nst-x-hello",
+      platform: "x",
+      format: "post",
+      title: "Merhaba, biz {brand}",
+      description: "Markanın ne yaptığını tek cümlede anlatan ilk paylaşım.",
+      caption:
+        "Merhaba, biz {brand}. Uzun yıllar giyilecek, özenle üretilmiş parçalar tasarlıyoruz. Burada üretim sürecimizi ve yeni parçaları paylaşacağız.",
+      hashtags: ["#yenimarka"],
+      cta: "Takip et.",
+      media: [],
+      theme: "storytelling",
+      reasoning:
+        "X'te kısa ve net bir tanıtım, markanın ne yaptığını ilk bakışta anlatır ve moda topluluğuyla tanışmayı başlatır.",
+      estimate: {
+        reach: [100, 600],
+        engagementRate: 4.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk merhaba", "Kim olduğumuz"],
+        caption: [
+          "Daha az ama daha iyi. Merhaba, biz {brand}.",
+          "Zamansız parçalar tasarlayan yeni bir marka. Tanışalım.",
+        ],
+        hashtags: [["#moda", "#tasarım"]],
+        cta: ["Takip et.", "Yanıtla."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 0,
+        time: "13:00",
+      },
+    },
+    {
+      id: "nst-x-poll",
+      platform: "x",
+      format: "post",
+      title: "İlk koleksiyon için renk anketi",
+      description: "Takipçileri ürün kararına dahil eden renk anketi.",
+      caption: "İlk trikomuz için son karar sizde: kum beji mi, zeytin yeşili mi?",
+      hashtags: ["#anket"],
+      cta: "Oyunu ver.",
+      media: [],
+      theme: "communityFocused",
+      reasoning:
+        "Ürün kararlarına dahil edilen takipçiler, o ürün çıktığında en ilk alıcılar oluyor. Anketler X'te yüksek etkileşim alır.",
+      estimate: {
+        reach: [150, 800],
+        engagementRate: 5.3,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Renk anketi", "Kararı siz verin"],
+        caption: [
+          "Kum beji mi, zeytin yeşili mi? İlk trikomuzun rengini seçin.",
+          "Bir sonraki parçanın rengini birlikte belirleyelim.",
+        ],
+        hashtags: [["#anket", "#moda"]],
+        cta: ["Oy ver.", "Paylaş."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 4,
+        time: "14:00",
+      },
+    },
+    {
+      id: "nst-li-founder",
+      platform: "linkedin",
+      format: "post",
+      title: "Bir moda markası kurmak: ilk adım",
+      description: "Kurucunun markayı neden kurduğunu anlatan kişisel paylaşım.",
+      caption:
+        "Hızlı modanın ürettiği fazlalığı yıllarca içeriden izledim. {brand} bu yüzden doğdu: daha az, daha iyi ve yerel üretim. Bugün ilk koleksiyonumuzu paylaşıyoruz.",
+      hashtags: ["#girişimcilik", "#sürdürülebilirlik", "#moda"],
+      cta: "Yolculuğumuzu takip edin.",
+      media: [photo("nst-li-founder-m", IMG.portrait, "1:1", "Kurucu portresi")],
+      theme: "storytelling",
+      reasoning:
+        "LinkedIn'de kurucu hikâyeleri yeni markalara hem müşteri hem iş ortağı getirir. Sürdürülebilirlik konusu burada güçlü karşılık bulur.",
+      estimate: {
+        reach: [200, 1000],
+        engagementRate: 5.5,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Neden kurduk?", "İlk koleksiyonun hikâyesi"],
+        caption: [
+          "Bir markayı kurmak, bir soruya cevap aramakla başladı.",
+          "Daha az ama daha iyi. Hikâyemizin ilk bölümü.",
+        ],
+        hashtags: [["#girişim", "#moda"]],
+        cta: ["Takip edin.", "Düşüncelerinizi paylaşın."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "10:00",
+      },
+    },
+    {
+      id: "nst-li-production",
+      platform: "linkedin",
+      format: "post",
+      title: "Yerel üretimle çalışıyoruz",
+      description: "Üretim ortağı atölyeyi ve ustaları tanıtan paylaşım.",
+      caption:
+        "Tüm parçalarımızı yerel bir atölyede, siparişe göre üretiyoruz. Ustalarımızla tanışın: her dikişin arkasındaki insanlar.",
+      hashtags: ["#yerelüretim", "#tekstil", "#sürdürülebilirmoda"],
+      cta: "Üretim ortaklığı için bize yazın.",
+      media: [photo("nst-li-production-m", IMG.storeInterior, "1:1", "Atölye")],
+      theme: "behindTheScenes",
+      reasoning: "Üretim şeffaflığı LinkedIn'de hem tedarikçi hem perakende iş birliklerini çeker.",
+      estimate: {
+        reach: [150, 800],
+        engagementRate: 4.9,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Atölyemizden", "Ustalarımızla tanışın"],
+        caption: [
+          "Her parçanın arkasında bir usta var. Atölyemizi tanıyın.",
+          "Siparişe göre, yerel ve özenli üretim.",
+        ],
+        hashtags: [["#üretim", "#tekstil"]],
+        cta: ["Bize yazın.", "Takip edin."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 5,
+        time: "10:00",
+      },
     },
   ],
   analytics: {
@@ -158,5 +382,4 @@ export const fashionStarter: StarterKit = {
     dailyReach: 0,
     dailyFollowerGrowth: 0,
   },
-  agentActivity: { trendsAnalyzed: 21, opportunitiesFound: 4, commentsReviewed: 0 },
 };

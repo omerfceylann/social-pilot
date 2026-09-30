@@ -6,9 +6,17 @@ export type ContentFormat = "post" | "carousel" | "reel" | "story" | "video" | "
 
 export type AspectRatio = "1:1" | "4:5" | "9:16" | "16:9";
 
+/**
+ * Bağlanan hesabın geçmişi; o platform için hangi verinin yükleneceğini belirler:
+ * - established: kullanıcının zaten kullandığı hesap → sektörün geçmişli verisi
+ * - starter: yeni açılan hesap → sektörün başlangıç önerileri
+ */
+export type PlatformHistory = "established" | "starter";
+
 /** Kullanıcının bağladığı sosyal medya hesabı (mock bağlantı). */
 export type SocialAccount = {
   platform: PlatformId;
+  history: PlatformHistory;
   handle: string;
   displayName: string;
   followers: number;

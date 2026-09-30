@@ -20,7 +20,7 @@ export const fashionDataset: SectorDataset = {
     dailyReach: 14200,
     dailyFollowerGrowth: 64,
   },
-  agentActivity: { trendsAnalyzed: 21, opportunitiesFound: 4, commentsReviewed: 6 },
+  trendsAnalyzed: 21,
   mediaTips: {
     videoSummary: "Video kumaşın dokusunu ve hareketini iyi gösteriyor.",
     video: [

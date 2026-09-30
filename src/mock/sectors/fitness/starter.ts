@@ -126,21 +126,244 @@ export const fitnessStarter: StarterKit = {
       },
       suggestedAt: { day: 5, time: "20:00" },
     },
-  ],
-  drafts: [
     {
-      id: "fsd-opening",
-      platform: "instagram",
-      format: "post",
-      status: "draft",
-      title: "Açıldık!",
+      id: "fst-tt-firstday",
+      platform: "tiktok",
+      format: "video",
+      title: "Stüdyonun ilk günü, kurgusuz",
+      description: "Açılış gününden samimi, kurgusuz kesitler.",
+      caption: "İlk üyeler, ilk ders, ilk alkış. {brand} stüdyosunun ilk günü, hiç kurgusuz 💪",
+      hashtags: ["#yenistüdyo", "#fitness", "#ilkgün"],
+      music: {
+        title: "Power",
+        artist: "Workout Beats",
+      },
+      cta: "Sen de ilk dersine gel, link profilde.",
+      media: [video("fst-tt-firstday-m", IMG.gymFloor, "9:16", "Stüdyoda ilk ders", 35)],
+      theme: "behindTheScenes",
+      reasoning:
+        "TikTok'ta kurgusuz 'ilk gün' videoları yeni işletmelerin en hızlı keşfedilen içeriği. Gerçek insanlar güven oluşturur.",
+      estimate: {
+        reach: [900, 4200],
+        engagementRate: 7.8,
+        potential: "high",
+      },
+      alternatives: {
+        title: ["Açılış günümüz", "İlk dersimizden kesitler"],
+        caption: [
+          "Bir stüdyonun ilk günü nasıl geçer? Böyle.",
+          "İlk dersimizde enerji tavan yaptı.",
+        ],
+        hashtags: [["#fitness", "#stüdyo", "#spor"]],
+        cta: ["Takip et.", "Arkadaşını etiketle."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "20:00",
+      },
+    },
+    {
+      id: "fst-yt-fullbody",
+      platform: "youtube",
+      format: "video",
+      title: "Yeni başlayanlar için 20 dakikalık tüm vücut",
+      description: "Evde ekipmansız yapılabilen, koçun eşlik ettiği başlangıç antrenmanı.",
       caption:
-        "{brand} kapılarını açtı. Küçük gruplar, doğru teknik ve güçlü bir topluluk. İlk dersin bizden 💪",
-      hashtags: ["#yenistüdyo", "#açılış", "#fitness"],
-      cta: "Deneme dersi için DM.",
-      media: [photo("fsd-opening-m", IMG.gymFloor, "4:5", "Stüdyo alanı")],
+        "Spora yeni başlıyorsan tam sana göre: 20 dakika, ekipman yok, her hareketin kolay versiyonu var. Koçumuzla birlikte yap.",
+      hashtags: ["#evdeantrenman", "#yenibaşlayan", "#tümvücut"],
+      cta: "Abone ol, her hafta yeni antrenman.",
+      media: [video("fst-yt-fullbody-m", IMG.training, "16:9", "Antrenman yapan kişi", 1200)],
+      theme: "educational",
+      reasoning:
+        "Uzun 'birlikte yap' antrenmanları YouTube'da en çok aranan fitness içerikleri. Yeni kanal için arama trafiği sağlar.",
+      estimate: {
+        reach: [150, 1100],
+        engagementRate: 6.3,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["20 dakika, ekipmansız", "Başlangıç antrenmanı"],
+        caption: [
+          "Evde, ekipmansız, 20 dakikada tüm vücut antrenmanı.",
+          "Spora başlamanın en kolay yolu: bu videoyla birlikte hareket et.",
+        ],
+        hashtags: [["#antrenman", "#evdespor"]],
+        cta: ["Yorumlara kaçıncı gün olduğunu yaz.", "Abone ol."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 3,
+        time: "18:00",
+      },
+    },
+    {
+      id: "fst-yt-squat",
+      platform: "youtube",
+      format: "short",
+      title: "Squat'ı doğru yapmanın 3 ipucu",
+      description: "Yan açıdan çekilmiş, kısa teknik ipuçları.",
+      caption: "Dizler, topuklar, göğüs. Squat'ı doğru yapmanın 3 ipucu, 30 saniyede.",
+      hashtags: ["#shorts", "#squat", "#doğruteknik"],
+      cta: "Kaydet, antrenmanda dene.",
+      media: [video("fst-yt-squat-m", IMG.rack, "9:16", "Squat yapan sporcu", 30)],
+      theme: "educational",
+      reasoning: "Teknik ipuçları Shorts'ta yeni kanallara en çok abone getiren içerik türü.",
+      estimate: {
+        reach: [300, 1600],
+        engagementRate: 6.5,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Squat ipuçları", "Doğru squat"],
+        caption: [
+          "Squat yaparken dizin ağrıyorsa bu 3 ipucu tam sana göre.",
+          "Doğru squat için 30 saniye yeter.",
+        ],
+        hashtags: [["#shorts", "#fitness"]],
+        cta: ["Abone ol.", "Soru sor."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 5,
+        time: "19:00",
+      },
+    },
+    {
+      id: "fst-x-hello",
+      platform: "x",
+      format: "post",
+      title: "Spora başlamanın önündeki engel ne?",
+      description: "Hedef kitlenin engellerini soran, sohbet başlatan ilk paylaşım.",
+      caption:
+        "Merhaba, biz {brand}! İlk sorumuz: spora başlamanın önündeki en büyük engel ne? Zaman mı, motivasyon mu, bilgi mi?",
+      hashtags: ["#fitness"],
+      cta: "Cevabını yaz.",
+      media: [],
+      theme: "communityFocused",
+      reasoning:
+        "X'te soru paylaşımları yeni hesapların ilk etkileşimlerini getirir. Cevaplar içerik planına da girdi sağlar.",
+      estimate: {
+        reach: [100, 600],
+        engagementRate: 5.2,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk sorumuz", "Seni ne durduruyor?"],
+        caption: [
+          "Spora başlamak istiyorsun ama bir şey engel oluyor. Nedir?",
+          "Zaman mı, motivasyon mu? Seni en çok ne zorluyor?",
+        ],
+        hashtags: [["#fitness", "#spor"]],
+        cta: ["Yanıtla.", "Arkadaşına sor."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "12:00",
+      },
+    },
+    {
+      id: "fst-x-frequency",
+      platform: "x",
+      format: "post",
+      title: "Haftada kaç gün antrenman?",
+      description: "Yeni başlayanlara kısa ve net bir cevap veren bilgi paylaşımı.",
+      caption:
+        "Yeni başlıyorsan haftada 2–3 gün yeterli. Önemli olan sıklık değil, süreklilik. 3 ay boyunca bırakmamak.",
+      hashtags: ["#antrenman", "#yenibaşlayan"],
+      cta: "Sen haftada kaç gün çalışıyorsun?",
+      media: [],
+      theme: "educational",
+      reasoning:
+        "Kısa ve net bilgi paylaşımları X'te kaydedilir ve alıntılanır; yeni hesaplara uzmanlık imajı kazandırır.",
+      estimate: {
+        reach: [150, 800],
+        engagementRate: 4.7,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kaç gün yeterli?", "Süreklilik kuralı"],
+        caption: [
+          "Haftada 2 gün, 3 ay boyunca. Başlangıç için sihirli formül bu.",
+          "Sık değil, düzenli. Yeni başlayanlara tek kural.",
+        ],
+        hashtags: [["#fitness", "#ipucu"]],
+        cta: ["Yanıtla.", "Kaydet."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 4,
+        time: "09:00",
+      },
+    },
+    {
+      id: "fst-li-why",
+      platform: "linkedin",
+      format: "post",
+      title: "Neden bir stüdyo açtık?",
+      description: "Kuruluş motivasyonunu anlatan girişim hikâyesi.",
+      caption:
+        "Büyük spor salonlarında kaybolan insanlar için küçük gruplu bir stüdyo hayal ettik. Bugün {brand} kapılarını açıyor. Hikâyemizi paylaşmak istedik.",
+      hashtags: ["#girişimcilik", "#wellness", "#yenibaşlangıç"],
+      cta: "Yolculuğumuzu takip edin.",
+      media: [photo("fst-li-why-m", IMG.studio, "1:1", "Stüdyo içi")],
+      theme: "storytelling",
+      reasoning:
+        "LinkedIn'de kuruluş hikâyeleri yeni işletmelerin profesyonel çevrede görünürlüğünü artırır ve kurumsal iş birliklerinin kapısını açar.",
+      estimate: {
+        reach: [200, 900],
+        engagementRate: 5.4,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kuruluş hikâyemiz", "Bir hayalin ilk günü"],
+        caption: [
+          "Bir stüdyo açmak, bir topluluk kurmakla başlıyor.",
+          "Kapılarımızı açtık. İşte neden.",
+        ],
+        hashtags: [["#girişim", "#spor"]],
+        cta: ["Takip edin.", "Hikâyenizi paylaşın."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 0,
+        time: "10:00",
+      },
+    },
+    {
+      id: "fst-li-corporate",
+      platform: "linkedin",
+      format: "post",
+      title: "Şirketlere ilk ay grup dersi bizden",
+      description: "Yakındaki şirketlere yönelik kurumsal wellness teklifi.",
+      caption:
+        "Çalışan sağlığına yatırım yapan şirketlere özel: ilk ay haftalık grup dersleri bizden. Ofisinizde ya da stüdyomuzda.",
+      hashtags: ["#wellness", "#çalışandeneyimi", "#ik"],
+      cta: "Detaylar için bize yazın.",
+      media: [photo("fst-li-corporate-m", IMG.groupClass, "1:1", "Grup dersi")],
       theme: "promotional",
-      at: { day: 0, time: "12:00" },
+      reasoning:
+        "Kurumsal wellness programları yeni bir stüdyo için düzenli gelir kaynağı. LinkedIn İK yöneticilerine ulaşmanın en doğru kanalı.",
+      estimate: {
+        reach: [150, 700],
+        engagementRate: 4.1,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kurumsal wellness", "Ekibiniz için grup dersi"],
+        caption: [
+          "Toplantı arasında 45 dakika hareket. Ekibiniz için ilk ay bizden.",
+          "Çalışan bağlılığı hareketle başlar.",
+        ],
+        hashtags: [["#wellness", "#kurumsal"]],
+        cta: ["Teklif isteyin.", "Bize yazın."],
+        music: [],
+      },
+      suggestedAt: {
+        day: 6,
+        time: "10:00",
+      },
     },
   ],
   analytics: {
@@ -150,5 +373,4 @@ export const fitnessStarter: StarterKit = {
     dailyReach: 0,
     dailyFollowerGrowth: 0,
   },
-  agentActivity: { trendsAnalyzed: 15, opportunitiesFound: 4, commentsReviewed: 0 },
 };

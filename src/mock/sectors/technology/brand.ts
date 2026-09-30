@@ -29,5 +29,4 @@ export const technologyBrandDefaults: BrandDefaults = {
       "Teknik terimleri kısaca açıkla",
     ],
   },
-  activePlatforms: ["linkedin", "x", "youtube", "instagram", "tiktok"],
 };

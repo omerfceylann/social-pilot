@@ -1,13 +1,14 @@
 import { FALLBACK_SECTOR_ID, SECTOR_DATASETS } from "@/mock/sectors";
 import { addDays, minutesAgo, resolveRelativeTime } from "@/lib/time";
 import type {
-  AgentActivity,
   AnalyticsBaseline,
   BrandProfile,
   Comment,
   Conversation,
   MediaAsset,
   MediaTips,
+  PlatformHistory,
+  PlatformId,
   Post,
   PostSuggestion,
   RelativeTime,
@@ -16,10 +17,12 @@ import type {
   SectorSelection,
   SeedPost,
   SeedSuggestion,
+  SocialAccount,
   SuggestionAlternatives,
   SuggestionStage,
   Trend,
 } from "@/types";
+import { PLATFORM_IDS } from "@/types";
 
 /** Seçilen sektör için yüklenecek veri. Özel sektörlerde yedek veri döner (spec §13). */
 export const resolveDataset = (sector: SectorSelection): SectorDataset => {
@@ -32,23 +35,79 @@ export const resolveDataset = (sector: SectorSelection): SectorDataset => {
 export const hasDedicatedDataset = (sector: SectorSelection) =>
   sector.kind === "preset" && sector.id in SECTOR_DATASETS;
 
+// ---------- Platform geçmişi ----------
+
 /**
- * Markanın kökenine göre değişen, store'da tutulmayan okuma verisi.
- * Yeni markanın takipçisi ve geçmişi yoktur; trendler ise pazara aittir, herkese aynıdır.
+ * Bir platform bağlandığında hangi veri yüklenecek?
+ * Onboarding'de "Kullandığın platformlar" adımında seçildiyse geçmişli veri,
+ * seçilmediyse (onboarding'de ya da sonradan yeni açılan hesap) başlangıç verisi.
+ */
+export const resolvePlatformHistory = (
+  profile: BrandProfile,
+  platform: PlatformId,
+): PlatformHistory => (profile.usedPlatforms.includes(platform) ? "established" : "starter");
+
+/**
+ * Store'da tutulmayan, bağlı hesaplardan hesaplanan okuma verisi.
+ * Takipçi ve erişim sadece geçmişli hesaplardan gelir; yeni hesaplar 0'dan başlar.
+ * Trendler pazara aittir, herkese aynıdır.
  */
 export type WorkspaceContext = {
   analytics: AnalyticsBaseline;
-  agentActivity: AgentActivity;
+  trendsAnalyzed: number;
   trends: Trend[];
   mediaTips: MediaTips;
 };
 
-export const resolveWorkspaceContext = (profile: BrandProfile): WorkspaceContext => {
-  const dataset = resolveDataset(profile.sector);
-  const source = profile.socialPresence === "starter" ? dataset.starter : dataset;
+type ConnectedAccounts = Partial<Record<PlatformId, SocialAccount>>;
+
+const combineBaseline = (
+  dataset: SectorDataset,
+  accounts: ConnectedAccounts,
+): AnalyticsBaseline => {
+  const established = PLATFORM_IDS.filter((id) => accounts[id]?.history === "established");
+  const sum = (ids: readonly PlatformId[]) =>
+    ids.reduce((total, id) => total + dataset.analytics.followers[id], 0);
+  // Günlük erişim ve takipçi artışı, geçmişli hesapların takipçi payı kadar.
+  const share = established.length > 0 ? sum(established) / Math.max(1, sum(PLATFORM_IDS)) : 0;
+  // Beş anahtar açıkça yazılır: Record tipi cast'e gerek kalmadan doğrulanır.
+  const byPlatform = <T>(
+    pick: (id: PlatformId, isEstablished: boolean) => T,
+  ): Record<PlatformId, T> => {
+    const at = (id: PlatformId) => pick(id, established.includes(id));
+    return {
+      instagram: at("instagram"),
+      tiktok: at("tiktok"),
+      youtube: at("youtube"),
+      x: at("x"),
+      linkedin: at("linkedin"),
+    };
+  };
+
   return {
-    analytics: source.analytics,
-    agentActivity: source.agentActivity,
+    followers: byPlatform((id, isEstablished) =>
+      isEstablished ? dataset.analytics.followers[id] : 0,
+    ),
+    avgViews: byPlatform((id, isEstablished) =>
+      isEstablished ? dataset.analytics.avgViews[id] : dataset.starter.analytics.avgViews[id],
+    ),
+    engagementRate:
+      established.length > 0
+        ? dataset.analytics.engagementRate
+        : dataset.starter.analytics.engagementRate,
+    dailyReach: Math.round(dataset.analytics.dailyReach * share),
+    dailyFollowerGrowth: Math.round(dataset.analytics.dailyFollowerGrowth * share),
+  };
+};
+
+export const resolveWorkspaceContext = (
+  profile: BrandProfile,
+  accounts: ConnectedAccounts,
+): WorkspaceContext => {
+  const dataset = resolveDataset(profile.sector);
+  return {
+    analytics: combineBaseline(dataset, accounts),
+    trendsAnalyzed: dataset.trendsAnalyzed,
     trends: dataset.trends,
     mediaTips: dataset.mediaTips,
   };
@@ -138,7 +197,7 @@ const toSuggestion = (
   suggestedAt: resolveUpcoming(suggestedAt, now),
 });
 
-export type WorkspaceSeed = {
+export type PlatformSeed = {
   posts: Post[];
   suggestions: PostSuggestion[];
   comments: Comment[];
@@ -146,27 +205,33 @@ export type WorkspaceSeed = {
 };
 
 /**
- * Göreli zamanlı mock veriyi, "şimdi"ye göre gerçek tarihli workspace verisine çevirir.
- * Onboarding bittiğinde bir kez çalışır; sonrasında tek kaynak store'lardır.
+ * Tek bir platformun verisini, "şimdi"ye göre gerçek tarihli olarak üretir.
+ * Hesap bağlandığında bir kez çalışır; sonrasında tek kaynak store'lardır.
  *
- * - established: sektörün tüm geçmişi (yayınlanmış postlar, yorumlar, DM'ler).
- * - starter: sadece başlangıç paketi (ilk hafta önerileri + bir taslak). Yorum ve DM yok.
+ * - established: o platformun geçmişi (postlar, büyüme önerileri, yorumlar, DM'ler)
+ * - starter: sadece o platformun başlangıç önerileri; post, yorum ve DM yok
  */
-export const buildWorkspaceSeed = ({
+export const buildPlatformSeed = ({
   dataset,
   profile,
+  platform,
+  history,
   now = new Date(),
 }: {
   dataset: SectorDataset;
   profile: BrandProfile;
+  platform: PlatformId;
+  history: PlatformHistory;
   now?: Date;
-}): WorkspaceSeed => {
+}): PlatformSeed => {
   const context: SeedContext = { now, personalize: createPersonalizer(profile) };
+  const onPlatform = <T extends { platform: PlatformId }>(items: T[]) =>
+    items.filter((item) => item.platform === platform);
 
-  if (profile.socialPresence === "starter") {
+  if (history === "starter") {
     return {
-      posts: dataset.starter.drafts.map((seed) => toPost(seed, context)),
-      suggestions: dataset.starter.suggestions.map((seed) =>
+      posts: [],
+      suggestions: onPlatform(dataset.starter.suggestions).map((seed) =>
         toSuggestion(seed, "starter", context),
       ),
       comments: [],
@@ -176,16 +241,18 @@ export const buildWorkspaceSeed = ({
 
   const { personalize } = context;
   return {
-    posts: dataset.posts.map((seed) => toPost(seed, context)),
-    suggestions: dataset.suggestions.map((seed) => toSuggestion(seed, "growth", context)),
-    comments: dataset.comments.map(({ minutesAgo: ago, ...rest }) => ({
+    posts: onPlatform(dataset.posts).map((seed) => toPost(seed, context)),
+    suggestions: onPlatform(dataset.suggestions).map((seed) =>
+      toSuggestion(seed, "growth", context),
+    ),
+    comments: onPlatform(dataset.comments).map(({ minutesAgo: ago, ...rest }) => ({
       ...rest,
       postTitle: personalize(rest.postTitle),
       text: personalize(rest.text),
       aiReply: personalize(rest.aiReply),
       createdAt: minutesAgo(ago, now),
     })),
-    conversations: dataset.conversations.map(({ messages, ...rest }) => ({
+    conversations: onPlatform(dataset.conversations).map(({ messages, ...rest }) => ({
       ...rest,
       aiSuggestions: rest.aiSuggestions.map(personalize),
       messages: messages.map(({ minutesAgo: ago, ...message }) => ({

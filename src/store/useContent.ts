@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Post, PostSuggestion } from "@/types";
+import type { PlatformId, Post, PostSuggestion } from "@/types";
 import { persistOptions } from "./persist";
 
 type PostPatch = Partial<Omit<Post, "id" | "origin" | "createdAt">>;
@@ -10,8 +10,14 @@ type ContentState = {
   suggestions: PostSuggestion[];
   /** Kullanıcının içeriğe dönüştürdüğü ya da gizlediği öneriler. */
   usedSuggestionIds: string[];
+  /** Verisi yüklenmiş platformlar; yeniden bağlanan hesap verisi iki kez eklenmez. */
+  seededPlatforms: PlatformId[];
 
-  seed: (data: { posts: Post[]; suggestions: PostSuggestion[] }) => void;
+  /** Bağlanan bir platformun verisini ekler (bkz. store/workspace.connectPlatform). */
+  addPlatformData: (
+    platform: PlatformId,
+    data: { posts: Post[]; suggestions: PostSuggestion[] },
+  ) => void;
   /** Öneriden taslak oluşturur ve yeni postun id'sini döner. */
   createFromSuggestion: (suggestion: PostSuggestion) => string;
   addSuggestion: (suggestion: PostSuggestion) => void;
@@ -25,14 +31,19 @@ type ContentState = {
 
 const now = () => new Date().toISOString();
 
-const emptyContent = { posts: [], suggestions: [], usedSuggestionIds: [] };
+const emptyContent = { posts: [], suggestions: [], usedSuggestionIds: [], seededPlatforms: [] };
 
 export const useContent = create<ContentState>()(
   persist(
     (set) => ({
       ...emptyContent,
 
-      seed: ({ posts, suggestions }) => set({ posts, suggestions, usedSuggestionIds: [] }),
+      addPlatformData: (platform, data) =>
+        set((state) => ({
+          posts: [...state.posts, ...data.posts],
+          suggestions: [...state.suggestions, ...data.suggestions],
+          seededPlatforms: [...state.seededPlatforms, platform],
+        })),
 
       createFromSuggestion: (suggestion) => {
         const id = `post-${crypto.randomUUID()}`;

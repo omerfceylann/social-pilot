@@ -198,6 +198,75 @@ export const fitnessSuggestions: SeedSuggestion[] = [
     },
     suggestedAt: { day: 6, time: "09:30" },
   },
+  {
+    id: "fs-yt-shoulders",
+    platform: "youtube",
+    format: "video",
+    title: "Omuzlar için 12 dakikalık mobilite",
+    description: "Mobilite serisinin devamı: omuz ve üst sırt rutini.",
+    caption:
+      "Masa başında omuzların kasılıyorsa bu 12 dakika senin için. Mobilite serisinin ikinci bölümü.",
+    hashtags: ["#mobilite", "#omuz", "#masabaşı"],
+    cta: "Serinin tamamı için abone ol.",
+    media: [video("fs-yt-shoulders-m", IMG.pushUps, "16:9", "Esneme yapan kişi", 720)],
+    theme: "educational",
+    reasoning:
+      "15 dakikalık mobilite videon kanal ortalamasının üzerinde izlendi ve yorumlarda omuz rutini istendi.",
+    estimate: {
+      reach: [3000, 6200],
+      engagementRate: 6.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Omuz mobilitesi", "Masa başı omuz rutini"],
+      caption: [
+        "Omuz ağrısına iyi gelen 12 dakikalık rutin.",
+        "Mobilite serisi devam ediyor: sıra omuzlarda.",
+      ],
+      hashtags: [["#mobilite", "#esneme"]],
+      cta: ["Abone ol.", "Yorumlarda sonucu paylaş."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "18:00",
+    },
+  },
+  {
+    id: "fs-x-zone2",
+    platform: "x",
+    format: "post",
+    title: "Zone 2 kardiyo nedir?",
+    description: "Zone 2 kardiyoyu basit bir benzetmeyle anlatan kısa thread.",
+    caption:
+      "Zone 2 = konuşabildiğin ama şarkı söyleyemediğin tempo. Neden bu kadar popüler ve nasıl yapılır? Kısa bir thread.",
+    hashtags: ["#zone2", "#kardiyo"],
+    cta: "Sen haftada kaç dakika kardiyo yapıyorsun?",
+    media: [],
+    theme: "educational",
+    reasoning:
+      "'Zone 2 kardiyo' konusu %29 yükselişte. Beslenme thread'in X'te en çok kaydedilen paylaşımlarından biri oldu.",
+    relatedTrendId: "ft-zone2",
+    estimate: {
+      reach: [1000, 2200],
+      engagementRate: 4.2,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Zone 2'yi anlamak", "Konuşabildiğin tempo"],
+      caption: [
+        "Kardiyonun en çok konuşulan türü: Zone 2. Kısaca anlatıyoruz.",
+        "Yavaş koşmak neden işe yarar? Zone 2 thread'i.",
+      ],
+      hashtags: [["#kardiyo", "#koşu"]],
+      cta: ["Kaydet.", "Yanıtla."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "09:30",
+    },
+  },
 ];
 
 export const fitnessPosts: SeedPost[] = [

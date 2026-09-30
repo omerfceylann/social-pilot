@@ -20,7 +20,7 @@ export const technologyDataset: SectorDataset = {
     dailyReach: 5200,
     dailyFollowerGrowth: 29,
   },
-  agentActivity: { trendsAnalyzed: 18, opportunitiesFound: 4, commentsReviewed: 7 },
+  trendsAnalyzed: 18,
   mediaTips: {
     videoSummary: "Ekran kaydı net ve akıcı, ancak ilk saniyelerde ürünün değeri henüz görünmüyor.",
     video: [

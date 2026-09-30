@@ -1,4 +1,4 @@
-import type { AgentActivity, AnalyticsBaseline } from "./analytics";
+import type { AnalyticsBaseline } from "./analytics";
 import type { BrandDefaults, SectorId } from "./brand";
 import type { Post, PostSuggestion } from "./content";
 import type { Comment, Conversation, DirectMessage } from "./inbox";
@@ -28,9 +28,6 @@ export type SeedSuggestion = Omit<PostSuggestion, "suggestedAt" | "stage"> & {
   suggestedAt: RelativeTime;
 };
 
-/** Başlangıç paketinde sadece taslak olabilir; yeni markanın yayınlanmış içeriği yoktur. */
-export type SeedDraft = SeedPost & { status: "draft" };
-
 export type SeedComment = Omit<Comment, "createdAt" | "reply"> & {
   minutesAgo: number;
 };
@@ -52,22 +49,21 @@ export type MediaTips = {
 };
 
 /**
- * "Yeni bir marka oluşturuyorum" diyen kullanıcının boş olmayan ilk ekranı.
- * Yorum, DM ve yayınlanmış post yoktur: yeni bir hesabın geçmişi olmaz.
+ * Yeni açılan bir platform hesabının verisi. Yorum, DM ve yayınlanmış post yoktur:
+ * yeni hesabın geçmişi olmaz. Öneriler platform alanlarına göre filtrelenir;
+ * her platform için en az iki başlangıç önerisi bulunur.
  */
 export type StarterKit = {
-  /** İlk haftaya yayılmış "bu şekilde başlayalım" önerileri. */
+  /** Platform platform "bu şekilde başlayalım" önerileri. */
   suggestions: SeedSuggestion[];
-  /** Düzenlenmeye hazır "bu postla başlayalım" taslakları. */
-  drafts: SeedDraft[];
   /** Yeni hesap: 0 takipçi, küçük ama gerçekçi erişim. */
   analytics: AnalyticsBaseline;
-  agentActivity: AgentActivity;
 };
 
 /**
  * Bir sektörün tüm mock verisi. Yeni sektör = bu tipte yeni bir nesne.
- * Kök alanlar sosyal medyayı zaten kullanan marka içindir; yeni başlayan starter'ı kullanır.
+ * Kök alanlar kullanıcının zaten kullandığı platformlar içindir (geçmişli veri);
+ * yeni açılan platformlar starter'ı kullanır. Veri platform platform yüklenir.
  * Tüm metinlerde {brand} (marka adı) ve {handle} (#etiket, e-posta, URL biçimi)
  * yer tutucuları kullanılır; hazır marka adı yoktur.
  */
@@ -81,6 +77,7 @@ export type SectorDataset = {
   comments: SeedComment[];
   conversations: SeedConversation[];
   analytics: AnalyticsBaseline;
-  agentActivity: AgentActivity;
+  /** AI Agent kartındaki "X trend analiz edildi"; pazara ait, hesaba değil. */
+  trendsAnalyzed: number;
   mediaTips: MediaTips;
 };

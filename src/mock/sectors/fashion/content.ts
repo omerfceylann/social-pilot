@@ -192,6 +192,74 @@ export const fashionSuggestions: SeedSuggestion[] = [
     },
     suggestedAt: { day: 5, time: "10:00" },
   },
+  {
+    id: "ns-yt-coat-care",
+    platform: "youtube",
+    format: "short",
+    title: "Yün palto nasıl saklanır?",
+    description: "Sezon sonunda yün paltonun bakımını anlatan kısa rehber.",
+    caption:
+      "Sezon bitince yün paltonu böyle sakla: fırçala, havalandır, bez torbaya koy. 30 saniyede.",
+    hashtags: ["#shorts", "#yünbakımı", "#palto"],
+    cta: "Kaydet, sezon sonunda lazım olacak.",
+    media: [video("ns-yt-care-m", IMG.coat, "9:16", "Yün palto", 30)],
+    theme: "educational",
+    reasoning:
+      "'Yün mü, kaşmir mi?' Shorts'un kanal ortalamasının üzerinde izlendi. Bakım içerikleri ürün ömrü vurgunla örtüşüyor.",
+    estimate: {
+      reach: [2200, 4800],
+      engagementRate: 5.8,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Palto bakımı", "Yünü koru"],
+      caption: [
+        "Paltonun yıllarca ilk günkü gibi kalması için 3 adım.",
+        "Yün bakımında en sık yapılan hata ve çözümü.",
+      ],
+      hashtags: [["#shorts", "#bakım"]],
+      cta: ["Abone ol.", "Soru sor."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "18:00",
+    },
+  },
+  {
+    id: "ns-x-burgundy",
+    platform: "x",
+    format: "post",
+    title: "Bordo kazandı",
+    description: "Renk anketinin sonucunu duyuran ve ön sipariş tarihini paylaşan gönderi.",
+    caption:
+      "Anket sonuçlandı: Ada palto yeni sezonda bordo olarak da geliyor. Ön siparişler gelecek hafta açılıyor.",
+    hashtags: ["#anketsonucu"],
+    cta: "Ön sipariş listesine katılmak için yanıtla.",
+    media: [],
+    theme: "communityFocused",
+    reasoning:
+      "Renk anketin X'te en çok yanıt alan paylaşımın oldu. Sonucu duyurmak katılanları ürüne bağlar.",
+    estimate: {
+      reach: [1500, 2800],
+      engagementRate: 4.1,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Anket sonucu", "Yeni renk geliyor"],
+      caption: [
+        "Sizin seçiminiz: bordo. Ada palto yeni renkte geliyor.",
+        "Oylar sayıldı, kazanan bordo.",
+      ],
+      hashtags: [["#anket", "#yenirenk"]],
+      cta: ["Yanıtla.", "Paylaş."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "13:00",
+    },
+  },
 ];
 
 export const fashionPosts: SeedPost[] = [

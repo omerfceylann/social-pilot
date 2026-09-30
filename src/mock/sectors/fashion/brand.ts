@@ -29,5 +29,4 @@ export const fashionBrandDefaults: BrandDefaults = {
       "Kumaş ve üretim bilgisini öne çıkar",
     ],
   },
-  activePlatforms: ["instagram", "tiktok", "linkedin", "youtube", "x"],
 };

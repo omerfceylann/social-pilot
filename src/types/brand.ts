@@ -77,13 +77,6 @@ export type BrandAudience = {
   description: string;
 };
 
-/**
- * Sosyal medya geçmişi, hangi verinin yükleneceğini belirler:
- * - starter: yeni marka ya da sosyal medyaya yeni başlayan marka → başlangıç paketi
- * - established: sosyal medyayı zaten kullanan marka → sektörün hazır verisi
- */
-export type SocialPresence = "starter" | "established";
-
 export type BrandProfile = {
   name: string;
   handle: string;
@@ -100,10 +93,13 @@ export type BrandProfile = {
   contentStyles: ContentStyle[];
   goals: BrandGoal[];
   rules: BrandRules;
-  activePlatforms: PlatformId[];
+  /**
+   * Onboarding'de "Kullandığın platformlar" adımında seçilenler. Bu platformlar
+   * bağlandığında geçmişli veri, diğerleri yeni hesap (başlangıç) verisi alır.
+   */
+  usedPlatforms: PlatformId[];
   /** Markayı sıfırdan mı kurdu, mevcut markasını mı getirdi (spec §10). */
   origin: "new" | "existing";
-  socialPresence: SocialPresence;
 };
 
 /**
@@ -113,5 +109,5 @@ export type BrandProfile = {
  */
 export type BrandDefaults = Omit<
   BrandProfile,
-  "name" | "handle" | "website" | "sector" | "origin" | "socialPresence"
+  "name" | "handle" | "website" | "sector" | "origin" | "usedPlatforms"
 >;
