@@ -1,26 +1,321 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * SocialPilot tasarım token'ları
+ * ---------------------------------------------------------------
+ * 1. Nötr renkler: mod başına (light / dark) tanımlanır.
+ * 2. Accent: her tema sadece hue / chroma / lightness verir,
+ *    türevler (soft, text, ring) bu üç değerden hesaplanır.
+ * 3. @theme inline: değişkenleri Tailwind utility'lerine bağlar.
+ *
+ * Bileşenler asla ham renk kullanmaz; sadece bu token'ları kullanır.
+ */
+
+@custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *));
+
+/* ---------- 1. Nötr renkler ---------- */
+
+:root,
+[data-mode="light"] {
+  color-scheme: light;
+
+  --bg: #f6f6f8;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-muted: #f0f0f3;
+  /* Seçili öğe / segment göstergesi: her iki modda da zeminden açık. */
+  --surface-raised: #ffffff;
+  --border: #e5e5ea;
+  --border-strong: #d4d4dc;
+
+  --text: #111116;
+  --text-secondary: #5b5b68;
+  --text-muted: #80808c;
+
+  --overlay: rgb(17 17 22 / 0.32);
+
+  --shadow-xs: 0 1px 2px rgb(17 17 22 / 0.04);
+  --shadow-sm: 0 1px 2px rgb(17 17 22 / 0.04), 0 2px 8px -2px rgb(17 17 22 / 0.06);
+  --shadow-md: 0 2px 4px rgb(17 17 22 / 0.03), 0 8px 24px -6px rgb(17 17 22 / 0.1);
+  --shadow-lg: 0 4px 8px rgb(17 17 22 / 0.04), 0 24px 48px -12px rgb(17 17 22 / 0.18);
+
+  /* Accent'in moda göre açıklık ayarı: light modda metin daha koyu olmalı. */
+  --accent-text-l: 0.5;
+  --accent-soft-mix: 10%;
+
+  /* Açık zeminde okunabilsin diye koyu tonlar. */
+  --success: oklch(0.56 0.14 155);
+  --warning: oklch(0.62 0.14 65);
+  --danger: oklch(0.56 0.2 25);
 }
+
+[data-mode="dark"] {
+  color-scheme: dark;
+
+  --bg: #0b0b0f;
+  --surface: #121218;
+  --surface-elevated: #18181f;
+  --surface-muted: #1c1c24;
+  --surface-raised: #282832;
+  --border: #24242d;
+  --border-strong: #33333f;
+
+  --text: #f5f5f7;
+  --text-secondary: #9999a5;
+  --text-muted: #767682;
+
+  --overlay: rgb(0 0 0 / 0.6);
+
+  /* Karanlıkta gölge az görünür; derinliği border ve yüzey tonu taşır. */
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 8px -2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 0.25), 0 8px 24px -6px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 4px 8px rgb(0 0 0 / 0.3), 0 24px 48px -12px rgb(0 0 0 / 0.6);
+
+  --accent-text-l: 0.78;
+  --accent-soft-mix: 16%;
+
+  --success: oklch(0.72 0.15 155);
+  --warning: oklch(0.8 0.14 75);
+  --danger: oklch(0.68 0.19 25);
+}
+
+/* ---------- 2. Accent temaları ---------- */
+
+:root,
+[data-accent="violet"] {
+  --accent-h: 293;
+  --accent-c: 0.21;
+  --accent-l: 0.6;
+  --accent-fg: #ffffff;
+}
+[data-accent="indigo"] {
+  --accent-h: 277;
+  --accent-c: 0.19;
+  --accent-l: 0.58;
+  --accent-fg: #ffffff;
+}
+[data-accent="blue"] {
+  --accent-h: 255;
+  --accent-c: 0.18;
+  --accent-l: 0.6;
+  --accent-fg: #ffffff;
+}
+/* Emerald ve amber açık tonlar: beyaz metin yerine koyu metin kontrastı sağlar. */
+[data-accent="emerald"] {
+  --accent-h: 163;
+  --accent-c: 0.15;
+  --accent-l: 0.72;
+  --accent-fg: #06170f;
+}
+[data-accent="rose"] {
+  --accent-h: 12;
+  --accent-c: 0.2;
+  --accent-l: 0.62;
+  --accent-fg: #ffffff;
+}
+[data-accent="amber"] {
+  --accent-h: 75;
+  --accent-c: 0.15;
+  --accent-l: 0.8;
+  --accent-fg: #1c1305;
+}
+
+:root {
+  --accent: oklch(var(--accent-l) var(--accent-c) var(--accent-h));
+  --accent-hover: oklch(calc(var(--accent-l) - 0.04) var(--accent-c) var(--accent-h));
+  --accent-text: oklch(var(--accent-text-l) calc(var(--accent-c) * 0.9) var(--accent-h));
+  --accent-soft: color-mix(in oklab, var(--accent) var(--accent-soft-mix), transparent);
+  --accent-ring: color-mix(in oklab, var(--accent) 60%, transparent);
+
+  /* Durum renkleri: temadan bağımsız, anlamı sabit. Açıklık moda göre (bkz. mod blokları). */
+  --success-soft: color-mix(in oklab, var(--success) 14%, transparent);
+  --warning-soft: color-mix(in oklab, var(--warning) 16%, transparent);
+  --danger-soft: color-mix(in oklab, var(--danger) 14%, transparent);
+
+  /* Platform kimlik renkleri (önizlemeler ve ikonlar). */
+  --platform-instagram: #e1306c;
+  --platform-tiktok: #fe2c55;
+  --platform-youtube: #ff0033;
+  --platform-x: var(--text);
+  --platform-linkedin: #0a66c2;
+}
+
+/* ---------- 3. Tailwind'e bağlama ---------- */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-overlay: var(--overlay);
+
+  --color-fg: var(--text);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ring: var(--accent-ring);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-instagram: var(--platform-instagram);
+  --color-tiktok: var(--platform-tiktok);
+  --color-youtube: var(--platform-youtube);
+  --color-x: var(--platform-x);
+  --color-linkedin: var(--platform-linkedin);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* Köşe yarıçapları: kontroller md, kartlar xl, modallar 2xl. */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+
+  /* Tipografi skalası (spec §3). Renk yerine boyut ve ağırlıkla hiyerarşi. */
+  --text-display: 2.25rem;
+  --text-display--line-height: 2.625rem;
+  --text-display--letter-spacing: -0.028em;
+  --text-display--font-weight: 600;
+
+  --text-title: 1.375rem;
+  --text-title--line-height: 1.875rem;
+  --text-title--letter-spacing: -0.018em;
+  --text-title--font-weight: 600;
+
+  --text-heading: 1rem;
+  --text-heading--line-height: 1.5rem;
+  --text-heading--letter-spacing: -0.01em;
+  --text-heading--font-weight: 600;
+
+  --text-body-lg: 0.9375rem;
+  --text-body-lg--line-height: 1.5rem;
+
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.125rem;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+
+  /* Motion: CSS ile yapılan küçük animasyonlar (popover, skeleton). */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pop-in: pop-in 180ms var(--ease-out-soft);
+  --animate-pop-out: pop-out 120ms ease-in forwards;
+
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.98);
+    }
+  }
+  @keyframes pop-out {
+    to {
+      opacity: 0;
+      transform: translateY(-2px) scale(0.98);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- Özel utility'ler ---------- */
+
+/* Skeleton: yüzey tonunda, soldan sağa akan yumuşak parıltı. */
+@utility skeleton {
+  background: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in oklab, var(--text) 5%, transparent) 50%,
+      transparent 100%
+    )
+    var(--surface-muted);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ---------- Temel stiller ---------- */
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Inter: tek katlı "a" ve daha sakin rakamlar. */
+    font-feature-settings: "cv11", "ss03";
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tek, tutarlı focus halkası (spec §41). */
+  :focus-visible {
+    outline: 2px solid var(--accent-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+    }
+  }
 }
