@@ -1,12 +1,12 @@
 import type { SectorDataset } from "@/types";
-import { fashionBrand } from "./brand";
+import { fashionBrandDefaults } from "./brand";
 import { fashionPosts, fashionSuggestions, fashionTrends } from "./content";
 import { fashionComments, fashionConversations } from "./inbox";
 import { fashionStarter } from "./starter";
 
 export const fashionDataset: SectorDataset = {
   sectorId: "fashion",
-  brand: fashionBrand,
+  brandDefaults: fashionBrandDefaults,
   starter: fashionStarter,
   suggestions: fashionSuggestions,
   posts: fashionPosts,

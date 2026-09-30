@@ -181,7 +181,7 @@ export const fitnessComments: SeedComment[] = [
     likes: 4,
     intent: "question",
     aiReply:
-      "Merhaba Arda Bey, ilginiz için teşekkürler! Özgeçmişinizi kariyer@fitatolye.com adresine iletebilirsiniz.",
+      "Merhaba Arda Bey, ilginiz için teşekkürler! Özgeçmişinizi kariyer@{handle}.com adresine iletebilirsiniz.",
     minutesAgo: 60 * 46,
   },
 ];

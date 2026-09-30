@@ -45,7 +45,7 @@ export type WorkspaceContext = {
 
 export const resolveWorkspaceContext = (profile: BrandProfile): WorkspaceContext => {
   const dataset = resolveDataset(profile.sector);
-  const source = profile.origin === "new" ? dataset.starter : dataset;
+  const source = profile.socialPresence === "starter" ? dataset.starter : dataset;
   return {
     analytics: source.analytics,
     agentActivity: source.agentActivity,
@@ -58,24 +58,16 @@ export const resolveWorkspaceContext = (profile: BrandProfile): WorkspaceContext
 
 type Personalize = (text: string) => string;
 
-/** "Sokak Kahvesi" → "sokakkahvesi": hashtag ve URL'lerde geçen biçim. */
-const compactName = (name: string) => name.toLocaleLowerCase("tr").replace(/\s+/g, "");
-
 /**
- * Mock metinleri kullanıcının markasına uyarlar: {brand} yer tutucusunu doldurur,
- * örnek markanın adını (ve #etiket biçimini) kullanıcının marka adıyla değiştirir.
+ * Mock metinlerdeki yer tutucuları kullanıcının markasıyla doldurur:
+ * {brand} → "Kahve Evim", {handle} → "kahveevim" (#etiket, e-posta, URL için).
  */
-const createPersonalizer = (preset: BrandProfile, profile: BrandProfile): Personalize => {
+const createPersonalizer = (profile: BrandProfile): Personalize => {
   const replacements: [string, string][] = [
     ["{brand}", profile.name],
-    [preset.name, profile.name],
-    [compactName(preset.name), compactName(profile.name)],
+    ["{handle}", profile.handle],
   ];
-  return (text) =>
-    replacements.reduce(
-      (result, [from, to]) => (from && from !== to ? result.replaceAll(from, to) : result),
-      text,
-    );
+  return (text) => replacements.reduce((result, [from, to]) => result.replaceAll(from, to), text);
 };
 
 const personalizeAlternatives = (
@@ -157,8 +149,8 @@ export type WorkspaceSeed = {
  * Göreli zamanlı mock veriyi, "şimdi"ye göre gerçek tarihli workspace verisine çevirir.
  * Onboarding bittiğinde bir kez çalışır; sonrasında tek kaynak store'lardır.
  *
- * - Mevcut marka: sektörün tüm geçmişi (yayınlanmış postlar, yorumlar, DM'ler).
- * - Yeni marka: sadece başlangıç paketi (ilk hafta önerileri + bir taslak). Yorum ve DM yok.
+ * - established: sektörün tüm geçmişi (yayınlanmış postlar, yorumlar, DM'ler).
+ * - starter: sadece başlangıç paketi (ilk hafta önerileri + bir taslak). Yorum ve DM yok.
  */
 export const buildWorkspaceSeed = ({
   dataset,
@@ -169,9 +161,9 @@ export const buildWorkspaceSeed = ({
   profile: BrandProfile;
   now?: Date;
 }): WorkspaceSeed => {
-  const context: SeedContext = { now, personalize: createPersonalizer(dataset.brand, profile) };
+  const context: SeedContext = { now, personalize: createPersonalizer(profile) };
 
-  if (profile.origin === "new") {
+  if (profile.socialPresence === "starter") {
     return {
       posts: dataset.starter.drafts.map((seed) => toPost(seed, context)),
       suggestions: dataset.starter.suggestions.map((seed) =>

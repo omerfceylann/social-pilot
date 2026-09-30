@@ -161,6 +161,10 @@ export const tr = {
     brandUpdated: "Marka bilgileri güncellendi.",
   },
   errors: {
+    invalidUsername:
+      "Kullanıcı adı 3–24 karakter olmalı; harf, rakam, nokta ve alt çizgi kullanabilirsin.",
+    usernameTaken: "Bu kullanıcı adı alınmış. Başka bir tane dene.",
+    userNotFound: "Bu kullanıcı adıyla bir hesap bulunamadı.",
     generic: "Bir şeyler ters gitti.",
     contentFailed: "İçerik oluşturulamadı.",
     invalidHandle: "Bu kullanıcı adı {platform} için geçerli değil.",

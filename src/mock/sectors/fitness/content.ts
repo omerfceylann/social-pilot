@@ -73,7 +73,7 @@ export const fitnessSuggestions: SeedSuggestion[] = [
     description: "Üyemiz Zeynep'in 3 aylık yolculuğu: ilk dersten ilk barfikse.",
     caption:
       "90 gün önce tek bir barfiks bile çekemiyordu. Bugün 3 tane. Zeynep'in hikâyesi, haftada 3 ders ve bol sabırla yazıldı. (Paylaşım izniyle 💪)",
-    hashtags: ["#dönüşüm", "#barfiks", "#güçantrenmanı", "#fitatölye", "#beşiktaş"],
+    hashtags: ["#dönüşüm", "#barfiks", "#güçantrenmanı", "#{handle}", "#beşiktaş"],
     music: { title: "Stronger", artist: "Kanye West" },
     cta: "İlk deneme dersin ücretsiz, link profilde.",
     media: [video("fs-member-m", IMG.athlete, "9:16", "Barfiks çeken kadın sporcu", 28)],
@@ -89,7 +89,7 @@ export const fitnessSuggestions: SeedSuggestion[] = [
         "Başlamak için mükemmel zamanı beklemedi. 90 gün sonra ilk barfiksini çekti.",
       ],
       hashtags: [
-        ["#güç", "#motivasyon", "#fitatölye"],
+        ["#güç", "#motivasyon", "#{handle}"],
         ["#kadınvegüç", "#barfiks", "#beşiktaş", "#antrenman"],
       ],
       cta: [
@@ -208,7 +208,7 @@ export const fitnessPosts: SeedPost[] = [
     status: "published",
     title: "Ayşe'nin 12 haftası",
     caption: "12 hafta, 36 ders, sıfırdan 60 kg deadlift. Ayşe'nin hikâyesi (paylaşım izniyle).",
-    hashtags: ["#dönüşüm", "#güçantrenmanı", "#fitatölye"],
+    hashtags: ["#dönüşüm", "#güçantrenmanı", "#{handle}"],
     music: { title: "Run Boy Run", artist: "Woodkid" },
     media: [video("fp-ayse-m", IMG.weights, "9:16", "Ağırlık kaldıran kadın", 26)],
     theme: "storytelling",
@@ -328,7 +328,7 @@ export const fitnessPosts: SeedPost[] = [
     status: "scheduled",
     title: "Yeni koçumuz Melis'le tanışın",
     caption: "Pilates ve mobilite uzmanı Melis, Pazartesi'den itibaren sabah derslerinde.",
-    hashtags: ["#yenikoç", "#pilates", "#fitatölye"],
+    hashtags: ["#yenikoç", "#pilates", "#{handle}"],
     media: [photo("fp-coach-m", IMG.athlete, "4:5", "Stüdyoda koç portresi")],
     theme: "communityFocused",
     at: { day: 1, time: "12:00" },

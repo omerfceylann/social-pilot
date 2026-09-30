@@ -1,13 +1,10 @@
-import type { BrandProfile } from "@/types";
+import type { BrandDefaults } from "@/types";
 
-export const fashionBrand: BrandProfile = {
-  name: "Nova Atelier",
-  handle: "novaatelier",
-  sector: { kind: "preset", id: "fashion" },
+/** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
+export const fashionBrandDefaults: BrandDefaults = {
   country: "Türkiye",
   language: "Türkçe",
-  website: "novaatelier.com",
-  tagline: "İzmir'de kendi atölyesinde üreten, zamansız parçalar tasarlayan kadın giyim markası.",
+  tagline: "Kendi atölyesinde üreten, zamansız parçalar tasarlayan kadın giyim markası.",
   audience: {
     summary: "Kaliteli, uzun ömürlü parçalara yatırım yapan kadınlar",
     ageRange: [26, 45],
@@ -33,5 +30,4 @@ export const fashionBrand: BrandProfile = {
     ],
   },
   activePlatforms: ["instagram", "tiktok", "linkedin", "youtube", "x"],
-  origin: "existing",
 };

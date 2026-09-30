@@ -1,13 +1,10 @@
-import type { BrandProfile } from "@/types";
+import type { BrandDefaults } from "@/types";
 
-export const fitnessBrand: BrandProfile = {
-  name: "FitAtölye",
-  handle: "fitatolye",
-  sector: { kind: "preset", id: "fitness" },
+/** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
+export const fitnessBrandDefaults: BrandDefaults = {
   country: "Türkiye",
   language: "Türkçe",
-  website: "fitatolye.com",
-  tagline: "Beşiktaş'ta küçük gruplarla güç ve kondisyon stüdyosu.",
+  tagline: "Küçük gruplarla güç ve kondisyon stüdyosu.",
   audience: {
     summary: "Spora yeniden başlamak isteyen çalışan profesyoneller",
     ageRange: [25, 45],
@@ -33,5 +30,4 @@ export const fitnessBrand: BrandProfile = {
     ],
   },
   activePlatforms: ["instagram", "tiktok", "youtube", "linkedin", "x"],
-  origin: "existing",
 };

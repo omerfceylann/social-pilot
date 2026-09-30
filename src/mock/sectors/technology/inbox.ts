@@ -36,7 +36,7 @@ export const technologyComments: SeedComment[] = [
     likes: 3,
     intent: "question",
     aiReply:
-      "Var! iOS ve Android uygulamalarımızı App Store ve Google Play'de 'Taskly' diye aratarak bulabilirsin.",
+      "Var! iOS ve Android uygulamalarımızı App Store ve Google Play'de '{brand}' diye aratarak bulabilirsin.",
     minutesAgo: 300,
   },
   // TikTok
@@ -134,7 +134,7 @@ export const technologyComments: SeedComment[] = [
     text: "Public API'niz var mı? Kendi dashboard'umuza çekmek istiyoruz.",
     likes: 9,
     intent: "question",
-    aiReply: "Var! REST API ve webhook dokümantasyonumuz taskly.io/developers adresinde.",
+    aiReply: "Var! REST API ve webhook dokümantasyonumuz {handle}.com/developers adresinde.",
     minutesAgo: 60 * 4,
   },
   {
@@ -146,14 +146,14 @@ export const technologyComments: SeedComment[] = [
     likes: 6,
     intent: "complaint",
     aiReply:
-      "Melis, sabah 08:10–08:25 arası kısa bir erişim sorunu yaşandı ve çözüldü. Durum sayfamızı status.taskly.io adresinden takip edebilirsin. Özür dileriz.",
+      "Melis, sabah 08:10–08:25 arası kısa bir erişim sorunu yaşandı ve çözüldü. Durum sayfamızı status.{handle}.com adresinden takip edebilirsin. Özür dileriz.",
     minutesAgo: 60 * 12,
   },
   // LinkedIn
   {
     id: "tc-li-sso",
     platform: "linkedin",
-    postTitle: "Taskly 2.0: Zaman çizelgesi görünümü",
+    postTitle: "{brand} 2.0: Zaman çizelgesi görünümü",
     author: { name: "Zeynep Arslan", handle: "zeynep-arslan", avatarUrl: avatar(PEOPLE.zeynep) },
     text: "200 kişilik bir şirketiz. SSO ve KVKK uyumluluğu konusunda bilgi alabilir miyiz?",
     likes: 8,
@@ -165,7 +165,7 @@ export const technologyComments: SeedComment[] = [
   {
     id: "tc-li-congrats",
     platform: "linkedin",
-    postTitle: "Taskly 2.0: Zaman çizelgesi görünümü",
+    postTitle: "{brand} 2.0: Zaman çizelgesi görünümü",
     author: { name: "Arda Güneş", handle: "arda-gunes", avatarUrl: avatar(PEOPLE.arda) },
     text: "Zaman çizelgesi tam ihtiyacımız olan şeydi. Tebrikler ekibe!",
     likes: 24,
@@ -177,13 +177,13 @@ export const technologyComments: SeedComment[] = [
   {
     id: "tc-li-careers",
     platform: "linkedin",
-    postTitle: "Neden Taskly'yi kurduk?",
+    postTitle: "Bu ürünü neden kurduk?",
     author: { name: "Ece Demir", handle: "ece-demir", avatarUrl: avatar(PEOPLE.ece) },
     text: "Frontend pozisyonunuz hâlâ açık mı?",
     likes: 5,
     intent: "question",
     aiReply:
-      "Merhaba Ece Hanım! Evet, ilan hâlâ açık. Başvurunuzu taskly.io/kariyer üzerinden iletebilirsiniz.",
+      "Merhaba Ece Hanım! Evet, ilan hâlâ açık. Başvurunuzu {handle}.com/kariyer üzerinden iletebilirsiniz.",
     minutesAgo: 60 * 40,
   },
 ];
@@ -223,7 +223,7 @@ export const technologyConversations: SeedConversation[] = [
       {
         id: "m1",
         from: "customer",
-        text: "Bir yazılım ajansıyız, müşterilerimize Taskly öneriyoruz. Partner programınız var mı?",
+        text: "Bir yazılım ajansıyız, müşterilerimize {brand} öneriyoruz. Partner programınız var mı?",
         minutesAgo: 60 * 26,
       },
       {

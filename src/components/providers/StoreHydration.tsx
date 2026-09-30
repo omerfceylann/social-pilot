@@ -1,16 +1,25 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAccounts } from "@/store/useAccounts";
+import { useSocialAccounts } from "@/store/useSocialAccounts";
 import { useBrand } from "@/store/useBrand";
 import { useContent } from "@/store/useContent";
 import { useHydration } from "@/store/useHydration";
 import { useInbox } from "@/store/useInbox";
 import { usePreferences } from "@/store/usePreferences";
 import { useSession } from "@/store/useSession";
+import { useUserDirectory } from "@/store/useUserDirectory";
 
 /** Yeni kalıcı store eklendikçe buraya eklenir. */
-const persistedStores = [usePreferences, useSession, useBrand, useAccounts, useContent, useInbox];
+const persistedStores = [
+  usePreferences,
+  useSession,
+  useBrand,
+  useSocialAccounts,
+  useContent,
+  useInbox,
+  useUserDirectory,
+];
 
 /**
  * Kalıcı store'ları sayfa tarayıcıda oturduktan sonra localStorage'dan yükler,

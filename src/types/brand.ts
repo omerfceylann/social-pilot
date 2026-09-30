@@ -77,6 +77,13 @@ export type BrandAudience = {
   description: string;
 };
 
+/**
+ * Sosyal medya geçmişi, hangi verinin yükleneceğini belirler:
+ * - starter: yeni marka ya da sosyal medyaya yeni başlayan marka → başlangıç paketi
+ * - established: sosyal medyayı zaten kullanan marka → sektörün hazır verisi
+ */
+export type SocialPresence = "starter" | "established";
+
 export type BrandProfile = {
   name: string;
   handle: string;
@@ -96,4 +103,15 @@ export type BrandProfile = {
   activePlatforms: PlatformId[];
   /** Markayı sıfırdan mı kurdu, mevcut markasını mı getirdi (spec §10). */
   origin: "new" | "existing";
+  socialPresence: SocialPresence;
 };
+
+/**
+ * Sektörün önerdiği marka varsayılanları (ton, kurallar, hedef kitle…).
+ * Kimlik (ad, kullanıcı adı, website, sektör, köken) her zaman kullanıcıdan gelir;
+ * bu yüzden tipte yok ve sektör verisi yanlışlıkla bir marka adı taşıyamaz.
+ */
+export type BrandDefaults = Omit<
+  BrandProfile,
+  "name" | "handle" | "website" | "sector" | "origin" | "socialPresence"
+>;

@@ -180,7 +180,7 @@ export const fashionComments: SeedComment[] = [
     likes: 7,
     intent: "question",
     aiReply:
-      "Merhaba Ece Hanım! Yaz dönemi staj başvurularımızı Mart ayında açıyoruz. Portfolyonuzu kariyer@novaatelier.com adresine iletebilirsiniz.",
+      "Merhaba Ece Hanım! Yaz dönemi staj başvurularımızı Mart ayında açıyoruz. Portfolyonuzu kariyer@{handle}.com adresine iletebilirsiniz.",
     minutesAgo: 60 * 42,
   },
 ];

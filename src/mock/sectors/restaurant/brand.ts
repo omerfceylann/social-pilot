@@ -1,13 +1,10 @@
-import type { BrandProfile } from "@/types";
+import type { BrandDefaults } from "@/types";
 
-export const restaurantBrand: BrandProfile = {
-  name: "Sokak Kahvesi",
-  handle: "sokakkahvesi.ist",
-  sector: { kind: "preset", id: "restaurant" },
+/** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
+export const restaurantBrandDefaults: BrandDefaults = {
   country: "Türkiye",
   language: "Türkçe",
-  website: "sokakkahvesi.com.tr",
-  tagline: "Kadıköy'de üç şubeli specialty kahve ve kahvaltı durağı.",
+  tagline: "Mahallenin specialty kahve ve kahvaltı durağı.",
   audience: {
     summary: "Kahve tutkunları, genç profesyoneller ve öğrenciler",
     ageRange: [20, 38],
@@ -34,5 +31,4 @@ export const restaurantBrand: BrandProfile = {
     ],
   },
   activePlatforms: ["instagram", "tiktok", "youtube", "x", "linkedin"],
-  origin: "existing",
 };

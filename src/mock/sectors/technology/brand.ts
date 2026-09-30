@@ -1,12 +1,9 @@
-import type { BrandProfile } from "@/types";
+import type { BrandDefaults } from "@/types";
 
-export const technologyBrand: BrandProfile = {
-  name: "Taskly",
-  handle: "tasklyapp",
-  sector: { kind: "preset", id: "technology" },
+/** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
+export const technologyBrandDefaults: BrandDefaults = {
   country: "Türkiye",
   language: "Türkçe",
-  website: "taskly.io",
   tagline: "Küçük ve orta ölçekli ekipler için sade proje yönetimi.",
   audience: {
     summary: "Ürün yöneticileri, yazılım ekipleri ve ajans kurucuları",
@@ -33,5 +30,4 @@ export const technologyBrand: BrandProfile = {
     ],
   },
   activePlatforms: ["linkedin", "x", "youtube", "instagram", "tiktok"],
-  origin: "existing",
 };

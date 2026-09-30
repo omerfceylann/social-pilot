@@ -3,14 +3,14 @@ import { persist } from "zustand/middleware";
 import type { PlatformId, SocialAccount } from "@/types";
 import { persistOptions } from "./persist";
 
-type AccountsState = {
+type SocialAccountsState = {
   accounts: Partial<Record<PlatformId, SocialAccount>>;
   connect: (account: SocialAccount) => void;
   disconnect: (platform: PlatformId) => void;
   reset: () => void;
 };
 
-export const useAccounts = create<AccountsState>()(
+export const useSocialAccounts = create<SocialAccountsState>()(
   persist(
     (set) => ({
       accounts: {},
@@ -24,6 +24,6 @@ export const useAccounts = create<AccountsState>()(
         }),
       reset: () => set({ accounts: {} }),
     }),
-    persistOptions("accounts"),
+    persistOptions("social-accounts"),
   ),
 );

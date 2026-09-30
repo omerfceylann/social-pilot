@@ -305,7 +305,7 @@ export const restaurantPosts: SeedPost[] = [
     format: "short",
     status: "published",
     title: "Açılıştan önceki 60 saniye",
-    caption: "Sandalyeler iniyor, değirmen ısınıyor, ilk fincan hazır. 60 saniyede Sokak Kahvesi.",
+    caption: "Sandalyeler iniyor, değirmen ısınıyor, ilk fincan hazır. 60 saniyede {brand}.",
     hashtags: ["#shorts", "#perdearkası", "#kafe"],
     music: { title: "Sunday Morning", artist: "Chillhop Music" },
     media: [video("rp-opening-m", IMG.cafeInterior, "9:16", "Açılış öncesi boş kafe", 58)],
@@ -322,7 +322,7 @@ export const restaurantPosts: SeedPost[] = [
     caption:
       "2023'te 20 metrekarelik bir tezgâhla başladık. Bugün 3 şubede 24 kişilik bir ekibiz. Büyürken öğrendiğimiz üç şey: yavaş büyü, ekibine yatırım yap, mahalleni dinle.",
     hashtags: ["#girişimcilik", "#küçükişletme", "#büyüme"],
-    media: [photo("rp-growth-m", IMG.restaurant, "1:1", "Sokak Kahvesi ekibi şubede")],
+    media: [photo("rp-growth-m", IMG.restaurant, "1:1", "{brand} ekibi şubede")],
     theme: "storytelling",
     performanceHint: "average",
     at: { day: -21, time: "11:00" },

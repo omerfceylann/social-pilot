@@ -154,6 +154,9 @@ export const en: Dictionary = {
     brandUpdated: "Brand details updated.",
   },
   errors: {
+    invalidUsername: "Usernames are 3–24 characters: letters, numbers, dots and underscores.",
+    usernameTaken: "That username is taken. Try another one.",
+    userNotFound: "No account found with this username.",
     generic: "Something went wrong.",
     contentFailed: "Couldn't create the content.",
     invalidHandle: "This username isn't valid for {platform}.",

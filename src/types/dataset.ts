@@ -1,5 +1,5 @@
 import type { AgentActivity, AnalyticsBaseline } from "./analytics";
-import type { BrandProfile, SectorId } from "./brand";
+import type { BrandDefaults, SectorId } from "./brand";
 import type { Post, PostSuggestion } from "./content";
 import type { Comment, Conversation, DirectMessage } from "./inbox";
 import type { Trend } from "./trend";
@@ -53,7 +53,6 @@ export type MediaTips = {
 
 /**
  * "Yeni bir marka oluşturuyorum" diyen kullanıcının boş olmayan ilk ekranı.
- * Metinlerde {brand} yer tutucusu kullanılır; kullanıcının marka adıyla doldurulur.
  * Yorum, DM ve yayınlanmış post yoktur: yeni bir hesabın geçmişi olmaz.
  */
 export type StarterKit = {
@@ -68,11 +67,13 @@ export type StarterKit = {
 
 /**
  * Bir sektörün tüm mock verisi. Yeni sektör = bu tipte yeni bir nesne.
- * Kök alanlar mevcut (geçmişi olan) marka içindir; yeni marka starter'ı kullanır.
+ * Kök alanlar sosyal medyayı zaten kullanan marka içindir; yeni başlayan starter'ı kullanır.
+ * Tüm metinlerde {brand} (marka adı) ve {handle} (#etiket, e-posta, URL biçimi)
+ * yer tutucuları kullanılır; hazır marka adı yoktur.
  */
 export type SectorDataset = {
   sectorId: SectorId;
-  brand: BrandProfile;
+  brandDefaults: BrandDefaults;
   starter: StarterKit;
   suggestions: SeedSuggestion[];
   posts: SeedPost[];

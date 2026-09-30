@@ -26,7 +26,7 @@ export const technologyTrends: Trend[] = [
     platforms: ["linkedin", "x", "instagram"],
     momentum: 71,
     insight:
-      "Taskly'nin AI not özetleme özelliğini 15 saniyelik bir önce/sonra videosuyla göster. Teknik detay yerine kazanılan zamanı vurgula.",
+      "AI not özetleme özelliğini 15 saniyelik bir önce/sonra videosuyla göster. Teknik detay yerine kazanılan zamanı vurgula.",
     hashtags: ["#yapayzeka", "#verimlilik", "#aitools"],
   },
   {
@@ -48,7 +48,7 @@ export const technologyTrends: Trend[] = [
     platforms: ["tiktok", "instagram"],
     momentum: 39,
     insight:
-      "Ekipten bir geliştiricinin gününü Taskly ekranlarıyla birlikte anlat. Ürünü doğal biçimde göster.",
+      "Ekipten bir geliştiricinin gününü {brand} ekranlarıyla birlikte anlat. Ürünü doğal biçimde göster.",
     hashtags: ["#yazılımcı", "#developerlife", "#dayinthelife"],
   },
   {
@@ -115,11 +115,11 @@ export const technologySuggestions: SeedSuggestion[] = [
     title: "Toplantı notundan 10 saniyede görev listesi",
     description: "Yeni AI özelliğini önce/sonra formatında gösteren kısa ürün videosu.",
     caption:
-      "45 dakikalık toplantı, 10 saniyede görev listesi. Taskly AI notlarınızdan kimin neyi ne zaman yapacağını çıkarıyor.",
-    hashtags: ["#yapayzeka", "#verimlilik", "#taskly", "#aitools"],
+      "45 dakikalık toplantı, 10 saniyede görev listesi. {brand} AI notlarınızdan kimin neyi ne zaman yapacağını çıkarıyor.",
+    hashtags: ["#yapayzeka", "#verimlilik", "#{handle}", "#aitools"],
     music: { title: "Blinding Lights (Instrumental)", artist: "Vibe Tracks" },
     cta: "Ücretsiz deneyin, link profilde.",
-    media: [video("ts-ai-notes-m", IMG.laptopDesk, "9:16", "Dizüstünde Taskly ekranı", 16)],
+    media: [video("ts-ai-notes-m", IMG.laptopDesk, "9:16", "Dizüstünde {brand} ekranı", 16)],
     theme: "productFocused",
     reasoning:
       "'AI ile verimlilik' konusu şu an %71 yükselişte. Önce/sonra formatı ürün videolarında izlenme süresini artırıyor.",
@@ -132,8 +132,8 @@ export const technologySuggestions: SeedSuggestion[] = [
         "Toplantıdan göreve tek tık",
       ],
       caption: [
-        "Toplantı biter, görevler hazırdır. Taskly AI notlarınızı okuyup sorumluları ve tarihleri otomatik atar.",
-        "Toplantı notlarını tekrar okumaya son. AI özetleri ve görev listeleri artık Taskly'de.",
+        "Toplantı biter, görevler hazırdır. {brand} AI notlarınızı okuyup sorumluları ve tarihleri otomatik atar.",
+        "Toplantı notlarını tekrar okumaya son. AI özetleri ve görev listeleri artık tek ekranda.",
         "Toplantı sonrası 20 dakikalık 'kim ne yapıyordu' sorusu tarih oldu.",
       ],
       hashtags: [
@@ -152,10 +152,10 @@ export const technologySuggestions: SeedSuggestion[] = [
     id: "ts-dev-day",
     platform: "tiktok",
     format: "video",
-    title: "Taskly'de bir geliştiricinin günü",
+    title: "Ekibimizden bir geliştiricinin günü",
     description: "Backend geliştiricimiz Emre'nin sabahtan akşama iş günü, ürün ekranlarıyla.",
     caption: "09:00 stand-up, 11:00 kod incelemesi, 15:00 deploy. Emre'nin bir günü, kurgusuz.",
-    hashtags: ["#yazılımcı", "#developerlife", "#dayinthelife", "#taskly"],
+    hashtags: ["#yazılımcı", "#developerlife", "#dayinthelife", "#{handle}"],
     music: { title: "Coding Night", artist: "Lofi Code" },
     cta: "Bir sonraki videoda kimin gününü görelim?",
     media: [video("ts-dev-day-m", IMG.code, "9:16", "Ekranda kod yazan geliştirici", 42)],
@@ -216,7 +216,7 @@ export const technologyPosts: SeedPost[] = [
     platform: "linkedin",
     format: "post",
     status: "published",
-    title: "Taskly 2.0: Zaman çizelgesi görünümü",
+    title: "{brand} 2.0: Zaman çizelgesi görünümü",
     caption:
       "En çok istenen özellik yayında: zaman çizelgesi. Projelerinizi haftalar yerine tek ekranda görün, bağımlılıkları sürükle-bırak ile güncelleyin.",
     hashtags: ["#ürünlansmanı", "#saas", "#projeyönetimi"],
@@ -249,7 +249,7 @@ export const technologyPosts: SeedPost[] = [
     status: "published",
     title: "Klavye kısayoluyla 3 saniyede görev",
     caption: "Fareye dokunmadan görev oluşturmak: C tuşu, başlık, Enter. Bu kadar.",
-    hashtags: ["#kısayol", "#verimlilik", "#taskly"],
+    hashtags: ["#kısayol", "#verimlilik", "#{handle}"],
     music: { title: "Focus Flow", artist: "Lofi Code" },
     media: [video("tp-shortcut-m", IMG.laptopMinimal, "9:16", "Klavyede yazan eller", 12)],
     theme: "educational",
@@ -262,7 +262,7 @@ export const technologyPosts: SeedPost[] = [
     format: "reel",
     status: "published",
     title: "Ekibimizle bir sprint günü",
-    caption: "Planlama, kod, test ve cuma demo'su. Taskly ekibinin bir sprint'i 30 saniyede.",
+    caption: "Planlama, kod, test ve cuma demo'su. {brand} ekibinin bir sprint'i 30 saniyede.",
     hashtags: ["#perdearkası", "#startup", "#yazılımekibi"],
     media: [
       video("tp-sprint-m", IMG.teamLaptops, "9:16", "Dizüstü bilgisayarlarla çalışan ekip", 30),
@@ -329,9 +329,9 @@ export const technologyPosts: SeedPost[] = [
     platform: "linkedin",
     format: "post",
     status: "published",
-    title: "Neden Taskly'yi kurduk?",
+    title: "Bu ürünü neden kurduk?",
     caption:
-      "Önceki şirketimizde haftada 11 saatimiz 'bu iş kimde' sorusuna gidiyordu. Taskly bu soruyu ortadan kaldırmak için doğdu. 2 yıl, 1.200 ekip ve hâlâ aynı hedef.",
+      "Önceki şirketimizde haftada 11 saatimiz 'bu iş kimde' sorusuna gidiyordu. {brand} bu soruyu ortadan kaldırmak için doğdu. 2 yıl, 1.200 ekip ve hâlâ aynı hedef.",
     hashtags: ["#girişimcilik", "#kuruluşhikayesi"],
     media: [photo("tp-founder-m", IMG.founder, "1:1", "Dizüstü bilgisayarla çalışan kurucu")],
     theme: "storytelling",
@@ -345,7 +345,7 @@ export const technologyPosts: SeedPost[] = [
     status: "scheduled",
     title: "Slack entegrasyonu yayında",
     caption: "Görev güncellemeleri artık doğrudan Slack kanallarınızda. Kurulum 2 dakika.",
-    hashtags: ["#entegrasyon", "#slack", "#taskly"],
+    hashtags: ["#entegrasyon", "#slack", "#{handle}"],
     media: [photo("tp-slack-m", IMG.analytics, "16:9", "Entegrasyon ekranı")],
     theme: "productFocused",
     at: { day: 2, time: "10:00" },
@@ -357,7 +357,7 @@ export const technologyPosts: SeedPost[] = [
     status: "scheduled",
     title: "Tekrarlayan görevleri otomatikleştir",
     caption: "Her pazartesi aynı görevi açmaya son. 30 saniyede tekrarlayan görev kurulumu.",
-    hashtags: ["#shorts", "#otomasyon", "#taskly"],
+    hashtags: ["#shorts", "#otomasyon", "#{handle}"],
     media: [video("tp-recurring-m", IMG.laptopCode, "9:16", "Dizüstü ekranında görev listesi", 30)],
     theme: "educational",
     at: { day: 4, time: "18:00" },
@@ -381,7 +381,7 @@ export const technologyPosts: SeedPost[] = [
     status: "draft",
     title: "Müşteri hikâyesi: Toplantılar %40 azaldı",
     caption:
-      "30 kişilik bir ajans Taskly'ye geçtikten sonraki 3 ayda haftalık toplantı süresini %40 azalttı. Nasıl mı?",
+      "30 kişilik bir ajans bizimle çalışmaya başladıktan sonraki 3 ayda haftalık toplantı süresini %40 azalttı. Nasıl mı?",
     hashtags: ["#müşterihikayesi", "#ajans", "#verimlilik"],
     media: [photo("tp-case-m", IMG.teamLaptops, "1:1", "Ajans ekibi toplantıda")],
     theme: "storytelling",

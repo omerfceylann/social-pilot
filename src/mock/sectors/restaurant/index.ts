@@ -1,12 +1,12 @@
 import type { SectorDataset } from "@/types";
-import { restaurantBrand } from "./brand";
+import { restaurantBrandDefaults } from "./brand";
 import { restaurantPosts, restaurantSuggestions, restaurantTrends } from "./content";
 import { restaurantComments, restaurantConversations } from "./inbox";
 import { restaurantStarter } from "./starter";
 
 export const restaurantDataset: SectorDataset = {
   sectorId: "restaurant",
-  brand: restaurantBrand,
+  brandDefaults: restaurantBrandDefaults,
   starter: restaurantStarter,
   suggestions: restaurantSuggestions,
   posts: restaurantPosts,
