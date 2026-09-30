@@ -2,10 +2,10 @@
 
 # Çalışma kuralları
 
-- Ürün gereksinimleri `PROJECT_SPEC.md` dosyasında. Uygulama faz faz ilerliyor; fazların listesi ve durumu `docs/fazlar/README.md` içinde.
+- Ürün gereksinimleri `PROJECT_SPEC.md` dosyasında. Uygulama faz faz ilerliyor (Faz 0 kurulum … Faz 12 cila).
 - Kullanıcı projeyi öğrenmek ve devralmak istiyor. Türkçe açıkla: ne yapıldı, hangi dosyalar, neden, nasıl çalışıyor, hangi kavramlar var.
 - Her fazın sonunda:
-  1. `docs/fazlar/NN-konu.md` dosyasına fazın özetini yaz (amaç, yapılanlar, nasıl çalışıyor, kavramlar, kararlar, sorunlar, doğrulama) ve `docs/fazlar/README.md` tablosunu güncelle.
-  2. `npm run typecheck && npm run lint && npm run build` çalıştır.
-  3. Commit al; sonra durup kullanıcının onayını bekle.
+  1. `npm run typecheck && npm run lint && npm run build` çalıştır.
+  2. Commit al.
+  3. Fazın özetini sohbette yaz (dosya oluşturma), sonra durup kullanıcının onayını bekle.
 - Faz içinde önemli ara noktalarda da commit al.
