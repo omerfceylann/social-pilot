@@ -411,6 +411,25 @@ export const tr = {
     pickDate: "{period}, tarih seç",
     pickDateTitle: "Tarih seç",
   },
+  analytics: {
+    subtitle: "Ne işe yarıyor, neyi daha çok yapmalısın? Sade bir bakış.",
+    period: "Dönem",
+    lastDays: "Son {days} gün",
+    overview: "Genel metrikler",
+    showOnChart: "{metric} grafiğini göster",
+    chartHint: "Son {days} günün günlük seyri",
+    chartCaption: "{metric} metriğinin günlük seyri",
+    topContent: "En iyi içerikler",
+    allPublished: "Tüm yayınlananlar",
+    rank: "{rank}. sırada",
+    insightsNeedMore:
+      "AI içgörüleri için {count} paylaşım daha gerekiyor. Ne kadar çok paylaşırsan öneriler o kadar isabetli olur.",
+    createRecommended: "Bu içeriği oluştur",
+    browseSuggestions: "Önerilere göz at",
+    emptyTitle: "Henüz analiz edilecek paylaşım yok.",
+    emptyDescription:
+      "İlk içeriğini paylaştığında erişim, etkileşim ve takipçi verilerin burada görünecek.",
+  },
   trends: {
     title: "Trendler",
     subtitle: "Sektöründe yükselen konular ve formatlar.",

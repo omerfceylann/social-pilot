@@ -230,7 +230,7 @@ export const ContentEditor = ({ postId }: { postId: string }) => {
         className="w-full lg:hidden"
       />
 
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-12">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-12">
         <div className={cn("flex min-w-0 flex-col gap-8", pane !== "edit" && "max-lg:hidden")}>
           {readOnly ? (
             <>

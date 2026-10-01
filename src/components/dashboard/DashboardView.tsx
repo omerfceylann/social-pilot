@@ -128,7 +128,10 @@ export const DashboardView = () => {
             </section>
           )}
 
-          <section className="grid gap-6 lg:grid-cols-3" aria-labelledby="performance-heading">
+          <section
+            className="grid grid-cols-1 gap-6 lg:grid-cols-3"
+            aria-labelledby="performance-heading"
+          >
             <div className="flex flex-col gap-5 lg:col-span-2">
               <div className="flex items-baseline justify-between gap-4">
                 <h2 id="performance-heading" className="text-title">

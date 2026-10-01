@@ -405,6 +405,25 @@ export const en: Dictionary = {
     pickDate: "{period}, pick a date",
     pickDateTitle: "Pick a date",
   },
+  analytics: {
+    subtitle: "What works and what to do more of, at a glance.",
+    period: "Period",
+    lastDays: "Last {days} days",
+    overview: "Key metrics",
+    showOnChart: "Show {metric} on the chart",
+    chartHint: "Daily trend over the last {days} days",
+    chartCaption: "Daily trend of {metric}",
+    topContent: "Top performing content",
+    allPublished: "All published",
+    rank: "Rank {rank}",
+    insightsNeedMore:
+      "AI insights need {count} more posts. The more you publish, the sharper the recommendations.",
+    createRecommended: "Create this content",
+    browseSuggestions: "Browse suggestions",
+    emptyTitle: "Nothing to analyze yet.",
+    emptyDescription:
+      "Once you publish your first post, reach, engagement and follower data will show up here.",
+  },
   trends: {
     title: "Trends",
     subtitle: "Rising topics and formats in your industry.",

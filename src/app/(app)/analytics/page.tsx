@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { AnalyticsView } from "@/components/analytics/AnalyticsView";
 
 export const metadata: Metadata = { title: "Analitik" };
 
 export default function AnalyticsPage() {
-  return <PhasePlaceholder title="nav.analytics" phase={9} />;
+  return <AnalyticsView />;
 }

@@ -35,7 +35,7 @@ export const ChoiceStep = ({ draft, update }: StepProps) => {
         value={draft.origin ?? ""}
         onValueChange={(value) => isOrigin(value) && update({ origin: value })}
         aria-label={t("onboarding.choice.title")}
-        className="grid gap-3"
+        className="grid grid-cols-1 gap-3"
       >
         {options.map((option) => {
           const Icon = option.icon;

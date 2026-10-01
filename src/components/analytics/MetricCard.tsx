@@ -9,10 +9,15 @@ import { formatCompact, formatPercent } from "@/lib/format";
 import type { MetricSummary } from "@/types";
 import { Sparkline } from "./Sparkline";
 
-type MetricCardProps = { metric: MetricSummary };
+type MetricCardProps = {
+  metric: MetricSummary;
+  /** Analitik sayfasında: karta tıklayınca grafik bu metriği gösterir. */
+  selected?: boolean;
+  onSelect?: () => void;
+};
 
 /** Sade metrik kartı (spec §9): etiket, büyük değer, değişim ve küçük eğilim çizgisi. */
-export const MetricCard = ({ metric }: MetricCardProps) => {
+export const MetricCard = ({ metric, selected = false, onSelect }: MetricCardProps) => {
   const { t, language } = useT();
   const format = (value: number) =>
     metric.key === "engagement" ? formatPercent(value, language) : formatCompact(value, language);
@@ -20,7 +25,24 @@ export const MetricCard = ({ metric }: MetricCardProps) => {
   const trend = change > 0 ? "up" : change < 0 ? "down" : "flat";
 
   return (
-    <Card padding="sm" className="flex flex-col gap-3 sm:p-5">
+    <Card
+      padding="sm"
+      className={cn(
+        "relative flex flex-col gap-3 transition-[border-color,box-shadow] duration-200 sm:p-5",
+        onSelect && "hover:border-border-strong",
+        selected && "border-accent/50 ring-1 ring-accent/30",
+      )}
+    >
+      {onSelect && (
+        // Tüm kartı kaplayan buton: tek odak durağı, ekran okuyucu seçili durumu duyar.
+        <button
+          type="button"
+          onClick={onSelect}
+          aria-pressed={selected}
+          aria-label={t("analytics.showOnChart", { metric: t(`metrics.${metric.key}`) })}
+          className="absolute inset-0 rounded-[inherit]"
+        />
+      )}
       <p className="text-small text-fg-secondary">{t(`metrics.${metric.key}`)}</p>
       <div className="flex items-end justify-between gap-3">
         <AnimatedNumber value={metric.value} format={format} className="text-title tabular-nums" />

@@ -74,7 +74,7 @@ export const SignalList = ({
         variants={staggerContainer(0.06)}
         initial="initial"
         animate="animate"
-        className="grid gap-2 sm:grid-cols-3"
+        className="grid grid-cols-1 gap-2 sm:grid-cols-3"
       >
         {signals.slice(0, MAX_SIGNALS).map(({ href, icon: Icon, text, meta }) => (
           <motion.li key={text} variants={revealVariants}>

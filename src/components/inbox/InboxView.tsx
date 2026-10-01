@@ -105,7 +105,7 @@ export const InboxView = () => {
               padding="none"
               // Yükseklik ekrana göre: başlık + seçiciler (~21rem) ile birlikte tek ekrana sığar,
               // yazma alanına odaklanınca sayfa kaymaz.
-              className="grid h-[clamp(440px,calc(100dvh-21rem),720px)] overflow-hidden lg:grid-cols-[320px_minmax(0,1fr)]"
+              className="grid h-[clamp(440px,calc(100dvh-21rem),720px)] grid-cols-1 overflow-hidden lg:grid-cols-[320px_minmax(0,1fr)]"
             >
               <div
                 className={cn(
