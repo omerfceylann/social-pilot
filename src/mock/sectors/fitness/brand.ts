@@ -2,8 +2,8 @@ import type { BrandDefaults } from "@/types";
 
 /** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
 export const fitnessBrandDefaults: BrandDefaults = {
-  country: "Türkiye",
-  language: "Türkçe",
+  country: "TR",
+  language: "tr",
   tagline: "Küçük gruplarla güç ve kondisyon stüdyosu.",
   audience: {
     summary: "Spora yeniden başlamak isteyen çalışan profesyoneller",

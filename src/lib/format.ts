@@ -45,3 +45,7 @@ export const weekdayName = (weekday: number, language: Language) =>
   new Intl.DateTimeFormat(LOCALE[language], { weekday: "long" }).format(
     new Date(2023, 0, 1 + weekday),
   );
+
+/** "TR" → "Türkiye" / "Turkey": ülke adları tarayıcıdan, elle çeviri gerekmez. */
+export const formatCountry = (code: string, language: Language) =>
+  new Intl.DisplayNames([LOCALE[language]], { type: "region" }).of(code) ?? code;

@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/layout/AppShell";
-import { AuthGate } from "@/components/layout/AuthGate";
+import { AppShellSkeleton } from "@/components/layout/AppShellSkeleton";
+import { SessionGate } from "@/components/layout/SessionGate";
 
 /**
  * Kabuğu (sidebar + navigasyon) paylaşan uygulama sayfaları. "(app)" bir route
@@ -7,8 +8,8 @@ import { AuthGate } from "@/components/layout/AuthGate";
  */
 export default function AppLayout({ children }: LayoutProps<"/">) {
   return (
-    <AuthGate>
+    <SessionGate audience="app" fallback={<AppShellSkeleton />}>
       <AppShell>{children}</AppShell>
-    </AuthGate>
+    </SessionGate>
   );
 }

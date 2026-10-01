@@ -77,12 +77,16 @@ export type BrandAudience = {
   description: string;
 };
 
+/** Markanın içerik dili (arayüz dilinden bağımsız). */
+export type ContentLanguage = "tr" | "en";
+
 export type BrandProfile = {
   name: string;
   handle: string;
   sector: SectorSelection;
+  /** ISO 3166 ülke kodu ("TR"); adı Intl.DisplayNames ile arayüz dilinde gösterilir. */
   country: string;
-  language: string;
+  language: ContentLanguage;
   website?: string;
   /** Tek cümlelik marka tanımı. */
   tagline: string;

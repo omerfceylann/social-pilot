@@ -57,8 +57,8 @@ export default function DevSeedPage() {
           ? {
               ...base,
               origin: "new",
-              country: "Türkiye",
-              language: "Türkçe",
+              country: "TR",
+              language: "tr",
               audienceSummary: "",
               ageRange: [22, 40],
               audienceDescription: "",

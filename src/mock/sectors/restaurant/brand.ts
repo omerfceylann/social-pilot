@@ -2,8 +2,8 @@ import type { BrandDefaults } from "@/types";
 
 /** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
 export const restaurantBrandDefaults: BrandDefaults = {
-  country: "Türkiye",
-  language: "Türkçe",
+  country: "TR",
+  language: "tr",
   tagline: "Mahallenin specialty kahve ve kahvaltı durağı.",
   audience: {
     summary: "Kahve tutkunları, genç profesyoneller ve öğrenciler",
@@ -23,11 +23,7 @@ export const restaurantBrandDefaults: BrandDefaults = {
     maxHashtags: 5,
     ctaStyle: "soft",
     visualStyle: "Doğal ışık, sıcak tonlar, ahşap ve seramik dokular",
-    customRules: [
-      "Agresif satış dili kullanma",
-      "Caption'lar kısa olsun",
-      "En fazla 5 hashtag",
-      "Emojiyi az kullan",
-    ],
+    // Sadece yapılandırılmış alanlarla (emoji, uzunluk, hashtag…) ifade edilemeyen kurallar.
+    customRules: ["Agresif satış dili kullanma", "Mahalle ve topluluk vurgusunu koru"],
   },
 };

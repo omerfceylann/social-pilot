@@ -3,6 +3,7 @@ import type {
   BrandPersonality,
   BrandProfile,
   BrandRules,
+  ContentLanguage,
   ContentStyle,
   PlatformId,
   SectorSelection,
@@ -15,8 +16,9 @@ export type NewBrandAnswers = {
   origin: "new";
   name: string;
   sector: SectorSelection;
+  /** ISO 3166 ülke kodu. */
   country: string;
-  language: string;
+  language: ContentLanguage;
   website?: string;
   audienceSummary: string;
   ageRange: [number, number];

@@ -2,8 +2,8 @@ import type { BrandDefaults } from "@/types";
 
 /** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
 export const fashionBrandDefaults: BrandDefaults = {
-  country: "Türkiye",
-  language: "Türkçe",
+  country: "TR",
+  language: "tr",
   tagline: "Kendi atölyesinde üreten, zamansız parçalar tasarlayan kadın giyim markası.",
   audience: {
     summary: "Kaliteli, uzun ömürlü parçalara yatırım yapan kadınlar",
@@ -23,10 +23,6 @@ export const fashionBrandDefaults: BrandDefaults = {
     maxHashtags: 4,
     ctaStyle: "soft",
     visualStyle: "Nötr tonlar, doğal ışık, sade arka plan, kumaş dokusuna yakın çekimler",
-    customRules: [
-      "Emoji kullanma",
-      "Aciliyet yaratan satış dili kullanma",
-      "Kumaş ve üretim bilgisini öne çıkar",
-    ],
+    customRules: ["Aciliyet yaratan satış dili kullanma", "Kumaş ve üretim bilgisini öne çıkar"],
   },
 };

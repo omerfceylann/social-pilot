@@ -2,8 +2,8 @@ import type { BrandDefaults } from "@/types";
 
 /** Sektörün marka varsayılanları; kimlik bilgisi kullanıcıdan gelir. */
 export const technologyBrandDefaults: BrandDefaults = {
-  country: "Türkiye",
-  language: "Türkçe",
+  country: "TR",
+  language: "tr",
   tagline: "Küçük ve orta ölçekli ekipler için sade proje yönetimi.",
   audience: {
     summary: "Ürün yöneticileri, yazılım ekipleri ve ajans kurucuları",
