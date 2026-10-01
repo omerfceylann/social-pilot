@@ -4,7 +4,6 @@ import type {
   BrandRules,
   Comment,
   ContentFormat,
-  Conversation,
   MediaAnalysis,
   MediaTips,
   MusicTrack,
@@ -103,13 +102,18 @@ export const generateReply = async (comment: Comment, rules: BrandRules) => {
 };
 
 /** DM için AI önerisi; "yeniden üret" her çağrıda sıradaki seçeneğe geçer (spec §27). */
-export const generateMessageSuggestion = async (
-  conversation: Conversation,
-  index: number,
-  rules: BrandRules,
-) => {
+export const generateMessageSuggestion = async ({
+  suggestions,
+  index,
+  rules,
+}: {
+  /** Konuşmanın AI öneri havuzu (Conversation.aiSuggestions). */
+  suggestions: string[];
+  index: number;
+  rules: BrandRules;
+}) => {
   await simulateAiLatency();
-  const options = filterByBannedWords(conversation.aiSuggestions, rules);
+  const options = filterByBannedWords(suggestions, rules);
   const nextIndex = options.length === 0 ? 0 : index % options.length;
   return {
     index: nextIndex,

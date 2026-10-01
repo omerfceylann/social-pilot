@@ -13,6 +13,8 @@ export type PlatformMeta = {
   /** YouTube'da DM yok; gelen kutusunda boş durum gösterilir. */
   supportsDirectMessages: boolean;
   captionLimit: number;
+  /** Platformun marka rengi; Gelen Kutusu'nda aktif platform göstergesi bu renkte. */
+  color: string;
 };
 
 export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
@@ -25,6 +27,7 @@ export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
     handlePattern: /^[a-z0-9._]{1,30}$/i,
     supportsDirectMessages: true,
     captionLimit: 2200,
+    color: "#E1306C",
   },
   tiktok: {
     id: "tiktok",
@@ -35,6 +38,7 @@ export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
     handlePattern: /^[a-z0-9._]{2,24}$/i,
     supportsDirectMessages: true,
     captionLimit: 2200,
+    color: "#FE2C55",
   },
   youtube: {
     id: "youtube",
@@ -45,6 +49,7 @@ export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
     handlePattern: /^[a-z0-9._-]{3,30}$/i,
     supportsDirectMessages: false,
     captionLimit: 5000,
+    color: "#FF0033",
   },
   x: {
     id: "x",
@@ -55,6 +60,8 @@ export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
     handlePattern: /^[a-z0-9_]{1,15}$/i,
     supportsDirectMessages: true,
     captionLimit: 280,
+    // X'in rengi siyah/beyaz: temanın metin rengini kullanır, iki modda da görünür.
+    color: "var(--color-fg)",
   },
   linkedin: {
     id: "linkedin",
@@ -65,6 +72,7 @@ export const PLATFORMS: Record<PlatformId, PlatformMeta> = {
     handlePattern: /^[a-z0-9-]{3,100}$/i,
     supportsDirectMessages: true,
     captionLimit: 3000,
+    color: "#0A66C2",
   },
 };
 

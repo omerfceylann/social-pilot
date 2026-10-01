@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Comment, Conversation } from "@/types";
+import type { Comment, Conversation, MessageStatus } from "@/types";
 import { persistOptions } from "./persist";
 
 type InboxState = {
@@ -12,7 +12,9 @@ type InboxState = {
   addPlatformData: (data: { comments: Comment[]; conversations: Conversation[] }) => void;
   addFirstReactions: (postId: string, comments: Comment[]) => void;
   replyToComment: (id: string, text: string, edited: boolean) => void;
-  sendMessage: (conversationId: string, text: string) => void;
+  /** Gönderilen mesajın id'sini döner; durum (iletildi/görüldü) sonradan güncellenir. */
+  sendMessage: (conversationId: string, text: string) => string;
+  setMessageStatus: (conversationId: string, messageId: string, status: MessageStatus) => void;
   markConversationRead: (conversationId: string) => void;
   reset: () => void;
 };
@@ -45,7 +47,8 @@ export const useInbox = create<InboxState>()(
           ),
         })),
 
-      sendMessage: (conversationId, text) =>
+      sendMessage: (conversationId, text) => {
+        const messageId = crypto.randomUUID();
         set(({ conversations }) => ({
           conversations: conversations.map((conversation) =>
             conversation.id === conversationId
@@ -55,13 +58,29 @@ export const useInbox = create<InboxState>()(
                   messages: [
                     ...conversation.messages,
                     {
-                      id: crypto.randomUUID(),
+                      id: messageId,
                       from: "brand",
                       text,
                       sentAt: new Date().toISOString(),
                       status: "sent",
                     },
                   ],
+                }
+              : conversation,
+          ),
+        }));
+        return messageId;
+      },
+
+      setMessageStatus: (conversationId, messageId, status) =>
+        set(({ conversations }) => ({
+          conversations: conversations.map((conversation) =>
+            conversation.id === conversationId
+              ? {
+                  ...conversation,
+                  messages: conversation.messages.map((message) =>
+                    message.id === messageId ? { ...message, status } : message,
+                  ),
                 }
               : conversation,
           ),

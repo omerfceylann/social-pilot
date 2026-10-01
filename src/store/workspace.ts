@@ -150,6 +150,23 @@ export const catchUpFirstReactions = () => {
     .forEach((post) => scheduleFirstReactions(post.id, CATCH_UP_DELAY_MS));
 };
 
+// ---------- Doğrudan mesajlar ----------
+
+/** Mock teslim süreleri: "Gönderildi" → "İletildi" → "Görüldü". */
+const MESSAGE_DELIVERED_MS = 1_500;
+const MESSAGE_READ_MS = 4_500;
+
+/**
+ * DM gönderir ve durumunu gerçek bir uygulamadaki gibi ilerletir. Sayfa bu arada
+ * kapanırsa mesaj "Gönderildi" kalır; mock için yeterli.
+ */
+export const sendDirectMessage = (conversationId: string, text: string) => {
+  const { sendMessage, setMessageStatus } = useInbox.getState();
+  const messageId = sendMessage(conversationId, text);
+  setTimeout(() => setMessageStatus(conversationId, messageId, "delivered"), MESSAGE_DELIVERED_MS);
+  setTimeout(() => setMessageStatus(conversationId, messageId, "read"), MESSAGE_READ_MS);
+};
+
 // ---------- Anlık görüntü ----------
 
 export const captureWorkspace = (): WorkspaceSnapshot => {
