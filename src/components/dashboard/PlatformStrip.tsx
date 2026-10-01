@@ -104,16 +104,15 @@ export const PlatformStrip = () => {
         title={target ? t("dashboard.connectPlatform", { platform: PLATFORMS[target].name }) : ""}
         description={t("onboarding.connect.subtitle")}
         closeLabel={t("common.close")}
-        size="sm"
+        size="md"
       >
         {target && (
-          <div className="p-4 sm:p-6">
-            <SocialAccountCard
-              platform={target}
-              history={resolvePlatformHistory(profile, target)}
-              account={accounts[target]}
-            />
-          </div>
+          <SocialAccountCard
+            platform={target}
+            history={resolvePlatformHistory(profile, target)}
+            account={accounts[target]}
+            bare
+          />
         )}
       </Modal>
     </section>

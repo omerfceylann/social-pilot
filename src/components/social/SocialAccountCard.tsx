@@ -22,13 +22,20 @@ type SocialAccountCardProps = {
   /** Bağlanınca hangi verinin geleceği; etiket ve yardım metnini belirler. */
   history: PlatformHistory;
   account?: SocialAccount;
+  /** Modal gibi zaten çerçeveli bir yüzeyin içinde: kendi kenarlığı ve dolgusu olmaz. */
+  bare?: boolean;
 };
 
 /**
  * Tek bir platformun bağlantı satırı (spec §16). Onboarding'de ve Marka/Ayarlar'da
  * aynı bileşen kullanılır. Gerçek OAuth yok; kullanıcı adıyla mock bağlantı.
  */
-export const SocialAccountCard = ({ platform, history, account }: SocialAccountCardProps) => {
+export const SocialAccountCard = ({
+  platform,
+  history,
+  account,
+  bare = false,
+}: SocialAccountCardProps) => {
   const { t, language } = useT();
   const inputId = useId();
   const errorId = `${inputId}-error`;
@@ -60,8 +67,10 @@ export const SocialAccountCard = ({ platform, history, account }: SocialAccountC
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 rounded-xl border bg-surface p-4 transition-colors duration-200 sm:p-5",
-        account ? "border-success/30" : "border-border",
+        // @container: form düzeni ekrana değil kartın genişliğine göre seçilir (dar modalda da sığar).
+        "@container flex flex-col gap-4",
+        !bare && "rounded-xl border bg-surface p-4 transition-colors duration-200 sm:p-5",
+        !bare && (account ? "border-success/30" : "border-border"),
       )}
     >
       <div className="flex items-center gap-3">
@@ -113,7 +122,8 @@ export const SocialAccountCard = ({ platform, history, account }: SocialAccountC
             onSubmit={handleSubmit}
             className="flex flex-col gap-2"
           >
-            <div className="flex flex-col gap-2 sm:flex-row">
+            {/* Dar kartta input tam genişlikte, butonlar altında; geniş kartta tek satır. */}
+            <div className="flex flex-col gap-3 @lg:flex-row @lg:gap-2">
               <label htmlFor={inputId} className="sr-only">
                 {t("onboarding.connect.handleLabel", { platform: meta.name })}
               </label>
@@ -140,12 +150,12 @@ export const SocialAccountCard = ({ platform, history, account }: SocialAccountC
                   variant="primary"
                   loading={connecting}
                   disabled={!handle.trim()}
-                  className="flex-1 sm:flex-none"
+                  className="flex-1 @lg:flex-none"
                 >
                   {t("onboarding.connect.connect")}
                 </Button>
                 {history === "starter" && (
-                  <Button asChild variant="secondary" className="flex-1 sm:flex-none">
+                  <Button asChild variant="secondary" className="flex-1 @lg:flex-none">
                     <a href={meta.signupUrl} target="_blank" rel="noopener noreferrer">
                       {t("onboarding.connect.createAccount")}
                       <ExternalLink />
