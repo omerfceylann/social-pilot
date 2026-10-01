@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import type { ReactNode } from "react";
 import { AIBadge } from "@/components/ai/AIBadge";
 import { Logo } from "@/components/layout/Logo";
+import { PreferenceToggles } from "@/components/layout/PreferenceToggles";
 import { PlatformIcon } from "@/components/social/PlatformIcon";
 import { useT } from "@/i18n/useT";
 
@@ -15,11 +16,13 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <div className="grid min-h-dvh lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
       <div className="flex flex-col px-5 py-6 sm:px-10 sm:py-8">
-        <Logo />
+        <div className="flex items-center justify-between gap-4">
+          <Logo />
+          <PreferenceToggles />
+        </div>
         <main className="flex flex-1 items-center justify-center py-10">
           <div className="w-full max-w-sm">{children}</div>
         </main>
-        <p className="text-center text-caption text-fg-muted">{t("auth.prototypeNote")}</p>
       </div>
 
       <aside className="relative hidden overflow-hidden border-l border-border bg-surface lg:flex lg:flex-col lg:justify-center lg:px-16">

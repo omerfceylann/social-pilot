@@ -89,7 +89,7 @@ export const fitnessStarter: StarterKit = {
           "Bu hafta tüm derslerde ilk deneme ücretsiz. Sabah mı, akşam mı?",
           "Arkadaşını da getir, ilk ders ikinize de bizden.",
         ],
-        hashtags: [[], []],
+        hashtags: [["#ücretsizders"], ["#açılışhaftası", "#{handle}"]],
         cta: ["Yerini ayırt.", "DM'den yaz."],
         music: [],
       },

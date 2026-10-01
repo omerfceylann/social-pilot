@@ -12,7 +12,7 @@ export const restaurantBrandDefaults: BrandDefaults = {
       "Hafta içi işe giderken kahve alan, hafta sonu arkadaşlarıyla uzun kahvaltı yapan, mahalle mekânlarını keşfetmeyi seven İstanbullular.",
   },
   personality: ["friendly", "premium", "minimal"],
-  tone: ["Sıcak", "Samimi", "Kısa"],
+  tone: ["Sıcak", "İçten", "Kısa"],
   contentStyles: ["behindTheScenes", "productFocused", "communityFocused", "educational"],
   goals: ["engagement", "community", "consistency"],
   rules: {

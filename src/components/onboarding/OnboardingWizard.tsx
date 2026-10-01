@@ -5,6 +5,7 @@ import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Logo } from "@/components/layout/Logo";
+import { LanguageSwitch, ThemeToggle } from "@/components/layout/PreferenceToggles";
 import { Button } from "@/components/ui/Button";
 import { useT } from "@/i18n/useT";
 import { transition } from "@/lib/motion";
@@ -158,6 +159,11 @@ export const OnboardingWizard = () => {
                 transition={transition.slow}
               />
             </div>
+          </div>
+          <div className="flex items-center gap-1">
+            {/* Dar ekranda ilerleme çubuğuna yer kalsın diye dil seçici sm+'da. */}
+            <LanguageSwitch className="mr-1 hidden sm:inline-flex" />
+            <ThemeToggle />
           </div>
           <Button variant="ghost" size="sm" onClick={handleSignOut}>
             <LogOut />

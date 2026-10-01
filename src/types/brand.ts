@@ -92,7 +92,7 @@ export type BrandProfile = {
   tagline: string;
   audience: BrandAudience;
   personality: BrandPersonality[];
-  /** Ses tonu sıfatları, ör. "Sıcak", "Samimi", "Kısa". */
+  /** Ses tonu sıfatları, ör. "Sıcak", "İçten", "Kısa". Kişilik etiketlerini tekrar etmez. */
   tone: string[];
   contentStyles: ContentStyle[];
   goals: BrandGoal[];

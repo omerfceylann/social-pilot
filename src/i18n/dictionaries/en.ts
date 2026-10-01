@@ -54,7 +54,6 @@ export const en: Dictionary = {
     or: "or",
     required: "This field is required.",
     invalidEmail: "Enter a valid email address.",
-    prototypeNote: "Prototype: no passwords, data stays in this browser.",
     showcaseTitle: "Think about how to grow, not what to post.",
     showcasePoint1: "Content ideas tailored to your industry",
     showcasePoint2: "On-brand replies to comments and messages",
@@ -357,6 +356,9 @@ export const en: Dictionary = {
     addAccount: "Add another account",
     currentAccount: "Current account",
     signOut: "Sign out",
+    switchToLight: "Switch to light mode",
+    switchToDark: "Switch to dark mode",
+    language: "Language",
     newItems: "{count} new",
   },
   languages: {

@@ -266,7 +266,7 @@ export const fashionStarter: StarterKit = {
           "Zamansız parçalar tasarlayan yeni bir marka. Tanışalım.",
         ],
         hashtags: [["#moda", "#tasarım"]],
-        cta: ["Takip et.", "Yanıtla."],
+        cta: ["Bizi takip et, yeni koleksiyon yolda.", "Yanıtla: en sevdiğin parça hangisi?"],
         music: [],
       },
       suggestedAt: {

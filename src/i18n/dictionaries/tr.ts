@@ -59,7 +59,6 @@ export const tr = {
     or: "ya da",
     required: "Bu alan gerekli.",
     invalidEmail: "Geçerli bir e-posta adresi gir.",
-    prototypeNote: "Prototip: şifre yok, veriler sadece bu tarayıcıda saklanır.",
     showcaseTitle: "Ne paylaşacağını değil, nasıl büyüyeceğini düşün.",
     showcasePoint1: "Sektörüne göre hazırlanan içerik önerileri",
     showcasePoint2: "Yorumlara ve mesajlara marka tonunda yanıtlar",
@@ -362,6 +361,9 @@ export const tr = {
     addAccount: "Başka hesap ekle",
     currentAccount: "Aktif hesap",
     signOut: "Çıkış yap",
+    switchToLight: "Açık temaya geç",
+    switchToDark: "Koyu temaya geç",
+    language: "Dil",
     newItems: "{count} yeni",
   },
   languages: {

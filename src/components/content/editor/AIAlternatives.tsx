@@ -49,6 +49,15 @@ export const AIAlternatives = <Item,>({
     };
   }, [request]);
 
+  // Aynı seçenek iki kez gelirse (ör. AI'ın tercihi alternatiflerde de varsa) bir kez göster;
+  // ilk görülen kalır, böylece tercih edilen seçenek başta durur.
+  const items =
+    state.status === "ready"
+      ? state.items.filter(
+          (item, index, all) => all.findIndex((other) => getKey(other) === getKey(item)) === index,
+        )
+      : [];
+
   return (
     <div className="flex flex-col gap-2 rounded-lg border border-accent/15 bg-accent-soft/60 p-3">
       <AIBadge>{state.status === "loading" ? t("ai.thinking") : t("ai.otherSuggestions")}</AIBadge>
@@ -57,7 +66,7 @@ export const AIAlternatives = <Item,>({
           <Skeleton className="h-9 w-full" />
           <Skeleton className="h-9 w-4/5" />
         </div>
-      ) : state.items.length === 0 ? (
+      ) : items.length === 0 ? (
         <p className="text-small text-fg-secondary">{t("content.editor.noAlternatives")}</p>
       ) : (
         <motion.ul
@@ -66,7 +75,7 @@ export const AIAlternatives = <Item,>({
           animate="animate"
           className="flex flex-col gap-1.5"
         >
-          {state.items.map((item) => {
+          {items.map((item) => {
             const selected = isSelected(item);
             return (
               <motion.li key={getKey(item)} variants={revealVariants}>

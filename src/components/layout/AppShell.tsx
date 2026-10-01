@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useT } from "@/i18n/useT";
 import { MobileNav } from "./MobileNav";
 import { MobileTopbar } from "./MobileTopbar";
+import { PreferenceToggles } from "./PreferenceToggles";
 import { Sidebar } from "./Sidebar";
 
 type AppShellProps = { children: ReactNode };
@@ -28,8 +29,10 @@ export const AppShell = ({ children }: AppShellProps) => {
         <main
           id="main"
           tabIndex={-1}
-          className="flex-1 pb-[calc(4.5rem+env(safe-area-inset-bottom))] focus:outline-none md:pb-0"
+          className="relative flex-1 pb-[calc(4.5rem+env(safe-area-inset-bottom))] focus:outline-none md:pb-0"
         >
+          {/* Masaüstünde sağ üst köşe; sayfayla birlikte kayar. Mobilde üst çubukta. */}
+          <PreferenceToggles className="absolute top-4 right-4 z-10 hidden md:flex lg:right-6" />
           {children}
         </main>
       </div>

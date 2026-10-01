@@ -14,6 +14,7 @@ import { signOut } from "@/store/auth";
 import { useBrand } from "@/store/useBrand";
 import { useSession } from "@/store/useSession";
 import { Logo } from "./Logo";
+import { LanguageSwitch, ThemeToggle } from "./PreferenceToggles";
 
 /** Mobilde (<768px) üst çubuk ve ikincil menü (Marka, Ayarlar, çıkış). */
 export const MobileTopbar = () => {
@@ -35,12 +36,15 @@ export const MobileTopbar = () => {
       <Link href="/" aria-label="SocialPilot" className="rounded-lg">
         <Logo />
       </Link>
-      <IconButton
-        label={t("shell.openMenu")}
-        icon={<Menu />}
-        showTooltip={false}
-        onClick={() => setMenuOpen(true)}
-      />
+      <div className="flex items-center gap-1">
+        <ThemeToggle />
+        <IconButton
+          label={t("shell.openMenu")}
+          icon={<Menu />}
+          showTooltip={false}
+          onClick={() => setMenuOpen(true)}
+        />
+      </div>
 
       <Drawer
         open={menuOpen}
@@ -59,6 +63,10 @@ export const MobileTopbar = () => {
               </div>
             </div>
           )}
+          <div className="flex items-center justify-between gap-3 px-3">
+            <span className="text-small font-medium text-fg-secondary">{t("shell.language")}</span>
+            <LanguageSwitch />
+          </div>
           <ul className="flex flex-col gap-1">
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon;

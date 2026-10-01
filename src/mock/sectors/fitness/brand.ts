@@ -12,7 +12,7 @@ export const fitnessBrandDefaults: BrandDefaults = {
       "Büyük spor salonlarında kaybolmuş, doğru teknikle ve bir topluluk içinde düzenli antrenman yapmak isteyen, zamanı kısıtlı yetişkinler.",
   },
   personality: ["energetic", "trustworthy", "friendly"],
-  tone: ["Motive edici", "Samimi", "Bilgilendirici"],
+  tone: ["Motive edici", "İçten", "Bilgilendirici"],
   contentStyles: ["educational", "storytelling", "communityFocused", "behindTheScenes"],
   goals: ["followers", "sales", "community"],
   rules: {

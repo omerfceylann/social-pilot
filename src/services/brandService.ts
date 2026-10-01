@@ -38,12 +38,15 @@ export type ExistingBrandAnswers = {
 
 export type BrandAnswers = NewBrandAnswers | ExistingBrandAnswers;
 
-/** Kişilikten ses tonu sıfatları (marka içeriğinin dili Türkçe). */
+/**
+ * Kişilikten ses tonu sıfatları (marka içeriğinin dili Türkçe). Kişilik etiketlerini
+ * tekrar etmez; profilde "Kişilik" ve "Ses tonu" yan yana durduğunda birbirini tamamlar.
+ */
 const TONE_BY_PERSONALITY: Record<BrandPersonality, string> = {
-  friendly: "Samimi",
+  friendly: "Sıcak",
   professional: "Net",
   premium: "Zarif",
-  energetic: "Enerjik",
+  energetic: "Coşkulu",
   minimal: "Kısa",
   playful: "Esprili",
   trustworthy: "Güven veren",

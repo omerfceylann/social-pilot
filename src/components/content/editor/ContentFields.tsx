@@ -27,8 +27,6 @@ const sameTags = (a: string[], b: string[]) =>
 const sameTrack = (a: MusicTrack | undefined, b: MusicTrack | undefined) =>
   a?.title === b?.title && a?.artist === b?.artist;
 const trackKey = (track: MusicTrack) => `${track.title}·${track.artist}`;
-const unique = <T,>(items: T[], key: (item: T) => string) =>
-  items.filter((item, index) => items.findIndex((other) => key(other) === key(item)) === index);
 
 /**
  * Alanın üstündeki işaret:
@@ -287,9 +285,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
           onToggle={toggleField("music")}
           alternatives={
             <AIAlternatives<MusicTrack>
-              load={async () =>
-                unique([...(await load("music", preferredTrack)()), ...POPULAR_TRACKS], trackKey)
-              }
+              load={async () => [...(await load("music", preferredTrack)()), ...POPULAR_TRACKS]}
               getKey={trackKey}
               render={(track) => (
                 <span className="flex items-center justify-between gap-3">
