@@ -402,6 +402,8 @@ export const en: Dictionary = {
     dayLabel: "{date}, {count} items",
     openContent: "Open content",
     editContent: "Edit plan",
+    pickDate: "{period}, pick a date",
+    pickDateTitle: "Pick a date",
   },
   trends: {
     title: "Trends",

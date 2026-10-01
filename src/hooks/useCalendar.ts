@@ -65,6 +65,8 @@ export const useCalendar = () => {
     weeks: view === "month" ? monthWeeks(anchor) : [weekDays(anchor)],
     setView: (next: CalendarView) => navigate({ view: next, date: anchor }),
     goToday: () => navigate({ view, date: today }),
+    /** Gün seçiciden: ay görünümünde o günün ayı, hafta görünümünde o günün haftası açılır. */
+    goToDate: (date: Date) => navigate({ view, date }),
     /** Ay görünümünde bir ay, hafta görünümünde bir hafta ileri/geri. */
     step: (direction: 1 | -1) =>
       navigate({

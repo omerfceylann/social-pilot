@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { PageContainer, PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
@@ -18,6 +18,7 @@ import { toDayKey } from "@/lib/time";
 import type { CalendarStatus } from "@/types";
 import { STATUS_STYLE } from "./CalendarEvent";
 import { Agenda, MonthGrid, WeekGrid } from "./CalendarGrids";
+import { DatePicker } from "./DatePicker";
 import { EventDrawer } from "./EventDrawer";
 
 const LEGEND: CalendarStatus[] = ["published", "scheduled", "draft", "suggested"];
@@ -34,6 +35,7 @@ export const CalendarView = () => {
   /** Mobil ay görünümünde ajandası gösterilen gün. */
   const [selectedDay, setSelectedDay] = useState<Date>(today);
 
+  const markedDays = useMemo(() => new Set(itemsByDay.keys()), [itemsByDay]);
   const week = weeks[0] ?? [];
   const firstDay = week[0];
   const lastDay = week.at(-1);
@@ -72,9 +74,17 @@ export const CalendarView = () => {
               icon={<ChevronRight />}
               onClick={() => calendar.step(1)}
             />
-            <h2 className="ml-2 text-heading capitalize" aria-live="polite">
-              {periodLabel}
-            </h2>
+            <DatePicker
+              value={anchor}
+              today={today}
+              markedDays={markedDays}
+              label={periodLabel}
+              onSelect={(date) => {
+                calendar.goToDate(date);
+                // Mobil ay görünümünde seçilen günün listesi de açılsın.
+                setSelectedDay(date);
+              }}
+            />
             <Button size="sm" variant="secondary" onClick={calendar.goToday} className="ml-3">
               {t("calendar.today")}
             </Button>

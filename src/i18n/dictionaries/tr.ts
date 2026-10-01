@@ -408,6 +408,8 @@ export const tr = {
     dayLabel: "{date}, {count} içerik",
     openContent: "İçeriği aç",
     editContent: "Planı düzenle",
+    pickDate: "{period}, tarih seç",
+    pickDateTitle: "Tarih seç",
   },
   trends: {
     title: "Trendler",
