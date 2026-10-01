@@ -14,7 +14,6 @@ import type {
   PostSuggestion,
   RelativeTime,
   SectorDataset,
-  SectorId,
   SectorSelection,
   SeedPost,
   SeedSuggestion,
@@ -26,15 +25,8 @@ import type {
 import { PLATFORM_IDS } from "@/types";
 
 /** Seçilen sektör için yüklenecek veri. Özel sektörlerde yedek veri döner (spec §13). */
-export const resolveDataset = (sector: SectorSelection): SectorDataset => {
-  const sectorId: SectorId = sector.kind === "preset" ? sector.id : FALLBACK_SECTOR_ID;
-  const dataset = SECTOR_DATASETS[sectorId] ?? SECTOR_DATASETS[FALLBACK_SECTOR_ID];
-  if (!dataset) throw new Error(`Yedek sektör verisi bulunamadı: ${FALLBACK_SECTOR_ID}`);
-  return dataset;
-};
-
-export const hasDedicatedDataset = (sector: SectorSelection) =>
-  sector.kind === "preset" && sector.id in SECTOR_DATASETS;
+export const resolveDataset = (sector: SectorSelection): SectorDataset =>
+  SECTOR_DATASETS[sector.kind === "preset" ? sector.id : FALLBACK_SECTOR_ID];
 
 // ---------- Platform geçmişi ----------
 

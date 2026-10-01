@@ -1,4 +1,5 @@
 import type { SectorDataset, SectorId } from "@/types";
+import { travelDataset } from "./travel";
 import { automotiveDataset } from "./automotive";
 import { healthDataset } from "./health";
 import { localServiceDataset } from "./localService";
@@ -12,10 +13,10 @@ import { restaurantDataset } from "./restaurant";
 import { technologyDataset } from "./technology";
 
 /**
- * Sektör → mock veri kayıt defteri. Yeni sektör eklemek: klasörü oluştur,
- * buraya bir satır ekle. (Faz 11'de kalan sektörler eklenince Partial kalkacak.)
+ * Sektör → mock veri kayıt defteri. Record tam olduğu için yeni bir SectorId
+ * eklenince buraya veri seti eklenmeden derleme geçmez.
  */
-export const SECTOR_DATASETS: Partial<Record<SectorId, SectorDataset>> = {
+export const SECTOR_DATASETS: Record<SectorId, SectorDataset> = {
   restaurant: restaurantDataset,
   technology: technologyDataset,
   fitness: fitnessDataset,
@@ -27,7 +28,8 @@ export const SECTOR_DATASETS: Partial<Record<SectorId, SectorDataset>> = {
   localService: localServiceDataset,
   health: healthDataset,
   automotive: automotiveDataset,
+  travel: travelDataset,
 };
 
-/** Özel ("Diğer") ya da verisi olmayan sektörlerde kullanılan yedek veri. */
+/** Özel ("Diğer") sektörde kullanılan yedek veri. */
 export const FALLBACK_SECTOR_ID: SectorId = "restaurant";
