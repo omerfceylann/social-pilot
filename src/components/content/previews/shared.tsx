@@ -1,8 +1,8 @@
 "use client";
 
-import { ImageIcon, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, ImageIcon, Play } from "lucide-react";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import type { ContentFormat, MediaAsset, MusicTrack } from "@/types";
 
@@ -18,6 +18,8 @@ export type PreviewData = {
   music?: MusicTrack;
   cta?: string;
   media?: MediaAsset;
+  /** Carousel'de tüm görseller sırayla; diğer biçimlerde tek öğe. */
+  mediaList: MediaAsset[];
   brandName: string;
   handle: string;
   followers: number;
@@ -59,6 +61,9 @@ export type PreviewLabels = {
   share: string;
   save: string;
   addMedia: string;
+  previous: string;
+  next: string;
+  slide: (index: number, total: number) => string;
   untitled: string;
   postPreview: string;
 };
@@ -196,3 +201,112 @@ export const CaptionText = ({
     )}
   </p>
 );
+
+type MediaCarouselProps = {
+  items: MediaAsset[];
+  labels: Pick<PreviewLabels, "addMedia" | "previous" | "next" | "slide">;
+  /** Slaytın en-boy oranı, ör. "aspect-[4/5]". */
+  aspectClassName: string;
+  sizes?: string;
+};
+
+/**
+ * Carousel önizlemesi: yatay scroll-snap şeridi (dokunma ve trackpad ile kaydırılır),
+ * ok butonları, "2/4" sayacı ve noktalar. Etkin slayt kaydırma konumundan hesaplanır.
+ */
+export const MediaCarousel = ({
+  items,
+  labels,
+  aspectClassName,
+  sizes = "300px",
+}: MediaCarouselProps) => {
+  const stripRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = items.length;
+  // Görsel kaldırılınca indeks listenin dışında kalmasın.
+  const index = Math.min(activeIndex, Math.max(total - 1, 0));
+
+  const goTo = (next: number) => {
+    // Sayaç kaydırmanın bitmesini beklemeden güncellenir; onScroll sonra aynı değeri doğrular.
+    setActiveIndex(next);
+    const strip = stripRef.current;
+    if (strip) strip.scrollTo({ left: next * strip.clientWidth, behavior: "smooth" });
+  };
+
+  if (total === 0) {
+    return (
+      <PreviewMedia addMediaLabel={labels.addMedia} className={cn(aspectClassName, "w-full")} />
+    );
+  }
+
+  return (
+    <div className={cn("relative w-full", aspectClassName)}>
+      <div
+        ref={stripRef}
+        className="absolute inset-0 flex snap-x snap-mandatory [scrollbar-width:none] overflow-x-auto overscroll-x-contain"
+        onScroll={(event) => {
+          const strip = event.currentTarget;
+          setActiveIndex(Math.round(strip.scrollLeft / Math.max(strip.clientWidth, 1)));
+        }}
+      >
+        {items.map((item, itemIndex) => (
+          <div
+            key={`${item.id}-${itemIndex}`}
+            className="relative h-full w-full shrink-0 snap-center"
+            aria-label={labels.slide(itemIndex + 1, total)}
+            role="group"
+          >
+            <PreviewMedia
+              media={item}
+              addMediaLabel={labels.addMedia}
+              className="size-full"
+              sizes={sizes}
+            />
+          </div>
+        ))}
+      </div>
+
+      {total > 1 && (
+        <>
+          <span className="pointer-events-none absolute top-2.5 right-2.5 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white tabular-nums">
+            {labels.slide(index + 1, total)}
+          </span>
+          {index > 0 && (
+            <button
+              type="button"
+              onClick={() => goTo(index - 1)}
+              aria-label={labels.previous}
+              className="absolute top-1/2 left-2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-900 shadow-sm transition-transform hover:scale-105"
+            >
+              <ChevronLeft className="size-4" aria-hidden />
+            </button>
+          )}
+          {index < total - 1 && (
+            <button
+              type="button"
+              onClick={() => goTo(index + 1)}
+              aria-label={labels.next}
+              className="absolute top-1/2 right-2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-neutral-900 shadow-sm transition-transform hover:scale-105"
+            >
+              <ChevronRight className="size-4" aria-hidden />
+            </button>
+          )}
+          <span
+            className="pointer-events-none absolute inset-x-0 bottom-2.5 flex justify-center gap-1"
+            aria-hidden
+          >
+            {items.map((item, dotIndex) => (
+              <span
+                key={`${item.id}-dot-${dotIndex}`}
+                className={cn(
+                  "size-1.5 rounded-full transition-colors duration-200",
+                  dotIndex === index ? "bg-white" : "bg-white/45",
+                )}
+              />
+            ))}
+          </span>
+        </>
+      )}
+    </div>
+  );
+};

@@ -11,7 +11,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { BrandAvatar, CaptionText, PreviewMedia, type PreviewData } from "./shared";
+import { BrandAvatar, CaptionText, MediaCarousel, PreviewMedia, type PreviewData } from "./shared";
 
 /**
  * LinkedIn şirket sayfası gönderisi: kare logo, takipçi sayısı, "Takip et",
@@ -50,14 +50,23 @@ export const LinkedInPreview = ({ data }: { data: PreviewData }) => {
           <span className="text-[#666]">…{labels.more}</span>
         </div>
 
-        {(data.media || data.format !== "post") && (
-          <PreviewMedia
-            media={data.media}
-            addMediaLabel={labels.addMedia}
-            className={data.format === "video" ? "aspect-video w-full" : "aspect-square w-full"}
+        {data.format === "carousel" ? (
+          <MediaCarousel
+            items={data.mediaList}
+            labels={labels}
+            aspectClassName="aspect-square"
             sizes="440px"
-            showPlay
           />
+        ) : (
+          (data.media || data.format !== "post") && (
+            <PreviewMedia
+              media={data.media}
+              addMediaLabel={labels.addMedia}
+              className={data.format === "video" ? "aspect-video w-full" : "aspect-square w-full"}
+              sizes="440px"
+              showPlay
+            />
+          )
         )}
 
         <div className="flex items-center justify-between px-3 py-2 text-[11px] text-[#666]">

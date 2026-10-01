@@ -429,7 +429,10 @@ export const fashionPosts: SeedPost[] = [
     title: "Yün bakım rehberi",
     caption: "Yün parçalarını yıllarca ilk günkü gibi kullanmanın 6 yolu.",
     hashtags: ["#yünbakımı", "#kıyafetbakımı"],
-    media: [photo("np-care-m", IMG.folded, "4:5", "Katlanmış yün kazak")],
+    media: [
+      photo("np-care-m", IMG.folded, "4:5", "Katlanmış yün kazak"),
+      photo("np-care-m2", IMG.coat, "4:5", "Yün kaban detayı"),
+    ],
     theme: "educational",
     at: { day: 9, time: "12:00" },
   },

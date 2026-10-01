@@ -453,7 +453,11 @@ export const restaurantPosts: SeedPost[] = [
     title: "Çekirdek rehberi: Etiyopya mı, Kolombiya mı?",
     caption: "Meyvemsi mi, çikolatamsı mı? İki çekirdeğin farkını 5 karede anlattık.",
     hashtags: ["#kahveçekirdeği", "#specialtycoffee", "#kahverehberi"],
-    media: [photo("rp-bean-m", IMG.beans, "4:5", "İki farklı kahve çekirdeği")],
+    media: [
+      photo("rp-bean-m", IMG.beans, "4:5", "İki farklı kahve çekirdeği"),
+      photo("rp-bean-m2", IMG.pourOver, "4:5", "Filtre kahve demleme"),
+      photo("rp-bean-m3", IMG.espresso, "4:5", "Espresso çekimi"),
+    ],
     theme: "educational",
     at: { day: 7, time: "10:00" },
   },

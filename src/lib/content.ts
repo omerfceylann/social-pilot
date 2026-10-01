@@ -120,16 +120,105 @@ export const deriveAgentActivity = ({
   commentsReviewed: comments.length,
 });
 
-// ---------- Müzik ----------
+// ---------- Biçime göre alanlar ----------
 
 /**
- * Instagram'da her biçime (fotoğraf gönderisi dahil) müzik eklenebilir; TikTok ve
- * YouTube'da video biçimlerine. X ve LinkedIn'de müzik yok.
+ * Bir platform + biçimde hangi alanların anlamlı olduğu. Editör, önizleme ve
+ * paylaşım kontrolü bu tek kaynaktan okur (örn. Hikâye'de açıklama ve hashtag yok).
  */
-export const supportsMusic = (platform: PlatformId, format: ContentFormat) => {
-  if (platform === "instagram" || platform === "tiktok") return true;
-  if (platform === "youtube") return format === "short" || format === "video";
-  return false;
+export type FormatFields = {
+  /** "published": platformda görünür (YouTube başlığı). "internal": sadece listelerde/takvimde. */
+  title: "published" | "internal";
+  /** Metin alanı ve etiketi; false ise biçimde metin yok (Hikâye, Shorts). */
+  caption: false | "caption" | "text" | "description";
+  hashtags: boolean;
+  music: boolean;
+  /** "inCaption": metnin sonuna eklenir. "linkSticker": Hikâye'de bağlantı çıkartması. */
+  cta: false | "inCaption" | "linkSticker";
+  media: { min: number; max: number };
+};
+
+const SINGLE_MEDIA = { min: 1, max: 1 } as const;
+const OPTIONAL_MEDIA = { min: 0, max: 1 } as const;
+const CAROUSEL_MEDIA = { min: 2, max: 10 } as const;
+
+const assertNeverPlatform = (value: never): never => {
+  throw new Error(`Bilinmeyen platform: ${String(value)}`);
+};
+
+export const fieldsFor = (platform: PlatformId, format: ContentFormat): FormatFields => {
+  switch (platform) {
+    case "instagram":
+      return format === "story"
+        ? {
+            title: "internal",
+            caption: false,
+            hashtags: false,
+            music: true,
+            cta: "linkSticker",
+            media: SINGLE_MEDIA,
+          }
+        : {
+            title: "internal",
+            caption: "caption",
+            hashtags: true,
+            music: true,
+            cta: "inCaption",
+            media: format === "carousel" ? CAROUSEL_MEDIA : SINGLE_MEDIA,
+          };
+    case "tiktok":
+      return {
+        title: "internal",
+        caption: "caption",
+        hashtags: true,
+        music: true,
+        cta: "inCaption",
+        media: SINGLE_MEDIA,
+      };
+    case "youtube":
+      return format === "short"
+        ? {
+            title: "published",
+            caption: false,
+            hashtags: true,
+            music: true,
+            cta: false,
+            media: SINGLE_MEDIA,
+          }
+        : {
+            title: "published",
+            caption: "description",
+            hashtags: true,
+            music: false,
+            cta: "inCaption",
+            media: SINGLE_MEDIA,
+          };
+    case "x":
+      return {
+        title: "internal",
+        caption: "text",
+        hashtags: true,
+        music: false,
+        cta: false,
+        media: OPTIONAL_MEDIA,
+      };
+    case "linkedin":
+      return {
+        title: "internal",
+        caption: "text",
+        hashtags: true,
+        music: false,
+        cta: "inCaption",
+        media:
+          format === "carousel"
+            ? CAROUSEL_MEDIA
+            : format === "video"
+              ? SINGLE_MEDIA
+              : OPTIONAL_MEDIA,
+      };
+    default:
+      return assertNeverPlatform(platform);
+  }
 };
 
 /** AI'ın bu içerik için en uygun gördüğü müzik: önce önerinin kendi seçimi. */
@@ -138,17 +227,19 @@ export const preferredMusic = (suggestion: PostSuggestion): MusicTrack =>
 
 // ---------- Paylaşmadan önce kontrol ----------
 
-export type PublishProblem = "needsMedia" | "needsCaption" | "captionTooLong";
-
-/** X ve LinkedIn'de düz metin gönderi olur; diğer platform ve biçimler medyasız paylaşılamaz. */
-const requiresMedia = (post: Post) =>
-  !((post.platform === "x" || post.platform === "linkedin") && post.format === "post");
+export type PublishProblem = "needsMedia" | "needsMoreMedia" | "needsCaption" | "captionTooLong";
 
 /** Paylaşmayı engelleyen ilk sorun; yoksa null. Arayüz koda göre mesaj seçer. */
 export const findPublishProblem = (post: Post): PublishProblem | null => {
-  if (requiresMedia(post) && post.media.length === 0) return "needsMedia";
-  if (!post.caption.trim() && post.media.length === 0) return "needsCaption";
-  if (post.caption.length > PLATFORMS[post.platform].captionLimit) return "captionTooLong";
+  const fields = fieldsFor(post.platform, post.format);
+  const { min } = fields.media;
+  if (min > 0 && post.media.length === 0) return "needsMedia";
+  if (post.media.length < min) return "needsMoreMedia";
+  if (fields.caption) {
+    // Medyasız metin gönderisinde (X, LinkedIn) metin zorunlu.
+    if (!post.caption.trim() && post.media.length === 0) return "needsCaption";
+    if (post.caption.length > PLATFORMS[post.platform].captionLimit) return "captionTooLong";
+  }
   return null;
 };
 

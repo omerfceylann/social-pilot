@@ -17,7 +17,14 @@ import {
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { BrandAvatar, CaptionText, PhoneFrame, PreviewMedia, type PreviewData } from "./shared";
+import {
+  BrandAvatar,
+  CaptionText,
+  MediaCarousel,
+  PhoneFrame,
+  PreviewMedia,
+  type PreviewData,
+} from "./shared";
 
 const IG_LINK = "text-[#00376b]";
 
@@ -75,34 +82,24 @@ export const InstagramFeedPreview = ({ data }: { data: PreviewData }) => {
               <Ellipsis className="size-4" aria-hidden />
             </div>
 
-            <div className="relative">
+            {data.format === "carousel" ? (
+              <MediaCarousel
+                items={data.mediaList}
+                labels={labels}
+                aspectClassName="aspect-[4/5]"
+              />
+            ) : (
               <PreviewMedia
                 media={data.media}
                 addMediaLabel={labels.addMedia}
                 className="aspect-[4/5] w-full"
               />
-              {data.format === "carousel" && (
-                <span className="absolute top-2.5 right-2.5 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white">
-                  1/5
-                </span>
-              )}
-            </div>
+            )}
 
-            <div className="relative flex items-center gap-3.5 px-3 pt-2.5">
+            <div className="flex items-center gap-3.5 px-3 pt-2.5">
               <Heart className="size-[19px]" aria-hidden />
               <MessageCircle className="size-[19px] -scale-x-100" aria-hidden />
               <Send className="size-[19px]" aria-hidden />
-              {data.format === "carousel" && (
-                <span
-                  className="absolute top-1/2 left-1/2 mt-1 flex -translate-x-1/2 gap-1"
-                  aria-hidden
-                >
-                  <span className="size-1.5 rounded-full bg-[#0095f6]" />
-                  {[0, 1, 2, 3].map((dot) => (
-                    <span key={dot} className="size-1.5 rounded-full bg-neutral-300" />
-                  ))}
-                </span>
-              )}
               <Bookmark className="ml-auto size-[19px]" aria-hidden />
             </div>
             <div className="flex flex-col gap-1 px-3 pt-2">

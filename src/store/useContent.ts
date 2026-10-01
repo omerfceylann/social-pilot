@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { preferredMusic, supportsMusic } from "@/lib/content";
+import { fieldsFor, preferredMusic } from "@/lib/content";
 import type { ContentFormat, ContentStyle, PlatformId, Post, PostSuggestion } from "@/types";
 import { persistOptions } from "./persist";
 
@@ -64,7 +64,7 @@ export const useContent = create<ContentState>()(
           caption: suggestion.caption,
           hashtags: suggestion.hashtags,
           // Müziği olmayan öneride de (ör. IG gönderisi) AI'ın en uygun seçimiyle başlar.
-          music: supportsMusic(suggestion.platform, suggestion.format)
+          music: fieldsFor(suggestion.platform, suggestion.format).music
             ? preferredMusic(suggestion)
             : undefined,
           cta: suggestion.cta,

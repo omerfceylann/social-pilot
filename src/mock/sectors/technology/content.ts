@@ -417,7 +417,11 @@ export const technologyPosts: SeedPost[] = [
     caption:
       "30 kişilik bir ajans bizimle çalışmaya başladıktan sonraki 3 ayda haftalık toplantı süresini %40 azalttı. Nasıl mı?",
     hashtags: ["#müşterihikayesi", "#ajans", "#verimlilik"],
-    media: [photo("tp-case-m", IMG.teamLaptops, "1:1", "Ajans ekibi toplantıda")],
+    media: [
+      photo("tp-case-m", IMG.teamLaptops, "1:1", "Ajans ekibi toplantıda"),
+      photo("tp-case-m2", IMG.dashboard, "1:1", "Proje panosu ekranı"),
+      photo("tp-case-m3", IMG.analytics, "1:1", "Sonuçları gösteren grafikler"),
+    ],
     theme: "storytelling",
     at: { day: 8, time: "10:00" },
   },

@@ -10,7 +10,7 @@ import { TagInput } from "@/components/ui/TagInput";
 import type { ContentEditorState } from "@/hooks/useContentEditor";
 import { useT } from "@/i18n/useT";
 import { cn } from "@/lib/cn";
-import { preferredMusic, supportsMusic } from "@/lib/content";
+import { fieldsFor, preferredMusic, type FormatFields } from "@/lib/content";
 import { transition } from "@/lib/motion";
 import { POPULAR_TRACKS } from "@/mock/music";
 import { PLATFORMS } from "@/mock/platforms";
@@ -44,6 +44,7 @@ type EditorFieldProps = {
   onToggle?: () => void;
   alternatives?: ReactNode;
   meta?: ReactNode;
+  hint?: string;
   error?: string;
   children: (ids: { controlId: string; describedBy?: string }) => ReactNode;
 };
@@ -59,6 +60,7 @@ const EditorField = ({
   onToggle,
   alternatives,
   meta,
+  hint,
   error,
   children,
 }: EditorFieldProps) => {
@@ -103,10 +105,12 @@ const EditorField = ({
         </div>
       </div>
       {children({ controlId, describedBy: error ? errorId : undefined })}
-      {error && (
+      {error ? (
         <p id={errorId} role="alert" className="text-caption text-danger">
           {error}
         </p>
+      ) : (
+        hint && <p className="text-caption text-fg-muted">{hint}</p>
       )}
       <AnimatePresence initial={false}>
         {open && alternatives && (
@@ -124,6 +128,20 @@ const EditorField = ({
       </AnimatePresence>
     </div>
   );
+};
+
+type Translate = ReturnType<typeof useT>["t"];
+
+/** Metin alanının adı platforma göre: "Açıklama", "Gönderi metni", "Video açıklaması". */
+const captionLabel = (kind: Exclude<FormatFields["caption"], false>, t: Translate) => {
+  switch (kind) {
+    case "caption":
+      return t("content.editor.caption");
+    case "text":
+      return t("content.editor.postText");
+    case "description":
+      return t("content.editor.videoDescription");
+  }
 };
 
 type ContentFieldsProps = Pick<ContentEditorState, "profile" | "update"> & {
@@ -165,14 +183,19 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
 
   const captionLimit = PLATFORMS[post.platform].captionLimit;
   const captionTooLong = post.caption.length > captionLimit;
-  const showMusic = supportsMusic(post.platform, post.format);
+  const fields = fieldsFor(post.platform, post.format);
   const preferredTrack = suggestion ? preferredMusic(suggestion) : undefined;
   const isPopular = (track: MusicTrack) => POPULAR_TRACKS.some((item) => sameTrack(item, track));
 
   return (
     <div className="flex flex-col gap-6">
       <EditorField
-        label={t("content.editor.title")}
+        label={
+          fields.title === "published"
+            ? t("content.editor.videoTitle")
+            : t("content.editor.contentName")
+        }
+        hint={fields.title === "internal" ? t("content.editor.contentNameHint") : undefined}
         provenance={textProvenance("title", post.title)}
         open={openField === "title"}
         onToggle={toggle("title")}
@@ -197,86 +220,90 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
         )}
       </EditorField>
 
-      <EditorField
-        label={t("content.editor.caption")}
-        provenance={textProvenance("caption", post.caption)}
-        open={openField === "caption"}
-        onToggle={toggle("caption")}
-        meta={
-          <span
-            className={cn(
-              "text-caption tabular-nums",
-              captionTooLong ? "text-danger" : "text-fg-muted",
-            )}
-          >
-            {post.caption.length}/{captionLimit}
-          </span>
-        }
-        error={
-          captionTooLong
-            ? t("content.editor.captionTooLong", {
-                platform: PLATFORMS[post.platform].name,
-                limit: captionLimit,
-              })
-            : undefined
-        }
-        alternatives={
-          <AIAlternatives<string>
-            load={load("caption", suggestion?.caption)}
-            getKey={(item) => item}
-            render={(item) => <span className="line-clamp-3 whitespace-pre-line">{item}</span>}
-            isSelected={(item) => item === post.caption}
-            isPreferred={(item) => item === suggestion?.caption}
-            onSelect={(caption) => update({ caption })}
-          />
-        }
-      >
-        {({ controlId, describedBy }) => (
-          <Textarea
-            id={controlId}
-            rows={6}
-            value={post.caption}
-            onChange={(event) => update({ caption: event.target.value })}
-            placeholder={t("content.editor.captionPlaceholder")}
-            aria-invalid={captionTooLong || undefined}
-            aria-describedby={describedBy}
-          />
-        )}
-      </EditorField>
+      {fields.caption && (
+        <EditorField
+          label={captionLabel(fields.caption, t)}
+          provenance={textProvenance("caption", post.caption)}
+          open={openField === "caption"}
+          onToggle={toggle("caption")}
+          meta={
+            <span
+              className={cn(
+                "text-caption tabular-nums",
+                captionTooLong ? "text-danger" : "text-fg-muted",
+              )}
+            >
+              {post.caption.length}/{captionLimit}
+            </span>
+          }
+          error={
+            captionTooLong
+              ? t("content.editor.captionTooLong", {
+                  platform: PLATFORMS[post.platform].name,
+                  limit: captionLimit,
+                })
+              : undefined
+          }
+          alternatives={
+            <AIAlternatives<string>
+              load={load("caption", suggestion?.caption)}
+              getKey={(item) => item}
+              render={(item) => <span className="line-clamp-3 whitespace-pre-line">{item}</span>}
+              isSelected={(item) => item === post.caption}
+              isPreferred={(item) => item === suggestion?.caption}
+              onSelect={(caption) => update({ caption })}
+            />
+          }
+        >
+          {({ controlId, describedBy }) => (
+            <Textarea
+              id={controlId}
+              rows={6}
+              value={post.caption}
+              onChange={(event) => update({ caption: event.target.value })}
+              placeholder={t("content.editor.captionPlaceholder")}
+              aria-invalid={captionTooLong || undefined}
+              aria-describedby={describedBy}
+            />
+          )}
+        </EditorField>
+      )}
 
-      <EditorField
-        label={t("content.editor.hashtags")}
-        provenance={provenance(
-          suggestion ? sameTags(suggestion.hashtags, post.hashtags) : false,
-          suggestion?.alternatives.hashtags.some((set) => sameTags(set, post.hashtags)) ?? false,
-        )}
-        open={openField === "hashtags"}
-        onToggle={toggle("hashtags")}
-        alternatives={
-          <AIAlternatives<string[]>
-            load={load("hashtags", suggestion?.hashtags)}
-            getKey={(item) => item.join(" ")}
-            render={(item) => <span className="text-accent-text">{item.join(" ")}</span>}
-            isSelected={(item) => sameTags(item, post.hashtags)}
-            isPreferred={(item) => (suggestion ? sameTags(item, suggestion.hashtags) : false)}
-            onSelect={(hashtags) => update({ hashtags })}
-          />
-        }
-      >
-        {({ controlId }) => (
-          <TagInput
-            id={controlId}
-            value={post.hashtags}
-            onChange={(hashtags) =>
-              update({ hashtags: hashtags.map((tag) => (tag.startsWith("#") ? tag : `#${tag}`)) })
-            }
-            placeholder={t("content.editor.hashtagsPlaceholder")}
-            removeLabel={(tag) => t("content.editor.removeTag", { tag })}
-          />
-        )}
-      </EditorField>
+      {fields.hashtags && (
+        <EditorField
+          label={t("content.editor.hashtags")}
+          provenance={provenance(
+            suggestion ? sameTags(suggestion.hashtags, post.hashtags) : false,
+            suggestion?.alternatives.hashtags.some((set) => sameTags(set, post.hashtags)) ?? false,
+          )}
+          open={openField === "hashtags"}
+          onToggle={toggle("hashtags")}
+          alternatives={
+            <AIAlternatives<string[]>
+              load={load("hashtags", suggestion?.hashtags)}
+              getKey={(item) => item.join(" ")}
+              render={(item) => <span className="text-accent-text">{item.join(" ")}</span>}
+              isSelected={(item) => sameTags(item, post.hashtags)}
+              isPreferred={(item) => (suggestion ? sameTags(item, suggestion.hashtags) : false)}
+              onSelect={(hashtags) => update({ hashtags })}
+            />
+          }
+        >
+          {({ controlId }) => (
+            <TagInput
+              id={controlId}
+              value={post.hashtags}
+              onChange={(hashtags) =>
+                update({ hashtags: hashtags.map((tag) => (tag.startsWith("#") ? tag : `#${tag}`)) })
+              }
+              placeholder={t("content.editor.hashtagsPlaceholder")}
+              removeLabel={(tag) => t("content.editor.removeTag", { tag })}
+            />
+          )}
+        </EditorField>
+      )}
 
-      {showMusic && (
+      {fields.music && (
         <EditorField
           label={t("content.editor.music")}
           provenance={provenance(sameTrack(preferredTrack, post.music), post.music !== undefined)}
@@ -337,31 +364,35 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
         </EditorField>
       )}
 
-      <EditorField
-        label={t("content.editor.cta")}
-        provenance={textProvenance("cta", post.cta ?? "")}
-        open={openField === "cta"}
-        onToggle={rules?.ctaStyle === "none" ? undefined : toggle("cta")}
-        alternatives={
-          <AIAlternatives<string>
-            load={load("cta", suggestion?.cta)}
-            getKey={(item) => item}
-            render={(item) => item}
-            isSelected={(item) => item === post.cta}
-            isPreferred={(item) => item === suggestion?.cta}
-            onSelect={(cta) => update({ cta })}
-          />
-        }
-      >
-        {({ controlId }) => (
-          <Input
-            id={controlId}
-            value={post.cta ?? ""}
-            onChange={(event) => update({ cta: event.target.value })}
-            placeholder={t("content.editor.ctaPlaceholder")}
-          />
-        )}
-      </EditorField>
+      {fields.cta && (
+        <EditorField
+          label={
+            fields.cta === "linkSticker" ? t("content.editor.linkSticker") : t("content.editor.cta")
+          }
+          provenance={textProvenance("cta", post.cta ?? "")}
+          open={openField === "cta"}
+          onToggle={rules?.ctaStyle === "none" ? undefined : toggle("cta")}
+          alternatives={
+            <AIAlternatives<string>
+              load={load("cta", suggestion?.cta)}
+              getKey={(item) => item}
+              render={(item) => item}
+              isSelected={(item) => item === post.cta}
+              isPreferred={(item) => item === suggestion?.cta}
+              onSelect={(cta) => update({ cta })}
+            />
+          }
+        >
+          {({ controlId }) => (
+            <Input
+              id={controlId}
+              value={post.cta ?? ""}
+              onChange={(event) => update({ cta: event.target.value })}
+              placeholder={t("content.editor.ctaPlaceholder")}
+            />
+          )}
+        </EditorField>
+      )}
     </div>
   );
 };

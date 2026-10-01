@@ -15,7 +15,7 @@ import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { useContentEditor } from "@/hooks/useContentEditor";
 import { useT } from "@/i18n/useT";
 import { cn } from "@/lib/cn";
-import { findPublishProblem } from "@/lib/content";
+import { fieldsFor, findPublishProblem } from "@/lib/content";
 import { formatCompact, formatDateTime, formatPercent } from "@/lib/format";
 import { addDays } from "@/lib/time";
 import { PLATFORMS } from "@/mock/platforms";
@@ -95,9 +95,10 @@ export const ContentEditor = ({ postId }: { postId: string }) => {
         t(`content.editor.problem.${problem}`, {
           platform: PLATFORMS[post.platform].name,
           limit: PLATFORMS[post.platform].captionLimit,
+          min: fieldsFor(post.platform, post.format).media.min,
         }),
       );
-      if (problem === "needsMedia") setPane("edit");
+      if (problem === "needsMedia" || problem === "needsMoreMedia") setPane("edit");
       return;
     }
     setPublishing(true);
@@ -265,6 +266,7 @@ export const ContentEditor = ({ postId }: { postId: string }) => {
               <MediaField
                 post={post}
                 tips={editor.mediaTips}
+                limits={fieldsFor(post.platform, post.format).media}
                 onChange={(media) => editor.update({ media })}
               />
 

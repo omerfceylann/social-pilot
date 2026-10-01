@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useT } from "@/i18n/useT";
 import { formatCompact, formatRelative } from "@/lib/format";
 import { transition } from "@/lib/motion";
+import { fieldsFor } from "@/lib/content";
 import { createRandom } from "@/lib/random";
 import type { Post, PostAnalytics } from "@/types";
 import {
@@ -84,14 +85,23 @@ export const PlatformPreview = ({
   const { t, language } = useT();
   const formatCount = (value: number) => formatCompact(value, language);
 
+  // Önizleme paylaşılacak içerikle birebir aynı: biçimde olmayan alanlar boş gider,
+  // CTA metne ekleniyorsa açıklamanın sonunda görünür.
+  const fields = fieldsFor(post.platform, post.format);
+  const cta = post.cta?.trim();
+  const caption = fields.caption ? post.caption : "";
+  const mediaList = post.media.slice(0, fields.media.max);
+
   const data: PreviewData = {
     format: post.format,
     title: post.title,
-    caption: post.caption,
-    hashtags: post.hashtags,
-    music: post.music,
-    cta: post.cta,
-    media: post.media[0],
+    caption:
+      fields.cta === "inCaption" && cta ? [caption, cta].filter(Boolean).join("\n\n") : caption,
+    hashtags: fields.hashtags ? post.hashtags : [],
+    music: fields.music ? post.music : undefined,
+    cta: fields.cta === "linkSticker" ? cta : undefined,
+    media: mediaList[0],
+    mediaList,
     brandName,
     handle,
     followers,
@@ -126,6 +136,9 @@ export const PlatformPreview = ({
       share: t("preview.share"),
       save: t("preview.save"),
       addMedia: t("preview.addMedia"),
+      previous: t("preview.previous"),
+      next: t("preview.next"),
+      slide: (index, total) => t("preview.slide", { index, total }),
       untitled: t("content.untitled"),
       postPreview: t("preview.postPreview"),
     },
