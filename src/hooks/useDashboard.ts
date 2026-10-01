@@ -1,13 +1,18 @@
 "use client";
 
 import { useMemo } from "react";
-import { activeSuggestions, deriveAgentActivity, postsByStatus } from "@/lib/content";
+import {
+  activeSuggestions,
+  deriveAgentActivity,
+  postsByStatus,
+  rankSuggestions,
+} from "@/lib/content";
 import { getAccountOverview } from "@/services/analyticsService";
 import { useContent } from "@/store/useContent";
 import { useInbox } from "@/store/useInbox";
 import { useSession } from "@/store/useSession";
 import { useSocialAccounts } from "@/store/useSocialAccounts";
-import { PLATFORM_IDS, type PerformanceTier, type PostSuggestion } from "@/types";
+import { PLATFORM_IDS } from "@/types";
 import { useNow } from "./useNow";
 import { useWorkspaceContext } from "./useWorkspaceContext";
 
@@ -20,16 +25,6 @@ export type DashboardMode = "noAccounts" | "starter" | "growth";
 
 const RECOMMENDATION_COUNT = 3;
 const METRIC_DAYS = 7;
-const POTENTIAL_ORDER: Record<PerformanceTier, number> = { high: 0, average: 1, low: 2 };
-
-/** Büyüme önerileri (potansiyele göre) önce, başlangıç önerileri (tarihe göre) sonra. */
-const rankSuggestions = (a: PostSuggestion, b: PostSuggestion) => {
-  if (a.stage !== b.stage) return a.stage === "growth" ? -1 : 1;
-  if (a.stage === "growth")
-    return POTENTIAL_ORDER[a.estimate.potential] - POTENTIAL_ORDER[b.estimate.potential];
-  return a.suggestedAt.localeCompare(b.suggestedAt);
-};
-
 /** Dashboard'un neyi göstereceğine dair tüm kararlar; bileşenler sadece çizer. */
 export const useDashboard = () => {
   const user = useSession((state) => state.user);

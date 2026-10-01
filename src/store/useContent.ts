@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { PlatformId, Post, PostSuggestion } from "@/types";
+import type { ContentFormat, ContentStyle, PlatformId, Post, PostSuggestion } from "@/types";
 import { persistOptions } from "./persist";
 
 type PostPatch = Partial<Omit<Post, "id" | "origin" | "createdAt">>;
@@ -20,6 +20,12 @@ type ContentState = {
   ) => void;
   /** Öneriden taslak oluşturur ve yeni postun id'sini döner. */
   createFromSuggestion: (suggestion: PostSuggestion) => string;
+  /** Öneri olmadan, boş bir taslak oluşturur ve id'sini döner. */
+  createBlankPost: (input: {
+    platform: PlatformId;
+    format: ContentFormat;
+    theme: ContentStyle;
+  }) => string;
   addSuggestion: (suggestion: PostSuggestion) => void;
   updatePost: (id: string, patch: PostPatch) => void;
   schedulePost: (id: string, scheduledAt: string) => void;
@@ -72,6 +78,27 @@ export const useContent = create<ContentState>()(
           posts: [post, ...posts],
           usedSuggestionIds: [...usedSuggestionIds, suggestion.id],
         }));
+        return id;
+      },
+
+      createBlankPost: ({ platform, format, theme }) => {
+        const id = `post-${crypto.randomUUID()}`;
+        const timestamp = now();
+        const post: Post = {
+          id,
+          platform,
+          format,
+          status: "draft",
+          title: "",
+          caption: "",
+          hashtags: [],
+          media: [],
+          theme,
+          createdAt: timestamp,
+          updatedAt: timestamp,
+          origin: "user",
+        };
+        set(({ posts }) => ({ posts: [post, ...posts] }));
         return id;
       },
 

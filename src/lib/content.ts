@@ -2,6 +2,7 @@ import type {
   AgentActivity,
   CalendarStatus,
   Comment,
+  PerformanceTier,
   PlatformId,
   Post,
   PostStatus,
@@ -46,6 +47,22 @@ export const activeSuggestions = (
     (suggestion) =>
       !usedIds.includes(suggestion.id) && connectedPlatforms.includes(suggestion.platform),
   );
+
+const POTENTIAL_ORDER: Record<PerformanceTier, number> = { high: 0, average: 1, low: 2 };
+
+/** Büyüme önerileri (potansiyele göre) önce, başlangıç önerileri (tarihe göre) sonra. */
+export const rankSuggestions = (a: PostSuggestion, b: PostSuggestion) => {
+  if (a.stage !== b.stage) return a.stage === "growth" ? -1 : 1;
+  if (a.stage === "growth")
+    return POTENTIAL_ORDER[a.estimate.potential] - POTENTIAL_ORDER[b.estimate.potential];
+  return a.suggestedAt.localeCompare(b.suggestedAt);
+};
+
+/** Taslaklar en son düzenlenenden başlar: kullanıcı kaldığı yerden devam eder. */
+export const draftsByRecency = (posts: Post[]) =>
+  posts
+    .filter((post) => post.status === "draft")
+    .toSorted((a, b) => byDateDesc(a.updatedAt, b.updatedAt));
 
 export const buildCalendarItems = (
   posts: Post[],
