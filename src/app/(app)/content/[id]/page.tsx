@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { ContentEditor } from "@/components/content/editor/ContentEditor";
 
 export const metadata: Metadata = { title: "İçerik" };
 
-/** GEÇİCİ: İçerik editörü Faz 6'da. Şimdilik öneriden oluşturulan taslağın açılacağı yer. */
-export default function ContentEditorPage() {
-  return <PhasePlaceholder title="nav.content" phase={6} />;
+/** params bir Promise (Next 16); id'yi sunucuda çözüp istemci editörüne veririz. */
+export default async function ContentEditorPage({ params }: PageProps<"/content/[id]">) {
+  const { id } = await params;
+  return <ContentEditor postId={id} />;
 }

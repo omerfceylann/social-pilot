@@ -6,8 +6,10 @@ import type {
   PlatformId,
   Post,
   PostStatus,
+  PostAnalytics,
   PostSuggestion,
 } from "@/types";
+import { PLATFORMS } from "@/mock/platforms";
 
 /**
  * Store verisinden türetilen görünümler. Ayrı liste tutulmaz: bir post
@@ -114,3 +116,35 @@ export const deriveAgentActivity = ({
   opportunitiesFound: visibleSuggestions.length,
   commentsReviewed: comments.length,
 });
+
+// ---------- Paylaşmadan önce kontrol ----------
+
+export type PublishProblem = "needsMedia" | "needsCaption" | "captionTooLong";
+
+/** X ve LinkedIn'de düz metin gönderi olur; diğer platform ve biçimler medyasız paylaşılamaz. */
+const requiresMedia = (post: Post) =>
+  !((post.platform === "x" || post.platform === "linkedin") && post.format === "post");
+
+/** Paylaşmayı engelleyen ilk sorun; yoksa null. Arayüz koda göre mesaj seçer. */
+export const findPublishProblem = (post: Post): PublishProblem | null => {
+  if (requiresMedia(post) && post.media.length === 0) return "needsMedia";
+  if (!post.caption.trim() && post.media.length === 0) return "needsCaption";
+  if (post.caption.length > PLATFORMS[post.platform].captionLimit) return "captionTooLong";
+  return null;
+};
+
+/**
+ * Mock analitik ile Gelen Kutusu tutarlı kalsın: kartta görünen yorum sayısı,
+ * o posta gerçekten düşen yorumlardan az olamaz (spec §46). Yorumlar posta
+ * platform + başlık ile bağlıdır.
+ */
+export const withInboxComments = (
+  analytics: PostAnalytics,
+  post: Post,
+  comments: Comment[],
+): PostAnalytics => {
+  const received = comments.filter(
+    (comment) => comment.platform === post.platform && comment.postTitle === post.title,
+  ).length;
+  return received > analytics.comments ? { ...analytics, comments: received } : analytics;
+};

@@ -26,7 +26,7 @@ import { simulateAiLatency } from "./latency";
 
 export type EditableField = keyof SuggestionAlternatives;
 
-type FieldSuggestionMap = {
+export type FieldSuggestionMap = {
   title: string[];
   caption: string[];
   hashtags: string[][];
