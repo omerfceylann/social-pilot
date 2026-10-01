@@ -52,11 +52,21 @@ const DropdownItem = ({ icon, destructive, className, children, ...props }: Drop
   </DropdownMenu.Item>
 );
 
+type DropdownLabelProps = { children: ReactNode };
+
+/** Bir öğe grubunun başlığı; seçilemez. */
+const DropdownLabel = ({ children }: DropdownLabelProps) => (
+  <DropdownMenu.Label className="px-2.5 pt-1.5 pb-1 text-caption font-medium text-fg-muted">
+    {children}
+  </DropdownMenu.Label>
+);
+
 const DropdownSeparator = () => <DropdownMenu.Separator className="my-1 h-px bg-border" />;
 
 export const Dropdown = Object.assign(DropdownMenu.Root, {
   Trigger: DropdownMenu.Trigger,
   Content: DropdownContent,
   Item: DropdownItem,
+  Label: DropdownLabel,
   Separator: DropdownSeparator,
 });

@@ -5,7 +5,7 @@ import {
   simulateAuthRequest,
 } from "@/services/authService";
 import { useSession, type User } from "./useSession";
-import { useUserDirectory } from "./useUserDirectory";
+import { useUserDirectory, type DirectoryEntry } from "./useUserDirectory";
 import {
   captureWorkspace,
   catchUpFirstReactions,
@@ -54,18 +54,42 @@ export const registerUser = async (input: RegisterInput) => {
   return user;
 };
 
-export const signIn = async (rawUsername: string) => {
-  const username = normalizeUsername(rawUsername);
-  await simulateAuthRequest();
-  const entry = useUserDirectory.getState().entries[username];
-  if (!entry) throw new AuthError("userNotFound");
-
+/** Aktif kullanıcıyı kaydeder, sonra seçilen kullanıcının çalışma alanını yükler. */
+const activate = (entry: DirectoryEntry) => {
   persistActiveUser();
   clearWorkspace();
   if (entry.snapshot) restoreWorkspace(entry.snapshot);
   useSession.getState().start({ user: entry.user, onboarded: entry.onboarded });
   catchUpFirstReactions();
-  return entry.user;
+  return entry;
+};
+
+export const signIn = async (rawUsername: string) => {
+  const username = normalizeUsername(rawUsername);
+  await simulateAuthRequest();
+  const entry = useUserDirectory.getState().entries[username];
+  if (!entry) throw new AuthError("userNotFound");
+  return activate(entry).user;
+};
+
+/**
+ * Kenar çubuğundaki hesap menüsünden, bu cihazdaki başka bir hesaba anında geçiş.
+ * Kimlik zaten bu cihazda doğrulandığı için ağ gecikmesi simüle edilmez.
+ * Hesabın onboarding'i bitmiş mi bilgisini döner (yönlendirme için).
+ */
+export const switchAccount = (username: string) => {
+  const entry = useUserDirectory.getState().entries[username];
+  if (!entry) throw new AuthError("userNotFound");
+  return activate(entry).onboarded;
+};
+
+/**
+ * Kayıtlı bir hesabı ve çalışma alanını bu cihazdan siler (geri alınamaz).
+ * Aktif hesap silinemez; önce çıkış yapılmalı.
+ */
+export const removeSavedAccount = (username: string) => {
+  if (useSession.getState().user?.username === username) return;
+  useUserDirectory.getState().remove(username);
 };
 
 export const signOut = () => {

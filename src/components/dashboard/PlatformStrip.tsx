@@ -30,9 +30,13 @@ export const PlatformStrip = () => {
   const modalOpen = target !== null && !accounts[target];
 
   return (
-    <section aria-label={t("dashboard.platforms")}>
-      {/* Mobilde yatay kaydırma, masaüstünde beş eşit sütun. */}
-      <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-5">
+    <section aria-label={t("dashboard.platforms")} className="@container">
+      {/*
+        Yerleşim ekran genişliğine değil şeridin kendi genişliğine göre (container query):
+        kenar çubuğu açıkken 1024px'te bile yer dar. Beş sütun için ≥56rem gerekir; daha
+        dar alanda yatay kaydırma (bir sonraki kartın kenarı görünür).
+      */}
+      <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:scroll-px-0 sm:px-0 @4xl:grid @4xl:grid-cols-5 @4xl:overflow-visible">
         {PLATFORM_IDS.map((platform) => {
           const account = accounts[platform];
           const meta = PLATFORMS[platform];
@@ -40,7 +44,7 @@ export const PlatformStrip = () => {
             <li
               key={platform}
               className={cn(
-                "flex w-40 shrink-0 snap-start flex-col gap-3 rounded-xl border bg-surface p-4 transition-colors sm:w-auto",
+                "flex w-44 shrink-0 snap-start flex-col gap-3 rounded-xl border bg-surface p-4 transition-colors @4xl:w-auto",
                 account ? "border-success/30" : "border-border",
               )}
             >
@@ -52,32 +56,31 @@ export const PlatformStrip = () => {
               </div>
 
               {account ? (
-                <div className="flex min-h-8 flex-col justify-center gap-0.5">
+                <div className="flex flex-1 flex-col justify-center gap-0.5">
                   <span className="inline-flex items-center gap-1.5 text-small font-medium text-success">
                     <span className="flex size-4 items-center justify-center rounded-full bg-success text-white [&_svg]:size-2.5">
                       <Check strokeWidth={3} />
                     </span>
                     {t("dashboard.connected")}
                   </span>
-                  <span className="truncate text-caption text-fg-muted tabular-nums">
-                    @{account.handle} ·{" "}
+                  <span className="truncate text-caption text-fg-secondary">@{account.handle}</span>
+                  <span className="text-caption text-fg-muted tabular-nums">
                     {t("onboarding.connect.followers", {
                       count: formatCompact(account.followers, language),
                     })}
                   </span>
                 </div>
               ) : (
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2">
                   <Button
                     size="sm"
                     variant="primary"
-                    className="flex-1"
                     onClick={() => setTarget(platform)}
                     aria-label={t("dashboard.connectPlatform", { platform: meta.name })}
                   >
                     {t("dashboard.connect")}
                   </Button>
-                  <Button asChild size="sm" variant="secondary" className="flex-1">
+                  <Button asChild size="sm" variant="ghost">
                     <a
                       href={meta.signupUrl}
                       target="_blank"

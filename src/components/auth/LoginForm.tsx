@@ -1,17 +1,19 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent } from "react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
+import { IconButton } from "@/components/ui/IconButton";
 import { Input } from "@/components/ui/Input";
+import { Modal } from "@/components/ui/Modal";
 import { useT } from "@/i18n/useT";
 import { AuthError } from "@/services/authService";
-import { signIn } from "@/store/auth";
-import { useUserDirectory } from "@/store/useUserDirectory";
+import { removeSavedAccount, signIn } from "@/store/auth";
+import { useUserDirectory, type DirectoryEntry } from "@/store/useUserDirectory";
 import { AuthHeading } from "./AuthLayout";
 
 const MAX_SAVED_ACCOUNTS = 4;
@@ -27,6 +29,8 @@ export const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState<string | null>(null);
+  /** Kaldırma onayı bekleyen hesap. Silme geri alınamadığı için önce sorulur. */
+  const [removing, setRemoving] = useState<DirectoryEntry["user"] | null>(null);
 
   const savedAccounts = useMemo(
     () =>
@@ -50,6 +54,11 @@ export const LoginForm = () => {
     }
   };
 
+  const confirmRemove = () => {
+    if (removing) removeSavedAccount(removing.username);
+    setRemoving(null);
+  };
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!username.trim()) return setError(t("auth.required"));
@@ -65,12 +74,15 @@ export const LoginForm = () => {
           <p className="text-small font-medium text-fg-secondary">{t("auth.savedAccounts")}</p>
           <ul className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface">
             {savedAccounts.map(({ user }) => (
-              <li key={user.username} className="border-b border-border last:border-b-0">
+              <li
+                key={user.username}
+                className="flex items-center border-b border-border pr-2 transition-colors last:border-b-0 hover:bg-surface-muted"
+              >
                 <button
                   type="button"
                   onClick={() => void continueAs(user.username)}
                   disabled={pending !== null}
-                  className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-surface-muted disabled:opacity-60"
+                  className="flex min-w-0 flex-1 items-center gap-3 py-3 pl-4 text-left disabled:opacity-60"
                 >
                   <Avatar name={user.brandName} size="sm" />
                   <span className="flex min-w-0 flex-1 flex-col">
@@ -79,6 +91,15 @@ export const LoginForm = () => {
                   </span>
                   <ChevronRight className="size-4 text-fg-muted" aria-hidden />
                 </button>
+                {/* Ana butonun kardeşi: iç içe buton olmaz, klavyede ayrı odak durağı. */}
+                <IconButton
+                  label={t("auth.removeAccount")}
+                  icon={<X />}
+                  size="sm"
+                  disabled={pending !== null}
+                  onClick={() => setRemoving(user)}
+                  className="ml-1 shrink-0"
+                />
               </li>
             ))}
           </ul>
@@ -115,6 +136,26 @@ export const LoginForm = () => {
           {t("auth.signIn")}
         </Button>
       </form>
+      <Modal
+        open={removing !== null}
+        onOpenChange={(open) => !open && setRemoving(null)}
+        title={removing ? t("auth.removeAccountTitle", { username: removing.username }) : ""}
+        description={
+          removing ? t("auth.removeAccountDescription", { brand: removing.brandName }) : undefined
+        }
+        closeLabel={t("common.close")}
+        size="sm"
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setRemoving(null)}>
+              {t("common.cancel")}
+            </Button>
+            <Button variant="danger" onClick={confirmRemove}>
+              {t("auth.remove")}
+            </Button>
+          </>
+        }
+      />
       <p className="mt-6 text-center text-body text-fg-secondary">
         {t("auth.noAccount")}{" "}
         <Link href="/register" className="font-medium text-accent-text hover:underline">

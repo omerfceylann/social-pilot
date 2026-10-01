@@ -37,6 +37,7 @@ type UserDirectoryState = {
   /** Anahtar: normalize edilmiş kullanıcı adı. */
   entries: Record<string, DirectoryEntry>;
   save: (entry: DirectoryEntry) => void;
+  remove: (username: string) => void;
   clear: () => void;
 };
 
@@ -50,6 +51,10 @@ export const useUserDirectory = create<UserDirectoryState>()(
       entries: {},
       save: (entry) =>
         set(({ entries }) => ({ entries: { ...entries, [entry.user.username]: entry } })),
+      remove: (username) =>
+        set(({ entries }) => ({
+          entries: Object.fromEntries(Object.entries(entries).filter(([key]) => key !== username)),
+        })),
       clear: () => set({ entries: {} }),
     }),
     persistOptions("directory"),
