@@ -1,4 +1,5 @@
 import type { SectorDataset, SectorId } from "@/types";
+import { automotiveDataset } from "./automotive";
 import { healthDataset } from "./health";
 import { localServiceDataset } from "./localService";
 import { realEstateDataset } from "./realEstate";
@@ -25,6 +26,7 @@ export const SECTOR_DATASETS: Partial<Record<SectorId, SectorDataset>> = {
   realEstate: realEstateDataset,
   localService: localServiceDataset,
   health: healthDataset,
+  automotive: automotiveDataset,
 };
 
 /** Özel ("Diğer") ya da verisi olmayan sektörlerde kullanılan yedek veri. */
