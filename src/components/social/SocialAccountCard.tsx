@@ -24,6 +24,8 @@ type SocialAccountCardProps = {
   account?: SocialAccount;
   /** Modal gibi zaten çerçeveli bir yüzeyin içinde: kendi kenarlığı ve dolgusu olmaz. */
   bare?: boolean;
+  /** Marka sayfasında: bağlı hesabın bağlantısını kesme eylemi. */
+  onDisconnect?: () => void;
 };
 
 /**
@@ -35,6 +37,7 @@ export const SocialAccountCard = ({
   history,
   account,
   bare = false,
+  onDisconnect,
 }: SocialAccountCardProps) => {
   const { t, language } = useT();
   const inputId = useId();
@@ -113,6 +116,11 @@ export const SocialAccountCard = ({
                 count: formatCompact(account.followers, language),
               })}
             </span>
+            {onDisconnect && (
+              <Button size="sm" variant="ghost" onClick={onDisconnect} className="ml-auto shrink-0">
+                {t("brand.disconnect")}
+              </Button>
+            )}
           </motion.div>
         ) : (
           <motion.form

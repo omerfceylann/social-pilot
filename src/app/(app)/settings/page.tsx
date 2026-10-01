@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { SettingsView } from "@/components/settings/SettingsView";
 
 export const metadata: Metadata = { title: "Ayarlar" };
 
 export default function SettingsPage() {
-  return <PhasePlaceholder title="nav.settings" phase={10} />;
+  return <SettingsView />;
 }

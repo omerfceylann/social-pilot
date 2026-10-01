@@ -12,6 +12,7 @@ import { useBrand } from "./useBrand";
 import { useContent } from "./useContent";
 import { useInbox } from "./useInbox";
 import { usePreferences } from "./usePreferences";
+import { useSession } from "./useSession";
 import { useSocialAccounts } from "./useSocialAccounts";
 import { toast } from "./useToasts";
 import type { WorkspaceSnapshot } from "./useUserDirectory";
@@ -77,6 +78,16 @@ export const connectPlatform = async ({
     useInbox.getState().addPlatformData(seed);
   }
   return account;
+};
+
+/**
+ * Marka profilini günceller. Ad değişirse oturumdaki marka adı da güncellenir
+ * (menüler, hesap listesi). Mevcut içerik metinleri olduğu gibi kalır; yeni
+ * öneriler yeni adla kişiselleştirilir.
+ */
+export const updateBrandProfile = (patch: Partial<BrandProfile>) => {
+  useBrand.getState().updateProfile(patch);
+  if (patch.name) useSession.getState().updateUser({ brandName: patch.name });
 };
 
 /** Bağlantıyı keser. Geçmiş postlar kalır; o platformun önerileri seçicide gizlenir. */

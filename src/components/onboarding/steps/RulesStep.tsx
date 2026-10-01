@@ -1,29 +1,15 @@
 "use client";
 
-import { useId, type ReactNode } from "react";
+import { useId } from "react";
 import { Field } from "@/components/ui/Field";
 import { Input } from "@/components/ui/Input";
+import { LabelledRow } from "@/components/ui/LabelledRow";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { TagInput } from "@/components/ui/TagInput";
 import { useT } from "@/i18n/useT";
 import { StepHeader } from "../StepHeader";
 import type { EditableRules } from "../useOnboardingWizard";
 import type { StepProps } from "./types";
-
-type LabelledRowProps = { label: string; children: (labelId: string) => ReactNode };
-
-/** Etiket + kontrol; kontrolün aria-labelledby'si etiketin id'sine bağlanır. */
-const LabelledRow = ({ label, children }: LabelledRowProps) => {
-  const labelId = useId();
-  return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-      <span id={labelId} className="text-small font-medium text-fg">
-        {label}
-      </span>
-      {children(labelId)}
-    </div>
-  );
-};
 
 /** İçerik kuralları (spec §11). Sektör önerileriyle önceden dolu gelir; sonradan düzenlenebilir. */
 export const RulesStep = ({ draft, update }: StepProps) => {

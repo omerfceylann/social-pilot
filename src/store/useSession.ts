@@ -16,6 +16,8 @@ type SessionState = {
   onboarded: boolean;
   start: (session: { user: User; onboarded: boolean }) => void;
   completeOnboarding: () => void;
+  /** Ayarlar > Hesap: ad, e-posta (kullanıcı adı değişmez; giriş anahtarı). */
+  updateUser: (patch: Partial<Pick<User, "name" | "email" | "brandName">>) => void;
   reset: () => void;
 };
 
@@ -30,6 +32,7 @@ export const useSession = create<SessionState>()(
       onboarded: false,
       start: ({ user, onboarded }) => set({ user, onboarded }),
       completeOnboarding: () => set({ onboarded: true }),
+      updateUser: (patch) => set(({ user }) => (user ? { user: { ...user, ...patch } } : {})),
       reset: () => set({ user: null, onboarded: false }),
     }),
     persistOptions("session"),

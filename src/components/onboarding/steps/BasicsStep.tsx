@@ -5,14 +5,12 @@ import { Field } from "@/components/ui/Field";
 import { Input } from "@/components/ui/Input";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { Select } from "@/components/ui/Select";
-import { LANGUAGES } from "@/i18n/config";
+import { COUNTRY_CODES, LANGUAGES } from "@/i18n/config";
 import { useT } from "@/i18n/useT";
 import { formatCountry } from "@/lib/format";
 import { SectorPicker } from "../SectorPicker";
 import { StepHeader } from "../StepHeader";
 import type { StepProps } from "./types";
-
-const COUNTRY_CODES = ["TR", "DE", "NL", "GB", "US", "AZ", "CY"] as const;
 
 /** Temel bilgiler. Yeni markada ülke ve dil de sorulur; mevcut markada sadece kimlik. */
 export const BasicsStep = ({ draft, update }: StepProps) => {
