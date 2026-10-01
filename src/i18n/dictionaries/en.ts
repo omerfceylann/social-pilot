@@ -26,6 +26,18 @@ export const en: Dictionary = {
     brand: "Brand",
     settings: "Settings",
   },
+  shell: {
+    skipToContent: "Skip to content",
+    primaryNav: "Main menu",
+    openMenu: "Open menu",
+    menu: "Menu",
+    collapseSidebar: "Collapse sidebar",
+    expandSidebar: "Expand sidebar",
+    accountMenu: "Account menu",
+    switchAccount: "Switch account",
+    signOut: "Sign out",
+    newItems: "{count} new",
+  },
   languages: {
     tr: "Türkçe",
     en: "English",

@@ -31,6 +31,18 @@ export const tr = {
     brand: "Marka",
     settings: "Ayarlar",
   },
+  shell: {
+    skipToContent: "İçeriğe atla",
+    primaryNav: "Ana menü",
+    openMenu: "Menüyü aç",
+    menu: "Menü",
+    collapseSidebar: "Kenar çubuğunu daralt",
+    expandSidebar: "Kenar çubuğunu genişlet",
+    accountMenu: "Hesap menüsü",
+    switchAccount: "Hesap değiştir",
+    signOut: "Çıkış yap",
+    newItems: "{count} yeni",
+  },
   languages: {
     tr: "Türkçe",
     en: "English",
