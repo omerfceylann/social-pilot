@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { DashboardView } from "@/components/dashboard/DashboardView";
 
 export const metadata: Metadata = { title: "Genel Bakış" };
 
 export default function OverviewPage() {
-  return <PhasePlaceholder title="nav.overview" phase={5} />;
+  return <DashboardView />;
 }
