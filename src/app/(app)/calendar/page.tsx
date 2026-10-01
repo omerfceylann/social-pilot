@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { PhasePlaceholder } from "@/components/layout/PhasePlaceholder";
+import { Suspense } from "react";
+import { CalendarView } from "@/components/calendar/CalendarView";
+import { PageSkeleton } from "@/components/layout/AppShellSkeleton";
 
 export const metadata: Metadata = { title: "Takvim" };
 
+/** Görünüm ve odak tarihi adresten okunur (useSearchParams) → Suspense gerekir. */
 export default function CalendarPage() {
-  return <PhasePlaceholder title="nav.calendar" phase={8} />;
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <CalendarView />
+    </Suspense>
+  );
 }

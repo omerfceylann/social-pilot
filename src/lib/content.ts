@@ -258,3 +258,27 @@ export const withInboxComments = (
   ).length;
   return received > analytics.comments ? { ...analytics, comments: received } : analytics;
 };
+
+/**
+ * Henüz oluşturulmamış bir öneriyi önizleme için Post biçimine çevirir (takvim
+ * detayında). Store'a yazılmaz; "İçeriği oluştur" denince gerçek taslak oluşur.
+ */
+export const suggestionAsPost = (suggestion: PostSuggestion): Post => ({
+  id: suggestion.id,
+  platform: suggestion.platform,
+  format: suggestion.format,
+  status: "draft",
+  title: suggestion.title,
+  caption: suggestion.caption,
+  hashtags: suggestion.hashtags,
+  music: fieldsFor(suggestion.platform, suggestion.format).music
+    ? preferredMusic(suggestion)
+    : undefined,
+  cta: suggestion.cta,
+  media: suggestion.media,
+  theme: suggestion.theme,
+  createdAt: suggestion.suggestedAt,
+  updatedAt: suggestion.suggestedAt,
+  scheduledAt: suggestion.suggestedAt,
+  origin: "seed",
+});
