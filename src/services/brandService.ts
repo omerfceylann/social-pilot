@@ -20,9 +20,6 @@ export type NewBrandAnswers = {
   country: string;
   language: ContentLanguage;
   website?: string;
-  audienceSummary: string;
-  ageRange: [number, number];
-  audienceDescription: string;
   personality: BrandPersonality[];
   contentStyles: ContentStyle[];
   rules: Partial<BrandRules>;
@@ -36,8 +33,6 @@ export type ExistingBrandAnswers = {
   website?: string;
   /** "Kullandığın platformlar" adımı: bağlandıklarında geçmişli veri alırlar. Boş olabilir. */
   platformsUsed: PlatformId[];
-  currentStyle: string;
-  improvementFocus: string;
   goals: BrandGoal[];
 };
 
@@ -100,11 +95,6 @@ export const generateBrandProfile = async (answers: BrandAnswers): Promise<Brand
       ...identity,
       country: answers.country,
       language: answers.language,
-      audience: {
-        summary: answers.audienceSummary || defaults.audience.summary,
-        ageRange: answers.ageRange,
-        description: answers.audienceDescription || defaults.audience.description,
-      },
       personality,
       tone: personality.map((trait) => TONE_BY_PERSONALITY[trait]),
       contentStyles:

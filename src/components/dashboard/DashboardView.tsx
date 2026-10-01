@@ -8,16 +8,15 @@ import { AgentStatusCard } from "@/components/ai/AgentStatusCard";
 import { MetricCard } from "@/components/analytics/MetricCard";
 import { SuggestionCard } from "@/components/content/SuggestionCard";
 import { PageContainer, PageHeader } from "@/components/layout/PageHeader";
-import { AccountConnectionList } from "@/components/social/AccountConnectionList";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Drawer } from "@/components/ui/Drawer";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { useDashboard } from "@/hooks/useDashboard";
 import { useT } from "@/i18n/useT";
 import { useBrand } from "@/store/useBrand";
 import { useContent } from "@/store/useContent";
 import type { PostSuggestion } from "@/types";
+import { PlatformStrip } from "./PlatformStrip";
 import { SignalList } from "./SignalList";
 import { TrendsDrawer } from "./TrendsDrawer";
 
@@ -33,7 +32,6 @@ export const DashboardView = () => {
   const { firstName, mode, recommendations, signals, metrics, metricDays, agent, trends } =
     useDashboard();
   const [trendsOpen, setTrendsOpen] = useState(false);
-  const [connectOpen, setConnectOpen] = useState(false);
 
   const handleCreate = (suggestion: PostSuggestion) => {
     const postId = createFromSuggestion(suggestion);
@@ -56,7 +54,7 @@ export const DashboardView = () => {
         description={subtitle}
         actions={
           <>
-            {/* Hesap yokken tek birincil eylem "Hesap bağla" (spec §48); içerik oluşturmak anlamsız. */}
+            {/* Hesap yokken birincil eylem platform şeridindeki "Bağla"dır (spec §48). */}
             {mode !== "noAccounts" && (
               <Button asChild variant="primary">
                 <Link href="/content">
@@ -83,16 +81,13 @@ export const DashboardView = () => {
         }
       />
 
+      <PlatformStrip />
+
       {mode === "noAccounts" ? (
         <EmptyState
           icon={<Link2 />}
           title={t("dashboard.noAccountsTitle")}
           description={t("dashboard.noAccountsDescription")}
-          action={
-            <Button variant="primary" onClick={() => setConnectOpen(true)}>
-              {t("empty.connectAccount")}
-            </Button>
-          }
         />
       ) : (
         <>
@@ -171,17 +166,6 @@ export const DashboardView = () => {
       )}
 
       <TrendsDrawer open={trendsOpen} onOpenChange={setTrendsOpen} trends={trends} />
-      <Drawer
-        open={connectOpen}
-        onOpenChange={setConnectOpen}
-        title={t("dashboard.connectTitle")}
-        description={t("onboarding.connect.subtitle")}
-        closeLabel={t("common.close")}
-      >
-        <div className="p-4 sm:p-6">
-          <AccountConnectionList />
-        </div>
-      </Drawer>
     </PageContainer>
   );
 };

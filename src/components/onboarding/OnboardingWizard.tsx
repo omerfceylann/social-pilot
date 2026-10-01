@@ -11,11 +11,9 @@ import { transition } from "@/lib/motion";
 import { finishOnboarding, signOut } from "@/store/auth";
 import { useSocialAccounts } from "@/store/useSocialAccounts";
 import { AnalysisStep } from "./steps/AnalysisStep";
-import { AudienceStep } from "./steps/AudienceStep";
 import { BasicsStep } from "./steps/BasicsStep";
 import { ChoiceStep } from "./steps/ChoiceStep";
 import { ConnectStep } from "./steps/ConnectStep";
-import { CurrentStateStep } from "./steps/CurrentStateStep";
 import { ProfileStep } from "./steps/ProfileStep";
 import { RulesStep } from "./steps/RulesStep";
 import { GoalsStep, PersonalityStep, PlatformsUsedStep, StyleStep } from "./steps/SelectionSteps";
@@ -33,12 +31,10 @@ const STEP_FORM_ID = "onboarding-step";
 const QUESTION_STEPS: StepId[] = [
   "choice",
   "basics",
-  "audience",
   "personality",
   "style",
   "rules",
   "platformsUsed",
-  "currentState",
   "goals",
 ];
 
@@ -101,12 +97,10 @@ export const OnboardingWizard = () => {
   const steps: Record<StepId, ReactNode> = {
     choice: <ChoiceStep {...stepProps} />,
     basics: <BasicsStep {...stepProps} />,
-    audience: <AudienceStep {...stepProps} ageLimits={wizard.ageLimits} />,
     personality: <PersonalityStep {...stepProps} />,
     style: <StyleStep {...stepProps} />,
     rules: <RulesStep {...stepProps} />,
     platformsUsed: <PlatformsUsedStep {...stepProps} />,
-    currentState: <CurrentStateStep {...stepProps} />,
     goals: <GoalsStep {...stepProps} />,
     analysis: <AnalysisStep draft={draft} onDone={handleAnalysisDone} />,
     profile: <ProfileStep />,

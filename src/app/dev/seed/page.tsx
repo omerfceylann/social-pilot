@@ -59,9 +59,6 @@ export default function DevSeedPage() {
               origin: "new",
               country: "TR",
               language: "tr",
-              audienceSummary: "",
-              ageRange: [22, 40],
-              audienceDescription: "",
               personality: [],
               contentStyles: [],
               rules: {},
@@ -70,8 +67,6 @@ export default function DevSeedPage() {
               ...base,
               origin: "existing",
               platformsUsed: used,
-              currentStyle: "",
-              improvementFocus: "",
               goals: ["engagement"],
             },
       );

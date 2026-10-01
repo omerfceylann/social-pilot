@@ -1,9 +1,7 @@
 "use client";
 
-import { Minus, Plus } from "lucide-react";
 import { useId, type ReactNode } from "react";
 import { Field } from "@/components/ui/Field";
-import { IconButton } from "@/components/ui/IconButton";
 import { Input } from "@/components/ui/Input";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { TagInput } from "@/components/ui/TagInput";
@@ -11,8 +9,6 @@ import { useT } from "@/i18n/useT";
 import { StepHeader } from "../StepHeader";
 import type { EditableRules } from "../useOnboardingWizard";
 import type { StepProps } from "./types";
-
-const HASHTAG_RANGE = { min: 0, max: 30 } as const;
 
 type LabelledRowProps = { label: string; children: (labelId: string) => ReactNode };
 
@@ -85,36 +81,6 @@ export const RulesStep = ({ draft, update }: StepProps) => {
                 { value: "direct", label: t("onboarding.rules.ctaDirect") },
               ]}
             />
-          )}
-        </LabelledRow>
-        <LabelledRow label={t("onboarding.rules.maxHashtags")}>
-          {(labelId) => (
-            <div role="group" aria-labelledby={labelId} className="flex items-center gap-3">
-              <IconButton
-                label={`${t("onboarding.rules.maxHashtags")} −`}
-                icon={<Minus />}
-                variant="secondary"
-                size="sm"
-                showTooltip={false}
-                disabled={rules.maxHashtags <= HASHTAG_RANGE.min}
-                onClick={() => setRule({ maxHashtags: rules.maxHashtags - 1 })}
-              />
-              <output
-                aria-live="polite"
-                className="w-6 text-center text-body font-medium tabular-nums"
-              >
-                {rules.maxHashtags}
-              </output>
-              <IconButton
-                label={`${t("onboarding.rules.maxHashtags")} +`}
-                icon={<Plus />}
-                variant="secondary"
-                size="sm"
-                showTooltip={false}
-                disabled={rules.maxHashtags >= HASHTAG_RANGE.max}
-                onClick={() => setRule({ maxHashtags: rules.maxHashtags + 1 })}
-              />
-            </div>
           )}
         </LabelledRow>
       </div>

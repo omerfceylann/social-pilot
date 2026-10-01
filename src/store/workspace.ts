@@ -1,4 +1,5 @@
 import { translate } from "@/i18n/translate";
+import { createRandom } from "@/lib/random";
 import { connectAccount } from "@/services/accountService";
 import {
   buildFirstReactions,
@@ -30,6 +31,18 @@ export const initializeWorkspace = (profile: BrandProfile) => {
   useInbox.getState().reset();
 };
 
+const REPRESENTATIVE_FOLLOWERS = { min: 1_000, max: 10_000, step: 10 } as const;
+
+/**
+ * Geçmişli (zaten kullanılan) bir hesabın temsili takipçi sayısı: 1.000–10.000.
+ * Marka + platformla tohumlanır; aynı hesap her bağlandığında aynı sayıyı alır.
+ */
+const representativeFollowers = (profile: BrandProfile, platform: PlatformId) => {
+  const { min, max, step } = REPRESENTATIVE_FOLLOWERS;
+  const raw = createRandom(`${profile.handle}:${platform}`).int(min, max);
+  return Math.round(raw / step) * step;
+};
+
 /**
  * Bir sosyal hesabı bağlar ve o platformun verisini yükler. Onboarding'deki
  * bağlantı adımı da, sonradan Marka/Ayarlar'dan bağlama da bunu kullanır.
@@ -54,7 +67,7 @@ export const connectPlatform = async ({
     handle,
     displayName: profile.name,
     history,
-    followers: history === "established" ? dataset.analytics.followers[platform] : 0,
+    followers: history === "established" ? representativeFollowers(profile, platform) : 0,
   });
   useSocialAccounts.getState().connect(account);
 

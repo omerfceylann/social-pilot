@@ -50,7 +50,8 @@ export const resolvePlatformHistory = (
 
 /**
  * Store'da tutulmayan, bağlı hesaplardan hesaplanan okuma verisi.
- * Takipçi ve erişim sadece geçmişli hesaplardan gelir; yeni hesaplar 0'dan başlar.
+ * Takipçi ve erişim sadece geçmişli hesaplardan (bağlanan hesabın takipçisiyle ölçeklenerek)
+ * gelir; yeni hesaplar 0'dan başlar.
  * Trendler pazara aittir, herkese aynıdır.
  */
 export type WorkspaceContext = {
@@ -67,10 +68,21 @@ const combineBaseline = (
   accounts: ConnectedAccounts,
 ): AnalyticsBaseline => {
   const established = PLATFORM_IDS.filter((id) => accounts[id]?.history === "established");
-  const sum = (ids: readonly PlatformId[]) =>
-    ids.reduce((total, id) => total + dataset.analytics.followers[id], 0);
-  // Günlük erişim ve takipçi artışı, geçmişli hesapların takipçi payı kadar.
-  const share = established.length > 0 ? sum(established) / Math.max(1, sum(PLATFORM_IDS)) : 0;
+  const followersOf = (id: PlatformId) => accounts[id]?.followers ?? 0;
+  /**
+   * Sektör verisi belli bir takipçi sayısı için yazıldı (ör. Instagram 18.400).
+   * Hesabın gerçek takipçisi bundan azsa izlenme ve erişim de o oranda küçülür;
+   * böylece hesap kartındaki takipçi ile analitikteki rakamlar tutarlı kalır.
+   */
+  const scaleOf = (id: PlatformId) =>
+    followersOf(id) / Math.max(1, dataset.analytics.followers[id]);
+  // Günlük erişim ve takipçi artışı, geçmişli hesapların sektör takipçisine oranı kadar.
+  const datasetTotal = PLATFORM_IDS.reduce(
+    (total, id) => total + dataset.analytics.followers[id],
+    0,
+  );
+  const connectedTotal = established.reduce((total, id) => total + followersOf(id), 0);
+  const share = connectedTotal / Math.max(1, datasetTotal);
   // Beş anahtar açıkça yazılır: Record tipi cast'e gerek kalmadan doğrulanır.
   const byPlatform = <T>(
     pick: (id: PlatformId, isEstablished: boolean) => T,
@@ -86,12 +98,13 @@ const combineBaseline = (
   };
 
   return {
-    followers: byPlatform((id, isEstablished) =>
-      isEstablished ? dataset.analytics.followers[id] : 0,
-    ),
-    avgViews: byPlatform((id, isEstablished) =>
-      isEstablished ? dataset.analytics.avgViews[id] : dataset.starter.analytics.avgViews[id],
-    ),
+    followers: byPlatform((id, isEstablished) => (isEstablished ? followersOf(id) : 0)),
+    avgViews: byPlatform((id, isEstablished) => {
+      const starterViews = dataset.starter.analytics.avgViews[id];
+      if (!isEstablished) return starterViews;
+      // Geçmişli hesap, yeni açılmış bir hesaptan daha az izlenmez.
+      return Math.max(starterViews, Math.round(dataset.analytics.avgViews[id] * scaleOf(id)));
+    }),
     engagementRate:
       established.length > 0
         ? dataset.analytics.engagementRate

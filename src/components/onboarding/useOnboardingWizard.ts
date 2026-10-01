@@ -21,12 +21,10 @@ export type Origin = BrandAnswers["origin"];
 export type StepId =
   | "choice"
   | "basics"
-  | "audience"
   | "personality"
   | "style"
   | "rules"
   | "platformsUsed"
-  | "currentState"
   | "goals"
   | "analysis"
   | "profile"
@@ -34,27 +32,8 @@ export type StepId =
 
 /** İki akışın adımları (spec §11, §12). Sıra değiştirmek = diziyi değiştirmek. */
 const FLOWS: Record<Origin, StepId[]> = {
-  new: [
-    "choice",
-    "basics",
-    "audience",
-    "personality",
-    "style",
-    "rules",
-    "analysis",
-    "profile",
-    "connect",
-  ],
-  existing: [
-    "choice",
-    "basics",
-    "platformsUsed",
-    "currentState",
-    "goals",
-    "analysis",
-    "profile",
-    "connect",
-  ],
+  new: ["choice", "basics", "personality", "style", "rules", "analysis", "profile", "connect"],
+  existing: ["choice", "basics", "platformsUsed", "goals", "analysis", "profile", "connect"],
 };
 
 /** Analizden sonra geri dönülmez: profil oluştuktan sonra soruları değiştirmek Marka sayfasının işi. */
@@ -62,13 +41,7 @@ const NO_BACK: StepId[] = ["choice", "analysis", "profile", "connect"];
 
 export type EditableRules = Pick<
   BrandRules,
-  | "emojiUsage"
-  | "captionLength"
-  | "maxHashtags"
-  | "ctaStyle"
-  | "bannedWords"
-  | "preferredWords"
-  | "visualStyle"
+  "emojiUsage" | "captionLength" | "ctaStyle" | "bannedWords" | "preferredWords" | "visualStyle"
 >;
 
 export type OnboardingDraft = {
@@ -79,30 +52,19 @@ export type OnboardingDraft = {
   country: string;
   language: ContentLanguage;
   website: string;
-  audienceSummary: string;
-  ageMin: number;
-  ageMax: number;
-  audienceDescription: string;
   personality: BrandPersonality[];
   contentStyles: ContentStyle[];
   /** Kurallar adımına gelince sektör varsayılanlarıyla doldurulur. */
   rules: EditableRules | null;
   platformsUsed: PlatformId[];
-  currentStyle: string;
-  improvementFocus: string;
   goals: BrandGoal[];
 };
-
-const AGE_LIMITS = { min: 13, max: 80 } as const;
 
 const toSectorSelection = (draft: OnboardingDraft): SectorSelection | null => {
   if (draft.sector === null) return null;
   if (draft.sector === "other") return { kind: "custom", label: draft.otherSector.trim() };
   return { kind: "preset", id: draft.sector };
 };
-
-const isValidAgeRange = ({ ageMin, ageMax }: OnboardingDraft) =>
-  ageMin >= AGE_LIMITS.min && ageMax <= AGE_LIMITS.max && ageMin < ageMax;
 
 /** Her adımda "Devam" butonu ne zaman aktif? */
 const canContinueFrom = (step: StepId, draft: OnboardingDraft): boolean => {
@@ -115,8 +77,6 @@ const canContinueFrom = (step: StepId, draft: OnboardingDraft): boolean => {
         draft.sector !== null &&
         (draft.sector !== "other" || draft.otherSector.trim().length > 0)
       );
-    case "audience":
-      return isValidAgeRange(draft);
     case "personality":
       return draft.personality.length > 0;
     case "style":
@@ -125,7 +85,6 @@ const canContinueFrom = (step: StepId, draft: OnboardingDraft): boolean => {
       return draft.goals.length > 0;
     case "rules":
     case "platformsUsed":
-    case "currentState":
     case "analysis":
     case "profile":
     case "connect":
@@ -151,9 +110,6 @@ export const toBrandAnswers = (draft: OnboardingDraft): BrandAnswers | null => {
       origin: "new",
       country: draft.country,
       language: draft.language,
-      audienceSummary: draft.audienceSummary.trim(),
-      ageRange: [draft.ageMin, draft.ageMax],
-      audienceDescription: draft.audienceDescription.trim(),
       personality: draft.personality,
       contentStyles: draft.contentStyles,
       rules: draft.rules ?? {},
@@ -163,8 +119,6 @@ export const toBrandAnswers = (draft: OnboardingDraft): BrandAnswers | null => {
     ...base,
     origin: "existing",
     platformsUsed: draft.platformsUsed,
-    currentStyle: draft.currentStyle.trim(),
-    improvementFocus: draft.improvementFocus.trim(),
     goals: draft.goals,
   };
 };
@@ -177,34 +131,20 @@ const createDraft = (brandName: string): OnboardingDraft => ({
   country: "TR",
   language: "tr",
   website: "",
-  audienceSummary: "",
-  ageMin: 22,
-  ageMax: 40,
-  audienceDescription: "",
   personality: [],
   contentStyles: [],
   rules: null,
   platformsUsed: [],
-  currentStyle: "",
-  improvementFocus: "",
   goals: [],
 });
 
 const rulesFor = (draft: OnboardingDraft): EditableRules => {
   const sector = toSectorSelection(draft) ?? { kind: "preset", id: "restaurant" };
-  const {
-    emojiUsage,
-    captionLength,
-    maxHashtags,
-    ctaStyle,
-    bannedWords,
-    preferredWords,
-    visualStyle,
-  } = resolveDataset(sector).brandDefaults.rules;
+  const { emojiUsage, captionLength, ctaStyle, bannedWords, preferredWords, visualStyle } =
+    resolveDataset(sector).brandDefaults.rules;
   return {
     emojiUsage,
     captionLength,
-    maxHashtags,
     ctaStyle,
     bannedWords,
     preferredWords,
@@ -263,7 +203,6 @@ export const useOnboardingWizard = () => {
     canContinue: canContinueFrom(step, draft),
     canGoBack: !NO_BACK.includes(step),
     progress: { current: index + 1, total: flow.length },
-    ageLimits: AGE_LIMITS,
   };
 };
 
