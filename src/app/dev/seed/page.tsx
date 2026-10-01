@@ -23,6 +23,14 @@ const DEMO_BRANDS: { sector: SectorId; brandName: string }[] = [
   { sector: "technology", brandName: "Planora" },
   { sector: "fitness", brandName: "Güç Kulübü" },
   { sector: "fashion", brandName: "Lina Studio" },
+  { sector: "ecommerce", brandName: "Sepetli" },
+  { sector: "beauty", brandName: "Ayna Güzellik" },
+  { sector: "education", brandName: "Pusula Akademi" },
+  { sector: "realEstate", brandName: "Kapı Emlak" },
+  { sector: "localService", brandName: "Usta Elinde" },
+  { sector: "health", brandName: "Nefes Stüdyo" },
+  { sector: "automotive", brandName: "Parla Garaj" },
+  { sector: "travel", brandName: "Rota Butik" },
 ];
 
 type Scenario = "new" | "existing";

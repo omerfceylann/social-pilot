@@ -15,7 +15,7 @@ export const travelComments: SeedComment[] = [
     likes: 31,
     intent: "question",
     aiReply:
-      "Ida dağlarının eteklerinde küçük bir köy Elif! Rotanın detaylarını DM'den paylaşalım.",
+      "Kaz Dağları'nın eteklerinde küçük bir köy Elif! Rotanın detaylarını DM'den paylaşalım.",
     minutesAgo: 30,
   },
   {
