@@ -15,6 +15,8 @@ type AIAlternativesProps<Item> = {
   getKey: (item: Item) => string;
   render: (item: Item) => ReactNode;
   isSelected: (item: Item) => boolean;
+  /** AI'ın en uygun gördüğü seçenek; sadece o ✦ AI Önerisi rozeti taşır. */
+  isPreferred?: (item: Item) => boolean;
   onSelect: (item: Item) => void;
 };
 
@@ -29,6 +31,7 @@ export const AIAlternatives = <Item,>({
   getKey,
   render,
   isSelected,
+  isPreferred,
   onSelect,
 }: AIAlternativesProps<Item>) => {
   const { t } = useT();
@@ -88,6 +91,11 @@ export const AIAlternatives = <Item,>({
                     {selected && <Check strokeWidth={3} />}
                   </span>
                   <span className="min-w-0 flex-1">{render(item)}</span>
+                  {isPreferred?.(item) && (
+                    <AIBadge variant="filled" className="shrink-0">
+                      {t("ai.suggestion")}
+                    </AIBadge>
+                  )}
                 </button>
               </motion.li>
             );

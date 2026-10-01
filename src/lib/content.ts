@@ -1,5 +1,8 @@
+import { POPULAR_TRACKS } from "@/mock/music";
 import type {
   AgentActivity,
+  ContentFormat,
+  MusicTrack,
   CalendarStatus,
   Comment,
   PerformanceTier,
@@ -116,6 +119,22 @@ export const deriveAgentActivity = ({
   opportunitiesFound: visibleSuggestions.length,
   commentsReviewed: comments.length,
 });
+
+// ---------- Müzik ----------
+
+/**
+ * Instagram'da her biçime (fotoğraf gönderisi dahil) müzik eklenebilir; TikTok ve
+ * YouTube'da video biçimlerine. X ve LinkedIn'de müzik yok.
+ */
+export const supportsMusic = (platform: PlatformId, format: ContentFormat) => {
+  if (platform === "instagram" || platform === "tiktok") return true;
+  if (platform === "youtube") return format === "short" || format === "video";
+  return false;
+};
+
+/** AI'ın bu içerik için en uygun gördüğü müzik: önce önerinin kendi seçimi. */
+export const preferredMusic = (suggestion: PostSuggestion): MusicTrack =>
+  suggestion.music ?? suggestion.alternatives.music[0] ?? POPULAR_TRACKS[0];
 
 // ---------- Paylaşmadan önce kontrol ----------
 

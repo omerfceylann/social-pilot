@@ -127,6 +127,7 @@ export const PlatformPreview = ({
       save: t("preview.save"),
       addMedia: t("preview.addMedia"),
       untitled: t("content.untitled"),
+      postPreview: t("preview.postPreview"),
     },
   };
 

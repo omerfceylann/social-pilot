@@ -15,14 +15,20 @@ import {
   SquarePlus,
   X,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { cn } from "@/lib/cn";
 import { BrandAvatar, CaptionText, PhoneFrame, PreviewMedia, type PreviewData } from "./shared";
 
 const IG_LINK = "text-[#00376b]";
 
-/** Instagram akışı: profil satırı, medya, etkileşim satırı, beğeni, caption, alt menü. */
+/**
+ * Instagram akışı: profil satırı (+ müzik), medya, etkileşim satırı, beğeni,
+ * caption, alt menü. Üst bar ve alt menü sabit; arası gerçek uygulamadaki gibi
+ * kaydırılır, böylece uzun açıklamanın tamamı okunabilir.
+ */
 export const InstagramFeedPreview = ({ data }: { data: PreviewData }) => {
   const { labels } = data;
+  const [scrolledToEnd, setScrolledToEnd] = useState(false);
   return (
     <PhoneFrame screenClassName="bg-white text-[#0c1014]">
       <div className="flex h-full flex-col pt-9 text-[12px] leading-snug">
@@ -36,63 +42,93 @@ export const InstagramFeedPreview = ({ data }: { data: PreviewData }) => {
           </span>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-hidden">
-          <div className="flex items-center gap-2 px-3 py-2">
-            <span className="rounded-full bg-gradient-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5] p-[1.5px]">
-              <span className="block rounded-full bg-white p-[1.5px]">
-                <BrandAvatar name={data.brandName} className="size-7 text-[10px]" />
+        <div className="relative min-h-0 flex-1">
+          <div
+            className="h-full [scrollbar-width:none] overflow-y-auto overscroll-contain focus-visible:outline-none"
+            tabIndex={0}
+            role="region"
+            aria-label={labels.postPreview}
+            onScroll={(event) => {
+              const element = event.currentTarget;
+              setScrolledToEnd(
+                element.scrollTop + element.clientHeight >= element.scrollHeight - 4,
+              );
+            }}
+          >
+            <div className="flex items-center gap-2 px-3 py-2">
+              <span className="rounded-full bg-gradient-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5] p-[1.5px]">
+                <span className="block rounded-full bg-white p-[1.5px]">
+                  <BrandAvatar name={data.brandName} className="size-7 text-[10px]" />
+                </span>
               </span>
-            </span>
-            <span className="min-w-0 flex-1 truncate font-semibold">{data.handle}</span>
-            <Ellipsis className="size-4" aria-hidden />
-          </div>
+              <span className="flex min-w-0 flex-1 flex-col leading-tight">
+                <span className="truncate font-semibold">{data.handle}</span>
+                {data.music && (
+                  <span className="flex items-center gap-1 truncate text-[10px]">
+                    <Music2 className="size-2.5 shrink-0" aria-hidden />
+                    <span className="truncate">
+                      {data.music.artist} · {data.music.title}
+                    </span>
+                  </span>
+                )}
+              </span>
+              <Ellipsis className="size-4" aria-hidden />
+            </div>
 
-          <div className="relative">
-            <PreviewMedia
-              media={data.media}
-              addMediaLabel={labels.addMedia}
-              className="aspect-[4/5] w-full"
-            />
-            {data.format === "carousel" && (
-              <span className="absolute top-2.5 right-2.5 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white">
-                1/5
-              </span>
-            )}
-          </div>
+            <div className="relative">
+              <PreviewMedia
+                media={data.media}
+                addMediaLabel={labels.addMedia}
+                className="aspect-[4/5] w-full"
+              />
+              {data.format === "carousel" && (
+                <span className="absolute top-2.5 right-2.5 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white">
+                  1/5
+                </span>
+              )}
+            </div>
 
-          <div className="relative flex items-center gap-3.5 px-3 pt-2.5">
-            <Heart className="size-[19px]" aria-hidden />
-            <MessageCircle className="size-[19px] -scale-x-100" aria-hidden />
-            <Send className="size-[19px]" aria-hidden />
-            {data.format === "carousel" && (
-              <span
-                className="absolute top-1/2 left-1/2 mt-1 flex -translate-x-1/2 gap-1"
-                aria-hidden
-              >
-                <span className="size-1.5 rounded-full bg-[#0095f6]" />
-                {[0, 1, 2, 3].map((dot) => (
-                  <span key={dot} className="size-1.5 rounded-full bg-neutral-300" />
-                ))}
+            <div className="relative flex items-center gap-3.5 px-3 pt-2.5">
+              <Heart className="size-[19px]" aria-hidden />
+              <MessageCircle className="size-[19px] -scale-x-100" aria-hidden />
+              <Send className="size-[19px]" aria-hidden />
+              {data.format === "carousel" && (
+                <span
+                  className="absolute top-1/2 left-1/2 mt-1 flex -translate-x-1/2 gap-1"
+                  aria-hidden
+                >
+                  <span className="size-1.5 rounded-full bg-[#0095f6]" />
+                  {[0, 1, 2, 3].map((dot) => (
+                    <span key={dot} className="size-1.5 rounded-full bg-neutral-300" />
+                  ))}
+                </span>
+              )}
+              <Bookmark className="ml-auto size-[19px]" aria-hidden />
+            </div>
+            <div className="flex flex-col gap-1 px-3 pt-2">
+              <span className="font-semibold">
+                {labels.likes(data.formatCount(data.stats.likes))}
               </span>
+              <CaptionText
+                caption={data.caption}
+                hashtags={data.hashtags}
+                hashtagClassName={IG_LINK}
+                prefix={<span className="mr-1 font-semibold">{data.handle}</span>}
+              />
+              <span className="text-neutral-500">
+                {labels.viewAllComments(data.formatCount(data.stats.comments))}
+              </span>
+              <span className="pb-4 text-[10px] text-neutral-500">{data.timeLabel}</span>
+            </div>
+          </div>
+          {/* Kaydırma ipucu: altta devamı olduğunu gösteren hafif gölge. */}
+          <span
+            className={cn(
+              "pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white to-transparent transition-opacity duration-200",
+              scrolledToEnd && "opacity-0",
             )}
-            <Bookmark className="ml-auto size-[19px]" aria-hidden />
-          </div>
-          <div className="flex flex-col gap-1 px-3 pt-2">
-            <span className="font-semibold">
-              {labels.likes(data.formatCount(data.stats.likes))}
-            </span>
-            <CaptionText
-              caption={data.caption}
-              hashtags={data.hashtags}
-              hashtagClassName={IG_LINK}
-              className="line-clamp-2"
-              prefix={<span className="mr-1 font-semibold">{data.handle}</span>}
-            />
-            <span className="text-neutral-500">
-              {labels.viewAllComments(data.formatCount(data.stats.comments))}
-            </span>
-            <span className="text-[10px] text-neutral-500">{data.timeLabel}</span>
-          </div>
+            aria-hidden
+          />
         </div>
 
         <nav

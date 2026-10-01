@@ -8,19 +8,13 @@ import { useBrand } from "@/store/useBrand";
 import { useContent } from "@/store/useContent";
 import { useInbox } from "@/store/useInbox";
 import { useSocialAccounts } from "@/store/useSocialAccounts";
-import { PLATFORM_IDS, type ContentFormat, type PlatformId, type Post } from "@/types";
+import { PLATFORM_IDS, type PlatformId, type Post } from "@/types";
 import { useWorkspaceContext } from "./useWorkspaceContext";
 
 export type EditablePostFields = Pick<
   Post,
   "title" | "caption" | "hashtags" | "music" | "cta" | "media" | "platform" | "format"
 >;
-
-/** Müzik sadece video biçimlerinde anlamlı; X ve LinkedIn'de müzik eklenmez. */
-const MUSIC_FORMATS: ContentFormat[] = ["reel", "story", "video", "short"];
-
-export const supportsMusic = (platform: PlatformId, format: ContentFormat) =>
-  platform !== "x" && platform !== "linkedin" && MUSIC_FORMATS.includes(format);
 
 /**
  * İçerik editörünün verisi ve eylemleri (spec §19). Düzenlemeler doğrudan

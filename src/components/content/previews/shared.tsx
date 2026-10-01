@@ -60,6 +60,7 @@ export type PreviewLabels = {
   save: string;
   addMedia: string;
   untitled: string;
+  postPreview: string;
 };
 
 /** Dikey içerikler (Reel, Story, TikTok, Shorts) ve Instagram akışı için telefon çerçevesi. */

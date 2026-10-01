@@ -69,7 +69,8 @@ export const MediaField = ({ post, tips, onChange }: MediaFieldProps) => {
         {media && upload.status === "idle" && (
           <div className="flex gap-1">
             <Button size="sm" variant="ghost" onClick={() => inputRef.current?.click()}>
-              {t("content.editor.replace")}
+              <Upload />
+              {t("content.editor.upload")}
             </Button>
             <Button size="sm" variant="ghost" onClick={() => setLibraryOpen(true)}>
               {t("content.editor.library")}

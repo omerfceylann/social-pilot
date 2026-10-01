@@ -1,15 +1,18 @@
 "use client";
 
-import { ChevronDown, Music2 } from "lucide-react";
+import { ChevronDown, Music2, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useId, useState, type ReactNode } from "react";
 import { AIBadge } from "@/components/ai/AIBadge";
+import { IconButton } from "@/components/ui/IconButton";
 import { Input, Textarea } from "@/components/ui/Input";
 import { TagInput } from "@/components/ui/TagInput";
-import { supportsMusic, type ContentEditorState } from "@/hooks/useContentEditor";
+import type { ContentEditorState } from "@/hooks/useContentEditor";
 import { useT } from "@/i18n/useT";
 import { cn } from "@/lib/cn";
+import { preferredMusic, supportsMusic } from "@/lib/content";
 import { transition } from "@/lib/motion";
+import { POPULAR_TRACKS } from "@/mock/music";
 import { PLATFORMS } from "@/mock/platforms";
 import {
   generateFieldSuggestions,
@@ -27,7 +30,12 @@ const trackKey = (track: MusicTrack) => `${track.title}·${track.artist}`;
 const unique = <T,>(items: T[], key: (item: T) => string) =>
   items.filter((item, index) => items.findIndex((other) => key(other) === key(item)) === index);
 
-/** "AI Önerisi" mi, kullanıcı mı düzenledi? Öneriden gelmeyen içerikte etiket yok. */
+/**
+ * Alanın üstündeki işaret:
+ * - "ai": değer AI'ın en uygun gördüğü seçenek → ✦ AI Önerisi
+ * - "edited": kullanıcı elle yazdı → Düzenlendi
+ * - null: listeden başka bir öneri seçildi ya da içerik öneriden gelmedi → işaret yok
+ */
 type Provenance = "ai" | "edited" | null;
 
 type EditorFieldProps = {
@@ -130,35 +138,44 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
   const { t } = useT();
   const [openField, setOpenField] = useState<EditableField | null>(null);
   const rules = profile?.rules;
-  const toggle = (field: EditableField) =>
-    suggestion && rules ? () => setOpenField(openField === field ? null : field) : undefined;
+  const toggleField = (field: EditableField) => () =>
+    setOpenField(openField === field ? null : field);
+  /** Metin alanlarının alternatifleri öneriden gelir; öneri yoksa panel de yok. */
+  const toggle = (field: EditableField) => (suggestion && rules ? toggleField(field) : undefined);
 
-  /** Orijinal öneri + alternatifler; kullanıcı her zaman ilk öneriye dönebilir. */
+  /** AI'ın en uygun seçeneği listenin başında; kullanıcı her zaman ona dönebilir. */
   const load =
     <Field extends EditableField>(
       field: Field,
-      original: FieldSuggestionMap[Field][number] | undefined,
+      preferred: FieldSuggestionMap[Field][number] | undefined,
     ) =>
     async (): Promise<FieldSuggestionMap[Field][number][]> => {
       if (!suggestion || !rules) return [];
       const alternatives = await generateFieldSuggestions(field, suggestion.alternatives, rules);
-      return original === undefined ? alternatives : [original, ...alternatives];
+      return preferred === undefined ? alternatives : [preferred, ...alternatives];
     };
 
-  const textOptions = (field: "title" | "caption" | "cta") =>
-    suggestion ? [suggestion[field], ...suggestion.alternatives[field]] : [];
-  const provenanceOf = (matches: boolean): Provenance =>
-    suggestion ? (matches ? "ai" : "edited") : null;
+  const provenance = (isPreferred: boolean, isAlternative: boolean): Provenance => {
+    if (!suggestion || isPreferred) return suggestion ? "ai" : null;
+    return isAlternative ? null : "edited";
+  };
+  const textProvenance = (field: "title" | "caption" | "cta", value: string) =>
+    provenance(
+      suggestion?.[field] === value,
+      suggestion?.alternatives[field].includes(value) ?? false,
+    );
 
   const captionLimit = PLATFORMS[post.platform].captionLimit;
   const captionTooLong = post.caption.length > captionLimit;
   const showMusic = supportsMusic(post.platform, post.format);
+  const preferredTrack = suggestion ? preferredMusic(suggestion) : undefined;
+  const isPopular = (track: MusicTrack) => POPULAR_TRACKS.some((item) => sameTrack(item, track));
 
   return (
     <div className="flex flex-col gap-6">
       <EditorField
         label={t("content.editor.title")}
-        provenance={provenanceOf(textOptions("title").includes(post.title))}
+        provenance={textProvenance("title", post.title)}
         open={openField === "title"}
         onToggle={toggle("title")}
         alternatives={
@@ -167,6 +184,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
             getKey={(item) => item}
             render={(item) => item}
             isSelected={(item) => item === post.title}
+            isPreferred={(item) => item === suggestion?.title}
             onSelect={(title) => update({ title })}
           />
         }
@@ -183,7 +201,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
 
       <EditorField
         label={t("content.editor.caption")}
-        provenance={provenanceOf(textOptions("caption").includes(post.caption))}
+        provenance={textProvenance("caption", post.caption)}
         open={openField === "caption"}
         onToggle={toggle("caption")}
         meta={
@@ -210,6 +228,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
             getKey={(item) => item}
             render={(item) => <span className="line-clamp-3 whitespace-pre-line">{item}</span>}
             isSelected={(item) => item === post.caption}
+            isPreferred={(item) => item === suggestion?.caption}
             onSelect={(caption) => update({ caption })}
           />
         }
@@ -229,12 +248,9 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
 
       <EditorField
         label={t("content.editor.hashtags")}
-        provenance={provenanceOf(
-          suggestion
-            ? [suggestion.hashtags, ...suggestion.alternatives.hashtags].some((set) =>
-                sameTags(set, post.hashtags),
-              )
-            : false,
+        provenance={provenance(
+          suggestion ? sameTags(suggestion.hashtags, post.hashtags) : false,
+          suggestion?.alternatives.hashtags.some((set) => sameTags(set, post.hashtags)) ?? false,
         )}
         open={openField === "hashtags"}
         onToggle={toggle("hashtags")}
@@ -244,6 +260,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
             getKey={(item) => item.join(" ")}
             render={(item) => <span className="text-accent-text">{item.join(" ")}</span>}
             isSelected={(item) => sameTags(item, post.hashtags)}
+            isPreferred={(item) => (suggestion ? sameTags(item, suggestion.hashtags) : false)}
             onSelect={(hashtags) => update({ hashtags })}
           />
         }
@@ -264,57 +281,69 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
       {showMusic && (
         <EditorField
           label={t("content.editor.music")}
-          provenance={provenanceOf(
-            suggestion
-              ? unique(
-                  [suggestion.music, ...suggestion.alternatives.music].filter(
-                    (track): track is MusicTrack => track !== undefined,
-                  ),
-                  trackKey,
-                ).some((track) => sameTrack(track, post.music))
-              : false,
-          )}
+          provenance={provenance(sameTrack(preferredTrack, post.music), post.music !== undefined)}
           open={openField === "music"}
-          onToggle={toggle("music")}
+          // Popüler şarkılar her içerikte var: müzik paneli öneri olmadan da açılır.
+          onToggle={toggleField("music")}
           alternatives={
             <AIAlternatives<MusicTrack>
-              load={async () => unique(await load("music", suggestion?.music)(), trackKey)}
+              load={async () =>
+                unique([...(await load("music", preferredTrack)()), ...POPULAR_TRACKS], trackKey)
+              }
               getKey={trackKey}
               render={(track) => (
-                <span className="flex flex-col">
-                  <span className="font-medium text-fg">{track.title}</span>
-                  <span className="text-caption text-fg-muted">{track.artist}</span>
+                <span className="flex items-center justify-between gap-3">
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate font-medium text-fg">{track.title}</span>
+                    <span className="truncate text-caption text-fg-muted">{track.artist}</span>
+                  </span>
+                  {isPopular(track) && (
+                    <span className="shrink-0 rounded-full bg-surface-muted px-2 py-0.5 text-caption text-fg-secondary">
+                      {t("content.editor.popular")}
+                    </span>
+                  )}
                 </span>
               )}
               isSelected={(track) => sameTrack(track, post.music)}
+              isPreferred={(track) => sameTrack(track, preferredTrack)}
               onSelect={(music) => update({ music })}
             />
           }
         >
           {({ controlId }) => (
-            <button
-              id={controlId}
-              type="button"
-              onClick={toggle("music")}
-              className="flex h-11 items-center gap-3 rounded-lg border border-border bg-surface px-3 text-left transition-colors hover:border-border-strong"
-            >
-              <Music2 className="size-4 shrink-0 text-fg-muted" aria-hidden />
-              {post.music ? (
-                <span className="min-w-0 truncate text-body text-fg">
-                  {post.music.title}
-                  <span className="text-fg-muted"> · {post.music.artist}</span>
-                </span>
-              ) : (
-                <span className="text-body text-fg-muted">{t("content.editor.noMusic")}</span>
+            <div className="flex items-center gap-2">
+              <button
+                id={controlId}
+                type="button"
+                onClick={toggleField("music")}
+                className="flex h-11 min-w-0 flex-1 items-center gap-3 rounded-lg border border-border bg-surface px-3 text-left transition-colors hover:border-border-strong"
+              >
+                <Music2 className="size-4 shrink-0 text-fg-muted" aria-hidden />
+                {post.music ? (
+                  <span className="min-w-0 truncate text-body text-fg">
+                    {post.music.title}
+                    <span className="text-fg-muted"> · {post.music.artist}</span>
+                  </span>
+                ) : (
+                  <span className="text-body text-fg-muted">{t("content.editor.noMusic")}</span>
+                )}
+              </button>
+              {post.music && (
+                <IconButton
+                  label={t("content.editor.removeMusic")}
+                  icon={<X />}
+                  variant="ghost"
+                  onClick={() => update({ music: undefined })}
+                />
               )}
-            </button>
+            </div>
           )}
         </EditorField>
       )}
 
       <EditorField
         label={t("content.editor.cta")}
-        provenance={provenanceOf(textOptions("cta").includes(post.cta ?? ""))}
+        provenance={textProvenance("cta", post.cta ?? "")}
         open={openField === "cta"}
         onToggle={rules?.ctaStyle === "none" ? undefined : toggle("cta")}
         alternatives={
@@ -323,6 +352,7 @@ export const ContentFields = ({ post, suggestion, profile, update }: ContentFiel
             getKey={(item) => item}
             render={(item) => item}
             isSelected={(item) => item === post.cta}
+            isPreferred={(item) => item === suggestion?.cta}
             onSelect={(cta) => update({ cta })}
           />
         }
