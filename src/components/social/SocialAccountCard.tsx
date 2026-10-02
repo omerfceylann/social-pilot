@@ -82,11 +82,14 @@ export const SocialAccountCard = ({
         </span>
         <div className="flex min-w-0 flex-1 flex-col">
           <span className="text-body font-medium text-fg">{meta.name}</span>
-          <span className="truncate text-caption text-fg-muted">
-            {history === "established"
-              ? t("onboarding.connect.usedHint")
-              : t("onboarding.connect.newHint")}
-          </span>
+          {/* Bağlanma talimatı; hesap bağlanınca anlamı kalmaz. */}
+          {!account && (
+            <span className="truncate text-caption text-fg-muted">
+              {history === "established"
+                ? t("onboarding.connect.usedHint")
+                : t("onboarding.connect.newHint")}
+            </span>
+          )}
         </div>
         <Badge tone={history === "established" ? "accent" : "outline"}>
           {history === "established"

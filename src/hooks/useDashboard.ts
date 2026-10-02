@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import {
   activeSuggestions,
   deriveAgentActivity,
+  pickAcrossPlatforms,
   postsByStatus,
   rankSuggestions,
 } from "@/lib/content";
@@ -85,7 +86,8 @@ export const useDashboard = () => {
   return {
     firstName: user?.name.split(" ")[0] ?? "",
     mode,
-    recommendations: visibleSuggestions.slice(0, RECOMMENDATION_COUNT),
+    // Tek platforma yığılmasın: bağlı platformlar arasında karışık (en güçlüsü ilk kartta).
+    recommendations: pickAcrossPlatforms(visibleSuggestions, RECOMMENDATION_COUNT),
     signals,
     metrics,
     metricDays: METRIC_DAYS,

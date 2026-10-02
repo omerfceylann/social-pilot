@@ -65,6 +65,27 @@ export const rankSuggestions = (a: PostSuggestion, b: PostSuggestion) => {
   return a.suggestedAt.localeCompare(b.suggestedAt);
 };
 
+/**
+ * Sıralı önerilerden ilk `count` tanesini seçer ama platformları karıştırır:
+ * önce her platformun en iyi önerisi, yer kalırsa sıradakiler. Sonuç yine
+ * sıralamaya göre dizilir; en güçlü öneri hep ilk kartta kalır.
+ */
+export const pickAcrossPlatforms = (ranked: PostSuggestion[], count: number) => {
+  const picked = new Set<PostSuggestion>();
+  const platforms = new Set<PlatformId>();
+  for (const suggestion of ranked) {
+    if (picked.size === count) break;
+    if (platforms.has(suggestion.platform)) continue;
+    picked.add(suggestion);
+    platforms.add(suggestion.platform);
+  }
+  for (const suggestion of ranked) {
+    if (picked.size === count) break;
+    picked.add(suggestion);
+  }
+  return ranked.filter((suggestion) => picked.has(suggestion));
+};
+
 /** Taslaklar en son düzenlenenden başlar: kullanıcı kaldığı yerden devam eder. */
 export const draftsByRecency = (posts: Post[]) =>
   posts

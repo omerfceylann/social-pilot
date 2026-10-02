@@ -34,9 +34,10 @@ export const PlatformStrip = () => {
       {/*
         Yerleşim ekran genişliğine değil şeridin kendi genişliğine göre (container query):
         kenar çubuğu açıkken 1024px'te bile yer dar. Beş sütun için ≥56rem gerekir; daha
-        dar alanda yatay kaydırma (bir sonraki kartın kenarı görünür).
+        dar alanda kartlar alt satıra geçer (2–3 sütun). Yatay kaydırma sadece mobilde:
+        orada bir sonraki kartın kenarı görünür, masaüstünde gizli kaydırma fark edilmez.
       */}
-      <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:scroll-px-0 sm:px-0 @4xl:grid @4xl:grid-cols-5 @4xl:overflow-visible">
+      <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 @xl:grid-cols-3 @4xl:grid-cols-5">
         {PLATFORM_IDS.map((platform) => {
           const account = accounts[platform];
           const meta = PLATFORMS[platform];
@@ -44,7 +45,7 @@ export const PlatformStrip = () => {
             <li
               key={platform}
               className={cn(
-                "flex w-44 shrink-0 snap-start flex-col gap-3 rounded-xl border bg-surface p-4 transition-colors @4xl:w-auto",
+                "flex w-44 shrink-0 snap-start flex-col gap-3 rounded-xl border bg-surface p-4 transition-colors sm:w-auto",
                 account ? "border-success/30" : "border-border",
               )}
             >

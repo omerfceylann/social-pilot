@@ -105,8 +105,8 @@ export const ContentEditor = ({ postId }: { postId: string }) => {
     await simulateLatency(700, 1200);
     publishPost(post.id);
     setPublishing(false);
+    // Onay penceresi mesajı zaten gösteriyor; aynı metni bir de toast'ta tekrarlamıyoruz.
     setDialog("success");
-    toast.success(t("toasts.contentPublished"), t("toasts.publishedOn", { where }));
   };
 
   const openSchedule = () => {
