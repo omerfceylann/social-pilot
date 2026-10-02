@@ -298,6 +298,254 @@ export const automotiveSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "ax-ig-shine",
+    platform: "instagram",
+    format: "post",
+    title: "Seramik kaplama sonrası",
+    description: "Seramik kaplama sonrası parlaklığı gösteren tek kare.",
+    caption:
+      "Seramik kaplamadan 24 saat sonra: su damlaları boncuk gibi akıyor, boya derin bir parlaklıkta.",
+    hashtags: ["#seramikkaplama", "#detailing", "#{handle}"],
+    cta: "Fiyat için aracının modelini DM'den yaz.",
+    media: [photo("ax-ig-shine-m", IMG.porsche, "4:5", "Parlak spor araba")],
+    theme: "productFocused",
+    reasoning: "Bitmiş iş kareleri hesabında en çok fiyat sorusu getiren gönderiler.",
+    estimate: {
+      reach: [5000, 9500],
+      engagementRate: 5.9,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["24 saat sonra", "Boncuk gibi su"],
+      caption: [
+        "Seramik kaplamanın farkı ilk yağmurda görünür.",
+        "Derin bir parlaklık, kolay temizlik.",
+      ],
+      hashtags: [
+        ["#otokuaför", "#{handle}"],
+        ["#araba", "#parlaklık"],
+      ],
+      cta: ["Randevu al.", "Detaylar için DM."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "12:00",
+    },
+  },
+  {
+    id: "ax-ig-reel-interior",
+    platform: "instagram",
+    format: "reel",
+    title: "Tavan döşemesi temizliği",
+    description: "Lekelenmiş tavan döşemesinin temizlenişini gösteren Reel.",
+    caption: "Sigara izi ve el lekesi. Tavan döşemesi en hassas yer: az su, yumuşak fırça, sabır.",
+    hashtags: ["#içtemizlik", "#öncesonra", "#{handle}"],
+    music: {
+      title: "Chrome Lines",
+      artist: "Night Drive",
+    },
+    cta: "İç temizlik randevusu için DM.",
+    media: [video("ax-ig-reel-interior-m", IMG.interior, "9:16", "Araç içi", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Detaylı temizlik dönüşümleri yükselişte; iç temizlik Reel'leri hesabında ortalamanın %50 üstünde izleniyor.",
+    relatedTrendId: "at-detailing",
+    estimate: {
+      reach: [13000, 23000],
+      engagementRate: 7.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["En hassas bölge", "Tavanın gerçek rengi"],
+      caption: ["Tavan döşemesi nasıl temizlenir?", "Az su, yumuşak fırça, sabır."],
+      hashtags: [
+        ["#detailing", "#{handle}"],
+        ["#otoyıkama", "#araba"],
+      ],
+      cta: ["Kaydet.", "Randevunu al."],
+      music: [
+        {
+          title: "Garage Groove",
+          artist: "Night Drive",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "ax-ig-carousel-winter",
+    platform: "instagram",
+    format: "carousel",
+    title: "Kış lastiği: ne zaman, nasıl?",
+    description: "Kış lastiğine geçiş zamanını ve kontrolleri anlatan carousel.",
+    caption:
+      "Hava 7 derecenin altına düşünce kış lastiği. Diş derinliği en az 4 mm, üretim tarihi 5 yıldan eski olmamalı.",
+    hashtags: ["#kışlastiği", "#kışbakımı", "#{handle}"],
+    cta: "Kaydet, lastik değişiminde aç.",
+    media: [
+      photo("ax-ig-carousel-winter-1", IMG.repair, "4:5", "Atölye"),
+      photo("ax-ig-carousel-winter-2", IMG.mechanic2, "4:5", "Lastik kontrolü"),
+      photo("ax-ig-carousel-winter-3", IMG.car5, "4:5", "Araba"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Kışa hazırlık aramaları artıyor; lastik rehberleri hesabında en çok kaydedilen carousel.",
+    relatedTrendId: "at-winter",
+    estimate: {
+      reach: [7000, 13000],
+      engagementRate: 6.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["7 derece kuralı", "Kış lastiği rehberi"],
+      caption: ["Kış lastiğine ne zaman geçmeli?", "Lastiklerini kışa hazırla."],
+      hashtags: [
+        ["#lastik", "#{handle}"],
+        ["#arababakımı", "#güvenlik"],
+      ],
+      cta: ["Bir arkadaşına gönder.", "Lastik randevusu al."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "ax-tt-headlight",
+    platform: "tiktok",
+    format: "video",
+    title: "Sararmış far yenileme",
+    description: "Sararmış bir farın zımpara ve kaplamayla yenilenişi.",
+    caption: "Sararmış far, üç aşamalı zımpara, cila ve koruyucu kaplama. Gece görüşün geri geldi.",
+    hashtags: ["#faryenileme", "#detailing", "#{handle}"],
+    music: {
+      title: "Chrome Lines",
+      artist: "Night Drive",
+    },
+    cta: "Far yenileme randevusu için DM.",
+    media: [video("ax-tt-headlight-m", IMG.car2, "9:16", "Araba farı", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Detaylı temizlik dönüşümleri TikTok'ta %61 yükselişte; far yenileme videoları en çok kaydedilenler arasında.",
+    relatedTrendId: "at-detailing",
+    estimate: {
+      reach: [17000, 30000],
+      engagementRate: 8.1,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Far yenileme", "Gece görüşü geri geldi"],
+      caption: ["Sararmış farlar yenilenebilir mi?", "Üç aşamada yeni gibi far."],
+      hashtags: [
+        ["#araba", "#{handle}"],
+        ["#oddlysatisfying", "#otokuaför"],
+      ],
+      cta: ["Takip et.", "Kaydet."],
+      music: [
+        {
+          title: "Garage Groove",
+          artist: "Night Drive",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "20:00",
+    },
+  },
+  {
+    id: "ax-tt-sound",
+    platform: "tiktok",
+    format: "video",
+    title: "Bu ses ne anlatıyor?",
+    description: "Araçtaki üç yaygın sesin anlamını anlatan video.",
+    caption:
+      "Frende gıcırtı balata, dönüşte tıkırtı aks, rölantide titreme buji olabilir. Sesi kaydet, bize gönder.",
+    hashtags: ["#arabatüyoları", "#arıza", "#{handle}"],
+    music: {
+      title: "Chrome Lines",
+      artist: "Night Drive",
+    },
+    cta: "Sesi kaydet, DM'den gönder.",
+    media: [video("ax-tt-sound-m", IMG.mechanic, "9:16", "Usta", 30)],
+    theme: "educational",
+    reasoning:
+      "Gösterge ve arıza içerikleri TikTok'ta yorum getiriyor; takipçiler kendi araçlarının sesini soruyor.",
+    relatedTrendId: "at-dashboard",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.5,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Üç ses, üç anlam", "Aracın konuşuyor"],
+      caption: ["Aracından gelen ses ne anlatıyor?", "Gıcırtı, tıkırtı ve titreme."],
+      hashtags: [
+        ["#otoservis", "#{handle}"],
+        ["#bakım", "#güvenlik"],
+      ],
+      cta: ["Takip et.", "Kontrol randevusu al."],
+      music: [
+        {
+          title: "Garage Groove",
+          artist: "Night Drive",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "ax-tt-workshop",
+    platform: "tiktok",
+    format: "video",
+    title: "Atölyede kapanış saati",
+    description: "Gün sonunda atölyenin toparlanışını gösteren perde arkası videosu.",
+    caption: "Aletler yerine, zemin temiz, son araç teslim. Yarın 08:00'de yeniden açıyoruz.",
+    hashtags: ["#atölyedenbirgün", "#perdearkası", "#{handle}"],
+    music: {
+      title: "Chrome Lines",
+      artist: "Night Drive",
+    },
+    cta: "Takip et, yarın da buradayız.",
+    media: [video("ax-tt-workshop-m", IMG.repair, "9:16", "Atölye", 25)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Atölye perde arkası videoları güven oluşturuyor; düzenli bir atölye görüntüsü müşterinin en çok önemsediği şey.",
+    relatedTrendId: "at-workshop",
+    estimate: {
+      reach: [10000, 19000],
+      engagementRate: 7.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Gün sonu", "Temiz bir atölye"],
+      caption: ["Günün son 30 saniyesi.", "Düzenli atölye, özenli iş."],
+      hashtags: [
+        ["#atölye", "#{handle}"],
+        ["#usta", "#otoservis"],
+      ],
+      cta: ["Takip et.", "Randevu al."],
+      music: [
+        {
+          title: "Garage Groove",
+          artist: "Night Drive",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "18:30",
+    },
+  },
 ];
 
 export const automotivePosts: SeedPost[] = [

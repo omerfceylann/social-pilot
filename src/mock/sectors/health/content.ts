@@ -300,6 +300,255 @@ export const healthSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "hx-ig-quote",
+    platform: "instagram",
+    format: "post",
+    title: "Bugün için küçük bir hatırlatma",
+    description: "Gün ortasında mola vermeyi hatırlatan sakin gönderi.",
+    caption:
+      "Mükemmel bir gün gerekmiyor. Bir bardak su, beş derin nefes ve kısa bir yürüyüş bugün için yeterli.",
+    hashtags: ["#iyioluş", "#denge", "#{handle}"],
+    cta: "Bugün kendine ne iyi geldi?",
+    media: [photo("hx-ig-quote-m", IMG.tea, "4:5", "Bir fincan çay")],
+    theme: "communityFocused",
+    reasoning:
+      "Nazik hatırlatma gönderileri hesabında en çok paylaşılan içerik; takipçiler hikâyelerinde yeniden paylaşıyor.",
+    estimate: {
+      reach: [4500, 8500],
+      engagementRate: 6.2,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Küçük bir hatırlatma", "Bugün için yeterli"],
+      caption: [
+        "Kendine iyi gelmek için büyük adımlar gerekmiyor.",
+        "Su, nefes ve kısa bir yürüyüş.",
+      ],
+      hashtags: [
+        ["#kendineiyigel", "#{handle}"],
+        ["#alışkanlık", "#wellness"],
+      ],
+      cta: ["Bir arkadaşına gönder.", "Sabah dersimize katıl."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "13:00",
+    },
+  },
+  {
+    id: "hx-ig-reel-stretch",
+    platform: "instagram",
+    format: "reel",
+    title: "Sabah için 5 hareket",
+    description: "Uyanınca yapılabilecek 5 nazik esnemeyi gösteren Reel.",
+    caption:
+      "Kedi-inek, çocuk pozu, yan esneme, boyun çevirme ve öne eğilme. Güne bedenini uyandırarak başla.",
+    hashtags: ["#sabahyogası", "#esneme", "#{handle}"],
+    music: {
+      title: "Soft Rain",
+      artist: "Ambient Rooms",
+    },
+    cta: "Kaydet, yarın sabah dene.",
+    media: [video("hx-ig-reel-stretch-m", IMG.yoga, "9:16", "Yoga yapan kadın", 40)],
+    theme: "educational",
+    reasoning:
+      "Kısa esneme videoları hesabında ortalamanın %44 üstünde kaydediliyor; sabah rutini içerikleri yükselişte.",
+    estimate: {
+      reach: [12000, 21000],
+      engagementRate: 7.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["5 nazik esneme", "Bedenini uyandır"],
+      caption: ["Yataktan kalkınca 3 dakika yeter.", "Sabah sertliğine 5 hareket."],
+      hashtags: [
+        ["#yoga", "#{handle}"],
+        ["#sabahrutini", "#wellness"],
+      ],
+      cta: ["Takip et.", "Sabah dersimize katıl."],
+      music: [
+        {
+          title: "Still Waters",
+          artist: "Ambient Rooms",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "07:30",
+    },
+  },
+  {
+    id: "hx-ig-carousel-sleep",
+    platform: "instagram",
+    format: "carousel",
+    title: "Uykuyu bölen 4 alışkanlık",
+    description: "Uyku kalitesini etkileyen akşam alışkanlıklarını anlatan carousel.",
+    caption:
+      "Geç saatte kafein, yatakta telefon, ağır akşam yemeği ve düzensiz yatış saati. Bu akşam birini değiştir.",
+    hashtags: ["#uyku", "#alışkanlık", "#{handle}"],
+    cta: "Kaydet, bu akşam bir tanesini dene.",
+    media: [
+      photo("hx-ig-carousel-sleep-1", IMG.tea, "4:5", "Bitki çayı"),
+      photo("hx-ig-carousel-sleep-2", IMG.meditation, "4:5", "Meditasyon"),
+      photo("hx-ig-carousel-sleep-3", IMG.oils, "4:5", "Aromaterapi"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Uyku rutini içerikleri yükselişte; alışkanlık carousel'leri hesabında en çok kaydedilen biçim.",
+    relatedTrendId: "ht-sleep",
+    estimate: {
+      reach: [7000, 13000],
+      engagementRate: 6.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Akşam alışkanlıkları", "Daha iyi uyku için"],
+      caption: ["Uykunu bölen dört küçük alışkanlık.", "Uyku kalitesi akşam başlar."],
+      hashtags: [
+        ["#uykurutini", "#{handle}"],
+        ["#denge", "#sağlıklıyaşam"],
+      ],
+      cta: ["Hangisi sende var? Yorumlara yaz.", "Akşam yin dersimize katıl."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "21:00",
+    },
+  },
+  {
+    id: "hx-tt-breath",
+    platform: "tiktok",
+    format: "video",
+    title: "4-7-8 nefesiyle uykuya hazırlan",
+    description: "Uyku öncesi nefes egzersizini ekranda sayarak yaptıran video.",
+    caption: "4 saniye al, 7 tut, 8 ver. Ekrandaki sayıyı takip et, dört tur yeter.",
+    hashtags: ["#nefes", "#uyku", "#{handle}"],
+    music: {
+      title: "Soft Rain",
+      artist: "Ambient Rooms",
+    },
+    cta: "Kaydet, bu gece dene.",
+    media: [video("hx-tt-breath-m", IMG.meditation, "9:16", "Meditasyon", 60)],
+    theme: "educational",
+    reasoning:
+      "Nefes egzersizleri TikTok'ta yükselişte; ekranda sayılan videolar tamamlanma oranında ortalamanın üstünde.",
+    relatedTrendId: "ht-breath",
+    estimate: {
+      reach: [16000, 28000],
+      engagementRate: 8.1,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Uyku öncesi nefes", "4-7-8 tekniği"],
+      caption: ["Uyumadan önce dört tur nefes.", "Sayıyı takip et, nefesini yavaşlat."],
+      hashtags: [
+        ["#nefesegzersizi", "#{handle}"],
+        ["#uykurutini", "#sakinlik"],
+      ],
+      cta: ["Takip et.", "Nefes atölyemize katıl."],
+      music: [
+        {
+          title: "Still Waters",
+          artist: "Ambient Rooms",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "22:00",
+    },
+  },
+  {
+    id: "hx-tt-desk",
+    platform: "tiktok",
+    format: "video",
+    title: "Toplantı arasında 30 saniye",
+    description: "Masa başında yapılabilecek kısa omuz ve boyun esnemesi.",
+    caption:
+      "Omuzları kulaklara kaldır, bırak. Başını yavaşça sağa, sola çevir. 30 saniyede bedenine dön.",
+    hashtags: ["#ofisyogası", "#esneme", "#{handle}"],
+    music: {
+      title: "Soft Rain",
+      artist: "Ambient Rooms",
+    },
+    cta: "Ekip arkadaşına gönder.",
+    media: [video("hx-tt-desk-m", IMG.yoga, "9:16", "Esneme", 30)],
+    theme: "educational",
+    reasoning:
+      "Masa başı esneme içerikleri yükselişte; kısa ofis videoları TikTok'ta paylaşım getiriyor.",
+    relatedTrendId: "ht-desk",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.3,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Masa başı esneme", "Omuzlarını bırak"],
+      caption: ["Toplantılar arasında 30 saniyelik mola.", "Boynun ve omuzların için kısa bir an."],
+      hashtags: [
+        ["#masabaşı", "#{handle}"],
+        ["#mola", "#wellness"],
+      ],
+      cta: ["Takip et.", "Kurumsal seanslar için DM."],
+      music: [
+        {
+          title: "Still Waters",
+          artist: "Ambient Rooms",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "14:00",
+    },
+  },
+  {
+    id: "hx-tt-slow",
+    platform: "tiktok",
+    format: "video",
+    title: "Telefonsuz ilk 10 dakika",
+    description: "Sabahın ilk dakikalarını telefonsuz geçirmeyi anlatan sakin video.",
+    caption: "Perdeyi aç, bir bardak su iç, pencereden bak. Telefon 10 dakika bekleyebilir.",
+    hashtags: ["#yavaşyaşam", "#sabahrutini", "#{handle}"],
+    music: {
+      title: "Soft Rain",
+      artist: "Ambient Rooms",
+    },
+    cta: "Yarın sabah dene.",
+    media: [video("hx-tt-slow-m", IMG.tea, "9:16", "Sabah çayı", 25)],
+    theme: "storytelling",
+    reasoning:
+      "#yavaşyaşam TikTok'ta yükselişte; sakin sabah videoları izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "ht-slowliving",
+    estimate: {
+      reach: [13000, 24000],
+      engagementRate: 7.5,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Telefonsuz sabah", "10 dakika sadece sen"],
+      caption: ["Güne ekranla değil, ışıkla başla.", "Sabahın ilk 10 dakikası senin."],
+      hashtags: [
+        ["#slowliving", "#{handle}"],
+        ["#ritüel", "#denge"],
+      ],
+      cta: ["Takip et.", "Sabah dersimize katıl."],
+      music: [
+        {
+          title: "Still Waters",
+          artist: "Ambient Rooms",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "07:00",
+    },
+  },
 ];
 
 export const healthPosts: SeedPost[] = [

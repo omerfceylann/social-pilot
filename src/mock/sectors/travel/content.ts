@@ -301,6 +301,251 @@ export const travelSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "trx-ig-postcard",
+    platform: "instagram",
+    format: "post",
+    title: "Bir kartpostal: Kapadokya sabahı",
+    description: "Kapadokya'da sabah manzarasını gösteren tek kare gönderi.",
+    caption: "Sabah 6, vadide sis, uzakta ilk ışık. Kalabalık gelmeden önce Kapadokya böyle.",
+    hashtags: ["#kapadokya", "#saklıköşeler", "#{handle}"],
+    cta: "Ekim turumuzun detayları DM'de.",
+    media: [photo("trx-ig-postcard-m", IMG.mountains, "4:5", "Vadi manzarası")],
+    theme: "storytelling",
+    reasoning:
+      "Manzara kareleri hesabında en çok kaydedilen gönderiler; sabah saatleri kalabalıktan uzak deneyimi anlatıyor.",
+    relatedTrendId: "tt-hidden",
+    estimate: {
+      reach: [6000, 11000],
+      engagementRate: 6.5,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Kapadokya'da sabah 6", "Sisli vadi"],
+      caption: ["Kalabalık gelmeden önceki Kapadokya.", "Vadide ilk ışık."],
+      hashtags: [
+        ["#türkiye", "#{handle}"],
+        ["#gezilecekyerler", "#manzara"],
+      ],
+      cta: ["Kaydet, rotana ekle.", "Tur takvimi profilde."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "08:00",
+    },
+  },
+  {
+    id: "trx-ig-reel-boat",
+    platform: "instagram",
+    format: "reel",
+    title: "Tekneyle koy koy",
+    description: "Tekne turunda koylar arası geçişi gösteren Reel.",
+    caption:
+      "Sabah ilk koy, öğlen balık, gün batımında son koy. Kaş'ta bir tekne günü 30 saniyede.",
+    hashtags: ["#tekneturu", "#kaş", "#{handle}"],
+    music: {
+      title: "Sea Breeze",
+      artist: "Coastline",
+    },
+    cta: "Ekim turunda yerini ayır.",
+    media: [video("trx-ig-reel-boat-m", IMG.beach, "9:16", "Koy", 30)],
+    theme: "storytelling",
+    reasoning:
+      "Saklı köşeler içerikleri %58 yükselişte; hesabındaki koy Reel'leri ortalamanın %50 üstünde kaydediliyor.",
+    relatedTrendId: "tt-hidden",
+    estimate: {
+      reach: [14000, 25000],
+      engagementRate: 7.8,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Kaş'ta tekne günü", "Üç koy, bir gün"],
+      caption: ["Bir günde üç koy, bir gün batımı.", "Denizden bir gün."],
+      hashtags: [
+        ["#koy", "#{handle}"],
+        ["#türkiye", "#seyahat"],
+      ],
+      cta: ["Kaydet.", "Tur detayları profilde."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "Coastline",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "trx-ig-carousel-stay",
+    platform: "instagram",
+    format: "carousel",
+    title: "Rotadaki 3 konaklama",
+    description: "Tur rotasındaki butik konaklamaları tanıtan carousel.",
+    caption:
+      "Taş bir konakta 8 oda, göl kıyısında ahşap bir ev ve denize bakan küçük bir otel. Rotamızın üç konaklaması kaydırmada.",
+    hashtags: ["#butikotel", "#yavaşseyahat", "#{handle}"],
+    cta: "Hangisinde uyanmak isterdin?",
+    media: [
+      photo("trx-ig-carousel-stay-1", IMG.hotel, "4:5", "Butik otel"),
+      photo("trx-ig-carousel-stay-2", IMG.lake, "4:5", "Göl kıyısı"),
+      photo("trx-ig-carousel-stay-3", IMG.resort, "4:5", "Deniz kenarı otel"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Yavaş seyahat içerikleri yükseliyor; konaklama carousel'leri tur sorularının en çok geldiği gönderiler.",
+    relatedTrendId: "tt-slowtravel",
+    estimate: {
+      reach: [7000, 13000],
+      engagementRate: 6.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Üç durak, üç konaklama", "Nerede kalıyoruz?"],
+      caption: ["Rotamızda her gece farklı bir hikâye.", "Küçük, sakin ve yerel konaklamalar."],
+      hashtags: [
+        ["#konaklama", "#{handle}"],
+        ["#türkiye", "#seyahat"],
+      ],
+      cta: ["Yorumlara yaz.", "Tur takvimini incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "trx-tt-pov",
+    platform: "tiktok",
+    format: "video",
+    title: "POV: Yayla evinde uyanıyorsun",
+    description: "Karadeniz yaylasında bir sabahı gezgin gözünden gösteren video.",
+    caption: "POV: Pencereden sis giriyor, soba yanıyor, kahvaltıda yayla tereyağı var.",
+    hashtags: ["#pov", "#yayla", "#{handle}"],
+    music: {
+      title: "Sea Breeze",
+      artist: "Coastline",
+    },
+    cta: "Yayla turumuz profilde.",
+    media: [video("trx-tt-pov-m", IMG.mountains, "9:16", "Yayla", 20)],
+    theme: "storytelling",
+    reasoning:
+      "POV gezi videoları TikTok'ta %47 yükselişte; sakin sabah videoları izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "tt-pov",
+    estimate: {
+      reach: [17000, 30000],
+      engagementRate: 8.2,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Yayla sabahı", "Sisli bir uyanış"],
+      caption: ["Alarm yok, sis var.", "Yaylada bir sabahın 20 saniyesi."],
+      hashtags: [
+        ["#karadeniz", "#{handle}"],
+        ["#seyahat", "#doğa"],
+      ],
+      cta: ["Takip et.", "Bu yaylanın adını tahmin et."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "Coastline",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "08:00",
+    },
+  },
+  {
+    id: "trx-tt-pack",
+    platform: "tiktok",
+    format: "video",
+    title: "Hafta sonu valizi 30 saniyede",
+    description: "Hafta sonu kaçamağı için valiz hazırlamayı gösteren video.",
+    caption: "Rulo katlama, 3 parça kuralı, bir hırka. İki günlük valiz 30 saniyede hazır.",
+    hashtags: ["#valiz", "#seyahatipuçları", "#{handle}"],
+    music: {
+      title: "Sea Breeze",
+      artist: "Coastline",
+    },
+    cta: "Kaydet, bir sonraki kaçamakta aç.",
+    media: [video("trx-tt-pack-m", IMG.passport, "9:16", "Valiz", 30)],
+    theme: "educational",
+    reasoning: "Valiz ipuçları TikTok'ta en çok kaydedilen seyahat içerikleri arasında.",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.3,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Rulo katlama", "İki günlük valiz"],
+      caption: ["Hafif valiz, rahat seyahat.", "3 parça kuralıyla valiz."],
+      hashtags: [
+        ["#seyahat", "#{handle}"],
+        ["#hafifseyahat", "#ipucu"],
+      ],
+      cta: ["Takip et.", "Senin vazgeçilmezin ne?"],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "Coastline",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "trx-tt-hidden",
+    platform: "tiktok",
+    format: "video",
+    title: "Haritada olmayan bir köy",
+    description: "Az bilinen bir dağ köyünü tanıtan video.",
+    caption:
+      "Asfalt yok, sinyal zayıf, ama köy fırınında ekmek sıcak. Haritada adı zor bulunan bir köy.",
+    hashtags: ["#saklıköşeler", "#köy", "#{handle}"],
+    music: {
+      title: "Sea Breeze",
+      artist: "Coastline",
+    },
+    cta: "Bu köy rotamızda, detaylar profilde.",
+    media: [video("trx-tt-hidden-m", IMG.hiking, "9:16", "Dağ yolu", 30)],
+    theme: "storytelling",
+    reasoning:
+      "Saklı köşeler TikTok'ta yükselişte; az bilinen yerler yorumlarda en çok soru getiren içerik.",
+    relatedTrendId: "tt-hidden",
+    estimate: {
+      reach: [14000, 26000],
+      engagementRate: 7.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Sinyal zayıf, ekmek sıcak", "Saklı bir köy"],
+      caption: ["Turistik rehberlerde olmayan bir köy.", "Asfaltın bittiği yerde bir köy."],
+      hashtags: [
+        ["#gezilecekyerler", "#{handle}"],
+        ["#türkiye", "#doğa"],
+      ],
+      cta: ["Takip et.", "Köyün adını DM'den sor."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "Coastline",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "20:00",
+    },
+  },
 ];
 
 export const travelPosts: SeedPost[] = [

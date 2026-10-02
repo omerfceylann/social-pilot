@@ -373,6 +373,86 @@ export const automotiveStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "astx-ig-first",
+      platform: "instagram",
+      format: "reel",
+      title: "İlk aracımız teslim",
+      description: "Atölyenin ilk işini teslim ettiği anı gösteren Reel.",
+      caption:
+        "{brand} ilk aracını teslim etti: iç temizlik ve pasta cila, 4 saat. Sahibi anahtarı alınca gülümsedi.",
+      hashtags: ["#detailing", "#ilkiş", "#{handle}"],
+      music: {
+        title: "Chrome Lines",
+        artist: "Night Drive",
+      },
+      cta: "İlk yıkama indirimi için DM.",
+      media: [video("astx-ig-first-m", IMG.car, "9:16", "Teslim edilen araba", 20)],
+      theme: "storytelling",
+      reasoning:
+        "İlk teslim anı yeni atölyelerin güvenilir görünmesini sağlar ve ilk randevuları getirir.",
+      estimate: {
+        reach: [500, 2300],
+        engagementRate: 7.7,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk teslim", "4 saatin sonunda"],
+        caption: ["İlk aracımız sahibine kavuştu.", "Bir anahtar, bir gülümseme."],
+        hashtags: [["#otoservis", "#{handle}"], ["#araba"]],
+        cta: ["Takip et.", "Randevu al."],
+        music: [
+          {
+            title: "Garage Groove",
+            artist: "Night Drive",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "astx-tt-tools",
+      platform: "tiktok",
+      format: "video",
+      title: "Atölyemizin aletleri",
+      description: "Detaylı temizlikte kullanılan ekipmanı tanıtan video.",
+      caption:
+        "{brand} atölyesinde: buhar makinesi, pasta makinesi, mikrofiber bezler ve pH nötr ürünler.",
+      hashtags: ["#detailing", "#atölye", "#{handle}"],
+      music: {
+        title: "Chrome Lines",
+        artist: "Night Drive",
+      },
+      cta: "Takip et.",
+      media: [video("astx-tt-tools-m", IMG.mechanic2, "9:16", "Atölye ekipmanı", 20)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Ekipman tanıtımları yeni atölyelerin işini ciddiye aldığını gösterir ve TikTok'ta ilk izleyicileri getirir.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.3,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Ekipman turu", "Doğru alet, temiz iş"],
+        caption: ["Aracına dokunan her alet burada.", "Detaylı temizliğin ekipmanı."],
+        hashtags: [["#otoyıkama", "#{handle}"], ["#araba"]],
+        cta: ["Soru sor.", "Randevu al."],
+        music: [
+          {
+            title: "Garage Groove",
+            artist: "Night Drive",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {

@@ -377,6 +377,86 @@ export const healthStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "hsx-ig-space",
+      platform: "instagram",
+      format: "reel",
+      title: "Bir dersin ilk anları",
+      description: "Stüdyoda bir dersin başlangıcını gösteren sakin Reel.",
+      caption:
+        "{brand} stüdyosunda ders başlarken: matlar serili, ışık kısık, herkes nefesine dönüyor.",
+      hashtags: ["#yoga", "#wellness", "#{handle}"],
+      music: {
+        title: "Soft Rain",
+        artist: "Ambient Rooms",
+      },
+      cta: "İlk dersin bizden.",
+      media: [video("hsx-ig-space-m", IMG.spa, "9:16", "Stüdyo", 20)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Wellness hizmetinde atmosfer karar sebebidir; ders anları ilk deneme dersi taleplerini getirir.",
+      estimate: {
+        reach: [500, 2200],
+        engagementRate: 7.9,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Ders başlarken", "Nefese dönüş"],
+        caption: ["Bir dersin ilk sakin dakikaları.", "Kısık ışık, serili matlar."],
+        hashtags: [["#yogastüdyosu", "#{handle}"], ["#nefes"]],
+        cta: ["Takip et.", "Programı incele."],
+        music: [
+          {
+            title: "Still Waters",
+            artist: "Ambient Rooms",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "hsx-tt-why",
+      platform: "tiktok",
+      format: "video",
+      title: "Neden bu stüdyoyu açtık?",
+      description: "Kurucunun stüdyoyu açma hikâyesini anlattığı video.",
+      caption:
+        "{brand} kurucusu Melis: 'Yoğun bir iş hayatında kendime ayıracak sakin bir yer arıyordum. Bulamayınca açtım.'",
+      hashtags: ["#wellness", "#hikâye", "#{handle}"],
+      music: {
+        title: "Soft Rain",
+        artist: "Ambient Rooms",
+      },
+      cta: "Takip et.",
+      media: [video("hsx-tt-why-m", IMG.meditation, "9:16", "Meditasyon", 25)],
+      theme: "storytelling",
+      reasoning:
+        "Kuruluş hikâyeleri yeni stüdyoların TikTok'ta ilk izleyicilerini bulmasını sağlar.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Melis'in hikâyesi", "Sakin bir yer"],
+        caption: ["Bir stüdyo nasıl doğar?", "Aradığı yeri bulamayınca açtı."],
+        hashtags: [["#yoga", "#{handle}"], ["#kendineiyigel"]],
+        cta: ["Soru sor.", "Deneme dersine gel."],
+        music: [
+          {
+            title: "Still Waters",
+            artist: "Ambient Rooms",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "20:00",
+      },
+    },
   ],
   analytics: {
     followers: {

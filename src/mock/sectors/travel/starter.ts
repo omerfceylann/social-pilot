@@ -381,6 +381,84 @@ export const travelStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "tsx-ig-route",
+      platform: "instagram",
+      format: "reel",
+      title: "İlk rotamızı çizdik",
+      description: "İlk tur rotasının haritada çizilişini gösteren Reel.",
+      caption: "{brand} ilk rotası hazır: 3 gün, 2 köy, 1 saklı koy ve küçük bir grup.",
+      hashtags: ["#rota", "#butiktur", "#{handle}"],
+      music: {
+        title: "Sea Breeze",
+        artist: "Coastline",
+      },
+      cta: "İlk turun takvimi için DM.",
+      media: [video("tsx-ig-route-m", IMG.planning, "9:16", "Seyahat planı", 20)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Yeni tur şirketlerinde rota planlama görüntüleri merak ve ilk rezervasyon sorularını getirir.",
+      estimate: {
+        reach: [500, 2300],
+        engagementRate: 7.9,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Rota hazır", "3 gün, 2 köy"],
+        caption: ["İlk turumuzun rotası.", "Küçük grup, saklı rota."],
+        hashtags: [["#seyahat", "#{handle}"], ["#türkiye"]],
+        cta: ["Takip et.", "Bize yaz."],
+        music: [
+          {
+            title: "Golden Hour",
+            artist: "Coastline",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "tsx-tt-guide",
+      platform: "tiktok",
+      format: "video",
+      title: "Rehberinizden ilk ipucu",
+      description: "Rehberin seyahat öncesi verdiği kısa ipucu.",
+      caption:
+        "{brand} rehberi Ece'den ilk ipucu: gideceğin yerin üç kelimelik selamını öğren, kapılar açılır.",
+      hashtags: ["#rehber", "#seyahat", "#{handle}"],
+      music: {
+        title: "Sea Breeze",
+        artist: "Coastline",
+      },
+      cta: "Takip et.",
+      media: [video("tsx-tt-guide-m", IMG.traveler, "9:16", "Rehber", 20)],
+      theme: "educational",
+      reasoning: "Rehber ipuçları yeni tur şirketlerinin TikTok'ta güven kazanmasını sağlar.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.5,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Üç kelimelik selam", "Ece'den ipucu"],
+        caption: ["Yerelle tanışmanın en kolay yolu.", "Bir selam, açılan kapılar."],
+        hashtags: [["#gezi", "#{handle}"], ["#türkiye"]],
+        cta: ["Soru sor.", "Tur takvimini incele."],
+        music: [
+          {
+            title: "Golden Hour",
+            artist: "Coastline",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {
