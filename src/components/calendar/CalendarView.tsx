@@ -1,11 +1,12 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { CalendarX2, ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { PageContainer, PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { IconButton } from "@/components/ui/IconButton";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { useCalendar } from "@/hooks/useCalendar";
@@ -30,11 +31,15 @@ const LEGEND: CalendarStatus[] = ["published", "scheduled", "draft", "suggested"
 export const CalendarView = () => {
   const { t, language } = useT();
   const calendar = useCalendar();
-  const { view, anchor, today, weeks, itemsByDay } = calendar;
+  const { view, anchor, today, weeks, items, itemsByDay } = calendar;
   const [openItem, setOpenItem] = useState<CalendarItem | null>(null);
   /** Mobil ay görünümünde ajandası gösterilen gün. */
   const [selectedDay, setSelectedDay] = useState<Date>(today);
 
+  // Sadece öneriler varsa (ya da hiçbir şey yoksa) takvim "boş" sayılır (spec §35).
+  const hasPlannedContent = items.some(
+    (item) => item.status === "scheduled" || item.status === "published",
+  );
   const markedDays = useMemo(() => new Set(itemsByDay.keys()), [itemsByDay]);
   const week = weeks[0] ?? [];
   const firstDay = week[0];
@@ -99,6 +104,10 @@ export const CalendarView = () => {
             aria-label={t("calendar.viewLabel")}
           />
         </div>
+
+        {!hasPlannedContent && (
+          <EmptyState icon={<CalendarX2 />} title={t("empty.noScheduled")} className="py-8" />
+        )}
 
         <ul className="flex flex-wrap gap-x-4 gap-y-1.5" aria-label={t("calendar.legend")}>
           {LEGEND.map((status) => (
