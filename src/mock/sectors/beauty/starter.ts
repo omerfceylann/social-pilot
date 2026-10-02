@@ -395,6 +395,88 @@ export const beautyStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "bsx-ig-salon",
+      platform: "instagram",
+      format: "reel",
+      title: "Salonumuza ilk bakış",
+      description: "Salonun sakin atmosferini gösteren kısa Reel.",
+      caption: "{brand} salonu hazır: sakin bir müzik, yumuşak ışık ve sana ayrılmış bir saat.",
+      hashtags: ["#güzelliksalonu", "#yenisalon", "#{handle}"],
+      music: {
+        title: "Calm Waters",
+        artist: "Lofi Spa",
+      },
+      cta: "İlk randevunu oluştur.",
+      media: [video("bsx-ig-salon-m", IMG.salon, "9:16", "Salon", 20)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Güzellik hizmetinde atmosfer karar sebebidir; salon turu ilk randevu taleplerini getirir.",
+      estimate: {
+        reach: [500, 2200],
+        engagementRate: 7.8,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Salon turu", "Sana ayrılmış bir saat"],
+        caption: [
+          "Yeni salonumuzda seni bekleyen sakinlik.",
+          "Kendine zaman ayırman için bir yer.",
+        ],
+        hashtags: [["#güzellik", "#{handle}"], ["#bakım"]],
+        cta: ["Takip et.", "Konum profilde."],
+        music: [
+          {
+            title: "Golden Hour",
+            artist: "JVKE",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "18:00",
+      },
+    },
+    {
+      id: "bsx-tt-expert",
+      platform: "tiktok",
+      format: "video",
+      title: "Uzmanımızla tanış",
+      description: "Cilt bakım uzmanının kendini tanıttığı video.",
+      caption:
+        "{brand} cilt bakım uzmanı Selin: 'Her cilt farklı; önce dinliyor, sonra bakım öneriyoruz.'",
+      hashtags: ["#güzellikuzmanı", "#ciltbakımı", "#{handle}"],
+      music: {
+        title: "Calm Waters",
+        artist: "Lofi Spa",
+      },
+      cta: "Takip et.",
+      media: [video("bsx-tt-expert-m", IMG.makeupArtist, "9:16", "Güzellik uzmanı", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Güzellik hizmetinde uzmana güven belirleyici; tanışma videoları TikTok'ta yeni hesapları öne çıkarır.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Selin ile tanış", "Önce dinliyoruz"],
+        caption: ["Bakım, cildini tanımakla başlar.", "Uzmanımızın yaklaşımı."],
+        hashtags: [["#güzellik", "#{handle}"], ["#skincare"]],
+        cta: ["Soru sor.", "Randevu al."],
+        music: [
+          {
+            title: "Golden Hour",
+            artist: "JVKE",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {

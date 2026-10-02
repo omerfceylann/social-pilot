@@ -302,6 +302,257 @@ export const beautySuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "bx-ig-product",
+    platform: "instagram",
+    format: "post",
+    title: "Ayın favori serumu",
+    description: "Salonda en çok tercih edilen serumu tanıtan gönderi.",
+    caption:
+      "Ayın favorisi: hyaluronik asitli nem serumu. Bakım sonrası cildin gün boyu nemli kalmasına yardımcı oluyor.",
+    hashtags: ["#ciltbakımı", "#serum", "#{handle}"],
+    cta: "Cilt tipine uygun mu? DM'den sor.",
+    media: [photo("bx-ig-product-m", IMG.bottles, "4:5", "Bakım ürünleri")],
+    theme: "productFocused",
+    reasoning: "Ürün odaklı tek kare gönderiler hesabında soru mesajlarını artırıyor.",
+    estimate: {
+      reach: [4500, 8500],
+      engagementRate: 6.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Nem serumu", "Ayın favorisi"],
+      caption: ["Bu ay en çok sorulan ürün.", "Bakım sonrası nem için favorimiz."],
+      hashtags: [
+        ["#ciltbakımı", "#{handle}"],
+        ["#güzellik", "#nem"],
+      ],
+      cta: ["Randevu al.", "Cilt analizi için DM."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "11:00",
+    },
+  },
+  {
+    id: "bx-ig-reel-nails",
+    platform: "instagram",
+    format: "reel",
+    title: "Sonbahar tırnak tasarımı",
+    description: "Mevsimin tırnak tasarımının adım adım yapılışı.",
+    caption:
+      "Bordo zemin, ince altın çizgi, mat kaplama. Sonbaharın en çok istenen tasarımı 30 saniyede.",
+    hashtags: ["#nailart", "#tırnaktasarımı", "#{handle}"],
+    music: {
+      title: "Calm Waters",
+      artist: "Lofi Spa",
+    },
+    cta: "Randevu için DM.",
+    media: [video("bx-ig-reel-nails-m", IMG.nailArt, "9:16", "Tırnak tasarımı", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Tırnak tasarımı içerikleri yükselişte; adım adım Reel'ler hesabında randevu taleplerini artırıyor.",
+    relatedTrendId: "bt-nail-art",
+    estimate: {
+      reach: [12000, 21000],
+      engagementRate: 7.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Bordo ve altın", "Mevsimin tasarımı"],
+      caption: ["Sonbahar renkleri tırnaklarda.", "Bu tasarım üç adımda hazır."],
+      hashtags: [
+        ["#manikür", "#{handle}"],
+        ["#sonbahar", "#güzellik"],
+      ],
+      cta: ["Kaydet, randevuda göster.", "Takip et."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "JVKE",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "18:00",
+    },
+  },
+  {
+    id: "bx-ig-carousel-routine",
+    platform: "instagram",
+    format: "carousel",
+    title: "Akşam bakım rutini: 4 adım",
+    description: "Akşam cilt bakımının sırasını anlatan carousel.",
+    caption:
+      "Temizle, tonikle, serumla, nemlendir. Akşam bakım rutininin doğru sırası ve her adımın süresi kaydırmada.",
+    hashtags: ["#ciltbakımı", "#akşamrutini", "#{handle}"],
+    cta: "Kaydet, akşam uygula.",
+    media: [
+      photo("bx-ig-carousel-routine-1", IMG.facial, "4:5", "Cilt bakımı"),
+      photo("bx-ig-carousel-routine-2", IMG.cosmetics, "4:5", "Kozmetik"),
+      photo("bx-ig-carousel-routine-3", IMG.mask, "4:5", "Maske"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Bakım rutini içerikleri yükselişte; adım adım carousel'ler hesabında en çok kaydedilen biçim.",
+    relatedTrendId: "bt-skin-routine",
+    estimate: {
+      reach: [7500, 13000],
+      engagementRate: 6.7,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Doğru sıra", "4 adımlı akşam bakımı"],
+      caption: [
+        "Bakım ürünlerinin sırası sonucu değiştirir.",
+        "Akşam için kısa ve etkili bir rutin.",
+      ],
+      hashtags: [
+        ["#skincare", "#{handle}"],
+        ["#bakımrutini", "#güzellik"],
+      ],
+      cta: ["Sorunu yorumlara yaz.", "Cilt analizi randevusu al."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "21:00",
+    },
+  },
+  {
+    id: "bx-tt-grwm",
+    platform: "tiktok",
+    format: "video",
+    title: "Benimle hazırlan: doğal makyaj",
+    description: "Doğal makyajın 5 dakikada yapılışını gösteren GRWM videosu.",
+    caption:
+      "Nemlendirici, hafif kapatıcı, krem allık, şeffaf maskara. 5 dakikada doğal bir makyaj.",
+    hashtags: ["#grwm", "#doğalmakyaj", "#{handle}"],
+    music: {
+      title: "Calm Waters",
+      artist: "Lofi Spa",
+    },
+    cta: "Ürün listesi yorumlarda.",
+    media: [video("bx-tt-grwm-m", IMG.makeup, "9:16", "Makyaj", 30)],
+    theme: "educational",
+    reasoning:
+      "GRWM formatı TikTok'ta yükselişte; doğal makyaj videoları kitlenin en çok kaydettiği içerik.",
+    relatedTrendId: "bt-grwm",
+    estimate: {
+      reach: [15000, 27000],
+      engagementRate: 8.0,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["5 dakikalık makyaj", "Sade bir sabah makyajı"],
+      caption: ["Doğal görünüm için dört ürün yeter.", "Sabah acelesinde 5 dakikalık makyaj."],
+      hashtags: [
+        ["#makyaj", "#{handle}"],
+        ["#cleangirl", "#güzellik"],
+      ],
+      cta: ["Takip et.", "Makyaj dersi için DM."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "JVKE",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "08:30",
+    },
+  },
+  {
+    id: "bx-tt-facial",
+    platform: "tiktok",
+    format: "video",
+    title: "Cilt bakımı seansından 30 saniye",
+    description: "Bir cilt bakımı seansının rahatlatıcı anlarını gösteren video.",
+    caption: "Temizlik, buhar, maske ve masaj. Bir cilt bakımı seansının en sakin 30 saniyesi.",
+    hashtags: ["#ciltbakımı", "#asmr", "#{handle}"],
+    music: {
+      title: "Calm Waters",
+      artist: "Lofi Spa",
+    },
+    cta: "Randevu için profildeki linke tıkla.",
+    media: [video("bx-tt-facial-m", IMG.facial, "9:16", "Cilt bakımı", 30)],
+    theme: "behindTheScenes",
+    reasoning: "Cilt bakımı ASMR videoları TikTok'ta tamamlanma oranında ortalamanın üstünde.",
+    relatedTrendId: "bt-skin-routine",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Seanstan kesitler", "En sakin 30 saniye"],
+      caption: ["Bir cilt bakımı seansı nasıl geçer?", "Kendine ayırdığın bir saatin özeti."],
+      hashtags: [
+        ["#skincare", "#{handle}"],
+        ["#spa", "#rahatlama"],
+      ],
+      cta: ["Takip et.", "Randevu al."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "JVKE",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "20:00",
+    },
+  },
+  {
+    id: "bx-tt-mistake",
+    platform: "tiktok",
+    format: "video",
+    title: "Nemlendiriciyi atlama",
+    description: "Yağlı ciltlerde nemlendirici hakkındaki yanlış bilgiyi düzelten video.",
+    caption:
+      "Yağlı cilt de nemlendirici ister. Hafif, jel kıvamlı bir ürün seç; cildin daha az yağ üretir.",
+    hashtags: ["#ciltbakımı", "#güzellikipucu", "#{handle}"],
+    music: {
+      title: "Calm Waters",
+      artist: "Lofi Spa",
+    },
+    cta: "Cilt tipini öğrenmek için randevu al.",
+    media: [video("bx-tt-mistake-m", IMG.cosmetics, "9:16", "Bakım ürünleri", 25)],
+    theme: "educational",
+    reasoning:
+      "Yanlış bilinen doğrular formatı TikTok'ta paylaşım getiriyor; cilt bakımı soruları en çok gelen DM konusu.",
+    estimate: {
+      reach: [11000, 20000],
+      engagementRate: 7.2,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Yağlı cilt ve nem", "Bir yanlış bilgi"],
+      caption: [
+        "Yağlı cilt nemlendirici istemez mi?",
+        "Nemlendiriciyi atlamak yağlanmayı artırabilir.",
+      ],
+      hashtags: [
+        ["#skincare", "#{handle}"],
+        ["#yağlıcilt", "#bakım"],
+      ],
+      cta: ["Takip et.", "Sorunu yorumlara yaz."],
+      music: [
+        {
+          title: "Golden Hour",
+          artist: "JVKE",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "19:00",
+    },
+  },
 ];
 
 export const beautyPosts: SeedPost[] = [

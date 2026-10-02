@@ -308,6 +308,253 @@ export const ecommerceSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "ex-ig-product",
+    platform: "instagram",
+    format: "post",
+    title: "Haftanın ürünü: kablosuz kulaklık",
+    description: "Haftanın öne çıkan ürününü tanıtan tek kare gönderi.",
+    caption:
+      "Haftanın ürünü: 30 saat pil, aktif gürültü engelleme, katlanabilir tasarım. Bugün sipariş, yarın kapında.",
+    hashtags: ["#haftanınürünü", "#kulaklık", "#{handle}"],
+    cta: "Ürün linki profilde.",
+    media: [photo("ex-ig-product-m", IMG.headphones, "4:5", "Kulaklık")],
+    theme: "productFocused",
+    reasoning:
+      "Haftanın ürünü gönderileri hesabında ürün sayfası tıklamalarının en yüksek olduğu içerik.",
+    estimate: {
+      reach: [5000, 9500],
+      engagementRate: 5.4,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["30 saat pil", "Haftanın seçimi"],
+      caption: ["Uzun yolculukların yeni arkadaşı.", "Gürültüyü kapat, müziği aç."],
+      hashtags: [
+        ["#teknoloji", "#{handle}"],
+        ["#yeniürün", "#müzik"],
+      ],
+      cta: ["Detaylar için DM.", "Hemen incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "12:00",
+    },
+  },
+  {
+    id: "ex-ig-reel-pack",
+    platform: "instagram",
+    format: "reel",
+    title: "Siparişin nasıl paketleniyor?",
+    description: "Bir siparişin özenle paketlenişini gösteren Reel.",
+    caption: "Kutu, koruyucu kâğıt, el yazısı not. Her sipariş bu özenle paketleniyor.",
+    hashtags: ["#paketleme", "#siparişhazırlığı", "#{handle}"],
+    music: {
+      title: "Paper Planes",
+      artist: "Lofi Beats",
+    },
+    cta: "Senin siparişin de böyle gelecek.",
+    media: [video("ex-ig-reel-pack-m", IMG.warehouse, "9:16", "Depo", 25)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Paketleme videoları yükselişte; hesabındaki perde arkası Reel'ler sepete ekleme oranını artırıyor.",
+    relatedTrendId: "et-packing",
+    estimate: {
+      reach: [11000, 20000],
+      engagementRate: 7.2,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Paketleme anı", "Kutunun içinde ne var?"],
+      caption: ["Siparişin kapına gelmeden önce.", "Her pakette el yazısı bir not."],
+      hashtags: [
+        ["#asmr", "#{handle}"],
+        ["#küçükişletme", "#kargo"],
+      ],
+      cta: ["Sipariş ver, notunu gör.", "Takip et."],
+      music: [
+        {
+          title: "Coffee & Boxes",
+          artist: "Chillhop",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "ex-ig-carousel-gift",
+    platform: "instagram",
+    format: "carousel",
+    title: "500 TL altı 4 hediye",
+    description: "Bütçe dostu hediye önerilerini sıralayan carousel.",
+    caption:
+      "Güneş gözlüğü, deri cüzdan, kahve kupası ve kulaklık kılıfı. 500 TL altı 4 hediye fikri kaydırmada.",
+    hashtags: ["#hediyerehberi", "#hediyefikri", "#{handle}"],
+    cta: "Kaydet, doğum günü yaklaşınca aç.",
+    media: [
+      photo("ex-ig-carousel-gift-1", IMG.sunglasses, "4:5", "Güneş gözlüğü"),
+      photo("ex-ig-carousel-gift-2", IMG.bags, "4:5", "Çantalar"),
+      photo("ex-ig-carousel-gift-3", IMG.watch, "4:5", "Saat"),
+    ],
+    theme: "promotional",
+    reasoning:
+      "Hediye rehberleri yükselişte; bütçe odaklı carousel'ler en çok kaydedilen ve paylaşılan biçim.",
+    relatedTrendId: "et-gift-guide",
+    estimate: {
+      reach: [8000, 14000],
+      engagementRate: 6.5,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Bütçe dostu hediyeler", "4 hediye fikri"],
+      caption: ["Hediye seçmek zor değil, liste hazır.", "500 TL altında anlamlı hediyeler."],
+      hashtags: [
+        ["#hediye", "#{handle}"],
+        ["#doğumgünü", "#alışveriş"],
+      ],
+      cta: ["Arkadaşını etiketle.", "Ürünleri incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "ex-tt-unbox",
+    platform: "tiktok",
+    format: "video",
+    title: "Sesiyle kutu açılışı",
+    description: "Bir siparişin kutu açılışını sesli ve yakın planda gösteren video.",
+    caption: "Bant, kâğıt, kutu ve içindeki sürpriz. Siparişimiz nasıl açılıyor, sesiyle izle.",
+    hashtags: ["#unboxing", "#kutuaçılışı", "#{handle}"],
+    music: {
+      title: "Soft Paper",
+      artist: "Lofi Beats",
+    },
+    cta: "Senin kutun da yolda olabilir.",
+    media: [video("ex-tt-unbox-m", IMG.camera, "9:16", "Kutu açılışı", 25)],
+    theme: "productFocused",
+    reasoning:
+      "Kutu açılışı TikTok'ta yükselişte; sesli unboxing videoları tamamlanma oranında ortalamanın üstünde.",
+    relatedTrendId: "et-unboxing",
+    estimate: {
+      reach: [16000, 29000],
+      engagementRate: 8.0,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Unboxing sesi", "Kutunun içinde ne var?"],
+      caption: ["Bu kutunun içinden ne çıktı?", "En tatmin edici kutu açılışı."],
+      hashtags: [
+        ["#asmr", "#{handle}"],
+        ["#alışveriş", "#yeniürün"],
+      ],
+      cta: ["Takip et.", "Ürün linki profilde."],
+      music: [
+        {
+          title: "Coffee & Boxes",
+          artist: "Chillhop",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "20:00",
+    },
+  },
+  {
+    id: "ex-tt-vs",
+    platform: "tiktok",
+    format: "video",
+    title: "Hangisi: siyah mı beyaz mı?",
+    description: "İki renk seçeneğini karşılaştıran oylama videosu.",
+    caption:
+      "Aynı sneaker, iki renk. Siyah her kombine uyar, beyaz yazın en iyisi. Senin seçimin hangisi?",
+    hashtags: ["#sneaker", "#hangisi", "#{handle}"],
+    music: {
+      title: "Morning Routine",
+      artist: "Chillhop",
+    },
+    cta: "Yorumlara rengini yaz.",
+    media: [video("ex-tt-vs-m", IMG.sneaker, "9:16", "Sneaker", 20)],
+    theme: "entertaining",
+    reasoning:
+      "Karşılaştırma videoları TikTok'ta yükselişte; seçim soran videolar yorum sayısını artırıyor.",
+    relatedTrendId: "et-vs",
+    estimate: {
+      reach: [13000, 24000],
+      engagementRate: 8.2,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Siyah mı beyaz mı?", "İki renk, bir sneaker"],
+      caption: ["Aynı modelin iki rengi: hangisi senin?", "Oyunu sen belirle: siyah ya da beyaz."],
+      hashtags: [
+        ["#ayakkabı", "#{handle}"],
+        ["#stil", "#karşılaştırma"],
+      ],
+      cta: ["Takip et.", "Ürünü incele."],
+      music: [
+        {
+          title: "Coffee & Boxes",
+          artist: "Chillhop",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "ex-tt-warehouse",
+    platform: "tiktok",
+    format: "video",
+    title: "Depoda bir gün",
+    description: "Siparişlerin hazırlanma sürecini anlatan perde arkası video.",
+    caption:
+      "Sabah 9'da 120 sipariş, öğlene kadar hepsi paketli, 15:00'te kargoda. Depoda bir gün.",
+    hashtags: ["#perdearkası", "#eticaret", "#{handle}"],
+    music: {
+      title: "Paper Planes",
+      artist: "Lofi Beats",
+    },
+    cta: "Siparişin bugün kargoda.",
+    media: [video("ex-tt-warehouse-m", IMG.warehouse, "9:16", "Depo", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Perde arkası videoları güven oluşturuyor; hesabında hızlı kargo vurgusu sepete ekleme oranını artırıyor.",
+    relatedTrendId: "et-packing",
+    estimate: {
+      reach: [10000, 19000],
+      engagementRate: 7.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["120 siparişlik bir gün", "Siparişten kargoya"],
+      caption: ["Siparişin hangi yoldan geçiyor?", "Depoda sabahtan akşama."],
+      hashtags: [
+        ["#kargo", "#{handle}"],
+        ["#küçükişletme", "#depo"],
+      ],
+      cta: ["Takip et.", "Bugün sipariş ver."],
+      music: [
+        {
+          title: "Coffee & Boxes",
+          artist: "Chillhop",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "13:00",
+    },
+  },
 ];
 
 export const ecommercePosts: SeedPost[] = [

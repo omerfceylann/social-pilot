@@ -420,6 +420,83 @@ export const ecommerceStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "esx-ig-first-order",
+      platform: "instagram",
+      format: "reel",
+      title: "İlk siparişimiz yola çıktı",
+      description: "Mağazanın ilk siparişinin paketlenişini gösteren Reel.",
+      caption: "{brand} ilk siparişini paketledi. Kutuya el yazısı bir teşekkür notu da ekledik.",
+      hashtags: ["#ilksipariş", "#yenimağaza", "#{handle}"],
+      music: {
+        title: "Paper Planes",
+        artist: "Lofi Beats",
+      },
+      cta: "Takip et, ilk siparişlere özel sürprizler var.",
+      media: [video("esx-ig-first-order-m", IMG.warehouse, "9:16", "Paketleme", 15)],
+      theme: "storytelling",
+      reasoning: "Yeni mağazalarda ilk sipariş anı güven oluşturur ve ilk takipçileri getirir.",
+      estimate: {
+        reach: [500, 2300],
+        engagementRate: 7.7,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk paket", "Yola çıkan ilk kutu"],
+        caption: ["İlk siparişimizi özenle paketledik.", "Bir teşekkür notuyla ilk sipariş."],
+        hashtags: [["#paketleme", "#{handle}"], ["#küçükişletme"]],
+        cta: ["Bize yaz.", "Ürünleri incele."],
+        music: [
+          {
+            title: "Coffee & Boxes",
+            artist: "Chillhop",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "esx-tt-team",
+      platform: "tiktok",
+      format: "video",
+      title: "Mağazanın arkasındaki ekip",
+      description: "Ekibin kendini kısaca tanıttığı video.",
+      caption: "{brand} ekibi: ürün seçen, paketleyen ve mesajlarını yanıtlayan üç kişi.",
+      hashtags: ["#eticaret", "#ekip", "#{handle}"],
+      music: {
+        title: "Paper Planes",
+        artist: "Lofi Beats",
+      },
+      cta: "Takip et.",
+      media: [video("esx-tt-team-m", IMG.store, "9:16", "Mağaza", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Ekibi göstermek yeni mağazalarda güven oluşturur; TikTok'ta ilk izleyicileri getirir.",
+      estimate: {
+        reach: [700, 3400],
+        engagementRate: 7.4,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Üç kişilik ekip", "Biz kimiz?"],
+        caption: ["Siparişini hazırlayan ekiple tanış.", "Küçük ekip, özenli siparişler."],
+        hashtags: [["#küçükişletme", "#{handle}"], ["#alışveriş"]],
+        cta: ["Soru sor.", "Bize yaz."],
+        music: [
+          {
+            title: "Coffee & Boxes",
+            artist: "Chillhop",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {

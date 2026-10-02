@@ -374,6 +374,82 @@ export const fashionStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "nsx-ig-atelier",
+      platform: "instagram",
+      format: "reel",
+      title: "Atölyemizden ilk kare",
+      description: "Atölyenin ilk koleksiyon hazırlığını gösteren Reel.",
+      caption: "{brand} atölyesinde ilk koleksiyon hazırlanıyor. Az parça, uzun ömür.",
+      hashtags: ["#atölye", "#yenimarka", "#{handle}"],
+      music: {
+        title: "Sunday Best",
+        artist: "Surfaces",
+      },
+      cta: "Takip et, koleksiyon yolda.",
+      media: [video("nsx-ig-atelier-m", IMG.storeInterior, "9:16", "Atölye", 20)],
+      theme: "behindTheScenes",
+      reasoning: "Yeni moda markalarında atölye görüntüleri güven ve merak oluşturur.",
+      estimate: {
+        reach: [500, 2100],
+        engagementRate: 7.4,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk koleksiyon", "Atölyeden"],
+        caption: ["Az ama özenli bir ilk koleksiyon.", "İlk koleksiyonun hazırlığı."],
+        hashtags: [["#moda", "#{handle}"], ["#tasarım"]],
+        cta: ["Soru sor.", "Bize yaz."],
+        music: [
+          {
+            title: "Slow Morning",
+            artist: "Chillhop Music",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "nsx-tt-first",
+      platform: "tiktok",
+      format: "video",
+      title: "İlk parçamız",
+      description: "Markanın ilk tasarımını tanıtan video.",
+      caption: "{brand} ilk parçası: yünden, astarlı, uzun ömürlü bir ceket.",
+      hashtags: ["#yenimarka", "#tasarım", "#{handle}"],
+      music: {
+        title: "Sunday Best",
+        artist: "Surfaces",
+      },
+      cta: "Takip et.",
+      media: [video("nsx-tt-first-m", IMG.coat, "9:16", "Ceket", 20)],
+      theme: "productFocused",
+      reasoning: "İlk ürün tanıtımları yeni hesapların TikTok'ta ilk kitlesini bulmasını sağlar.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.3,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk tasarım", "Bir ceketle başlıyoruz"],
+        caption: ["Uzun ömürlü bir ceketle başladık.", "İlk parçamızı tanıyın."],
+        hashtags: [["#moda", "#{handle}"], ["#ceket"]],
+        cta: ["Soru sor.", "Bize yaz."],
+        music: [
+          {
+            title: "Slow Morning",
+            artist: "Chillhop Music",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: { instagram: 0, tiktok: 0, youtube: 0, x: 0, linkedin: 0 },

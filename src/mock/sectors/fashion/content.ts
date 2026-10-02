@@ -260,6 +260,258 @@ export const fashionSuggestions: SeedSuggestion[] = [
       time: "13:00",
     },
   },
+  {
+    id: "nx-ig-detail",
+    platform: "instagram",
+    format: "post",
+    title: "Dikişin hikâyesi",
+    description: "Bir ceketin el dikişi detayını gösteren yakın plan gönderi.",
+    caption:
+      "Bir ceketin yaka dikişi 40 dakika sürüyor. Acele etmediğimiz için yıllarca dayanıyor.",
+    hashtags: ["#elişçiliği", "#yavaşmoda", "#{handle}"],
+    cta: "Atölyemizi ziyaret et.",
+    media: [photo("nx-ig-detail-m", IMG.coat, "4:5", "Ceket detayı")],
+    theme: "behindTheScenes",
+    reasoning:
+      "Yavaş moda içerikleri yükselişte; işçilik detayları hesabında en çok kaydedilen gönderiler.",
+    relatedTrendId: "nt-slow-fashion",
+    estimate: {
+      reach: [4500, 8500],
+      engagementRate: 5.9,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["40 dakikalık yaka", "İşçiliğin detayı"],
+      caption: ["Yıllarca dayanan bir ceketin sırrı yakada.", "El dikişi bir yaka, 40 dakika."],
+      hashtags: [
+        ["#zanaat", "#{handle}"],
+        ["#kaliteligiyim", "#atölye"],
+      ],
+      cta: ["Detayları DM'den sor.", "Koleksiyonu incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "11:00",
+    },
+  },
+  {
+    id: "nx-ig-reel-styling",
+    platform: "instagram",
+    format: "reel",
+    title: "Bir gömlek, üç stil",
+    description: "Tek bir beyaz gömleğin üç farklı kombinini gösteren Reel.",
+    caption:
+      "Ofiste blazer ile, hafta sonu jean ile, akşam saten etekle. Bir beyaz gömlek, üç stil.",
+    hashtags: ["#kapsülgardırop", "#kombin", "#{handle}"],
+    music: {
+      title: "Sunday Best",
+      artist: "Surfaces",
+    },
+    cta: "Kaydet, bir sonraki kombinde hatırla.",
+    media: [video("nx-ig-reel-styling-m", IMG.outfit, "9:16", "Kombin", 30)],
+    theme: "educational",
+    reasoning:
+      "Kapsül gardırop içerikleri yükselişte; tek parçalı stil Reel'leri hesabında ortalamanın %40 üstünde izleniyor.",
+    relatedTrendId: "nt-capsule",
+    estimate: {
+      reach: [12000, 21000],
+      engagementRate: 7.1,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Üç kombin, bir gömlek", "Beyaz gömleğin üç hâli"],
+      caption: ["Gardırobunun en çok çalışan parçası.", "Tek parça, üç farklı gün."],
+      hashtags: [
+        ["#stil", "#{handle}"],
+        ["#beyazgömlek", "#moda"],
+      ],
+      cta: ["Hangisi senin tarzın?", "Koleksiyonu incele."],
+      music: [
+        {
+          title: "Slow Morning",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "nx-ig-carousel-fabric",
+    platform: "instagram",
+    format: "carousel",
+    title: "Kumaş rehberi: yün, keten, ipek",
+    description: "Üç kumaşın bakımını ve mevsimini anlatan carousel.",
+    caption:
+      "Yün nefes alır, keten serinletir, ipek ışığı yansıtır. Her kumaşın doğru mevsimi ve bakımı kaydırmada.",
+    hashtags: ["#kumaş", "#bakımrehberi", "#{handle}"],
+    cta: "Kaydet, bakım gününde aç.",
+    media: [
+      photo("nx-ig-carousel-fabric-1", IMG.folded, "4:5", "Katlanmış giysiler"),
+      photo("nx-ig-carousel-fabric-2", IMG.rack, "4:5", "Askıda giysiler"),
+      photo("nx-ig-carousel-fabric-3", IMG.dress, "4:5", "Elbise"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Bakım rehberleri hesabında en çok kaydedilen içerik; uzun ömürlü parça arayan kitle bu bilgiyi istiyor.",
+    relatedTrendId: "nt-slow-fashion",
+    estimate: {
+      reach: [6000, 11000],
+      engagementRate: 6.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Üç kumaş, üç bakım", "Kumaşını tanı"],
+      caption: [
+        "Doğru bakım bir parçanın ömrünü ikiye katlar.",
+        "Yün, keten ve ipek için kısa rehber.",
+      ],
+      hashtags: [
+        ["#yün", "#{handle}"],
+        ["#keten", "#sürdürülebilirmoda"],
+      ],
+      cta: ["Sorunu yorumlara yaz.", "Koleksiyonu incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "nx-tt-grwm",
+    platform: "tiktok",
+    format: "video",
+    title: "Benimle hazırlan: ofis günü",
+    description: "Bir ofis günü için hazırlanmayı anlatan GRWM videosu.",
+    caption: "Keten pantolon, ipek bluz, minimal takı. Ofis günü için 5 dakikalık hazırlık.",
+    hashtags: ["#grwm", "#ofiskombini", "#{handle}"],
+    music: {
+      title: "Coffee",
+      artist: "beabadoobee",
+    },
+    cta: "Kombinin detayları profilde.",
+    media: [video("nx-tt-grwm-m", IMG.portrait, "9:16", "Hazırlanan kadın", 30)],
+    theme: "storytelling",
+    reasoning:
+      "GRWM formatı TikTok'ta yükselişte; günlük hazırlık videoları izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "nt-grwm",
+    estimate: {
+      reach: [14000, 25000],
+      engagementRate: 7.8,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["5 dakikada ofis kombini", "Sabah hazırlığı"],
+      caption: ["Keten ve ipekle sade bir ofis kombini.", "Ofise giderken benimle hazırlan."],
+      hashtags: [
+        ["#kombin", "#{handle}"],
+        ["#ofisstili", "#moda"],
+      ],
+      cta: ["Takip et.", "Koleksiyonu incele."],
+      music: [
+        {
+          title: "Slow Morning",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "08:00",
+    },
+  },
+  {
+    id: "nx-tt-asmr",
+    platform: "tiktok",
+    format: "video",
+    title: "Bir elbisenin doğuşu",
+    description: "Kesimden dikişe bir elbisenin hazırlanışını gösteren ASMR video.",
+    caption:
+      "Kesim, prova, dikiş, ütü. Bir elbisenin hazırlanışı 30 saniyede, sadece makinenin sesiyle.",
+    hashtags: ["#asmr", "#dikiş", "#{handle}"],
+    music: {
+      title: "Sewing Machine ASMR",
+      artist: "Atelier Sounds",
+    },
+    cta: "Takip et, her hafta bir parça.",
+    media: [video("nx-tt-asmr-m", IMG.dress, "9:16", "Elbise", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Dikiş ASMR videoları TikTok'ta en çok tamamlanan içeriklerden; işçiliği göstermenin en sakin yolu.",
+    relatedTrendId: "nt-slow-fashion",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.5,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Kesimden ütüye", "Makinenin sesi"],
+      caption: ["Bir elbise nasıl hazırlanır? Sesiyle izle.", "Atölyede 30 saniye."],
+      hashtags: [
+        ["#atölye", "#{handle}"],
+        ["#elişi", "#moda"],
+      ],
+      cta: ["Koleksiyonu incele.", "Atölyeye gel."],
+      music: [
+        {
+          title: "Slow Morning",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "20:00",
+    },
+  },
+  {
+    id: "nx-tt-capsule",
+    platform: "tiktok",
+    format: "video",
+    title: "10 parçayla 20 kombin",
+    description: "Kapsül gardırobun 10 parçasından çıkan kombinleri hızlıca gösteren video.",
+    caption:
+      "10 parça, 20 kombin, bir hafta boyunca tekrar yok. Kapsül gardırop gerçekten işe yarıyor.",
+    hashtags: ["#kapsülgardırop", "#minimalizm", "#{handle}"],
+    music: {
+      title: "Sunday Best",
+      artist: "Surfaces",
+    },
+    cta: "Listeyi kaydet.",
+    media: [video("nx-tt-capsule-m", IMG.rack, "9:16", "Askıda giysiler", 30)],
+    theme: "educational",
+    reasoning:
+      "Kapsül gardırop TikTok'ta da yükselişte; sayılarla anlatılan içerikler kaydedilme oranını artırıyor.",
+    relatedTrendId: "nt-capsule",
+    estimate: {
+      reach: [15000, 27000],
+      engagementRate: 7.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Kapsül gardırop testi", "Bir hafta, tekrar yok"],
+      caption: ["Az parçayla çok kombin mümkün.", "10 parçalık gardırop bir hafta yeter mi?"],
+      hashtags: [
+        ["#kombin", "#{handle}"],
+        ["#sürdürülebilirmoda", "#stil"],
+      ],
+      cta: ["Takip et.", "Parçaları profilde incele."],
+      music: [
+        {
+          title: "Slow Morning",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "19:00",
+    },
+  },
 ];
 
 export const fashionPosts: SeedPost[] = [
