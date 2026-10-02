@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Geliştirme göstergesi varsayılan olarak sol altta, sidebar'daki marka kartıyla çakışıyor.
-  devIndicators: { position: "bottom-right" },
+  // Next'in geliştirme göstergesi (köşedeki "N" butonu) kapalı; derleme ve çalışma
+  // zamanı hataları yine ekranda gösterilir.
+  devIndicators: false,
   images: {
     // Mock içerik görselleri Unsplash'ten geliyor (bkz. src/mock/images.ts).
     // URL nesnesi biçimi ("new URL(...)") sorgu parametresini yasaklar; bizim adreslerde
