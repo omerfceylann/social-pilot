@@ -278,6 +278,256 @@ export const restaurantSuggestions: SeedSuggestion[] = [
       time: "15:00",
     },
   },
+  {
+    id: "rx-ig-latte",
+    platform: "instagram",
+    format: "post",
+    title: "Günün latte art'ı",
+    description: "Baristanın bugünkü latte art denemesini gösteren tek kare.",
+    caption: "Bugünün deseni: lale. Barista Ece üçüncü denemede tutturdu. Sen hangisini isterdin?",
+    hashtags: ["#latteart", "#kahve", "#{handle}"],
+    cta: "Bir sonraki deseni yorumlarda seç.",
+    media: [photo("rx-ig-latte-m", IMG.latteArt, "4:5", "Latte art")],
+    theme: "behindTheScenes",
+    reasoning:
+      "Latte art kareleri hesabında ortalamanın %34 üstünde beğeni alıyor; tek kare gönderiler takipçilerin en hızlı etkileşim verdiği biçim.",
+    estimate: {
+      reach: [5000, 9000],
+      engagementRate: 6.4,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Bugünün deseni", "Fincandaki lale"],
+      caption: ["Üçüncü denemede gelen lale.", "Barista Ece'nin bugünkü eseri."],
+      hashtags: [
+        ["#latte", "#{handle}"],
+        ["#barista", "#kahvemolası"],
+      ],
+      cta: ["Sen de bir desen öner.", "Bugün bir latte'ye ne dersin?"],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "10:00",
+    },
+  },
+  {
+    id: "rx-ig-reel-pour",
+    platform: "instagram",
+    format: "reel",
+    title: "Pour-over 60 saniyede",
+    description: "Demleme adımlarını yakın planda gösteren sakin Reel.",
+    caption: "Öğüt, ıslat, bekle, yavaşça dök. Filtre kahvenin sırrı acele etmemekte.",
+    hashtags: ["#pourover", "#filtrekahve", "#{handle}"],
+    music: {
+      title: "Morning Coffee",
+      artist: "Lofi Fruits",
+    },
+    cta: "Kaydet, evde dene.",
+    media: [video("rx-ig-reel-pour-m", IMG.pourOver, "9:16", "Pour-over demleme", 60)],
+    theme: "educational",
+    reasoning:
+      "Demleme videoları hesabında en çok kaydedilen içerik; lofi eşliğindeki Reel'ler izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "rt-lofi",
+    estimate: {
+      reach: [11000, 19000],
+      engagementRate: 7.3,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Filtre kahve rehberi", "Yavaş demleme"],
+      caption: [
+        "Dört adımda filtre kahve: öğüt, ıslat, bekle, dök.",
+        "İyi bir filtre kahve için 60 saniye yeter.",
+      ],
+      hashtags: [
+        ["#kahve", "#{handle}"],
+        ["#demleme", "#kahvesever"],
+      ],
+      cta: ["Hangi çekirdeği denemeliyiz?", "Kahve atölyemize katıl."],
+      music: [
+        {
+          title: "Coffee Break",
+          artist: "Lukrembo",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "09:00",
+    },
+  },
+  {
+    id: "rx-ig-menu",
+    platform: "instagram",
+    format: "carousel",
+    title: "Bu hafta mutfakta neler var?",
+    description: "Haftanın yeni tabaklarını tanıtan carousel.",
+    caption:
+      "Bu hafta menüde üç yeni tabak: avokadolu brunch, mevsim kasesi ve odun fırınında pizza. Kaydır, favorini seç.",
+    hashtags: ["#brunch", "#yenimenü", "#{handle}"],
+    cta: "Hangisini denemek istersin?",
+    media: [
+      photo("rx-ig-menu-1", IMG.brunch, "4:5", "Brunch tabağı"),
+      photo("rx-ig-menu-2", IMG.bowl, "4:5", "Mevsim kasesi"),
+      photo("rx-ig-menu-3", IMG.pizza, "4:5", "Pizza"),
+    ],
+    theme: "productFocused",
+    reasoning:
+      "Menü carousel'leri hesabında en çok kaydedilen biçim; yeni tabak paylaşımları rezervasyon sorularını artırıyor.",
+    relatedTrendId: "rt-autumn-menu",
+    estimate: {
+      reach: [7000, 12000],
+      engagementRate: 6.1,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Haftanın tabakları", "Üç yeni lezzet"],
+      caption: ["Menüye üç yeni tabak eklendi. Kaydır.", "Mevsimin tabakları bu hafta mutfakta."],
+      hashtags: [
+        ["#menü", "#{handle}"],
+        ["#lezzet", "#haftasonu"],
+      ],
+      cta: ["Favorini yorumlara yaz.", "Masanı ayırt, DM'den yaz."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 4,
+      time: "12:00",
+    },
+  },
+  {
+    id: "rx-tt-morning",
+    platform: "tiktok",
+    format: "video",
+    title: "Açılıştan önceki 30 dakika",
+    description: "Kafenin sabah hazırlığını hızlandırılmış gösteren video.",
+    caption:
+      "Saat 07:30: makine ısınıyor, çekirdek öğütülüyor, ilk kruvasanlar fırında. Kapı 08:00'de açılıyor.",
+    hashtags: ["#perdearkası", "#kafe", "#{handle}"],
+    music: {
+      title: "Morning Coffee",
+      artist: "Lofi Fruits",
+    },
+    cta: "Sabah kahven bizden mi?",
+    media: [video("rx-tt-morning-m", IMG.counter, "9:16", "Kafe tezgâhı", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Kafede bir gün videoları TikTok'ta yükselişte; hesabındaki perde arkası videolar ortalamanın %41 üstünde izleniyor.",
+    relatedTrendId: "rt-day-in-life",
+    estimate: {
+      reach: [15000, 27000],
+      engagementRate: 7.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Sabah hazırlığı", "Kapı açılmadan önce"],
+      caption: ["Kapı açılmadan önce kafede neler oluyor?", "08:00'den önceki sessiz yarım saat."],
+      hashtags: [
+        ["#kafehayatı", "#{handle}"],
+        ["#sabahrutini", "#kahve"],
+      ],
+      cta: ["Takip et, yarın da buradayız.", "İlk kahveni bizde iç."],
+      music: [
+        {
+          title: "Coffee Break",
+          artist: "Lukrembo",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "08:00",
+    },
+  },
+  {
+    id: "rx-tt-guess",
+    platform: "tiktok",
+    format: "video",
+    title: "Hangi çekirdek?",
+    description: "Üç farklı çekirdeğin tadım farkını anlatan eğlenceli video.",
+    caption: "Etiyopya, Kolombiya, Brezilya. Barista gözü kapalı tadıyor: kaçını bilecek?",
+    hashtags: ["#kahvetadımı", "#kahve", "#{handle}"],
+    music: {
+      title: "Sunday Morning",
+      artist: "Chillhop Music",
+    },
+    cta: "Sen olsan hangisini seçerdin?",
+    media: [video("rx-tt-guess-m", IMG.beans, "9:16", "Kahve çekirdekleri", 25)],
+    theme: "entertaining",
+    reasoning:
+      "Tahmin oyunu formatı yorum sayısını artırıyor; kahve tadımı içerikleri TikTok'ta kaydedilme oranı yüksek.",
+    estimate: {
+      reach: [14000, 24000],
+      engagementRate: 8.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Gözü kapalı tadım", "Üç çekirdek, bir barista"],
+      caption: [
+        "Barista üç çekirdeği gözü kapalı tanıyabilecek mi?",
+        "Kahve tadımı: kim kazanacak?",
+      ],
+      hashtags: [
+        ["#barista", "#{handle}"],
+        ["#tadım", "#kahvesever"],
+      ],
+      cta: ["Tahminini yaz.", "Tadım günümüze gel."],
+      music: [
+        {
+          title: "Coffee Break",
+          artist: "Lukrembo",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "rx-tt-lofi",
+    platform: "tiktok",
+    format: "video",
+    title: "Yağmurlu bir öğleden sonra",
+    description: "Cam kenarında kahve, lofi müzik ve yağmur sesi.",
+    caption: "Dışarıda yağmur, içeride sıcak bir fincan. Bugün çalışmak için en güzel köşe burası.",
+    hashtags: ["#lofi", "#yağmur", "#{handle}"],
+    music: {
+      title: "Better Days",
+      artist: "LAKEY INSPIRED",
+    },
+    cta: "Köşe masa seni bekliyor.",
+    media: [video("rx-tt-lofi-m", IMG.cafeCorner, "9:16", "Kafe köşesi", 20)],
+    theme: "storytelling",
+    reasoning:
+      "Lofi kafe videoları TikTok'ta yükselişte; sakin atmosfer videoları izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "rt-lofi",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Lofi kafe köşesi", "Yağmur ve kahve"],
+      caption: ["Yağmur sesi, kahve kokusu, lofi.", "Çalışmak için en sakin köşe."],
+      hashtags: [
+        ["#lofikafe", "#{handle}"],
+        ["#kahve", "#çalışmaköşesi"],
+      ],
+      cta: ["Takip et.", "Wi-Fi şifresi kasada."],
+      music: [
+        {
+          title: "Coffee Shop Rain",
+          artist: "Lofi Girl",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "15:00",
+    },
+  },
 ];
 
 export const restaurantPosts: SeedPost[] = [

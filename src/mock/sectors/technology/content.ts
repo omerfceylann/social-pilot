@@ -242,6 +242,257 @@ export const technologySuggestions: SeedSuggestion[] = [
       time: "20:00",
     },
   },
+  {
+    id: "tx-ig-tip",
+    platform: "instagram",
+    format: "post",
+    title: "Haftanın kısayolu",
+    description: "Planlamayı hızlandıran tek bir kısayolu anlatan gönderi.",
+    caption:
+      "Haftanın kısayolu: G + R ile yol haritasına geç. Ekipler bu kısayolla günde ortalama 6 dakika kazanıyor.",
+    hashtags: ["#verimlilik", "#ürünyönetimi", "#{handle}"],
+    cta: "Kaydet, ekibinle paylaş.",
+    media: [photo("tx-ig-tip-m", IMG.laptopMinimal, "4:5", "Laptop")],
+    theme: "educational",
+    reasoning:
+      "Kısa ipucu gönderileri hesabında en çok kaydedilen içerik; tek kare format haftalık seriye uygun.",
+    estimate: {
+      reach: [3000, 6500],
+      engagementRate: 4.9,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Bir kısayol, 6 dakika", "Kısayol serisi #1"],
+      caption: ["Yol haritasına tek kısayolla geç.", "Küçük bir kısayol, her gün biraz zaman."],
+      hashtags: [
+        ["#kısayol", "#{handle}"],
+        ["#ekipçalışması", "#planlama"],
+      ],
+      cta: ["Senin favori kısayolun ne?", "Ücretsiz dene."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "10:00",
+    },
+  },
+  {
+    id: "tx-ig-reel-desk",
+    platform: "instagram",
+    format: "reel",
+    title: "Bir ürün ekibinin sabahı",
+    description: "Ekibin stand-up toplantısını ve planlamasını gösteren Reel.",
+    caption:
+      "09:30 stand-up, 09:45 öncelikler, 10:00 odak zamanı. Bir ürün ekibinin sabahı 30 saniyede.",
+    hashtags: ["#ürünekibi", "#perdearkası", "#{handle}"],
+    music: {
+      title: "Focus Flow",
+      artist: "Lofi Code",
+    },
+    cta: "Senin ekibin sabahı nasıl?",
+    media: [video("tx-ig-reel-desk-m", IMG.teamMeeting, "9:16", "Ekip toplantısı", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Geliştirici günü içerikleri yükselişte; perde arkası Reel'ler hesabında takip dönüşümünü artırıyor.",
+    relatedTrendId: "tt-dev-day",
+    estimate: {
+      reach: [6000, 12000],
+      engagementRate: 5.8,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Stand-up'tan odak zamanına", "Ekipte bir sabah"],
+      caption: ["Ekip sabahı: kısa toplantı, net öncelikler.", "Odak zamanından önceki 30 dakika."],
+      hashtags: [
+        ["#yazılımekibi", "#{handle}"],
+        ["#startup", "#ofis"],
+      ],
+      cta: ["Takip et.", "Ekibine de göster."],
+      music: [
+        {
+          title: "Coding Night",
+          artist: "Lofi Code",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "09:00",
+    },
+  },
+  {
+    id: "tx-ig-carousel-ai",
+    platform: "instagram",
+    format: "carousel",
+    title: "AI ile toplantı notu: 4 adım",
+    description: "Toplantı notlarını AI ile özetleme adımlarını anlatan carousel.",
+    caption:
+      "Kaydet, yükle, özetle, paylaş. Toplantı notlarını 2 dakikada eyleme dönüştürmenin 4 adımı.",
+    hashtags: ["#yapayzeka", "#verimlilik", "#{handle}"],
+    cta: "Kaydet, bir sonraki toplantıda dene.",
+    media: [
+      photo("tx-ig-carousel-ai-1", IMG.dashboard, "4:5", "Panel"),
+      photo("tx-ig-carousel-ai-2", IMG.laptopDesk, "4:5", "Laptop"),
+      photo("tx-ig-carousel-ai-3", IMG.teamLaptops, "4:5", "Ekip"),
+    ],
+    theme: "educational",
+    reasoning:
+      "AI verimlilik içerikleri yükselişte; adım adım carousel'ler en çok kaydedilen biçim.",
+    relatedTrendId: "tt-ai-productivity",
+    estimate: {
+      reach: [5000, 10000],
+      engagementRate: 5.5,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Notlardan eyleme", "AI ile 2 dakikada özet"],
+      caption: [
+        "Toplantı notlarını özete çevirmenin en kısa yolu.",
+        "4 adımda AI destekli toplantı notu.",
+      ],
+      hashtags: [
+        ["#aiaraçları", "#{handle}"],
+        ["#toplantı", "#ürün"],
+      ],
+      cta: ["Ekibinle paylaş.", "Ücretsiz dene."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "tx-tt-before-after",
+    platform: "tiktok",
+    format: "video",
+    title: "Dağınık backlog'dan net plana",
+    description: "Karmaşık bir backlog'un 30 saniyede düzenlenişi.",
+    caption: "48 açık iş, 3 öncelik etiketi ve bir sürükle bırak. Sprint planı 30 saniyede hazır.",
+    hashtags: ["#ürünyönetimi", "#sprint", "#{handle}"],
+    music: {
+      title: "Techno Pulse",
+      artist: "Neon Drift",
+    },
+    cta: "Takip et, her hafta bir ipucu.",
+    media: [video("tx-tt-before-after-m", IMG.codeScreen, "9:16", "Ekran", 30)],
+    theme: "productFocused",
+    reasoning:
+      "Önce/sonra ürün videoları TikTok'ta en çok paylaşılan teknoloji içeriği; ürün demosu kısa kalınca izlenme artıyor.",
+    estimate: {
+      reach: [9000, 18000],
+      engagementRate: 6.7,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["30 saniyede sprint planı", "Backlog düzeni"],
+      caption: ["Dağınık bir backlog'u 30 saniyede toparla.", "48 işten 3 önceliğe."],
+      hashtags: [
+        ["#scrum", "#{handle}"],
+        ["#planlama", "#yazılım"],
+      ],
+      cta: ["Ücretsiz dene.", "Ekibine gönder."],
+      music: [
+        {
+          title: "Coding Night",
+          artist: "Lofi Code",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "18:00",
+    },
+  },
+  {
+    id: "tx-tt-dev-day",
+    platform: "tiktok",
+    format: "video",
+    title: "Geliştiricinin bir günü",
+    description: "Bir geliştiricinin gününü esprili bir dille anlatan video.",
+    caption: "09:00 kahve. 09:05 'bugün sadece bir küçük düzeltme'. 18:00 hâlâ o küçük düzeltme.",
+    hashtags: ["#yazılımcı", "#developerlife", "#{handle}"],
+    music: {
+      title: "Coding Night",
+      artist: "Lofi Code",
+    },
+    cta: "Sen de yaşadın mı?",
+    media: [video("tx-tt-dev-day-m", IMG.laptopCode, "9:16", "Kod yazan geliştirici", 25)],
+    theme: "entertaining",
+    reasoning:
+      "Geliştirici günü formatı yükselişte; esprili içerikler yorum ve paylaşım getiriyor.",
+    relatedTrendId: "tt-dev-day",
+    estimate: {
+      reach: [14000, 26000],
+      engagementRate: 8.1,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Küçük düzeltme efsanesi", "Bir yazılımcı günü"],
+      caption: [
+        "'Sadece küçük bir düzeltme' cümlesinin gerçek süresi.",
+        "09:05'te başlayan, 18:00'de biten bir düzeltme.",
+      ],
+      hashtags: [
+        ["#kod", "#{handle}"],
+        ["#yazılımhayatı", "#mizah"],
+      ],
+      cta: ["Takip et.", "Ekip arkadaşını etiketle."],
+      music: [
+        {
+          title: "Keyboard Rain",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 4,
+      time: "20:00",
+    },
+  },
+  {
+    id: "tx-tt-ai",
+    platform: "tiktok",
+    format: "video",
+    title: "AI toplantı özetini izle",
+    description: "Bir toplantının AI ile özetlenişini gerçek zamanlı gösteren video.",
+    caption: "45 dakikalık toplantı, 5 maddelik özet, 3 atanmış görev. Hepsi toplantı bitmeden.",
+    hashtags: ["#yapayzeka", "#verimlilik", "#{handle}"],
+    music: {
+      title: "Focus Flow",
+      artist: "Lofi Code",
+    },
+    cta: "Ücretsiz dene, linki profilde.",
+    media: [video("tx-tt-ai-m", IMG.dashboard, "9:16", "Panel", 30)],
+    theme: "productFocused",
+    reasoning:
+      "AI verimlilik içerikleri TikTok'ta da yükselişte; gerçek zamanlı demo videoları ürün sayfası tıklamasını artırıyor.",
+    relatedTrendId: "tt-ai-productivity",
+    estimate: {
+      reach: [10000, 20000],
+      engagementRate: 6.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Toplantı bitmeden özet", "5 madde, 3 görev"],
+      caption: ["Toplantı notu yazmaya son.", "AI özetiyle toplantıdan direkt işe."],
+      hashtags: [
+        ["#aiaraçları", "#{handle}"],
+        ["#toplantı", "#startup"],
+      ],
+      cta: ["Takip et.", "Ekibine gönder."],
+      music: [
+        {
+          title: "Keyboard Rain",
+          artist: "Chillhop Music",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 6,
+      time: "12:30",
+    },
+  },
 ];
 
 export const technologyPosts: SeedPost[] = [

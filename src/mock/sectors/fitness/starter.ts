@@ -365,6 +365,84 @@ export const fitnessStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "fsx-ig-coach",
+      platform: "instagram",
+      format: "reel",
+      title: "Antrenörünle tanış",
+      description: "Baş antrenörün kendini tanıttığı kısa Reel.",
+      caption:
+        "{brand} baş antrenörü Burak: 'Kimse sıfırdan başlamaktan utanmasın, hepimiz oradan başladık.'",
+      hashtags: ["#antrenör", "#fitness", "#{handle}"],
+      music: {
+        title: "Lift",
+        artist: "Gym Tracks",
+      },
+      cta: "Deneme dersine gel.",
+      media: [video("fsx-ig-coach-m", IMG.athlete, "9:16", "Antrenör", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Spor salonu seçiminde antrenöre güven belirleyici; tanışma Reel'leri ilk deneme dersi taleplerini getirir.",
+      estimate: {
+        reach: [600, 2500],
+        engagementRate: 8.2,
+        potential: "high",
+      },
+      alternatives: {
+        title: ["Baş antrenörümüz", "Burak ile tanış"],
+        caption: ["Sıfırdan başlamak utanılacak bir şey değil.", "Antrenörümüzün ilk mesajı."],
+        hashtags: [["#koç", "#{handle}"], ["#spor"]],
+        cta: ["Soru sor.", "Takip et."],
+        music: [
+          {
+            title: "Power",
+            artist: "Workout Beats",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "18:30",
+      },
+    },
+    {
+      id: "fsx-tt-tour",
+      platform: "tiktok",
+      format: "video",
+      title: "Salonumuzu 15 saniyede gez",
+      description: "Salonun alanlarını hızlıca gösteren tur videosu.",
+      caption: "{brand} turu: ağırlık alanı, grup dersi stüdyosu ve kardiyo köşesi. 15 saniyede.",
+      hashtags: ["#spor", "#gym", "#{handle}"],
+      music: {
+        title: "Lift",
+        artist: "Gym Tracks",
+      },
+      cta: "İlk ders bizden.",
+      media: [video("fsx-tt-tour-m", IMG.gymFloor, "9:16", "Spor salonu", 15)],
+      theme: "behindTheScenes",
+      reasoning: "Salon turları yeni hesapların TikTok'ta yakındaki kitleye ulaşmasını sağlar.",
+      estimate: {
+        reach: [800, 3800],
+        engagementRate: 7.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["15 saniyelik tur", "Salonu gez"],
+        caption: ["Antrenman yapacağın yeri önceden gör.", "Ağırlıktan grup derslerine bir tur."],
+        hashtags: [["#sporsalonu", "#{handle}"], ["#fitness"]],
+        cta: ["Takip et.", "Konum profilde."],
+        music: [
+          {
+            title: "Power",
+            artist: "Workout Beats",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "18:00",
+      },
+    },
   ],
   analytics: {
     followers: { instagram: 0, tiktok: 0, youtube: 0, x: 0, linkedin: 0 },

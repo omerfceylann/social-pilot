@@ -372,6 +372,86 @@ export const restaurantStarter: StarterKit = {
         time: "10:30",
       },
     },
+    {
+      id: "rsx-ig-first-cup",
+      platform: "instagram",
+      format: "reel",
+      title: "İlk fincanın hikâyesi",
+      description: "Açılış sabahının ilk kahvesini gösteren kısa Reel.",
+      caption: "{brand} ilk sabahında ilk fincanı demledi. Bu kahve bizim için bir başlangıç.",
+      hashtags: ["#kahve", "#yenikafe", "#{handle}"],
+      music: {
+        title: "Morning Coffee",
+        artist: "Lofi Fruits",
+      },
+      cta: "İlk fincanın bizden.",
+      media: [video("rsx-ig-first-cup-m", IMG.espresso, "9:16", "Espresso", 15)],
+      theme: "storytelling",
+      reasoning:
+        "Yeni kafelerde ilk günü anlatan kısa videolar, yakındaki takipçileri ilk ziyarete davet eder.",
+      estimate: {
+        reach: [500, 2200],
+        engagementRate: 8.0,
+        potential: "high",
+      },
+      alternatives: {
+        title: ["İlk sabah", "Bir başlangıç fincanı"],
+        caption: ["İlk fincan, ilk misafir, ilk sabah.", "Kapılarımızı bir espresso ile açtık."],
+        hashtags: [
+          ["#espresso", "#{handle}"],
+          ["#kafe", "#günaydın"],
+        ],
+        cta: ["Uğra, tanışalım.", "Takip et."],
+        music: [
+          {
+            title: "Coffee Break",
+            artist: "Lukrembo",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "08:30",
+      },
+    },
+    {
+      id: "rsx-tt-barista",
+      platform: "tiktok",
+      format: "video",
+      title: "Baristamızla 15 saniye",
+      description: "Baristanın en sevdiği içeceği hazırladığı kısa video.",
+      caption: "{brand} baristası Ece en sevdiği içeceği hazırlıyor: tarçınlı flat white.",
+      hashtags: ["#barista", "#kahve", "#{handle}"],
+      music: {
+        title: "Morning Coffee",
+        artist: "Lofi Fruits",
+      },
+      cta: "Takip et, her hafta bir tarif.",
+      media: [video("rsx-tt-barista-m", IMG.latteArt, "9:16", "Barista", 15)],
+      theme: "behindTheScenes",
+      reasoning: "Yeni hesaplarda kısa tarif videoları keşfete en kolay düşen içerik.",
+      estimate: {
+        reach: [700, 3500],
+        engagementRate: 7.8,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Ece'nin favorisi", "Tarçınlı flat white"],
+        caption: ["Baristamızın gizli tarifi.", "15 saniyede bir flat white."],
+        hashtags: [["#flatwhite", "#{handle}"], ["#kahvetarifi"]],
+        cta: ["Tarifini istediğin içeceği yaz.", "Uğra, birlikte deneyelim."],
+        music: [
+          {
+            title: "Coffee Break",
+            artist: "Lukrembo",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: { instagram: 0, tiktok: 0, youtube: 0, x: 0, linkedin: 0 },

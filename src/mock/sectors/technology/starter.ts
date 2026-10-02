@@ -335,6 +335,85 @@ export const technologyStarter: StarterKit = {
         time: "18:00",
       },
     },
+    {
+      id: "tstx-ig-team",
+      platform: "instagram",
+      format: "reel",
+      title: "Ekibimizle tanışın",
+      description: "Kurucu ekibi 20 saniyede tanıtan Reel.",
+      caption:
+        "{brand} ekibi: iki geliştirici, bir tasarımcı ve çok fazla kahve. Ürünü birlikte inşa ediyoruz.",
+      hashtags: ["#startup", "#ekip", "#{handle}"],
+      music: {
+        title: "Focus Flow",
+        artist: "Lofi Code",
+      },
+      cta: "Takip et, yolculuğu izle.",
+      media: [video("tstx-ig-team-m", IMG.teamLaptops, "9:16", "Ekip", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Yeni ürünlerde ekibi göstermek güven oluşturur; tanışma Reel'leri ilk takipçileri getirir.",
+      estimate: {
+        reach: [400, 1800],
+        engagementRate: 7.2,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kurucu ekip", "Ürünün arkasındakiler"],
+        caption: ["Ürünün arkasındaki üç kişi.", "Küçük ekip, büyük hedef."],
+        hashtags: [["#kurucu", "#{handle}"], ["#yazılım"]],
+        cta: ["Soru sor.", "Bize yaz."],
+        music: [
+          {
+            title: "Coding Night",
+            artist: "Lofi Code",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "18:00",
+      },
+    },
+    {
+      id: "tstx-tt-why",
+      platform: "tiktok",
+      format: "video",
+      title: "Bu ürünü neden yapıyoruz?",
+      description: "Kurucunun ürün fikrini 30 saniyede anlattığı video.",
+      caption:
+        "{brand} fikri bir sprint toplantısında doğdu: planlama bu kadar yorucu olmak zorunda değil.",
+      hashtags: ["#startup", "#kurucu", "#{handle}"],
+      music: {
+        title: "Focus Flow",
+        artist: "Lofi Code",
+      },
+      cta: "Takip et, yolculuğu izle.",
+      media: [video("tstx-tt-why-m", IMG.founder, "9:16", "Kurucu", 30)],
+      theme: "storytelling",
+      reasoning: "Kuruluş hikâyeleri yeni ürünlerin TikTok'ta ilk izleyicilerini bulmasını sağlar.",
+      estimate: {
+        reach: [800, 3600],
+        engagementRate: 7.5,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Fikir nasıl doğdu?", "Bir sprint toplantısından"],
+        caption: ["Yorucu planlamalardan doğan bir ürün.", "Neden bu ürünü yapıyoruz?"],
+        hashtags: [["#girişim", "#{handle}"], ["#ürün"]],
+        cta: ["Soru sor.", "Bize yaz."],
+        music: [
+          {
+            title: "Coding Night",
+            artist: "Lofi Code",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: { instagram: 0, tiktok: 0, youtube: 0, x: 0, linkedin: 0 },

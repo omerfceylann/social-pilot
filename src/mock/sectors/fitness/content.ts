@@ -267,6 +267,264 @@ export const fitnessSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "fx-ig-tip",
+    platform: "instagram",
+    format: "post",
+    title: "Isınmayı atlama",
+    description: "Antrenman öncesi 5 dakikalık ısınmanın önemini anlatan gönderi.",
+    caption:
+      "5 dakikalık ısınma: 1 dakika ip, 2 dakika dinamik esneme, 2 dakika hafif ağırlık. Sakatlığa karşı en kolay önlem.",
+    hashtags: ["#ısınma", "#antrenman", "#fitness", "#{handle}"],
+    cta: "Kaydet, antrenmandan önce aç.",
+    media: [photo("fx-ig-tip-m", IMG.kettlebell, "4:5", "Kettlebell")],
+    theme: "educational",
+    reasoning:
+      "Kısa öğretici gönderiler hesabında en çok kaydedilen içerik; ısınma konusu yeni başlayanlarda çok aranıyor.",
+    estimate: {
+      reach: [6000, 11000],
+      engagementRate: 6.8,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["5 dakikalık ısınma", "Antrenmandan önce"],
+      caption: [
+        "Isınmayı atlamak antrenmanı yarıda bırakmak demek.",
+        "En kısa sakatlık önlemi: 5 dakika ısınma.",
+      ],
+      hashtags: [
+        ["#spor", "#{handle}"],
+        ["#sağlıklıyaşam", "#gym"],
+      ],
+      cta: ["Antrenman arkadaşını etiketle.", "Deneme dersine gel."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "07:00",
+    },
+  },
+  {
+    id: "fx-ig-reel-squat",
+    platform: "instagram",
+    format: "reel",
+    title: "Squat'ta diz nereye bakmalı?",
+    description: "Doğru ve yanlış squat formunu yan yana gösteren Reel.",
+    caption:
+      "Dizler ayak uçlarıyla aynı yönde, kalça geride, göğüs yukarıda. Yanlış ve doğru formu yan yana izle.",
+    hashtags: ["#squat", "#formkontrol", "#{handle}"],
+    music: {
+      title: "Lift",
+      artist: "Gym Tracks",
+    },
+    cta: "Formunu kontrol ettirmek için DM.",
+    media: [video("fx-ig-reel-squat-m", IMG.training, "9:16", "Squat yapan sporcu", 30)],
+    theme: "educational",
+    reasoning:
+      "Form kontrol videoları yükselişte; hesabındaki teknik Reel'ler ortalamanın %45 üstünde kaydediliyor.",
+    relatedTrendId: "ft-form-check",
+    estimate: {
+      reach: [13000, 23000],
+      engagementRate: 7.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Doğru squat formu", "Diz ve kalça"],
+      caption: [
+        "Squat yaparken en sık yapılan hata dizlerde.",
+        "Doğru squat için üç kontrol noktası.",
+      ],
+      hashtags: [
+        ["#gym", "#{handle}"],
+        ["#antrenman", "#bacakgünü"],
+      ],
+      cta: ["Kaydet.", "Antrenörümüze sor."],
+      music: [
+        {
+          title: "Power",
+          artist: "Workout Beats",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "18:00",
+    },
+  },
+  {
+    id: "fx-ig-carousel-week",
+    platform: "instagram",
+    format: "carousel",
+    title: "Yeni başlayanlar için 3 günlük plan",
+    description: "Haftada 3 gün yapılabilecek tüm vücut antrenman planı.",
+    caption:
+      "Pazartesi tüm vücut, çarşamba kardiyo ve core, cuma tüm vücut. Yeni başlayanlar için basit bir hafta.",
+    hashtags: ["#antrenmanplanı", "#yenibaşlayanlar", "#{handle}"],
+    cta: "Kaydet, pazartesi başla.",
+    media: [
+      photo("fx-ig-carousel-week-1", IMG.gymFloor, "4:5", "Spor salonu"),
+      photo("fx-ig-carousel-week-2", IMG.running, "4:5", "Koşu"),
+      photo("fx-ig-carousel-week-3", IMG.weights, "4:5", "Ağırlıklar"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Plan carousel'leri hesabında en çok kaydedilen biçim; spora yeniden başlayan kitle hazır plan arıyor.",
+    estimate: {
+      reach: [8000, 14000],
+      engagementRate: 6.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Haftada 3 gün", "Basit bir başlangıç haftası"],
+      caption: [
+        "Spora yeniden başlamak için 3 günlük plan.",
+        "Karmaşık program yok, sadece 3 gün.",
+      ],
+      hashtags: [
+        ["#fitness", "#{handle}"],
+        ["#tümvücut", "#spor"],
+      ],
+      cta: ["Planı arkadaşına gönder.", "Deneme dersine gel."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "fx-tt-plank",
+    platform: "tiktok",
+    format: "video",
+    title: "60 saniye plank meydan okuması",
+    description: "Takipçileri plank meydan okumasına davet eden video.",
+    caption:
+      "60 saniye plank. İlk 20 saniye kolay, son 10 saniye gerçek antrenman. Kaç saniye dayanabildin?",
+    hashtags: ["#plank", "#meydanokuma", "#{handle}"],
+    music: {
+      title: "Eye of the Tiger",
+      artist: "Survivor",
+    },
+    cta: "Süreni yorumlara yaz.",
+    media: [video("fx-tt-plank-m", IMG.pushUps, "9:16", "Plank yapan sporcu", 60)],
+    theme: "entertaining",
+    reasoning:
+      "Meydan okuma videoları TikTok'ta yorum sayısını artırıyor; 75 Soft trendiyle aynı kitleye ulaşıyor.",
+    relatedTrendId: "ft-75soft",
+    estimate: {
+      reach: [17000, 30000],
+      engagementRate: 8.6,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Plank meydan okuması", "Son 10 saniye"],
+      caption: [
+        "Plank'te gerçek antrenman son 10 saniyede başlar.",
+        "60 saniye: kaç saniye dayanabilirsin?",
+      ],
+      hashtags: [
+        ["#core", "#{handle}"],
+        ["#fitness", "#challenge"],
+      ],
+      cta: ["Arkadaşını etiketle.", "Takip et, yarın yeni bir meydan okuma."],
+      music: [
+        {
+          title: "Power",
+          artist: "Workout Beats",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "19:00",
+    },
+  },
+  {
+    id: "fx-tt-mistake",
+    platform: "tiktok",
+    format: "video",
+    title: "Deadlift'te bel hatası",
+    description: "Deadlift'te bel yuvarlama hatasını ve düzeltmesini gösteren video.",
+    caption: "Bel yuvarlanıyorsa ağırlık fazla demektir. Barı bacaklara yakın tut, kalçayla it.",
+    hashtags: ["#deadlift", "#formkontrol", "#{handle}"],
+    music: {
+      title: "Lift",
+      artist: "Gym Tracks",
+    },
+    cta: "Formunu çek, antrenörümüze gönder.",
+    media: [video("fx-tt-mistake-m", IMG.deadlift, "9:16", "Deadlift", 30)],
+    theme: "educational",
+    reasoning:
+      "Form kontrol içerikleri TikTok'ta yükselişte; hata ve düzeltme formatı kaydedilme oranını artırıyor.",
+    relatedTrendId: "ft-form-check",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.7,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Bel yuvarlanıyorsa", "Deadlift'te tek kural"],
+      caption: ["Deadlift'te en sık hata ve düzeltmesi.", "Barı bacaklara yakın tut."],
+      hashtags: [
+        ["#gym", "#{handle}"],
+        ["#güçantrenmanı", "#teknik"],
+      ],
+      cta: ["Kaydet.", "Takip et."],
+      music: [
+        {
+          title: "Power",
+          artist: "Workout Beats",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "18:00",
+    },
+  },
+  {
+    id: "fx-tt-member",
+    platform: "tiktok",
+    format: "video",
+    title: "Ayşe'nin ilk pull-up'ı",
+    description: "Bir üyenin ilk barfiks anını gösteren motive edici video.",
+    caption:
+      "4 ay önce tek bir barfiks yapamıyordu. Bugün ilk kez çıktı. Ayşe'nin anı (paylaşım izniyle).",
+    hashtags: ["#ilkpullup", "#motivasyon", "#{handle}"],
+    music: {
+      title: "Stronger",
+      artist: "Kanye West",
+    },
+    cta: "Ayşe'yi tebrik et.",
+    media: [video("fx-tt-member-m", IMG.athlete, "9:16", "Barfiks yapan üye", 20)],
+    theme: "storytelling",
+    reasoning:
+      "Üye başarı anları hesabında en çok paylaşılan TikTok içeriği; topluluk hissini güçlendiriyor.",
+    estimate: {
+      reach: [15000, 28000],
+      engagementRate: 8.8,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["İlk barfiks anı", "4 ayın sonunda"],
+      caption: ["Dört ayın emeği tek bir barfikste.", "İlk pull-up hep unutulmaz."],
+      hashtags: [
+        ["#fitness", "#{handle}"],
+        ["#başarı", "#spor"],
+      ],
+      cta: ["Sıradaki sensin.", "Deneme dersine gel."],
+      music: [
+        {
+          title: "Power",
+          artist: "Workout Beats",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "19:30",
+    },
+  },
 ];
 
 export const fitnessPosts: SeedPost[] = [
