@@ -177,16 +177,18 @@ const NotificationsSection = () => {
             key={key}
             className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
           >
-            <label htmlFor={`notify-${key}`} className="flex flex-col gap-0.5">
-              <span className="text-body font-medium text-fg">
+            {/* Ad: sadece başlık; açıklama ekran okuyucuda ayrıca okunur. */}
+            <div className="flex flex-col gap-0.5">
+              <label htmlFor={`notify-${key}`} className="text-body font-medium text-fg">
                 {t(`settings.notify.${key}.title`)}
-              </span>
-              <span className="text-small text-fg-secondary">
+              </label>
+              <span id={`notify-${key}-hint`} className="text-small text-fg-secondary">
                 {t(`settings.notify.${key}.description`)}
               </span>
-            </label>
+            </div>
             <Switch
               id={`notify-${key}`}
+              aria-describedby={`notify-${key}-hint`}
               checked={notifications[key]}
               onCheckedChange={(checked) => setNotification(key, checked)}
             />

@@ -51,7 +51,7 @@ export const CalendarEvent = ({ item, onOpen, variant = "compact" }: CalendarEve
     >
       <span className="flex min-w-0 items-center gap-1.5">
         <PlatformIcon platform={item.platform} colored className="size-3.5 shrink-0" />
-        <span className="shrink-0 text-fg-muted tabular-nums">{time}</span>
+        <span className="shrink-0 text-fg-secondary tabular-nums">{time}</span>
         {variant === "compact" && (
           <span className="flex min-w-0 items-center gap-1 truncate">
             {item.status === "suggested" && <AISparkle className="text-accent-text" />}

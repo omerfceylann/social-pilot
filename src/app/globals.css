@@ -30,7 +30,7 @@
 
   --text: #111116;
   --text-secondary: #5b5b68;
-  --text-muted: #80808c;
+  --text-muted: #6a6a76;
 
   --overlay: rgb(17 17 22 / 0.32);
 
@@ -44,9 +44,9 @@
   --accent-soft-mix: 10%;
 
   /* Açık zeminde okunabilsin diye koyu tonlar. */
-  --success: oklch(0.56 0.14 155);
+  --success: oklch(0.5 0.13 155);
   --warning: oklch(0.62 0.14 65);
-  --danger: oklch(0.56 0.2 25);
+  --danger: oklch(0.52 0.2 25);
 }
 
 [data-mode="dark"] {
@@ -62,7 +62,7 @@
 
   --text: #f5f5f7;
   --text-secondary: #9999a5;
-  --text-muted: #767682;
+  --text-muted: #8a8a96;
 
   --overlay: rgb(0 0 0 / 0.6);
 
@@ -86,19 +86,19 @@
 [data-accent="violet"] {
   --accent-h: 293;
   --accent-c: 0.21;
-  --accent-l: 0.6;
+  --accent-l: 0.56;
   --accent-fg: #ffffff;
 }
 [data-accent="indigo"] {
   --accent-h: 277;
   --accent-c: 0.19;
-  --accent-l: 0.58;
+  --accent-l: 0.55;
   --accent-fg: #ffffff;
 }
 [data-accent="blue"] {
   --accent-h: 255;
   --accent-c: 0.18;
-  --accent-l: 0.6;
+  --accent-l: 0.55;
   --accent-fg: #ffffff;
 }
 /* Emerald ve amber açık tonlar: beyaz metin yerine koyu metin kontrastı sağlar. */
@@ -111,7 +111,7 @@
 [data-accent="rose"] {
   --accent-h: 12;
   --accent-c: 0.2;
-  --accent-l: 0.62;
+  --accent-l: 0.56;
   --accent-fg: #ffffff;
 }
 [data-accent="amber"] {

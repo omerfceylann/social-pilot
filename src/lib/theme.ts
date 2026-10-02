@@ -14,11 +14,11 @@ export const DEFAULT_COLOR_MODE: ColorMode = "system";
 
 /** Tema seçicilerde gösterilen örnek renk (CSS token'ları ile aynı ton). */
 export const ACCENT_SWATCHES: Record<AccentTheme, string> = {
-  indigo: "oklch(0.58 0.19 277)",
-  violet: "oklch(0.6 0.21 293)",
-  blue: "oklch(0.6 0.18 255)",
+  indigo: "oklch(0.55 0.19 277)",
+  violet: "oklch(0.56 0.21 293)",
+  blue: "oklch(0.55 0.18 255)",
   emerald: "oklch(0.72 0.15 163)",
-  rose: "oklch(0.62 0.2 12)",
+  rose: "oklch(0.56 0.2 12)",
   amber: "oklch(0.8 0.15 75)",
 };
 
