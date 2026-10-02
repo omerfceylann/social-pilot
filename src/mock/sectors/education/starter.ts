@@ -387,6 +387,89 @@ export const educationStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "edsx-ig-class",
+      platform: "instagram",
+      format: "reel",
+      title: "İlk dersimizden bir an",
+      description: "İlk konuşma dersinden kısa bir kesit.",
+      caption:
+        "{brand} ilk konuşma dersinde herkes kendini İngilizce tanıttı. Heyecan vardı, hata vardı, ama herkes konuştu.",
+      hashtags: ["#ingilizce", "#konuşmadersi", "#{handle}"],
+      music: {
+        title: "Study Session",
+        artist: "Lofi Girl",
+      },
+      cta: "Deneme dersine katıl.",
+      media: [video("edsx-ig-class-m", IMG.classroom, "9:16", "Sınıf", 20)],
+      theme: "storytelling",
+      reasoning:
+        "İlk ders anları yeni kursların güvenilir görünmesini sağlar ve deneme dersi taleplerini getirir.",
+      estimate: {
+        reach: [500, 2200],
+        engagementRate: 7.6,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk konuşma dersi", "Herkes konuştu"],
+        caption: [
+          "Hata yapmaktan korkmadan konuşulan ilk ders.",
+          "İlk derste herkes kendini tanıttı.",
+        ],
+        hashtags: [["#speaking", "#{handle}"], ["#ingilizceöğren"]],
+        cta: ["Takip et.", "Soru sor."],
+        music: [
+          {
+            title: "Rainy Desk",
+            artist: "Lofi Girl",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "19:00",
+      },
+    },
+    {
+      id: "edsx-tt-teacher",
+      platform: "tiktok",
+      format: "video",
+      title: "Eğitmenimizden ilk ipucu",
+      description: "Eğitmenin kendini tanıtıp bir ipucu verdiği video.",
+      caption:
+        "{brand} eğitmeni Mert: 'Her gün 10 dakika sesli okuma yap. Konuşma kasların böyle gelişir.'",
+      hashtags: ["#ingilizce", "#eğitmen", "#{handle}"],
+      music: {
+        title: "Study Session",
+        artist: "Lofi Girl",
+      },
+      cta: "Takip et.",
+      media: [video("edsx-tt-teacher-m", IMG.lecture, "9:16", "Eğitmen", 20)],
+      theme: "educational",
+      reasoning:
+        "Eğitmen tanıtımı ve hızlı ipucu, yeni kursların TikTok'ta ilk kitlesini bulmasını sağlar.",
+      estimate: {
+        reach: [800, 3600],
+        engagementRate: 7.7,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Mert'ten ipucu", "10 dakika sesli okuma"],
+        caption: ["Konuşma pratiği için en basit alışkanlık.", "Her gün 10 dakika yeter."],
+        hashtags: [["#speaking", "#{handle}"], ["#ingilizceöğren"]],
+        cta: ["Soru sor.", "Deneme dersine katıl."],
+        music: [
+          {
+            title: "Rainy Desk",
+            artist: "Lofi Girl",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {

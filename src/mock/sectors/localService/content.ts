@@ -304,6 +304,257 @@ export const localServiceSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "lsx-ig-tip",
+    platform: "instagram",
+    format: "post",
+    title: "Musluk damlıyorsa önce bu",
+    description: "Damlayan muslukta ilk yapılacak kontrolü anlatan gönderi.",
+    caption:
+      "Musluk damlıyorsa önce ana vanayı kapat, sonra contayı kontrol et. Çoğu zaman sorun 20 liralık bir contada.",
+    hashtags: ["#evtamiri", "#kendinyap", "#{handle}"],
+    cta: "Çözülmezse bize yaz, aynı gün gelelim.",
+    media: [photo("lsx-ig-tip-m", IMG.faucet, "4:5", "Musluk")],
+    theme: "educational",
+    reasoning:
+      "Kendin yap ipuçları yükselişte; hesabındaki tamir ipuçları güven oluşturup randevuya dönüşüyor.",
+    relatedTrendId: "lst-diy",
+    estimate: {
+      reach: [4500, 8500],
+      engagementRate: 6.1,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Conta kontrolü", "Damlayan musluk"],
+      caption: ["Damlayan musluk için ilk adım.", "Usta çağırmadan önce bu kontrolü yap."],
+      hashtags: [
+        ["#tamir", "#{handle}"],
+        ["#evbakımı", "#ipucu"],
+      ],
+      cta: ["Kaydet.", "Randevu için DM."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "10:00",
+    },
+  },
+  {
+    id: "lsx-ig-reel-grout",
+    platform: "instagram",
+    format: "reel",
+    title: "Derz temizliği önce ve sonra",
+    description: "Kararmış banyo derzlerinin temizlenişini gösteren Reel.",
+    caption:
+      "Kararmış derzler, yumuşak fırça ve doğru temizleyici. Banyo 20 dakikada yeni gibi. (Müşteri izniyle)",
+    hashtags: ["#temizlik", "#öncesonra", "#{handle}"],
+    music: {
+      title: "Fresh Start",
+      artist: "Lofi Home",
+    },
+    cta: "Derin temizlik randevusu için DM.",
+    media: [video("lsx-ig-reel-grout-m", IMG.spray, "9:16", "Temizlik spreyi", 25)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Tatmin edici temizlik videoları yükselişte; hesabındaki önce/sonra Reel'leri ortalamanın %52 üstünde izleniyor.",
+    relatedTrendId: "lst-satisfying",
+    estimate: {
+      reach: [14000, 25000],
+      engagementRate: 7.7,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["20 dakikada banyo", "Derzlerin gerçek rengi"],
+      caption: [
+        "Bu derzlerin aslında beyaz olduğunu kim bilirdi?",
+        "Banyo derzleri için doğru teknik.",
+      ],
+      hashtags: [
+        ["#cleantok", "#{handle}"],
+        ["#banyo", "#evtemizliği"],
+      ],
+      cta: ["Kaydet.", "Randevunu al."],
+      music: [
+        {
+          title: "Clean Slate",
+          artist: "Lofi Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "lsx-ig-carousel-season",
+    platform: "instagram",
+    format: "carousel",
+    title: "Sonbahar ev bakım listesi",
+    description: "Sonbaharda yapılması gereken ev bakımlarını sıralayan carousel.",
+    caption:
+      "Kombi bakımı, oluk temizliği, pencere fitili, balkon gideri ve priz kontrolü. Kışa girmeden 5 iş.",
+    hashtags: ["#evbakımı", "#kışahazırlık", "#{handle}"],
+    cta: "Kaydet, hafta sonu kontrol et.",
+    media: [
+      photo("lsx-ig-carousel-season-1", IMG.planning, "4:5", "Plan"),
+      photo("lsx-ig-carousel-season-2", IMG.electrician, "4:5", "Elektrikçi"),
+      photo("lsx-ig-carousel-season-3", IMG.windowCleaning, "4:5", "Cam temizliği"),
+    ],
+    theme: "educational",
+    reasoning:
+      "Mevsimlik bakım aramaları artıyor; kontrol listeleri hesabında en çok kaydedilen carousel.",
+    relatedTrendId: "lst-seasonal",
+    estimate: {
+      reach: [6500, 12000],
+      engagementRate: 6.3,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Kışa girmeden 5 iş", "Sonbahar kontrol listesi"],
+      caption: ["Soğuklar gelmeden evin hazır olsun.", "Beş kontrol, rahat bir kış."],
+      hashtags: [
+        ["#ev", "#{handle}"],
+        ["#sonbahar", "#bakım"],
+      ],
+      cta: ["Komşunla paylaş.", "Toplu bakım randevusu al."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "11:00",
+    },
+  },
+  {
+    id: "lsx-tt-satisfying",
+    platform: "tiktok",
+    format: "video",
+    title: "Ocak gözü 30 saniyede",
+    description: "Yağlanmış ocak gözünün temizlenişini yakın planda gösteren video.",
+    caption: "Yanık yağ, sıcak su, karbonat ve sabır. Ocak gözü 30 saniyede parlıyor.",
+    hashtags: ["#cleantok", "#satisfying", "#{handle}"],
+    music: {
+      title: "Fresh Start",
+      artist: "Lofi Home",
+    },
+    cta: "Derin temizlik için DM.",
+    media: [video("lsx-tt-satisfying-m", IMG.spray, "9:16", "Temizlik", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Tatmin edici temizlik TikTok'ta %63 yükselişte; yakın plan videolar izlenme süresinde ortalamanın üstünde.",
+    relatedTrendId: "lst-satisfying",
+    estimate: {
+      reach: [17000, 30000],
+      engagementRate: 8.2,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Yanık yağa son", "Parlayan ocak"],
+      caption: ["Bu ocak gözü gerçekten bu kadar temizlenir mi?", "En tatmin edici 30 saniye."],
+      hashtags: [
+        ["#temizlik", "#{handle}"],
+        ["#mutfak", "#oddlysatisfying"],
+      ],
+      cta: ["Takip et.", "Kaydet, evde dene."],
+      music: [
+        {
+          title: "Clean Slate",
+          artist: "Lofi Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "20:00",
+    },
+  },
+  {
+    id: "lsx-tt-day",
+    platform: "tiktok",
+    format: "video",
+    title: "Ustanın bir günü",
+    description: "Bir ustanın sabahtan akşama dört farklı işini gösteren video.",
+    caption:
+      "08:30 priz, 11:00 musluk, 14:00 raf montajı, 17:00 kapı menteşesi. Bir günde dört ev.",
+    hashtags: ["#ustanıngünü", "#perdearkası", "#{handle}"],
+    music: {
+      title: "Fresh Start",
+      artist: "Lofi Home",
+    },
+    cta: "Senin evinde ne lazım?",
+    media: [video("lsx-tt-day-m", IMG.drill, "9:16", "Matkap", 30)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Ustanın günü videoları yükselişte; perde arkası içerikler güven ve randevu talebi getiriyor.",
+    relatedTrendId: "lst-day-in-life",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Bir günde dört ev", "Sabahtan akşama"],
+      caption: ["Bir ustanın gerçek iş günü.", "Priz, musluk, raf ve kapı."],
+      hashtags: [
+        ["#tamir", "#{handle}"],
+        ["#ustalık", "#ev"],
+      ],
+      cta: ["Takip et.", "Randevu al."],
+      music: [
+        {
+          title: "Clean Slate",
+          artist: "Lofi Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "lsx-tt-diy",
+    platform: "tiktok",
+    format: "video",
+    title: "Gıcırdayan kapıya 1 dakika",
+    description: "Gıcırdayan kapı menteşesini basitçe düzeltmeyi gösteren video.",
+    caption: "Menteşe pimini çıkar, sil, biraz yağla, geri tak. Gıcırtı bitti. Olmazsa bize yaz.",
+    hashtags: ["#kendinyap", "#evtamiri", "#{handle}"],
+    music: {
+      title: "Fresh Start",
+      artist: "Lofi Home",
+    },
+    cta: "Kaydet, gıcırtıda aç.",
+    media: [video("lsx-tt-diy-m", IMG.drill, "9:16", "Tamir", 25)],
+    theme: "educational",
+    reasoning:
+      "Kendin yap tamirleri TikTok'ta kaydediliyor; basit çözümler güven oluşturup büyük işlere dönüşüyor.",
+    relatedTrendId: "lst-diy",
+    estimate: {
+      reach: [11000, 20000],
+      engagementRate: 7.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Menteşe yağlama", "Gıcırtıya veda"],
+      caption: ["Gıcırdayan kapı için bir dakika yeter.", "Usta çağırmadan önce dene."],
+      hashtags: [
+        ["#tamir", "#{handle}"],
+        ["#diy", "#ipucu"],
+      ],
+      cta: ["Takip et.", "Kaydet."],
+      music: [
+        {
+          title: "Clean Slate",
+          artist: "Lofi Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "18:00",
+    },
+  },
 ];
 
 export const localServicePosts: SeedPost[] = [

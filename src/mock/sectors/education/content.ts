@@ -304,6 +304,259 @@ export const educationSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "edx-ig-word",
+    platform: "instagram",
+    format: "post",
+    title: "Günün ifadesi: 'on the same page'",
+    description: "İş İngilizcesinde sık kullanılan bir ifadeyi örnek cümleyle anlatan gönderi.",
+    caption:
+      "'On the same page' = aynı fikirde olmak. Örnek: Before the meeting, let's make sure we're on the same page.",
+    hashtags: ["#ingilizce", "#işingilizcesi", "#{handle}"],
+    cta: "Kendi cümleni yorumlara yaz.",
+    media: [photo("edx-ig-word-m", IMG.writing, "4:5", "Not alan öğrenci")],
+    theme: "educational",
+    reasoning:
+      "Günün ifadesi gönderileri hesabında en çok yorum alan içerik; takipçiler kendi cümlelerini yazıyor.",
+    estimate: {
+      reach: [5000, 9000],
+      engagementRate: 6.6,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["İş İngilizcesi: bir ifade", "Toplantı ifadesi"],
+      caption: [
+        "Toplantılarda en çok duyacağın ifadelerden biri.",
+        "Bir ifade, bir örnek, bir alıştırma.",
+      ],
+      hashtags: [
+        ["#ingilizceöğren", "#{handle}"],
+        ["#businessenglish", "#kelime"],
+      ],
+      cta: ["Kaydet, toplantıda kullan.", "Deneme dersine katıl."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "08:30",
+    },
+  },
+  {
+    id: "edx-ig-reel-mistake",
+    platform: "instagram",
+    format: "reel",
+    title: "'I am agree' değil!",
+    description: "Türkçe konuşanların sık yaptığı bir hatayı düzelten Reel.",
+    caption:
+      "'I am agree' değil, 'I agree'. Türkçedeki 'katılıyorum' yapısı yüzünden en sık yapılan hata bu.",
+    hashtags: ["#ingilizcehatalar", "#ingilizce", "#{handle}"],
+    music: {
+      title: "Study Session",
+      artist: "Lofi Girl",
+    },
+    cta: "Kaydet, bir daha yapma.",
+    media: [video("edx-ig-reel-mistake-m", IMG.student, "9:16", "Öğrenci", 20)],
+    theme: "educational",
+    reasoning:
+      "Tek hata formatı yükselişte; hesabındaki hata düzeltme Reel'leri ortalamanın %50 üstünde kaydediliyor.",
+    relatedTrendId: "edt-one-mistake",
+    estimate: {
+      reach: [14000, 24000],
+      engagementRate: 8.0,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["En sık hata", "Agree'nin doğrusu"],
+      caption: ["Bu hatayı neredeyse herkes yapıyor.", "Tek kelimelik düzeltme, büyük fark."],
+      hashtags: [
+        ["#ingilizceöğren", "#{handle}"],
+        ["#gramer", "#speaking"],
+      ],
+      cta: ["Arkadaşını etiketle.", "Deneme dersine katıl."],
+      music: [
+        {
+          title: "Rainy Desk",
+          artist: "Lofi Girl",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "edx-ig-carousel-email",
+    platform: "instagram",
+    format: "carousel",
+    title: "E-postada 5 kalıp",
+    description: "İş e-postalarında kullanılabilecek kalıpları sıralayan carousel.",
+    caption:
+      "I hope this email finds you well, Please find attached, Could you please, I look forward to, Best regards. Her biri için örnek kaydırmada.",
+    hashtags: ["#işingilizcesi", "#eposta", "#{handle}"],
+    cta: "Kaydet, bir sonraki e-postada kullan.",
+    media: [
+      photo("edx-ig-carousel-email-1", IMG.desk, "4:5", "Çalışma masası"),
+      photo("edx-ig-carousel-email-2", IMG.writing, "4:5", "Yazı yazan kişi"),
+      photo("edx-ig-carousel-email-3", IMG.openBooks, "4:5", "Açık kitaplar"),
+    ],
+    theme: "educational",
+    reasoning:
+      "İş İngilizcesi kalıpları hesabında en çok kaydedilen carousel'ler; çalışan kitle hazır kalıp arıyor.",
+    estimate: {
+      reach: [7000, 13000],
+      engagementRate: 6.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Hazır e-posta kalıpları", "Profesyonel e-posta"],
+      caption: [
+        "İngilizce e-posta yazmak bu kalıplarla kolaylaşır.",
+        "Beş kalıp, her e-postada işe yarar.",
+      ],
+      hashtags: [
+        ["#ingilizce", "#{handle}"],
+        ["#businessenglish", "#kariyer"],
+      ],
+      cta: ["Ekip arkadaşına gönder.", "İş İngilizcesi kursumuzu incele."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "edx-tt-pronounce",
+    platform: "tiktok",
+    format: "video",
+    title: "Bu kelimeyi nasıl okuyorsun?",
+    description: "Yanlış telaffuz edilen kelimeleri düzelten video.",
+    caption:
+      "Comfortable, vegetable, Wednesday. Üç kelime, üç sessiz hece. Doğru telaffuzu dinle ve tekrar et.",
+    hashtags: ["#telaffuz", "#ingilizce", "#{handle}"],
+    music: {
+      title: "Study Session",
+      artist: "Lofi Girl",
+    },
+    cta: "Hangisini yanlış okuyordun?",
+    media: [video("edx-tt-pronounce-m", IMG.student, "9:16", "Konuşan öğrenci", 25)],
+    theme: "educational",
+    reasoning:
+      "Telaffuz videoları TikTok'ta en çok tekrar izlenen dil içeriği; tek hata formatı yükselişte.",
+    relatedTrendId: "edt-one-mistake",
+    estimate: {
+      reach: [16000, 28000],
+      engagementRate: 8.3,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Üç sessiz hece", "Telaffuz testi"],
+      caption: ["Bu üç kelimeyi doğru okuyor musun?", "Yazıldığı gibi okunmayan üç kelime."],
+      hashtags: [
+        ["#ingilizceöğren", "#{handle}"],
+        ["#pronunciation", "#dil"],
+      ],
+      cta: ["Takip et, her gün bir kelime.", "Deneme dersine katıl."],
+      music: [
+        {
+          title: "Rainy Desk",
+          artist: "Lofi Girl",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "19:00",
+    },
+  },
+  {
+    id: "edx-tt-study",
+    platform: "tiktok",
+    format: "video",
+    title: "Benimle 25 dakika çalış",
+    description: "Pomodoro tekniğiyle birlikte çalışma videosu.",
+    caption:
+      "25 dakika odak, 5 dakika mola. Bugün kelime listeni benimle çalış; ekranda sayaç var.",
+    hashtags: ["#studywithme", "#pomodoro", "#{handle}"],
+    music: {
+      title: "Study Session",
+      artist: "Lofi Girl",
+    },
+    cta: "Takip et, her akşam birlikte çalışalım.",
+    media: [video("edx-tt-study-m", IMG.desk, "9:16", "Çalışma masası", 60)],
+    theme: "communityFocused",
+    reasoning:
+      "Study with me formatı yükselişte; birlikte çalışma videoları izlenme süresinde ortalamanın çok üstünde.",
+    relatedTrendId: "edt-study-with-me",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Pomodoro seansı", "25 dakika odak"],
+      caption: ["Yalnız çalışmak zorsa benimle çalış.", "Bir pomodoro, bir kelime listesi."],
+      hashtags: [
+        ["#ders", "#{handle}"],
+        ["#odak", "#ingilizce"],
+      ],
+      cta: ["Yorumlara ne çalıştığını yaz.", "Online çalışma grubumuza katıl."],
+      music: [
+        {
+          title: "Rainy Desk",
+          artist: "Lofi Girl",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "20:00",
+    },
+  },
+  {
+    id: "edx-tt-interview",
+    platform: "tiktok",
+    format: "video",
+    title: "Mülakatta 'Tell me about yourself'",
+    description: "İngilizce mülakat sorusuna örnek cevap yapısını anlatan video.",
+    caption:
+      "Şimdi, geçmiş, gelecek: 30 saniyelik cevap için üç adım. Örnek cevabı ekranda takip et.",
+    hashtags: ["#mülakat", "#işingilizcesi", "#{handle}"],
+    music: {
+      title: "Study Session",
+      artist: "Lofi Girl",
+    },
+    cta: "Kaydet, mülakattan önce izle.",
+    media: [video("edx-tt-interview-m", IMG.lecture, "9:16", "Eğitmen", 30)],
+    theme: "educational",
+    reasoning:
+      "Mülakat hazırlığı içerikleri hesabının çalışan kitlesinde en çok kaydedilen video türü.",
+    estimate: {
+      reach: [11000, 20000],
+      engagementRate: 7.1,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Mülakatın ilk sorusu", "30 saniyelik cevap"],
+      caption: ["Mülakatın ilk sorusuna hazır mısın?", "Kendini üç adımda tanıt."],
+      hashtags: [
+        ["#kariyer", "#{handle}"],
+        ["#ingilizce", "#jobinterview"],
+      ],
+      cta: ["Takip et.", "Mülakat provası için DM."],
+      music: [
+        {
+          title: "Rainy Desk",
+          artist: "Lofi Girl",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "19:00",
+    },
+  },
 ];
 
 export const educationPosts: SeedPost[] = [

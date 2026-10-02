@@ -386,6 +386,85 @@ export const localServiceStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "lssx-ig-team",
+      platform: "instagram",
+      format: "reel",
+      title: "Ekibimiz yola çıktı",
+      description: "Ekibin ilk iş gününe çıkışını gösteren Reel.",
+      caption:
+        "{brand} ekibi ilk işine yola çıktı: malzemeler tam, randevu saati 09:00, saatinde kapıdayız.",
+      hashtags: ["#temizlik", "#tamir", "#{handle}"],
+      music: {
+        title: "Fresh Start",
+        artist: "Lofi Home",
+      },
+      cta: "İlk randevunu oluştur.",
+      media: [video("lssx-ig-team-m", IMG.vacuum, "9:16", "Temizlik ekipmanı", 15)],
+      theme: "behindTheScenes",
+      reasoning:
+        "Yerel hizmette güven saatinde gelmekle başlar; ilk gün videosu ilk randevuları getirir.",
+      estimate: {
+        reach: [500, 2200],
+        engagementRate: 7.5,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["İlk iş günü", "Saatinde kapıda"],
+        caption: ["Malzemeler tam, saat 09:00.", "İlk işimize yola çıktık."],
+        hashtags: [["#evtemizliği", "#{handle}"], ["#yerelhizmet"]],
+        cta: ["Takip et.", "Bize yaz."],
+        music: [
+          {
+            title: "Clean Slate",
+            artist: "Lofi Home",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "09:00",
+      },
+    },
+    {
+      id: "lssx-tt-promise",
+      platform: "tiktok",
+      format: "video",
+      title: "Üç sözümüz",
+      description: "Hizmetin üç temel sözünü anlatan kısa video.",
+      caption:
+        "{brand} üç söz veriyor: saatinde geliriz, fiyatı önceden söyleriz, işi temiz bitiririz.",
+      hashtags: ["#yerelhizmet", "#temizlik", "#{handle}"],
+      music: {
+        title: "Fresh Start",
+        artist: "Lofi Home",
+      },
+      cta: "Takip et.",
+      media: [video("lssx-tt-promise-m", IMG.cleanRoom, "9:16", "Temiz oda", 20)],
+      theme: "storytelling",
+      reasoning: "Net söz veren tanıtımlar yeni hizmetlerin TikTok'ta güven kazanmasını sağlar.",
+      estimate: {
+        reach: [700, 3300],
+        engagementRate: 7.3,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Saat, fiyat, temizlik", "Sözümüz"],
+        caption: ["Üç basit söz, her işte aynı.", "Saatinde, net fiyatla, temiz."],
+        hashtags: [["#tamir", "#{handle}"], ["#evhizmeti"]],
+        cta: ["Soru sor.", "Randevu al."],
+        music: [
+          {
+            title: "Clean Slate",
+            artist: "Lofi Home",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {

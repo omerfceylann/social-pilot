@@ -299,6 +299,252 @@ export const realEstateSuggestions: SeedSuggestion[] = [
       time: "09:30",
     },
   },
+  {
+    id: "rex-ig-listing",
+    platform: "instagram",
+    format: "post",
+    title: "Yeni portföy: bahçeli 3+1",
+    description: "Yeni portföydeki bahçeli dairenin tanıtım gönderisi.",
+    caption:
+      "Yeni portföy: 140 m², bahçeli, okula 5 dakika yürüme mesafesinde 3+1. Fiyat ve detaylar DM'de.",
+    hashtags: ["#satılıkdaire", "#bahçelidaire", "#{handle}"],
+    cta: "Görüntüleme için DM'den yaz.",
+    media: [photo("rex-ig-listing-m", IMG.house, "4:5", "Bahçeli ev")],
+    theme: "productFocused",
+    reasoning:
+      "Yeni portföy gönderileri hesabında en çok DM getiren içerik; bahçeli daireler aile kitlesinde ilgi görüyor.",
+    estimate: {
+      reach: [4500, 8500],
+      engagementRate: 5.6,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Bahçeli 3+1", "Okula 5 dakika"],
+      caption: ["Çocuklu aileler için bahçeli bir daire.", "140 m² ve bahçe: yeni portföyümüz."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#yeniev", "#aileevi"],
+      ],
+      cta: ["Detayları DM'den sor.", "Görüntüleme randevusu al."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 2,
+      time: "11:00",
+    },
+  },
+  {
+    id: "rex-ig-reel-tour",
+    platform: "instagram",
+    format: "reel",
+    title: "60 saniyede ev turu",
+    description: "Yeni portföydeki evin odalarını gezdiren Reel.",
+    caption: "Giriş, salon, mutfak, yatak odası ve balkon. Yeni portföyümüzü 60 saniyede gez.",
+    hashtags: ["#evturu", "#satılık", "#{handle}"],
+    music: {
+      title: "Sunday Morning",
+      artist: "Acoustic Home",
+    },
+    cta: "Beğendiysen görüntüleme için DM.",
+    media: [video("rex-ig-reel-tour-m", IMG.livingRoom, "9:16", "Salon", 60)],
+    theme: "productFocused",
+    reasoning:
+      "Ev turu Reel'leri yükselişte; hesabındaki tur videoları ortalamanın %47 üstünde izleniyor.",
+    relatedTrendId: "ret-tour",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 6.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Bir dakikalık tur", "Odadan odaya"],
+      caption: ["Evi gezmeden önce videodan gör.", "Beş oda, bir dakika."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#ev", "#roomtour"],
+      ],
+      cta: ["Kaydet.", "Görüntüleme randevusu al."],
+      music: [
+        {
+          title: "Morning Light",
+          artist: "Acoustic Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "19:00",
+    },
+  },
+  {
+    id: "rex-ig-carousel-costs",
+    platform: "instagram",
+    format: "carousel",
+    title: "Ev alırken 5 ek masraf",
+    description: "Ev alırken fiyat dışında ödenen masrafları sıralayan carousel.",
+    caption:
+      "Tapu harcı, ekspertiz, sigorta, taşınma ve abonelik açılışları. Bütçeni planlarken bu beşini unutma.",
+    hashtags: ["#evalmak", "#ilkev", "#{handle}"],
+    cta: "Kaydet, bütçe yaparken aç.",
+    media: [
+      photo("rex-ig-carousel-costs-1", IMG.keys, "4:5", "Anahtarlar"),
+      photo("rex-ig-carousel-costs-2", IMG.apartment, "4:5", "Apartman"),
+      photo("rex-ig-carousel-costs-3", IMG.kitchen, "4:5", "Mutfak"),
+    ],
+    theme: "educational",
+    reasoning:
+      "İlk ev rehberleri yükselişte; masraf listeleri hesabında en çok kaydedilen ve paylaşılan carousel.",
+    relatedTrendId: "ret-first-home",
+    estimate: {
+      reach: [7000, 13000],
+      engagementRate: 6.4,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["Fiyatın dışındakiler", "Gizli kalmasın: 5 masraf"],
+      caption: ["Ev fiyatı bütçenin sadece bir kısmı.", "Ev alırken unutulan beş masraf."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#tapu", "#birikim"],
+      ],
+      cta: ["Eşine gönder.", "Ücretsiz danışmanlık için DM."],
+      music: [],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "12:00",
+    },
+  },
+  {
+    id: "rex-tt-before-after",
+    platform: "tiktok",
+    format: "video",
+    title: "Boyadan önce, boyadan sonra",
+    description: "Bir dairenin boya ve küçük dokunuşlarla değişimini gösteren video.",
+    caption: "Aynı daire, iki hafta arayla: açık renk boya, yeni aydınlatma ve sade mobilya.",
+    hashtags: ["#öncesonra", "#evdönüşümü", "#{handle}"],
+    music: {
+      title: "Sunday Morning",
+      artist: "Acoustic Home",
+    },
+    cta: "Evini satışa hazırlamak için DM.",
+    media: [video("rex-tt-before-after-m", IMG.bedroom, "9:16", "Yatak odası", 25)],
+    theme: "behindTheScenes",
+    reasoning:
+      "Önce/sonra ev videoları TikTok'ta yükselişte; dönüşüm videoları paylaşım sayısında ortalamanın üstünde.",
+    relatedTrendId: "ret-before-after",
+    estimate: {
+      reach: [15000, 27000],
+      engagementRate: 7.9,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["İki haftalık dönüşüm", "Boya mucizesi değil, planlama"],
+      caption: ["Küçük dokunuşlarla büyük fark.", "Satışa hazırlanan bir daire."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#homemakeover", "#dekorasyon"],
+      ],
+      cta: ["Takip et.", "Kaydet."],
+      music: [
+        {
+          title: "Morning Light",
+          artist: "Acoustic Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 1,
+      time: "19:00",
+    },
+  },
+  {
+    id: "rex-tt-neighborhood",
+    platform: "tiktok",
+    format: "video",
+    title: "Mahalle rehberi: yürüme mesafesi",
+    description: "Bir mahallede yürüme mesafesindeki yerleri gösteren video.",
+    caption: "Fırın 2 dakika, park 4 dakika, metro 6 dakika. Bu mahallede arabaya ihtiyacın yok.",
+    hashtags: ["#mahallerehberi", "#yaşam", "#{handle}"],
+    music: {
+      title: "Sunday Morning",
+      artist: "Acoustic Home",
+    },
+    cta: "Bu mahallede ev arıyorsan DM.",
+    media: [video("rex-tt-neighborhood-m", IMG.street, "9:16", "Sokak", 30)],
+    theme: "educational",
+    reasoning:
+      "Mahalle rehberleri yükselişte; yürüme mesafesi videoları ev arayanların en çok kaydettiği içerik.",
+    relatedTrendId: "ret-neighborhood",
+    estimate: {
+      reach: [11000, 20000],
+      engagementRate: 7.0,
+      potential: "average",
+    },
+    alternatives: {
+      title: ["Arabasız bir mahalle", "Yürüyerek 6 dakika"],
+      caption: ["Ev seçerken mahalle de önemli.", "Her şey yürüme mesafesinde."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#şehirhayatı", "#mahalle"],
+      ],
+      cta: ["Takip et, her hafta bir mahalle.", "Kaydet."],
+      music: [
+        {
+          title: "Morning Light",
+          artist: "Acoustic Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 3,
+      time: "18:00",
+    },
+  },
+  {
+    id: "rex-tt-question",
+    platform: "tiktok",
+    format: "video",
+    title: "Kira mı, ev almak mı?",
+    description: "Kira ve ev alma kararını basit bir hesapla anlatan video.",
+    caption:
+      "Aylık kira, kredi taksiti ve 10 yıllık toplam. Kararı rakamlarla vermenin basit yolu.",
+    hashtags: ["#kiramıevmi", "#ilkev", "#{handle}"],
+    music: {
+      title: "Sunday Morning",
+      artist: "Acoustic Home",
+    },
+    cta: "Hesabını birlikte yapalım, DM.",
+    media: [video("rex-tt-question-m", IMG.keys, "9:16", "Anahtarlar", 30)],
+    theme: "educational",
+    reasoning:
+      "İlk ev soruları TikTok'ta en çok yorum alan gayrimenkul konusu; rakamlı anlatım güven veriyor.",
+    relatedTrendId: "ret-first-home",
+    estimate: {
+      reach: [12000, 22000],
+      engagementRate: 7.3,
+      potential: "high",
+    },
+    alternatives: {
+      title: ["10 yıllık hesap", "Rakamlarla karar"],
+      caption: ["Kira mı ödemeli, ev mi almalı?", "Basit bir hesapla karar ver."],
+      hashtags: [
+        ["#emlak", "#{handle}"],
+        ["#birikim", "#finans"],
+      ],
+      cta: ["Takip et.", "Fikrini yorumlara yaz."],
+      music: [
+        {
+          title: "Morning Light",
+          artist: "Acoustic Home",
+        },
+      ],
+    },
+    suggestedAt: {
+      day: 5,
+      time: "20:00",
+    },
+  },
 ];
 
 export const realEstatePosts: SeedPost[] = [

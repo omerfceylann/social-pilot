@@ -383,6 +383,85 @@ export const realEstateStarter: StarterKit = {
         time: "10:00",
       },
     },
+    {
+      id: "resx-ig-office",
+      platform: "instagram",
+      format: "reel",
+      title: "Ofisimize hoş geldiniz",
+      description: "Emlak ofisini ve ekibi tanıtan kısa Reel.",
+      caption: "{brand} ofisi açıldı. Kahveniz hazır, sorularınız için zamanımız var.",
+      hashtags: ["#emlakofisi", "#yeniofis", "#{handle}"],
+      music: {
+        title: "Sunday Morning",
+        artist: "Acoustic Home",
+      },
+      cta: "Uğrayın, tanışalım.",
+      media: [video("resx-ig-office-m", IMG.buildings, "9:16", "Binalar", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Gayrimenkulde güven yüz yüze tanışmayla başlar; ofis tanıtımı ilk danışma taleplerini getirir.",
+      estimate: {
+        reach: [500, 2100],
+        engagementRate: 7.2,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Kapımız açık", "Ofisimiz hazır"],
+        caption: ["Ev arayışında yanınızda olacağımız yer.", "Kahve eşliğinde konuşalım."],
+        hashtags: [["#emlak", "#{handle}"], ["#gayrimenkul"]],
+        cta: ["Takip et.", "Bize yazın."],
+        music: [
+          {
+            title: "Morning Light",
+            artist: "Acoustic Home",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 1,
+        time: "18:00",
+      },
+    },
+    {
+      id: "resx-tt-agent",
+      platform: "tiktok",
+      format: "video",
+      title: "Danışmanınızla tanışın",
+      description: "Emlak danışmanının kendini tanıttığı video.",
+      caption:
+        "{brand} danışmanı Zeynep: 'Satmaktan önce dinlemek gerekiyor; doğru ev ihtiyaçla başlar.'",
+      hashtags: ["#emlakdanışmanı", "#emlak", "#{handle}"],
+      music: {
+        title: "Sunday Morning",
+        artist: "Acoustic Home",
+      },
+      cta: "Takip et.",
+      media: [video("resx-tt-agent-m", IMG.exterior, "9:16", "Ev dış cephesi", 20)],
+      theme: "storytelling",
+      reasoning:
+        "Gayrimenkulde danışmana güven belirleyici; tanışma videoları TikTok'ta yeni hesapları öne çıkarır.",
+      estimate: {
+        reach: [700, 3200],
+        engagementRate: 7.2,
+        potential: "average",
+      },
+      alternatives: {
+        title: ["Zeynep ile tanışın", "Önce dinliyoruz"],
+        caption: ["Doğru ev ihtiyaçla başlar.", "Danışmanımızın yaklaşımı."],
+        hashtags: [["#gayrimenkul", "#{handle}"], ["#evarıyorum"]],
+        cta: ["Soru sorun.", "Bize yazın."],
+        music: [
+          {
+            title: "Morning Light",
+            artist: "Acoustic Home",
+          },
+        ],
+      },
+      suggestedAt: {
+        day: 2,
+        time: "19:00",
+      },
+    },
   ],
   analytics: {
     followers: {
