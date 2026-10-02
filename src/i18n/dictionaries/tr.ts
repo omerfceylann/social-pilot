@@ -711,6 +711,12 @@ export const tr = {
     usernameTaken: "Bu kullanıcı adı alınmış. Başka bir tane dene.",
     userNotFound: "Bu kullanıcı adıyla bir hesap bulunamadı.",
     generic: "Bir şeyler ters gitti.",
+    genericDescription:
+      "Sayfa yüklenirken beklenmedik bir sorun oluştu. Tekrar deneyebilir ya da genel bakışa dönebilirsin.",
+    retry: "Tekrar dene",
+    goHome: "Genel bakışa dön",
+    notFoundTitle: "Bu sayfayı bulamadık.",
+    notFoundDescription: "Adres değişmiş ya da sayfa kaldırılmış olabilir.",
     contentFailed: "İçerik oluşturulamadı.",
     invalidHandle: "Bu kullanıcı adı {platform} için geçerli değil.",
     accountNotFound: "Bu kullanıcı adıyla bir hesap bulunamadı.",

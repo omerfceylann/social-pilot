@@ -703,6 +703,12 @@ export const en: Dictionary = {
     usernameTaken: "That username is taken. Try another one.",
     userNotFound: "No account found with this username.",
     generic: "Something went wrong.",
+    genericDescription:
+      "Something unexpected happened while loading this page. Try again or head back to the overview.",
+    retry: "Try again",
+    goHome: "Back to overview",
+    notFoundTitle: "We couldn't find this page.",
+    notFoundDescription: "The address may have changed or the page may have been removed.",
     contentFailed: "Couldn't create the content.",
     invalidHandle: "This username isn't valid for {platform}.",
     accountNotFound: "No account found with this username.",
