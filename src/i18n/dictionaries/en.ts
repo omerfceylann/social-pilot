@@ -183,6 +183,9 @@ export const en: Dictionary = {
     vsPrevious: "vs. previous period",
   },
   content: {
+    filterByPlatform: "Filter by platform",
+    allPlatforms: "All",
+    clearFilter: "Clear filter",
     title: "Content",
     subtitle: "Turn suggestions into posts, finish your drafts and track what you've shared.",
     tabs: {
@@ -284,6 +287,8 @@ export const en: Dictionary = {
       },
     },
     empty: {
+      filteredTitle: "Nothing here for {platform}.",
+      filteredDescription: "Pick another platform or see all content.",
       noAccountsTitle: "Connect an account to get suggestions.",
       noAccountsDescription:
         "We'll prepare sector-specific content ideas for every platform you connect.",

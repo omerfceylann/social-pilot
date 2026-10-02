@@ -188,6 +188,9 @@ export const tr = {
     vsPrevious: "önceki döneme göre",
   },
   content: {
+    filterByPlatform: "Platforma göre filtrele",
+    allPlatforms: "Tümü",
+    clearFilter: "Filtreyi temizle",
     title: "İçerikler",
     subtitle: "Önerileri içeriğe dönüştür, taslaklarını tamamla, paylaşımlarını takip et.",
     tabs: {
@@ -289,6 +292,8 @@ export const tr = {
       },
     },
     empty: {
+      filteredTitle: "{platform} için burada içerik yok.",
+      filteredDescription: "Başka bir platform seç ya da tüm içerikleri gör.",
       noAccountsTitle: "Öneriler için bir hesap bağla.",
       noAccountsDescription:
         "Bağladığın her platform için sektörüne uygun içerik önerileri hazırlayacağız.",

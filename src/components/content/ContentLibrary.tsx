@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarClock, FilePen, Link2, Plus, Send, Sparkles } from "lucide-react";
+import { CalendarClock, FilePen, Filter, Link2, Plus, Send, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -17,6 +17,7 @@ import {
   isContentTab,
   useContentLibrary,
   type ContentTab,
+  type PlatformFilter,
 } from "@/hooks/useContentLibrary";
 import { useT } from "@/i18n/useT";
 import { revealVariants, staggerContainer, transition } from "@/lib/motion";
@@ -25,13 +26,21 @@ import { generatePostSuggestion } from "@/services/aiService";
 import { useBrand } from "@/store/useBrand";
 import { useContent } from "@/store/useContent";
 import { toast } from "@/store/useToasts";
-import type { PlatformId, Post, PostAnalytics, PostSuggestion } from "@/types";
+import {
+  PLATFORM_IDS,
+  type PlatformId,
+  type Post,
+  type PostAnalytics,
+  type PostSuggestion,
+} from "@/types";
+import { PlatformFilterBar } from "./PlatformFilterBar";
 import { PostRow } from "./PostRow";
 import { SuggestionCard } from "./SuggestionCard";
 
 /**
- * İçerikler (spec §17): dört sekme, az filtre. Sekme adreste tutulur
- * (/content?tab=drafts): paylaşımdan sonra doğrudan "Yayınlanan"a dönülebilir.
+ * İçerikler (spec §17): dört sekme ve tek bir platform filtresi. İkisi de adreste
+ * tutulur (/content?tab=drafts&platform=instagram): paylaşımdan sonra doğrudan
+ * "Yayınlanan"a dönülebilir, filtreli görünüm paylaşılabilir.
  */
 export const ContentLibrary = () => {
   const { t } = useT();
@@ -39,21 +48,43 @@ export const ContentLibrary = () => {
   const searchParams = useSearchParams();
   const requested = searchParams.get("tab");
   const tab: ContentTab = isContentTab(requested) ? requested : "suggested";
+  const platform: PlatformFilter =
+    PLATFORM_IDS.find((id) => id === searchParams.get("platform")) ?? null;
 
   const profile = useBrand((state) => state.profile);
   const createFromSuggestion = useContent((state) => state.createFromSuggestion);
   const createBlankPost = useContent((state) => state.createBlankPost);
   const addSuggestion = useContent((state) => state.addSuggestion);
-  const { suggested, drafts, scheduled, published, counts, analytics, connected } =
-    useContentLibrary();
+  const { suggested, drafts, scheduled, published, counts, analytics, connected, filterPlatforms } =
+    useContentLibrary(platform);
 
   const [generating, setGenerating] = useState(false);
   /** Bu oturumda üretilen öneri en başta ve vurgulu gösterilir. */
   const [freshId, setFreshId] = useState<string | null>(null);
 
-  const setTab = (next: string) => {
-    if (isContentTab(next)) router.replace(`/content?tab=${next}`, { scroll: false });
+  const navigate = (next: { tab: ContentTab; platform: PlatformFilter }) => {
+    const params = new URLSearchParams({ tab: next.tab });
+    if (next.platform) params.set("platform", next.platform);
+    router.replace(`/content?${params.toString()}`, { scroll: false });
   };
+  const setTab = (next: string) => {
+    if (isContentTab(next)) navigate({ tab: next, platform });
+  };
+  const setPlatform = (next: PlatformFilter) => navigate({ tab, platform: next });
+
+  /** Filtre yüzünden boş kalan liste için ortak boş durum. */
+  const filteredEmpty = platform && (
+    <EmptyState
+      icon={<Filter />}
+      title={t("content.empty.filteredTitle", { platform: PLATFORMS[platform].name })}
+      description={t("content.empty.filteredDescription")}
+      action={
+        <Button variant="secondary" onClick={() => setPlatform(null)}>
+          {t("content.clearFilter")}
+        </Button>
+      }
+    />
+  );
 
   const openSuggestion = (suggestion: PostSuggestion) => {
     router.push(`/content/${createFromSuggestion(suggestion)}`);
@@ -145,6 +176,11 @@ export const ContentLibrary = () => {
           ))}
         </Tabs.List>
 
+        {/* Tek platform varsa filtrelemenin anlamı yok; satır hiç gösterilmez. */}
+        {filterPlatforms.length > 1 && (
+          <PlatformFilterBar platforms={filterPlatforms} value={platform} onChange={setPlatform} />
+        )}
+
         <Tabs.Content value="suggested">
           {!hasAccounts ? (
             <EmptyState
@@ -158,11 +194,13 @@ export const ContentLibrary = () => {
               }
             />
           ) : orderedSuggestions.length === 0 ? (
-            <EmptyState
-              icon={<Sparkles />}
-              title={t("content.empty.suggestedTitle")}
-              description={t("content.empty.suggestedDescription")}
-            />
+            (filteredEmpty ?? (
+              <EmptyState
+                icon={<Sparkles />}
+                title={t("content.empty.suggestedTitle")}
+                description={t("content.empty.suggestedDescription")}
+              />
+            ))
           ) : (
             <motion.div
               layout
@@ -197,18 +235,20 @@ export const ContentLibrary = () => {
           <PostList
             posts={drafts}
             empty={
-              <EmptyState
-                icon={<FilePen />}
-                title={t("content.empty.draftsTitle")}
-                description={t("content.empty.draftsDescription")}
-                action={
-                  hasAccounts && (
-                    <Button variant="secondary" onClick={() => setTab("suggested")}>
-                      {t("content.empty.browseSuggestions")}
-                    </Button>
-                  )
-                }
-              />
+              filteredEmpty || (
+                <EmptyState
+                  icon={<FilePen />}
+                  title={t("content.empty.draftsTitle")}
+                  description={t("content.empty.draftsDescription")}
+                  action={
+                    hasAccounts && (
+                      <Button variant="secondary" onClick={() => setTab("suggested")}>
+                        {t("content.empty.browseSuggestions")}
+                      </Button>
+                    )
+                  }
+                />
+              )
             }
           />
         </Tabs.Content>
@@ -217,11 +257,13 @@ export const ContentLibrary = () => {
           <PostList
             posts={scheduled}
             empty={
-              <EmptyState
-                icon={<CalendarClock />}
-                title={t("empty.noScheduled")}
-                description={t("content.empty.scheduledDescription")}
-              />
+              filteredEmpty || (
+                <EmptyState
+                  icon={<CalendarClock />}
+                  title={t("empty.noScheduled")}
+                  description={t("content.empty.scheduledDescription")}
+                />
+              )
             }
           />
         </Tabs.Content>
@@ -231,11 +273,13 @@ export const ContentLibrary = () => {
             posts={published}
             analytics={analytics}
             empty={
-              <EmptyState
-                icon={<Send />}
-                title={t("content.empty.publishedTitle")}
-                description={t("content.empty.publishedDescription")}
-              />
+              filteredEmpty || (
+                <EmptyState
+                  icon={<Send />}
+                  title={t("content.empty.publishedTitle")}
+                  description={t("content.empty.publishedDescription")}
+                />
+              )
             }
           />
         </Tabs.Content>

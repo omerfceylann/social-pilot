@@ -5,7 +5,7 @@ import { activeSuggestions, draftsByRecency, postsByStatus, rankSuggestions } fr
 import { getPostAnalytics } from "@/services/analyticsService";
 import { useContent } from "@/store/useContent";
 import { useSocialAccounts } from "@/store/useSocialAccounts";
-import { PLATFORM_IDS, type PostAnalytics } from "@/types";
+import { PLATFORM_IDS, type PlatformId, type PostAnalytics } from "@/types";
 import { useWorkspaceContext } from "./useWorkspaceContext";
 
 export const CONTENT_TABS = ["suggested", "drafts", "scheduled", "published"] as const;
@@ -14,11 +14,15 @@ export type ContentTab = (typeof CONTENT_TABS)[number];
 export const isContentTab = (value: string | null): value is ContentTab =>
   CONTENT_TABS.some((tab) => tab === value);
 
+/** null: tüm platformlar. */
+export type PlatformFilter = PlatformId | null;
+
 /**
  * İçerikler sayfasının dört listesi (spec §17). Hepsi aynı store'dan türetilir:
- * bir taslak yayınlanınca kendiliğinden "Yayınlanan"a geçer.
+ * bir taslak yayınlanınca kendiliğinden "Yayınlanan"a geçer. Platform filtresi
+ * dört listeye birden uygulanır; sekme sayıları da filtreli sonucu gösterir.
  */
-export const useContentLibrary = () => {
+export const useContentLibrary = (platform: PlatformFilter) => {
   const posts = useContent((state) => state.posts);
   const suggestions = useContent((state) => state.suggestions);
   const usedSuggestionIds = useContent((state) => state.usedSuggestionIds);
@@ -27,17 +31,31 @@ export const useContentLibrary = () => {
 
   const connected = useMemo(() => PLATFORM_IDS.filter((id) => id in accounts), [accounts]);
 
-  const lists = useMemo(
-    () => ({
-      suggested: activeSuggestions(suggestions, usedSuggestionIds, connected).toSorted(
-        rankSuggestions,
+  /**
+   * Filtrede gösterilecek platformlar: bağlı olanlar + içeriği olanlar
+   * (bağlantısı sonradan kesilen bir platformun taslakları da bulunabilsin).
+   */
+  const filterPlatforms = useMemo(
+    () =>
+      PLATFORM_IDS.filter(
+        (id) => connected.includes(id) || posts.some((post) => post.platform === id),
       ),
-      drafts: draftsByRecency(posts),
-      scheduled: postsByStatus(posts, "scheduled"),
-      published: postsByStatus(posts, "published"),
-    }),
-    [connected, posts, suggestions, usedSuggestionIds],
+    [connected, posts],
   );
+
+  const lists = useMemo(() => {
+    const matches = (item: { platform: PlatformId }) =>
+      platform === null || item.platform === platform;
+    const visiblePosts = posts.filter(matches);
+    return {
+      suggested: activeSuggestions(suggestions, usedSuggestionIds, connected)
+        .filter(matches)
+        .toSorted(rankSuggestions),
+      drafts: draftsByRecency(visiblePosts),
+      scheduled: postsByStatus(visiblePosts, "scheduled"),
+      published: postsByStatus(visiblePosts, "published"),
+    };
+  }, [connected, platform, posts, suggestions, usedSuggestionIds]);
 
   /** Yayınlananların performansı; satırda küçük bir özet olarak gösterilir. */
   const analytics = useMemo(() => {
@@ -57,5 +75,5 @@ export const useContentLibrary = () => {
     published: lists.published.length,
   };
 
-  return { ...lists, counts, analytics, connected };
+  return { ...lists, counts, analytics, connected, filterPlatforms };
 };
