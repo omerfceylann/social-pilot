@@ -28,6 +28,8 @@ type ContentState = {
     theme: ContentStyle;
   }) => string;
   addSuggestion: (suggestion: PostSuggestion) => void;
+  /** Sadece henüz bilinmeyen önerileri ekler (kullanılan/kapatılanlar geri gelmez). */
+  addSuggestions: (suggestions: PostSuggestion[]) => void;
   updatePost: (id: string, patch: PostPatch) => void;
   schedulePost: (id: string, scheduledAt: string) => void;
   publishPost: (id: string) => void;
@@ -51,6 +53,16 @@ export const useContent = create<ContentState>()(
           suggestions: [...state.suggestions, ...data.suggestions],
           seededPlatforms: [...state.seededPlatforms, platform],
         })),
+
+      addSuggestions: (incoming) =>
+        set((state) => {
+          const known = new Set([
+            ...state.suggestions.map((suggestion) => suggestion.id),
+            ...state.usedSuggestionIds,
+          ]);
+          const fresh = incoming.filter((suggestion) => !known.has(suggestion.id));
+          return fresh.length > 0 ? { suggestions: [...state.suggestions, ...fresh] } : state;
+        }),
 
       createFromSuggestion: (suggestion) => {
         const id = `post-${crypto.randomUUID()}`;

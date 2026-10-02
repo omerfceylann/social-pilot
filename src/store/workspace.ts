@@ -81,6 +81,32 @@ export const connectPlatform = async ({
 };
 
 /**
+ * Mock veriye sonradan eklenen önerileri mevcut hesaplara da getirir. Öneriler
+ * normalde platform bağlanırken bir kez yüklenir; bu yüzden uygulama açılışında
+ * bağlı her platformun öneri seti yeniden hesaplanır ve sadece yeni id'ler eklenir.
+ * Tekrar çalışması zararsızdır (idempotent).
+ */
+export const syncSeedSuggestions = () => {
+  const profile = useBrand.getState().profile;
+  if (!profile) return;
+  const accounts = useSocialAccounts.getState().accounts;
+  const dataset = resolveDataset(profile.sector);
+  const suggestions = useContent
+    .getState()
+    .seededPlatforms.filter((platform) => platform in accounts)
+    .flatMap(
+      (platform) =>
+        buildPlatformSeed({
+          dataset,
+          profile,
+          platform,
+          history: resolvePlatformHistory(profile, platform),
+        }).suggestions,
+    );
+  useContent.getState().addSuggestions(suggestions);
+};
+
+/**
  * Marka profilini günceller. Ad değişirse oturumdaki marka adı da güncellenir
  * (menüler, hesap listesi). Mevcut içerik metinleri olduğu gibi kalır; yeni
  * öneriler yeni adla kişiselleştirilir.

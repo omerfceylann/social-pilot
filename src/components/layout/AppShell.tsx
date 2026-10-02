@@ -1,7 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useT } from "@/i18n/useT";
+import { useSession } from "@/store/useSession";
+import { syncSeedSuggestions } from "@/store/workspace";
 import { MobileNav } from "./MobileNav";
 import { MobileTopbar } from "./MobileTopbar";
 import { PreferenceToggles } from "./PreferenceToggles";
@@ -15,6 +17,13 @@ type AppShellProps = { children: ReactNode };
  */
 export const AppShell = ({ children }: AppShellProps) => {
   const { t } = useT();
+  const username = useSession((state) => state.user?.username);
+
+  // Açılışta ve hesap değişince: mock veriye eklenen yeni önerileri getir.
+  useEffect(() => {
+    if (username) syncSeedSuggestions();
+  }, [username]);
+
   return (
     <div className="flex min-h-dvh">
       <a
