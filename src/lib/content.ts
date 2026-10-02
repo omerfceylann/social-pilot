@@ -5,6 +5,7 @@ import type {
   MusicTrack,
   CalendarStatus,
   Comment,
+  MediaAsset,
   PerformanceTier,
   PlatformId,
   Post,
@@ -12,7 +13,8 @@ import type {
   PostAnalytics,
   PostSuggestion,
 } from "@/types";
-import { PLATFORMS } from "@/mock/platforms";
+import { PLATFORM_IDS } from "@/types";
+import { aspectFor, PLATFORMS } from "@/mock/platforms";
 
 /**
  * Store verisinden türetilen görünümler. Ayrı liste tutulmaz: bir post
@@ -241,6 +243,78 @@ export const findPublishProblem = (post: Post): PublishProblem | null => {
     if (post.caption.length > PLATFORMS[post.platform].captionLimit) return "captionTooLong";
   }
   return null;
+};
+
+// ---------- AI'ın önerdiği platformlar ----------
+
+export type PublishTarget = { platform: PlatformId; format: ContentFormat };
+
+/** Video biçimleri tek bir video ister; gönderi/carousel görsel ister; Hikâye ikisini de alır. */
+const acceptsMediaKind = (target: PublishTarget, kind: MediaAsset["kind"]) => {
+  if (target.platform === "tiktok") return kind === "video";
+  switch (target.format) {
+    case "reel":
+    case "short":
+    case "video":
+      return kind === "video";
+    case "post":
+    case "carousel":
+      return kind === "image";
+    case "story":
+      return true;
+    default:
+      return assertNeverFormat(target.format);
+  }
+};
+
+const assertNeverFormat = (value: never): never => {
+  throw new Error(`Bilinmeyen biçim: ${String(value)}`);
+};
+
+/** Önerinin içeriği bu hedefe hiçbir şey kaybetmeden taşınabiliyor mu? */
+const carriesWithoutLoss = (suggestion: PostSuggestion, target: PublishTarget): boolean => {
+  const source = fieldsFor(suggestion.platform, suggestion.format);
+  const fields = fieldsFor(target.platform, target.format);
+  const { media } = suggestion;
+
+  if (media.length < fields.media.min || media.length > fields.media.max) return false;
+  const aspect = aspectFor(target.platform, target.format);
+  if (!media.every((item) => item.aspect === aspect && acceptsMediaKind(target, item.kind))) {
+    return false;
+  }
+
+  // Kaynak biçimde gerçekten kullanılan her alan hedefte de olmalı.
+  // (YouTube başlığı izleyiciye görünür; başlığı yayınlamayan bir platformda kaybolur.)
+  if (source.title === "published" && fields.title !== "published") return false;
+  const caption = source.caption ? suggestion.caption.trim() : "";
+  const cta = source.cta ? suggestion.cta.trim() : "";
+  if (caption && !fields.caption) return false;
+  if (cta && !fields.cta) return false;
+  if (source.hashtags && suggestion.hashtags.length > 0 && !fields.hashtags) return false;
+  if (source.music && !fields.music) return false;
+
+  const text = [caption, fields.cta === "inCaption" ? cta : ""].filter(Boolean).join("\n\n");
+  return text.length <= PLATFORMS[target.platform].captionLimit;
+};
+
+/**
+ * Editörde "AI önerisi" olarak işaretlenen platform + biçimler: önerinin
+ * hazırlandığı yer ve içeriği eksiksiz taşıyabilen diğerleri
+ * (örn. TikTok videosu ↔ Instagram Reel; Shorts'ta açıklama düşeceği için değil).
+ */
+export const aiRecommendedTargets = (suggestion: PostSuggestion): PublishTarget[] => {
+  const own: PublishTarget = { platform: suggestion.platform, format: suggestion.format };
+  // Önerinin hazırlandığı yer ilk sırada; "TikTok ve Instagram Reel" diye okunur.
+  const others = PLATFORM_IDS.flatMap((platform) =>
+    PLATFORMS[platform].formats
+      .map((format) => ({ platform, format }))
+      .filter(
+        (target) =>
+          !(target.platform === own.platform && target.format === own.format) &&
+          carriesWithoutLoss(suggestion, target),
+      ),
+  );
+  return [own, ...others];
 };
 
 /**

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { withInboxComments } from "@/lib/content";
+import { aiRecommendedTargets, withInboxComments } from "@/lib/content";
 import { PLATFORMS } from "@/mock/platforms";
 import { getPostAnalytics } from "@/services/analyticsService";
 import { useBrand } from "@/store/useBrand";
@@ -38,6 +38,11 @@ export const useContentEditor = (postId: string) => {
     () => context?.trends.find((item) => item.id === suggestion?.relatedTrendId),
     [context, suggestion?.relatedTrendId],
   );
+  /** AI'ın bu içerik için önerdiği platform + biçimler (öneriden oluşturulduysa). */
+  const recommended = useMemo(
+    () => (suggestion ? aiRecommendedTargets(suggestion) : []),
+    [suggestion],
+  );
   const analytics = useMemo(() => {
     const result = post && context ? getPostAnalytics(post, context.analytics) : null;
     return post && result ? withInboxComments(result, post, comments) : result;
@@ -48,20 +53,26 @@ export const useContentEditor = (postId: string) => {
     [postId, updatePost],
   );
 
-  /** Platform değişince biçim o platformda yoksa platformun varsayılanına geçer. */
+  /**
+   * Platform değişince biçim: AI'ın o platform için önerdiği biçim (TikTok → Instagram
+   * geçişinde Reel), yoksa mevcut biçim, o da yoksa platformun varsayılanı.
+   */
   const setPlatform = useCallback(
     (platform: PlatformId) => {
       if (!post) return;
       const meta = PLATFORMS[platform];
-      const format = meta.formats.includes(post.format) ? post.format : meta.defaultFormat;
+      const suggested = recommended.find((item) => item.platform === platform)?.format;
+      const format =
+        suggested ?? (meta.formats.includes(post.format) ? post.format : meta.defaultFormat);
       update({ platform, format });
     },
-    [post, update],
+    [post, recommended, update],
   );
 
   return {
     post,
     suggestion,
+    recommended,
     trend,
     analytics,
     profile,

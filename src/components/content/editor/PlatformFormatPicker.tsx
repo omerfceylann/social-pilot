@@ -2,10 +2,12 @@
 
 import { RadioGroup } from "radix-ui";
 import { useId } from "react";
+import { AIBadge, AISparkle } from "@/components/ai/AIBadge";
 import { PlatformIcon } from "@/components/social/PlatformIcon";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { useT } from "@/i18n/useT";
 import { cn } from "@/lib/cn";
+import type { PublishTarget } from "@/lib/content";
 import { PLATFORMS } from "@/mock/platforms";
 import type { ContentFormat, PlatformId } from "@/types";
 import { PLATFORM_IDS } from "@/types";
@@ -15,19 +17,36 @@ type PlatformFormatPickerProps = {
   format: ContentFormat;
   /** Bağlı platformlar; içeriğin mevcut platformu bağlı olmasa da listede kalır. */
   available: PlatformId[];
+  /** AI'ın bu içerik için önerdiği platform + biçimler; boşsa işaret gösterilmez. */
+  recommended: PublishTarget[];
   onPlatformChange: (platform: PlatformId) => void;
   onFormatChange: (format: ContentFormat) => void;
 };
 
-/** İçeriğin yayınlanacağı platform ve biçim. Değişince önizleme animasyonla geçer. */
+/**
+ * İçeriğin yayınlanacağı platform ve biçim. Değişince önizleme animasyonla geçer.
+ * AI'ın içeriği hazırladığı (ya da içeriğin eksiksiz taşındığı) seçenekler ✦ ile işaretlenir.
+ */
 export const PlatformFormatPicker = ({
   platform,
   format,
   available,
+  recommended,
   onPlatformChange,
   onFormatChange,
 }: PlatformFormatPickerProps) => {
-  const { t } = useT();
+  const { t, language } = useT();
+  const isRecommendedPlatform = (id: PlatformId) =>
+    recommended.some((item) => item.platform === id);
+  const isRecommendedFormat = (value: ContentFormat) =>
+    recommended.some((item) => item.platform === platform && item.format === value);
+  const targetName = ({ platform: id, format: value }: PublishTarget) =>
+    PLATFORMS[id].formats.length > 1
+      ? `${PLATFORMS[id].name} ${t(`formats.${value}`)}`
+      : PLATFORMS[id].name;
+  const preparedFor = new Intl.ListFormat(language, { type: "conjunction" }).format(
+    recommended.map(targetName),
+  );
   const platformLabelId = useId();
   const formatLabelId = useId();
   const platforms = PLATFORM_IDS.filter((id) => id === platform || available.includes(id));
@@ -64,9 +83,15 @@ export const PlatformFormatPicker = ({
             >
               <PlatformIcon platform={id} colored={id === platform} className="size-4" />
               {PLATFORMS[id].name}
+              {isRecommendedPlatform(id) && (
+                <AIMark label={t("content.editor.aiRecommendedPlatform")} />
+              )}
             </RadioGroup.Item>
           ))}
         </RadioGroup.Root>
+        {recommended.length > 0 && (
+          <AIBadge>{t("content.editor.aiPreparedFor", { targets: preparedFor })}</AIBadge>
+        )}
       </div>
 
       {formats.length > 1 && (
@@ -77,7 +102,13 @@ export const PlatformFormatPicker = ({
           <SegmentedControl
             value={format}
             onChange={onFormatChange}
-            options={formats.map((value) => ({ value, label: t(`formats.${value}`) }))}
+            options={formats.map((value) => ({
+              value,
+              label: t(`formats.${value}`),
+              adornment: isRecommendedFormat(value) && (
+                <AIMark label={t("content.editor.aiRecommendedPlatform")} />
+              ),
+            }))}
             aria-labelledby={formatLabelId}
             className="self-start"
           />
@@ -86,3 +117,13 @@ export const PlatformFormatPicker = ({
     </div>
   );
 };
+
+type AIMarkProps = { label: string };
+
+/** Seçeneğin yanındaki ✦; ekran okuyucu "AI önerisi" olarak okur. */
+const AIMark = ({ label }: AIMarkProps) => (
+  <span className="inline-flex text-accent-text">
+    <AISparkle />
+    <span className="sr-only">{label}</span>
+  </span>
+);

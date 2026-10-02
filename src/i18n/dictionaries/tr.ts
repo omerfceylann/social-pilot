@@ -208,6 +208,8 @@ export const tr = {
     views: "{count} görüntülenme",
     engagement: "{value} etkileşim",
     editor: {
+      aiRecommendedPlatform: "AI önerisi",
+      aiPreparedFor: "AI bu içeriği {targets} için hazırladı.",
       back: "İçerikler",
       autosaved: "Otomatik kaydedildi",
       platform: "Platform",

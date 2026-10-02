@@ -245,6 +245,7 @@ export const ContentEditor = ({ postId }: { postId: string }) => {
                 platform={post.platform}
                 format={post.format}
                 available={connected}
+                recommended={editor.recommended}
                 onPlatformChange={editor.setPlatform}
                 onFormatChange={(format) => editor.update({ format })}
               />

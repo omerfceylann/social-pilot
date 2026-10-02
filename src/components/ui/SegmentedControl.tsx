@@ -2,11 +2,16 @@
 
 import { motion } from "motion/react";
 import { RadioGroup } from "radix-ui";
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { transition } from "@/lib/motion";
 
-export type SegmentOption<Value extends string> = { value: Value; label: string };
+export type SegmentOption<Value extends string> = {
+  value: Value;
+  label: string;
+  /** Etiketin yanında küçük bir işaret (örn. AI önerisi ✦). Erişilebilir adını çağıran verir. */
+  adornment?: ReactNode;
+};
 
 type SegmentedControlProps<Value extends string> = {
   value: Value;
@@ -63,7 +68,10 @@ export const SegmentedControl = <Value extends string>({
                 aria-hidden
               />
             )}
-            <span className="relative">{option.label}</span>
+            <span className="relative inline-flex items-center gap-1.5">
+              {option.label}
+              {option.adornment}
+            </span>
           </RadioGroup.Item>
         );
       })}

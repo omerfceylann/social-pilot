@@ -203,6 +203,8 @@ export const en: Dictionary = {
     views: "{count} views",
     engagement: "{value} engagement",
     editor: {
+      aiRecommendedPlatform: "AI suggestion",
+      aiPreparedFor: "AI prepared this for {targets}.",
       back: "Content",
       autosaved: "Saved automatically",
       platform: "Platform",
