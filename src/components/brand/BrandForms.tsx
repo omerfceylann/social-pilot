@@ -6,7 +6,6 @@ import { SaveBar } from "@/components/settings/SaveBar";
 import { SettingsSection } from "@/components/settings/SettingsSection";
 import { ChipGroup } from "@/components/ui/ChipGroup";
 import { Field } from "@/components/ui/Field";
-import { IconButton } from "@/components/ui/IconButton";
 import { Input, Textarea } from "@/components/ui/Input";
 import { LabelledRow } from "@/components/ui/LabelledRow";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
