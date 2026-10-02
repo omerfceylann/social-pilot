@@ -22,7 +22,6 @@ export const educationBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 5,
     ctaStyle: "soft",
-    visualStyle: "Aydınlık sınıflar, gerçek öğrenciler, el yazısı notlar",
     customRules: [
       "Gerçekçi olmayan süre vaatleri verme",
       "Öğrenci başarılarını izin alarak paylaş",

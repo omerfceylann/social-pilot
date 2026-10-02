@@ -22,7 +22,6 @@ export const beautyBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 6,
     ctaStyle: "soft",
-    visualStyle: "Yumuşak ışık, nötr tonlar, yakın plan doku çekimleri",
     customRules: [
       "Önce/sonra paylaşımlarında danışandan izin alındığını belirt",
       "Tıbbi vaat verme, sonuçlar kişiden kişiye değişir de",

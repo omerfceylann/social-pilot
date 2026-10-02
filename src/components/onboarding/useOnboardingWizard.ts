@@ -41,7 +41,7 @@ const NO_BACK: StepId[] = ["choice", "analysis", "profile", "connect"];
 
 export type EditableRules = Pick<
   BrandRules,
-  "emojiUsage" | "captionLength" | "ctaStyle" | "bannedWords" | "preferredWords" | "visualStyle"
+  "emojiUsage" | "captionLength" | "ctaStyle" | "bannedWords" | "preferredWords"
 >;
 
 export type OnboardingDraft = {
@@ -140,7 +140,7 @@ const createDraft = (brandName: string): OnboardingDraft => ({
 
 const rulesFor = (draft: OnboardingDraft): EditableRules => {
   const sector = toSectorSelection(draft) ?? { kind: "preset", id: "restaurant" };
-  const { emojiUsage, captionLength, ctaStyle, bannedWords, preferredWords, visualStyle } =
+  const { emojiUsage, captionLength, ctaStyle, bannedWords, preferredWords } =
     resolveDataset(sector).brandDefaults.rules;
   return {
     emojiUsage,
@@ -148,7 +148,6 @@ const rulesFor = (draft: OnboardingDraft): EditableRules => {
     ctaStyle,
     bannedWords,
     preferredWords,
-    visualStyle,
   };
 };
 

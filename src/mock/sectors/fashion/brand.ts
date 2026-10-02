@@ -22,7 +22,6 @@ export const fashionBrandDefaults: BrandDefaults = {
     captionLength: "short",
     maxHashtags: 4,
     ctaStyle: "soft",
-    visualStyle: "Nötr tonlar, doğal ışık, sade arka plan, kumaş dokusuna yakın çekimler",
     customRules: ["Aciliyet yaratan satış dili kullanma", "Kumaş ve üretim bilgisini öne çıkar"],
   },
 };

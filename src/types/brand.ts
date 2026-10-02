@@ -66,7 +66,6 @@ export type BrandRules = {
   captionLength: CaptionLength;
   maxHashtags: number;
   ctaStyle: CtaStyle;
-  visualStyle: string;
   /** Serbest metin kurallar, ör. "Agresif satış dili kullanma". */
   customRules: string[];
 };

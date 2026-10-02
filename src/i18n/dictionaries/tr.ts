@@ -114,8 +114,6 @@ export const tr = {
       preferredWords: "Kullanılması istenen kelimeler",
       wordsPlaceholder: "Kelime yaz, Enter'a bas",
       removeWord: "{word} kelimesini kaldır",
-      visualStyle: "Görsel stil",
-      visualStylePlaceholder: "ör. Doğal ışık, sıcak tonlar",
     },
     platformsUsed: {
       title: "Hangi hesapları zaten kullanıyorsun?",
@@ -144,7 +142,6 @@ export const tr = {
       rules: "İçerik kuralları",
       ruleEmoji: "Emoji: {value}",
       ruleLength: "Caption: {value}",
-      ruleHashtags: "En fazla {count} hashtag",
       ages: "{min}–{max} yaş",
       next: "Hesaplarını bağla",
     },
@@ -476,7 +473,6 @@ export const tr = {
         medium: "Orta uzunlukta açıklamalar yaz",
         long: "Uzun, detaylı açıklamalar yaz",
       },
-      hashtags: "En fazla {count} hashtag",
       cta: {
         none: "Harekete geçirici mesaj ekleme",
         soft: "Yumuşak bir harekete geçirici mesajla bitir",
@@ -485,7 +481,6 @@ export const tr = {
     },
     writing: "Yazım",
     writingHint: "Açıklamaların biçimi.",
-    maxHashtags: "En fazla hashtag",
     words: "Kelimeler ve özel kurallar",
     wordsHint: "Kullanılmayacak ve tercih edilen kelimeler, serbest kurallar.",
     customRules: "Özel kurallar",

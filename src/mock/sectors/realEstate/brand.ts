@@ -22,7 +22,6 @@ export const realEstateBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 5,
     ctaStyle: "soft",
-    visualStyle: "Geniş açı, gün ışığında iç mekân, sakin renkler",
     customRules: [
       "Fiyatı ve metrekareyi her zaman net yaz",
       "Fotoğrafları aşırı düzenleme, ev olduğu gibi görünsün",

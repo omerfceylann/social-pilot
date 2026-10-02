@@ -22,7 +22,6 @@ export const healthBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 5,
     ctaStyle: "soft",
-    visualStyle: "Doğal ışık, sade stüdyo, toprak tonları",
     customRules: [
       "Tıbbi tavsiye verme, gerekiyorsa doktora yönlendir",
       "Beden ve kilo üzerinden konuşma, his ve alışkanlık üzerinden konuş",

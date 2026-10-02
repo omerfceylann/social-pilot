@@ -109,8 +109,6 @@ export const en: Dictionary = {
       preferredWords: "Words to use",
       wordsPlaceholder: "Type a word, press Enter",
       removeWord: "Remove {word}",
-      visualStyle: "Visual style",
-      visualStylePlaceholder: "e.g. Natural light, warm tones",
     },
     platformsUsed: {
       title: "Which accounts do you already use?",
@@ -139,7 +137,6 @@ export const en: Dictionary = {
       rules: "Content rules",
       ruleEmoji: "Emoji: {value}",
       ruleLength: "Caption: {value}",
-      ruleHashtags: "Up to {count} hashtags",
       ages: "Ages {min}–{max}",
       next: "Connect your accounts",
     },
@@ -471,7 +468,6 @@ export const en: Dictionary = {
         medium: "Write medium-length captions",
         long: "Write long, detailed captions",
       },
-      hashtags: "Maximum {count} hashtags",
       cta: {
         none: "Don't add a call to action",
         soft: "End with a soft call to action",
@@ -480,7 +476,6 @@ export const en: Dictionary = {
     },
     writing: "Writing",
     writingHint: "How captions are written.",
-    maxHashtags: "Max hashtags",
     words: "Words and custom rules",
     wordsHint: "Words to avoid, preferred words and free-form rules.",
     customRules: "Custom rules",

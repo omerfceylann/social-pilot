@@ -22,7 +22,6 @@ export const technologyBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 4,
     ctaStyle: "soft",
-    visualStyle: "Temiz ürün ekran görüntüleri, açık arka plan, mor vurgu rengi",
     customRules: [
       "Abartılı pazarlama dili kullanma",
       "Her iddiayı bir örnekle destekle",

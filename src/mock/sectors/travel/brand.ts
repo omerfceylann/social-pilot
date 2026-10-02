@@ -22,7 +22,6 @@ export const travelBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 6,
     ctaStyle: "soft",
-    visualStyle: "Altın saat ışığı, geniş manzaralar, yerel yüzler",
     customRules: [
       "Yerel halkı izinsiz çekme, izin alınan kareleri belirt",
       "Fiyata dahil olanları ve olmayanları açıkça yaz",

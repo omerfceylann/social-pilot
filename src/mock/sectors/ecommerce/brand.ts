@@ -22,7 +22,6 @@ export const ecommerceBrandDefaults: BrandDefaults = {
     captionLength: "short",
     maxHashtags: 5,
     ctaStyle: "direct",
-    visualStyle: "Sade arka plan, ürün odaklı yakın çekim, gün ışığı",
     customRules: [
       "Fiyatı her zaman KDV dahil yaz",
       "Stok durumunu abartma, gerçek adedi söyle",

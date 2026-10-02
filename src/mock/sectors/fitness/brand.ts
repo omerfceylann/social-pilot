@@ -22,7 +22,6 @@ export const fitnessBrandDefaults: BrandDefaults = {
     captionLength: "medium",
     maxHashtags: 6,
     ctaStyle: "direct",
-    visualStyle: "Doğal stüdyo ışığı, gerçek üyeler, hareket anında çekimler",
     customRules: [
       "Gerçekçi olmayan vücut vaatleri verme",
       "Dönüşüm paylaşımlarında üyeden izin alındığını belirt",

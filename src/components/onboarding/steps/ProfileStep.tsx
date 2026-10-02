@@ -107,7 +107,6 @@ export const ProfileStep = () => {
             items={[
               t("onboarding.profile.ruleEmoji", { value: emojiLabel }),
               t("onboarding.profile.ruleLength", { value: lengthLabel }),
-              t("onboarding.profile.ruleHashtags", { count: profile.rules.maxHashtags }),
               ...profile.rules.customRules,
             ]}
           />

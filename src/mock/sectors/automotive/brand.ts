@@ -22,7 +22,6 @@ export const automotiveBrandDefaults: BrandDefaults = {
     captionLength: "short",
     maxHashtags: 5,
     ctaStyle: "direct",
-    visualStyle: "Atölye ışığı, yakın plan detaylar, parlak yüzeyler",
     customRules: [
       "Plakaları ve müşteri bilgilerini her zaman gizle",
       "Yapılan işi ve kullanılan ürünü açıkça yaz",

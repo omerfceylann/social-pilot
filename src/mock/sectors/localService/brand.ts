@@ -22,7 +22,6 @@ export const localServiceBrandDefaults: BrandDefaults = {
     captionLength: "short",
     maxHashtags: 5,
     ctaStyle: "direct",
-    visualStyle: "Gerçek evlerde, öncesi ve sonrası, doğal ışık",
     customRules: [
       "Fiyatı önceden net söyle, sürpriz ücret olmadığını belirt",
       "Müşteri evini izinle göster, kişisel eşyaları kadrajdan çıkar",

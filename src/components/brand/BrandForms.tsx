@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Minus, Plus } from "lucide-react";
+import { Check } from "lucide-react";
 import { useId } from "react";
 import { SaveBar } from "@/components/settings/SaveBar";
 import { SettingsSection } from "@/components/settings/SettingsSection";
@@ -27,7 +27,6 @@ import {
 } from "@/types";
 
 const AGE_LIMITS = { min: 13, max: 80 } as const;
-const HASHTAG_RANGE = { min: 0, max: 30 } as const;
 
 type FormProps = { profile: BrandProfile };
 
@@ -272,7 +271,6 @@ export const BrandRulesForm = ({ profile }: FormProps) => {
   const summary = [
     t(`brand.rulesSummary.emoji.${rules.emojiUsage}`),
     t(`brand.rulesSummary.length.${rules.captionLength}`),
-    t("brand.rulesSummary.hashtags", { count: rules.maxHashtags }),
     t(`brand.rulesSummary.cta.${rules.ctaStyle}`),
     ...rules.customRules,
   ];
@@ -337,36 +335,6 @@ export const BrandRulesForm = ({ profile }: FormProps) => {
             />
           )}
         </LabelledRow>
-        <LabelledRow label={t("brand.maxHashtags")}>
-          {(labelId) => (
-            <div role="group" aria-labelledby={labelId} className="flex items-center gap-3">
-              <IconButton
-                label={`${t("brand.maxHashtags")} −`}
-                icon={<Minus />}
-                variant="secondary"
-                size="sm"
-                showTooltip={false}
-                disabled={rules.maxHashtags <= HASHTAG_RANGE.min}
-                onClick={() => update({ maxHashtags: rules.maxHashtags - 1 })}
-              />
-              <output
-                aria-live="polite"
-                className="w-6 text-center text-body font-medium tabular-nums"
-              >
-                {rules.maxHashtags}
-              </output>
-              <IconButton
-                label={`${t("brand.maxHashtags")} +`}
-                icon={<Plus />}
-                variant="secondary"
-                size="sm"
-                showTooltip={false}
-                disabled={rules.maxHashtags >= HASHTAG_RANGE.max}
-                onClick={() => update({ maxHashtags: rules.maxHashtags + 1 })}
-              />
-            </div>
-          )}
-        </LabelledRow>
       </SettingsSection>
 
       <SettingsSection title={t("brand.words")} description={t("brand.wordsHint")}>
@@ -406,13 +374,6 @@ export const BrandRulesForm = ({ profile }: FormProps) => {
             removeLabel={removeLabel}
           />
         </div>
-        <Field label={t("onboarding.rules.visualStyle")}>
-          <Textarea
-            rows={2}
-            value={rules.visualStyle}
-            onChange={(event) => update({ visualStyle: event.target.value })}
-          />
-        </Field>
       </SettingsSection>
 
       <SaveBar visible={dirty} onDiscard={reset} onSave={() => save({ rules })} />

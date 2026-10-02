@@ -95,13 +95,6 @@ export const RulesStep = ({ draft, update }: StepProps) => {
           removeLabel={removeLabel}
         />
       </div>
-      <Field label={t("onboarding.rules.visualStyle")}>
-        <Input
-          value={rules.visualStyle}
-          onChange={(event) => setRule({ visualStyle: event.target.value })}
-          placeholder={t("onboarding.rules.visualStylePlaceholder")}
-        />
-      </Field>
     </div>
   );
 };

@@ -22,7 +22,6 @@ export const restaurantBrandDefaults: BrandDefaults = {
     captionLength: "short",
     maxHashtags: 5,
     ctaStyle: "soft",
-    visualStyle: "Doğal ışık, sıcak tonlar, ahşap ve seramik dokular",
     // Sadece yapılandırılmış alanlarla (emoji, uzunluk, hashtag…) ifade edilemeyen kurallar.
     customRules: ["Agresif satış dili kullanma", "Mahalle ve topluluk vurgusunu koru"],
   },
