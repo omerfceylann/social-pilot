@@ -43,3 +43,4 @@ next-env.d.ts
 # claude code (makineye özel)
 .claude/settings.local.json
 CLAUDE.md
+AGENTS.md
